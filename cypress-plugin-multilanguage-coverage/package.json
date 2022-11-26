@@ -4,6 +4,11 @@
   "description": "",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heddendorp/msc-thesis.git",
+    "directory": "cypress-plugin-multilanguage-coverage"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "gts lint",
