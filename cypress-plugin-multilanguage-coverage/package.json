@@ -9,6 +9,10 @@
     "url": "https://github.com/heddendorp/msc-thesis.git",
     "directory": "cypress-plugin-multilanguage-coverage"
   },
+  "homepage": "https://github.com/heddendorp/msc-thesis/tree/main/cypress-plugin-multilanguage-coverage#readme",
+  "bugs": {
+    "url": "https://github.com/heddendorp/msc-thesis/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "gts lint",
@@ -21,13 +25,10 @@
   },
   "files": [
     "dist",
-    "README.md",
-    "LICENSE",
-    "package.json",
     "jars"
   ],
   "keywords": [],
-  "author": "",
+  "author": "Lukas Heddendorp <l.heddendorp@tum.de>",
   "license": "ISC",
   "devDependencies": {
     "@types/chrome-remote-interface": "^0.31.4",
