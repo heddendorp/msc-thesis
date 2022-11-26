@@ -1,0 +1,41 @@
+{
+  "name": "cypress-plugin-multilanguage-coverage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm.cmd run compile",
+    "pretest": "npm.cmd run compile",
+    "posttest": "npm.cmd run lint"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "jars"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome-remote-interface": "^0.31.4",
+    "@types/node": "^14.11.2",
+    "cypress": "^9.5.4",
+    "gts": "^3.1.1",
+    "prettier": "^2.8.0",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "chrome-remote-interface": "^0.31.3",
+    "fs-jetpack": "^5.1.0",
+    "jacoco-parse": "^2.0.1",
+    "v8-to-istanbul": "^9.0.1"
+  }
+}
