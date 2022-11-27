@@ -32,6 +32,8 @@ npx coverage-git-compare compare -c <commit>
 ```
 _Ideally this is the commit where tests last passed_
 
+## Limitations
+There is currently no support for finind the last passing commit for a test automatically by checking build logs. Future versions of this package or additional packages could help with this issue.
 
 ## References
 - TypeScript project setup by [DigitalOcean](https://www.digitalocean.com/community/tutorials/typescript-new-project)

@@ -113,3 +113,11 @@ It is recommended to set the workingDirectory to the root of your cypress projec
 ```typescript
 {workingDirectory:path.join(__dirname, '..')}
 ```
+
+## Limitations
+Currently coverage is only collected per file. In future versions of the plugin, more granular coverage could be a feature to support.
+
+## References
+- [How to build, test, and publish a TypeScript npm package in 2022](https://www.strictmode.io/articles/build-test-and-publish-npm-package-2022)
+- [How To Set Up a New TypeScript Project](https://www.digitalocean.com/community/tutorials/typescript-new-project) by DigitalOcean
+- Cypress [Plugin Guide](https://docs.cypress.io/guides/tooling/plugins-guide)
