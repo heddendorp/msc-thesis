@@ -15,6 +15,11 @@ export function handleAfterSpec(config: Config) {
     spec: Spec,
     results: CypressCommandLine.RunResult
   ): Promise<void> => {
+    if(config.onlySaveOnFailure && !results.stats.failures) {
+      console.log('Skipping coverage report for spec: ' + spec.name);
+      return
+    }
+
     const specName = spec.name.split('/').pop();
     const coverageFolder = jetpack.dir(
       path.join(config.workingDirectory, config.coverageFolder),

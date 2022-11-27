@@ -29,10 +29,29 @@ registerMultilanguageCoveragePlugin()(on, config);
 ```
 
 ## Usage
+
+### Java Instrumentation
+You can instrument a java project with jacoco by running the following command in the root of your project:
+```bash
+java -javaagent:.\jars\jacocoagent.jar=output=tcpserver -jar .\jars\your.jar
+```
+For [Artemis](https://github.com/ls1intum/Artemis), you can use the following command:
+```bash
+java -javaagent:.\jars\jacocoagent.jar=output=tcpserver -jar .\build\libs\Artemis-6.0.0.jar --spring.profiles.active=dev,jenkins,gitlab,artemis,scheduling,local    
+```
+_This is for a local setup with GitLab and Jenkins_
+
+For that you have to build the project first with
+```bash
+./gradlew spotlessApply -x webapp # to fix formatting issues
+./gradlew build -x test -x jacocoTestCoverageVerification # to build the project without running tests
+```
+
+### Configuration
 You can configure the plugin by passing a config map to the registerMultilanguageCoveragePlugin function. The following options are available:
 
 ```typescript
-export interface Config {
+interface Config {
   /**
    * If enabled, the plugin will generate a JaCoCo coverage report for Java code.
    * @default true
@@ -78,6 +97,16 @@ export interface Config {
    * @default false
    */
   saveRawCoverage: boolean;
+  /**
+   * If enabled, the coverage report will only be saved if the spec fails.
+   * @default true
+   */
+  onlySaveOnFailure: boolean;
+  /**
+   * If enabled, the coverage folder will be deleted before the coverage report is generated.
+   * @default true
+   */
+  cleanCoverageFolder: boolean;
 }
 ```
 It is recommended to set the workingDirectory to the root of your cypress project. This way, Your files don't end up in your node_modules folder.

@@ -3,6 +3,7 @@ import {handleBeforeBrowserLaunch} from './browserLaunch';
 import {handleAfterSpec} from './afterSpec';
 import {handleBeforeSpec} from './beforeSpec';
 import PluginConfig = Cypress.PluginConfig;
+import {handleBeforeRun} from "./beforeRun";
 
 export function registerMultilanguageCoveragePlugin(
   config: Partial<Config>
@@ -12,6 +13,7 @@ export function registerMultilanguageCoveragePlugin(
     ...config,
   };
   return (on, config) => {
+    on('before:run', handleBeforeRun(pluginConfig));
     on('before:browser:launch', handleBeforeBrowserLaunch(pluginConfig));
     on('before:spec', handleBeforeSpec(pluginConfig));
     on('after:spec', handleAfterSpec(pluginConfig));
@@ -28,6 +30,8 @@ const defaultConfig: Config = {
   javaClassesLocation: '../../../build/classes',
   javaSourceLocation: '../../../src/main/java',
   saveRawCoverage: false,
+  onlySaveOnFailure: true,
+  cleanCoverageFolder: true,
 };
 
 export interface Config {
@@ -76,4 +80,14 @@ export interface Config {
    * @default false
    */
   saveRawCoverage: boolean;
+  /**
+   * If enabled, the coverage report will only be saved if the spec fails.
+   * @default true
+   */
+  onlySaveOnFailure: boolean;
+  /**
+   * If enabled, the coverage folder will be deleted before the coverage report is generated.
+   * @default true
+   */
+  cleanCoverageFolder: boolean;
 }
