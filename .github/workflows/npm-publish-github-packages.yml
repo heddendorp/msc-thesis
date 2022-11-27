@@ -9,10 +9,13 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        package: [cypress-plugin-multilanguage-coverage, coverage-git-compare]
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: cypress-plugin-multilanguage-coverage
+        working-directory: ${{ matrix.package }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -23,10 +26,13 @@ jobs:
 
   publish-gpr:
     needs: build
+    strategy:
+      matrix:
+        package: [cypress-plugin-multilanguage-coverage, coverage-git-compare]
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: cypress-plugin-multilanguage-coverage
+        working-directory: ${{ matrix.package }}
     permissions:
       contents: read
       packages: write
