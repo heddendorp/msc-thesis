@@ -15,9 +15,9 @@ export function handleAfterSpec(config: Config) {
     spec: Spec,
     results: CypressCommandLine.RunResult
   ): Promise<void> => {
-    if(config.onlySaveOnFailure && !results.stats.failures) {
+    if (config.onlySaveOnFailure && !results.stats.failures) {
       console.log('Skipping coverage report for spec: ' + spec.name);
-      return
+      return;
     }
 
     const specName = spec.name.split('/').pop();
@@ -118,8 +118,16 @@ export function handleAfterSpec(config: Config) {
         );
       });
       const javaFiles = javaCoverage
-        .filter((entry: any) => entry.lines.hit)
-        .map((entry: any) => entry.file);
+        .filter(
+          (entry: any) =>
+            entry.lines.hit || entry.branches.hit || entry.functions.hit
+        )
+        .map((entry: any) =>
+          entry.file.replace(
+            'de/tum/in/www1/artemis/',
+            'src/main/java/de/tum/in/www1/artemis/'
+          )
+        );
       const coveredFiles = frontendFiles.concat(javaFiles);
       if (config.saveRawCoverage) {
         coverageFolder.write(`${specName}-java.json`, javaCoverage);
@@ -131,6 +139,8 @@ export function handleAfterSpec(config: Config) {
       coverageFolder.write(`${specName}-frontend.json`, frontendCoverage);
     }
 
-    coverageFolder.write(`${specName}-covered-files.json`, frontendFiles);
+    if (!config.enableJavaCoverage) {
+      coverageFolder.write(`${specName}-covered-files.json`, frontendFiles);
+    }
   };
 }
