@@ -7,6 +7,8 @@ import {Command} from 'commander';
 import packageJson from '../package.json';
 import jetpack from 'fs-jetpack';
 import util from 'util';
+import {getPathsFromPackageLock} from './package-lock-handler';
+import minimatch from 'minimatch';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -39,6 +41,28 @@ program
       .filter((line: string) => !line.includes('@begin@') && line.length);
 
     const changedFiles = Array.from(new Set<string>(files));
+    if (changedFiles.some((file: string) => file === 'package-lock.json')) {
+      console.log(
+        chalk.gray(
+          'package-lock.json changes detected, adding changed dependencies to list of changed files'
+        )
+      );
+      const {stderr} = await exec(
+        `git show ${
+          commit ? commit : `HEAD${Array(limit).fill('^').join('')}`
+        }:package-lock.json > old-package-lock.json`
+      );
+      if (stderr) {
+        console.log(chalk.red(stderr));
+        return;
+      }
+      const additionalFiles = getPathsFromPackageLock(
+        'old-package-lock.json',
+        'package-lock.json'
+      );
+      jetpack.remove('old-package-lock.json');
+      changedFiles.push(...additionalFiles);
+    }
     const coverageFolder = jetpack.cwd(path);
     const coverageFiles = await coverageFolder.findAsync({
       matching: '*files.json',
@@ -53,15 +77,26 @@ program
         'json'
       )) as string[];
       const coveredFiles = rawFiles.map(f => f.replaceAll('\\', '/'));
-      const changedFilesForTest = changedFiles.filter((f: string) =>
-        coveredFiles.includes(f)
-      );
+      const changedFilesForTest = changedFiles
+        .filter((f: string) =>
+          coveredFiles.some((cf: string) => minimatch(cf, f))
+        )
+        .map(path => {
+          if (path.includes('node_modules')) {
+            return chalk.yellow(
+              `Dependency: ${path
+                .split('node_modules/')[1]
+                .replace('/**/*', '')}`
+            );
+          }
+          return path;
+        });
       if (changedFilesForTest.length > 0) {
         console.log(
           chalk.red(
             `\nTest ${testName} has covered ${chalk.bold(
               changedFilesForTest.length
-            )} changed files that have been changed in your commit range`
+            )} changes that appeared in your commit range`
           )
         );
         console.log(changedFilesForTest.join(`\n`));
