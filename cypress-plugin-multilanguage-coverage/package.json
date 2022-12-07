@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/cypress-plugin-multilanguage-coverage",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -25,7 +25,8 @@
   },
   "files": [
     "dist",
-    "jars"
+    "jars",
+    "build"
   ],
   "keywords": [],
   "author": "Lukas Heddendorp <l.heddendorp@tum.de>",
