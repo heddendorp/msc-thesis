@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/coverage-git-compare",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "CLI tool to compare coverage reports with git changes",
   "main": "build/src/index.js",
   "bin": {
@@ -29,6 +29,9 @@
     "posttest": "npm run lint"
   },
   "keywords": [],
+  "files": [
+    "build"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@types/figlet": "^1.5.5",

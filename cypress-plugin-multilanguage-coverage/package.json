@@ -24,7 +24,6 @@
     "posttest": "npm run lint"
   },
   "files": [
-    "dist",
     "jars",
     "build"
   ],
