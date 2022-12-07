@@ -7,10 +7,17 @@ import path from 'path';
 import jacoco from 'jacoco-parse';
 import v8ToIstanbul from 'v8-to-istanbul';
 import jetpack from 'fs-jetpack';
+import PluginConfigOptions = Cypress.PluginConfigOptions;
 
 const exec = util.promisify(require('child_process').exec);
 
-export function handleAfterSpec(config: Config) {
+export function handleAfterSpec(
+  config: Config,
+  pluginConfig: PluginConfigOptions
+) {
+  // Extract host from baseUrl
+  const host =
+    pluginConfig.baseUrl?.split('//')[1].split(':')[0] ?? 'localhost';
   return async (
     spec: Spec,
     results: CypressCommandLine.RunResult
@@ -70,7 +77,7 @@ export function handleAfterSpec(config: Config) {
           config.workingDirectory,
           config.jaCoCoFilePath,
           `${specName}-coverage.exec`
-        )} --reset`
+        )} --reset --address ${host}`
       ).then(({stdout, stderr}: {stdout: string; stderr: string}) => {
         console.log(stdout);
         if (stderr) console.error(stderr);

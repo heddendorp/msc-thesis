@@ -3,7 +3,7 @@ import {handleBeforeBrowserLaunch} from './browserLaunch';
 import {handleAfterSpec} from './afterSpec';
 import {handleBeforeSpec} from './beforeSpec';
 import PluginConfig = Cypress.PluginConfig;
-import {handleBeforeRun} from "./beforeRun";
+import {handleBeforeRun} from './beforeRun';
 
 export function registerMultilanguageCoveragePlugin(
   config: Partial<Config>
@@ -15,8 +15,8 @@ export function registerMultilanguageCoveragePlugin(
   return (on, config) => {
     on('before:run', handleBeforeRun(pluginConfig));
     on('before:browser:launch', handleBeforeBrowserLaunch(pluginConfig));
-    on('before:spec', handleBeforeSpec(pluginConfig));
-    on('after:spec', handleAfterSpec(pluginConfig));
+    on('before:spec', handleBeforeSpec(pluginConfig, config));
+    on('after:spec', handleAfterSpec(pluginConfig, config));
   };
 }
 
