@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/coverage-git-compare",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "CLI tool to compare coverage reports with git changes",
   "main": "build/src/index.js",
   "bin": {
