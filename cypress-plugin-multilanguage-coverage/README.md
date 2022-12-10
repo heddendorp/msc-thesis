@@ -107,6 +107,12 @@ interface Config {
    * @default true
    */
   cleanCoverageFolder: boolean;
+  /**
+   * The path to the Artemis distribution file.
+   * If this is set, the plugin will extract it in place and use the extracted files for coverage.
+   * @default '../../../build/libs/Artemis-6.0.0.war'
+   */
+  distributionFile: string;
 }
 ```
 It is recommended to set the workingDirectory to the root of your cypress project. This way, Your files don't end up in your node_modules folder.

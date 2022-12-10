@@ -25,10 +25,11 @@ const defaultConfig: Config = {
   resetCoverageOnSpecStart: true,
   coverageFolder: 'coverage',
   jaCoCoFilePath: 'jacoco',
-  frontendBuildLocation: '../../../build/resources/main/static',
+  frontendBuildLocation: '../../../build/libs/extracted/WEB-INF/classes/static',
   workingDirectory: __dirname,
-  javaClassesLocation: '../../../build/classes',
+  javaClassesLocation: '../../../build/libs/extracted/WEB-INF/classes',
   javaSourceLocation: '../../../src/main/java',
+  distributionFile: '../../../build/libs/Artemis-6.0.0.war',
   saveRawCoverage: false,
   onlySaveOnFailure: true,
   cleanCoverageFolder: true,
@@ -90,4 +91,10 @@ export interface Config {
    * @default true
    */
   cleanCoverageFolder: boolean;
+  /**
+   * The path to the Artemis distribution file.
+   * If this is set, the plugin will extract it in place and use the extracted files for coverage.
+   * @default '../../../build/libs/Artemis-6.0.0.war'
+   */
+  distributionFile: string;
 }

@@ -129,12 +129,15 @@ export function handleAfterSpec(
           (entry: any) =>
             entry.lines.hit || entry.branches.hit || entry.functions.hit
         )
-        .map((entry: any) =>
-          entry.file.replace(
-            'de/tum/in/www1/artemis/',
-            'src/main/java/de/tum/in/www1/artemis/'
-          )
-        );
+        .map((entry: any) => {
+          if (!config.distributionFile) {
+            return entry.file.replace(
+              'de/tum/in/www1/artemis/',
+              'src/main/java/de/tum/in/www1/artemis/'
+            );
+          }
+          return entry.file;
+        });
       const coveredFiles = frontendFiles.concat(javaFiles);
       if (config.saveRawCoverage) {
         coverageFolder.write(`${specName}-java.json`, javaCoverage);
