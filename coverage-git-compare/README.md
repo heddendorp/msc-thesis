@@ -29,3 +29,4 @@ There is currently no support for finind the last passing commit for a test auto
 - TypeScript project setup by [DigitalOcean](https://www.digitalocean.com/community/tutorials/typescript-new-project)
 - Building a CLI tool by [Jeroen Ouwehand](https://itnext.io/how-to-create-your-own-typescript-cli-with-node-js-1faf7095ef89)
 - [gitlog library](https://www.npmjs.com/package/gitlog)
+- Node.js with TypeScript in 2023 by [Beyond Fireship](https://www.youtube.com/watch?v=H91aqUHn8sE)

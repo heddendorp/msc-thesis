@@ -127,7 +127,11 @@ export function registerBambooCompareCommand(program: Command) {
       }
       console.log();
       if (nonFlakyFail) {
+        console.log(chalk.red('Failure does not appear to be flaky'));
         process.exit(1);
+      } else {
+        console.log('FLAKECHECK:POSITIVE');
+        process.exit(0);
       }
     });
 }
