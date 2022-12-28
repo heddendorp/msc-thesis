@@ -15,9 +15,22 @@ export function handleBeforeRun(config: Config) {
     }
     if (config.distributionFile) {
       console.log('Extracting distribution file');
-      console.log(path.join(config.workingDirectory, config.distributionFile));
       console.log(
+        'Distribution File',
+        path.join(config.workingDirectory, config.distributionFile)
+      );
+      console.log(
+        'Distribution file dir',
         path.join(config.workingDirectory, config.distributionFile, '..')
+      );
+      console.log(
+        'Distribution file extraction dir',
+        path.join(
+          config.workingDirectory,
+          config.distributionFile,
+          '..',
+          'extracted'
+        )
       );
       jetpack.dir(
         path.join(
@@ -30,6 +43,7 @@ export function handleBeforeRun(config: Config) {
           empty: true,
         }
       );
+      console.log('Extracting distribution file');
       const zip = new AdmZip(
         path.join(config.workingDirectory, config.distributionFile)
       );
@@ -41,6 +55,7 @@ export function handleBeforeRun(config: Config) {
           'extracted'
         )
       );
+      console.log('Distribution file extracted');
     }
   };
 }
