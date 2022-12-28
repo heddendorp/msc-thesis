@@ -16,7 +16,12 @@ export function registerBambooCompareCommand(program: Command) {
     .argument('<planKey>', 'Bamboo plan key')
     .argument('<bambooToken>', 'Bamboo access token')
     .option('-p, --path <path>', 'Path to coverage report', './coverage')
-    .action(async (planKey, token, { path }) => {
+    .option(
+      '-b, --branch [branch]',
+      'Branch to compare against if no build is found',
+      'devlop'
+    )
+    .action(async (planKey, token, { path, branch }) => {
       let lastSuccessfulCommit = 'HEAD^';
       const planResponse = await fetch(
         `https://bamboobruegge.in.tum.de/rest/api/latest/result/${planKey}`,
@@ -45,11 +50,8 @@ export function registerBambooCompareCommand(program: Command) {
         const successfulBuildData = xmlParser.parse(successfulBuildXml);
         lastSuccessfulCommit = successfulBuildData.result.vcsRevisionKey;
       } else {
-        console.debug(
-          'No successful build found, falling back to source branch'
-        );
-        const { stdout } = await exec(`git show-branch`);
-        lastSuccessfulCommit = stdout.split('[')[1].split(']')[0];
+        console.debug('No successful build found, falling back to ', branch);
+        lastSuccessfulCommit = branch;
       }
       const { stdout } = await exec(
         `git log ${lastSuccessfulCommit}...HEAD --pretty="@begin@%h@end@" --name-only`
