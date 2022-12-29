@@ -22,6 +22,7 @@ export function handleAfterSpec(
     spec: Spec,
     results: CypressCommandLine.RunResult
   ): Promise<void> => {
+    const startTime = Date.now();
     if (config.onlySaveOnFailure && !results.stats.failures) {
       console.log('Skipping coverage report for spec: ' + spec.name);
       return;
@@ -152,5 +153,7 @@ export function handleAfterSpec(
     if (!config.enableJavaCoverage) {
       coverageFolder.write(`${specName}-covered-files.json`, frontendFiles);
     }
+    const endTime = Date.now();
+    console.log('TIME_PASSED', endTime - startTime);
   };
 }

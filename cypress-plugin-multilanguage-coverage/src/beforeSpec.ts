@@ -13,6 +13,7 @@ export function handleBeforeSpec(
   const host =
     pluginConfig.baseUrl?.split('//')[1].split(':')[0] ?? 'localhost';
   return async (spec: Cypress.Cypress['spec']) => {
+    const startTime = Date.now();
     console.log('Starting code coverage for spec: ' + spec.name);
     if (config.resetCoverageOnSpecStart && config.enableJavaCoverage) {
       await exec(
@@ -30,6 +31,8 @@ export function handleBeforeSpec(
       ).then(({stdout, stderr}: {stdout: string; stderr: string}) => {
         console.log(stdout);
         if (stderr) console.error(stderr);
+        const endTime = Date.now();
+        console.log('TIME_PASSED', endTime - startTime);
       });
     }
   };

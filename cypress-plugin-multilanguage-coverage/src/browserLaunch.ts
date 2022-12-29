@@ -8,6 +8,7 @@ export function handleBeforeBrowserLaunch(config: Config) {
     browser: Cypress.Browser,
     launchOptions: Cypress.BrowserLaunchOptions
   ): Promise<BrowserLaunchOptions> => {
+    const startTime = Date.now();
     console.log('browser is', browser.name);
     if (browser.name !== 'chrome') {
       console.log(
@@ -27,6 +28,8 @@ export function handleBeforeBrowserLaunch(config: Config) {
     }
     const rdp = parseInt(rdpArgument.split('=')[1]);
     ChromeClient.requestConnection(rdp);
+    const endTime = Date.now();
+    console.log('TIME_PASSED', endTime - startTime);
     return launchOptions;
   };
 }

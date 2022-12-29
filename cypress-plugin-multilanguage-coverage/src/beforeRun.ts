@@ -7,6 +7,7 @@ import AdmZip from 'adm-zip';
 
 export function handleBeforeRun(config: Config) {
   return async (details: BeforeRunDetails) => {
+    const startTime = Date.now();
     if (config.cleanCoverageFolder) {
       console.log('Cleaning coverage folder');
       jetpack.dir(path.join(config.workingDirectory, config.coverageFolder), {
@@ -56,6 +57,8 @@ export function handleBeforeRun(config: Config) {
         )
       );
       console.log('Distribution file extracted');
+      const endTime = Date.now();
+      console.log('TIME_PASSED', endTime - startTime);
     }
   };
 }
