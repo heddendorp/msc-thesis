@@ -58,6 +58,7 @@ export function handleBeforeRun(config: Config) {
       );
       console.log('Distribution file extracted');
       const endTime = Date.now();
+      jetpack.append('times.txt', (endTime - startTime).toString());
       console.log('TIME_PASSED', endTime - startTime);
     }
   };

@@ -4,10 +4,14 @@ import {handleAfterSpec} from './afterSpec';
 import {handleBeforeSpec} from './beforeSpec';
 import PluginConfig = Cypress.PluginConfig;
 import {handleBeforeRun} from './beforeRun';
+import * as fs from 'fs';
+import {handleAfterRun} from './afterRun';
 
 export function registerMultilanguageCoveragePlugin(
   config: Partial<Config>
 ): PluginConfig {
+  console.log('Writing file for timekeeping to times.txt');
+  fs.writeFileSync('times.txt', '0');
   const pluginConfig: Config = {
     ...defaultConfig,
     ...config,
@@ -17,6 +21,7 @@ export function registerMultilanguageCoveragePlugin(
     on('before:browser:launch', handleBeforeBrowserLaunch(pluginConfig));
     on('before:spec', handleBeforeSpec(pluginConfig, config));
     on('after:spec', handleAfterSpec(pluginConfig, config));
+    on('after:run', handleAfterRun(pluginConfig));
   };
 }
 

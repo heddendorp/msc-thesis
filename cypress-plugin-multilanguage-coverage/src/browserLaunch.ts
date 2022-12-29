@@ -2,6 +2,7 @@ import * as Cypress from 'cypress';
 import {Config} from './index';
 import {ChromeClient} from './chromeClient';
 import BrowserLaunchOptions = Cypress.BrowserLaunchOptions;
+import jetpack from 'fs-jetpack';
 
 export function handleBeforeBrowserLaunch(config: Config) {
   return async (
@@ -29,6 +30,7 @@ export function handleBeforeBrowserLaunch(config: Config) {
     const rdp = parseInt(rdpArgument.split('=')[1]);
     ChromeClient.requestConnection(rdp);
     const endTime = Date.now();
+    jetpack.append('times.txt', (endTime - startTime).toString());
     console.log('TIME_PASSED', endTime - startTime);
     return launchOptions;
   };

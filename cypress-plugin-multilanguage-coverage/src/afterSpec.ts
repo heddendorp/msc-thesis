@@ -154,6 +154,7 @@ export function handleAfterSpec(
       coverageFolder.write(`${specName}-covered-files.json`, frontendFiles);
     }
     const endTime = Date.now();
+    jetpack.append('times.txt', (endTime - startTime).toString());
     console.log('TIME_PASSED', endTime - startTime);
   };
 }

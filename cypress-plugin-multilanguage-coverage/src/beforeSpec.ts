@@ -2,6 +2,7 @@ import path from 'path';
 import util from 'util';
 import {Config} from './index';
 import PluginConfigOptions = Cypress.PluginConfigOptions;
+import jetpack from 'fs-jetpack';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -32,6 +33,7 @@ export function handleBeforeSpec(
         console.log(stdout);
         if (stderr) console.error(stderr);
         const endTime = Date.now();
+        jetpack.append('times.txt', (endTime - startTime).toString());
         console.log('TIME_PASSED', endTime - startTime);
       });
     }
