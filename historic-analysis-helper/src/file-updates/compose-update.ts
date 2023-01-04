@@ -8,7 +8,7 @@ export const updateComposeFile = () => {
   );
   const cypressRunIndex =
     composeContent.indexOf(insertionMarker) + insertionMarker.length;
-  const rerunConfig = `-- --config retries=2`;
+  const rerunConfig = ` -- --config retries=2`;
   const newComposeContent =
     composeContent.slice(0, cypressRunIndex) +
     rerunConfig +
