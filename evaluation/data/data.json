@@ -1,0 +1,14 @@
+{
+    "branches": [
+        {
+            "branchName": "flaky-history/build-705",
+            "plans":[
+                {
+                    "planKey": "ARTEMIS-AECF101",
+                    "runningGoal": 11,
+                    "saveLogs": true
+                }
+            ]
+        }
+    ]
+}

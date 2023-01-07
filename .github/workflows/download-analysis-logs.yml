@@ -1,0 +1,26 @@
+name: Download logs for analysis
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: evaluation
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+            node-version: 18
+      - run: yarn
+      - run: node -r @swc-node/register .\src\downloadLogs.ts
+        env:
+            BAMBOO_USERNAME: ${{ secrets.BAMBOO_USERNAME }}
+            BAMBOO_PASSWORD: ${{ secrets.BAMBOO_PASSWORD }}
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: Update Logs
