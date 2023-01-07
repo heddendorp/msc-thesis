@@ -9,6 +9,16 @@
                     "saveLogs": true
                 }
             ]
+        },
+        {
+            "branchName": "flaky-history/build-710",
+            "plans":[
+                {
+                    "planKey": "ARTEMIS-AECF102",
+                    "runningGoal": 11,
+                    "saveLogs": true
+                }
+            ]
         }
     ]
 }
