@@ -5,7 +5,7 @@
             "plans":[
                 {
                     "planKey": "ARTEMIS-AECF101",
-                    "runningGoal": 11,
+                    "runningGoal": 17,
                     "saveLogs": true
                 }
             ]
@@ -15,6 +15,26 @@
             "plans":[
                 {
                     "planKey": "ARTEMIS-AECF102",
+                    "runningGoal": 12,
+                    "saveLogs": true
+                }
+            ]
+        },
+        {
+            "branchName": "flaky-history/build-668",
+            "plans":[
+                {
+                    "planKey": "ARTEMIS-AECF104",
+                    "runningGoal": 11,
+                    "saveLogs": true
+                }
+            ]
+        },
+        {
+            "branchName": "flaky-history/build-489",
+            "plans":[
+                {
+                    "planKey": "ARTEMIS-AECF103",
                     "runningGoal": 11,
                     "saveLogs": true
                 }
