@@ -22,33 +22,42 @@ async function run() {
       console.log(`Downloading logs for ${plan.planKey}`);
       await page.goto(`https://bamboobruegge.in.tum.de/browse/${plan.planKey}`);
       await page.locator(`[id="history\\:${plan.planKey}"]`).click();
-      const rows = await page.getByRole("row").all();
+      const rows = await page.getByRole("row").allInnerTexts();
       for (const row of rows) {
-        const innerText = await row.innerText();
-        if (!innerText.trim().startsWith("#")) continue;
-        const buildNumber = innerText.match(/#(\d+)/)?.[1] ?? "";
+        if (!row.trim().startsWith("#")) continue;
+        const buildNumber = row.match(/#(\d+)/)?.[1] ?? "";
         console.log(`Checking build #${buildNumber}`);
         const logExists = jetpack.exists(
           `./data/logs/${plan.planKey}/${buildNumber}.txt`
         );
-        if (logExists) continue;
-        await row.getByText(`#${buildNumber}`).click();
+        if (logExists){
+          console.log("Log already exists");
+          continue;
+        };
+        await page.goto(
+          `https://bamboobruegge.in.tum.de/browse/${plan.planKey}-${buildNumber}`
+        );
         await page.getByRole("link", { name: "Logs" }).click();
-        const downloadLinkCount = await page
-          .getByRole("link", { name: "Download" })
-          .count();
-        if (downloadLinkCount === 0) {
-          console.log("No download link found");
+        console.log("Trying download");
+        try {
+          const downloadPromise = page.waitForEvent("download", {
+            timeout: 3000,
+          });
+          downloadPromise.catch(() => {});
+          await page
+            .getByRole("link", { name: "Download" })
+            .click({ timeout: 2000 });
+          const download = await downloadPromise;
+          await download.saveAs(
+            `./data/logs/${plan.planKey}/${buildNumber}.txt`
+          );
+          console.log(
+            `Downloaded logs for ${plan.planKey} #${buildNumber} to ./data/logs/${plan.planKey}/${buildNumber}.txt`
+          );
+        } catch (e) {
+          console.log("Download failed");
           continue;
         }
-        console.log("Download link found");
-        const downloadPromise = page.waitForEvent("download");
-        await page.getByRole("link", { name: "Download" }).click();
-        const download = await downloadPromise;
-        await download.saveAs(`./data/logs/${plan.planKey}/${buildNumber}.txt`);
-        console.log(
-          `Downloaded logs for ${plan.planKey} #${buildNumber} to ./data/logs/${plan.planKey}/${buildNumber}.txt`
-        );
       }
     }
   }
