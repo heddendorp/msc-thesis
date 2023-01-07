@@ -34,6 +34,8 @@ async function run() {
         } else {
           console.log("Run button is disabled");
         }
+      } else {
+        console.log("Already reached running goal");
       }
     }
   }
