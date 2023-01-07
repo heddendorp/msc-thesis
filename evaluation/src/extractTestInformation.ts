@@ -81,12 +81,23 @@ async function run() {
           .map((testcase) => Number(testcase.time))
           .reduce((a, b) => a + b, 0);
 
+          const failedBuild = testsuites.some(test => test.testsuites.some(testsuite => Number(testsuite.failures) > 0));
+          const hasRerun = log.includes('RERUN:')
+          const suspectedFlaky = log.includes('FLAKECHECK:POSITIVE')
+          const confirmedFlaky = !failedBuild && hasRerun;
+          const flakeCheckIssue = failedBuild && !suspectedFlaky;
+
         const jsonFile = logFile
           .replace(".txt", ".json")
           .replace("logs", "json");
         jetpack.write(jsonFile, {
           analyzedTests: testsuites.length,
           analyzedTestcases: testcases.length,
+          failedBuild,
+          hasRerun,
+          suspectedFlaky,
+          confirmedFlaky,
+          flakeCheckIssue,
           totalTime: Math.round((Math.round(totalTime) / 60) * 100) / 100,
           tests: testsuites,
           testcases,
