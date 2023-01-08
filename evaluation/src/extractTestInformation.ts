@@ -25,6 +25,7 @@ async function run() {
     },
   });
   const data = jetpack.read("./data/data.json", "json");
+  const index: any[] = [];
   for (const branch of data.branches) {
     console.log(`Branch: ${branch.branchName}`);
     for (const plan of branch.plans) {
@@ -36,6 +37,10 @@ async function run() {
       const logFiles = jetpack.find(`./data/logs/${plan.planKey}`, {
         matching: "*.txt",
       });
+      const informationFiles: string[] = [];
+      let confirmedFlakes = 0;
+      let fails = 0;
+      const times: number[] = [];
       for (const logFile of logFiles) {
         console.log(`Checking logfile: ${logFile}`);
         const log = jetpack.read(logFile, "utf8");
@@ -68,8 +73,24 @@ async function run() {
             testsuites.push({ ...json[0], testsuites: [json[0]] });
             continue;
           }
-          console.log(json);
           testsuites.push({ ...json[0], testsuites: json.slice(1) });
+        }
+
+        const flakeOutputStartLine = lines.findIndex((line) =>
+          line.includes("==FLAKECHECK:START==")
+        );
+        const flakeOutputEndLine = lines.findIndex((line) =>
+          line.includes("==FLAKECHECK:END==")
+        );
+        let flakeData: any = null;
+        if (flakeOutputStartLine !== -1 && flakeOutputEndLine !== -1) {
+          const flakeOutput = lines
+            .slice(flakeOutputStartLine + 1, flakeOutputEndLine)
+            .filter(line => line.includes('artemis-cypress_1'))
+            .map((line) => line.slice(line.indexOf("|") + 6))
+            .join("\n");
+            console.log(flakeOutput);
+          flakeData = JSON.parse(flakeOutput);
         }
 
         const testcases = testsuites.flatMap((testsuite) =>
@@ -81,15 +102,26 @@ async function run() {
           .map((testcase) => Number(testcase.time))
           .reduce((a, b) => a + b, 0);
 
-          const failedBuild = testsuites.some(test => test.testsuites.some(testsuite => Number(testsuite.failures) > 0));
-          const hasRerun = log.includes('RERUN:')
-          const suspectedFlaky = log.includes('FLAKECHECK:POSITIVE')
-          const confirmedFlaky = !failedBuild && hasRerun;
-          const flakeCheckIssue = failedBuild && !suspectedFlaky;
+        const failedBuild = testsuites.some((test) =>
+          test.testsuites.some((testsuite) => Number(testsuite.failures) > 0)
+        );
+        const hasRerun = log.includes("RERUN:");
+        const suspectedFlaky = log.includes("FLAKECHECK:POSITIVE");
+        const suspectedNotFlaky = log.includes("FLAKECHECK:NEGATIVE");
+        const confirmedFlaky = !failedBuild && hasRerun;
+        const flakeCheckIssue = failedBuild && suspectedNotFlaky;
 
         const jsonFile = logFile
           .replace(".txt", ".json")
           .replace("logs", "json");
+        informationFiles.push(jsonFile.replaceAll("\\", "/"));
+        times.push(totalTime);
+        if (confirmedFlaky) {
+          confirmedFlakes++;
+        }
+        if (failedBuild) {
+          fails++;
+        }
         jetpack.write(jsonFile, {
           analyzedTests: testsuites.length,
           analyzedTestcases: testcases.length,
@@ -100,10 +132,24 @@ async function run() {
           flakeCheckIssue,
           totalTime: Math.round((Math.round(totalTime) / 60) * 100) / 100,
           tests: testsuites,
+          flakeData,
           testcases,
         });
       }
+      const averageTime =
+        Math.round(
+          (times.reduce((a, b) => a + b, 0) / times.length / 60) * 100
+        ) / 100;
+      index.push({
+        ...plan,
+        branch: branch.branchName,
+        averageTime,
+        confirmedFlakes,
+        fails,
+        informationFiles,
+      });
     }
+    jetpack.write("./data/json/index.json", index);
     console.log();
   }
 }
