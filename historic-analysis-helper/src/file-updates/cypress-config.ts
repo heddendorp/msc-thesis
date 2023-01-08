@@ -3,8 +3,10 @@ import jetpack from 'fs-jetpack';
 const cypressImports = `import { registerMultilanguageCoveragePlugin } from '@heddendorp/cypress-plugin-multilanguage-coverage';
 import path from 'path';
 `;
-const cypressConfig = (version) => `
-    process.env.CYPRESS_COLLECT_COVERAGE === 'true' && registerMultilanguageCoveragePlugin({ workingDirectory: path.join(__dirname, '..'), saveRawCoverage: true, distributionFile: '../../../build/libs/Artemis-${version}.war' })(on, config);`;
+const cypressConfig = (version, newCypress) => `
+    process.env.CYPRESS_COLLECT_COVERAGE === 'true' && registerMultilanguageCoveragePlugin({ workingDirectory: path.join(__dirname${
+      newCypress ? '' : ", '..'"
+    }), saveRawCoverage: true, distributionFile: '../../../build/libs/Artemis-${version}.war' })(on, config);`;
 const oldInsertionMarker =
   'module.exports = (on: (arg0: string, arg1: {}) => void, config: any) => {';
 const newInsertionMarker = 'setupNodeEvents(on) {';
@@ -29,7 +31,7 @@ export const updateCypressConfig = (
   const newConfigContent =
     configContent.slice(0, insertionIndex) +
     (newCypress ? insertionMarkerReplacement : oldInsertionMarker) +
-    cypressConfig(artemisVersion) +
+    cypressConfig(artemisVersion, newCypress) +
     configContent.slice(insertionIndex + insertionMarker.length);
 
   const taskIndex = newConfigContent.indexOf(taskMarker);

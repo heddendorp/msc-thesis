@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/coverage-git-compare",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "CLI tool to compare coverage reports with git changes",
   "main": "build/src/index.js",
   "bin": {
@@ -20,6 +20,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
+    "build": "npm run compile",
+    "version": "npm run build",
     "compile:watch": "tsc -w"
   },
   "keywords": [],
