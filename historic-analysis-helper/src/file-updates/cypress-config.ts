@@ -3,27 +3,33 @@ import jetpack from 'fs-jetpack';
 const cypressImports = `import { registerMultilanguageCoveragePlugin } from '@heddendorp/cypress-plugin-multilanguage-coverage';
 import path from 'path';
 `;
-const cypressConfig = `
-    process.env.CYPRESS_COLLECT_COVERAGE === 'true' && registerMultilanguageCoveragePlugin({ workingDirectory: path.join(__dirname, '..'), saveRawCoverage: true })(on, config);`;
-const insertionMarker =
+const cypressConfig = (version) => `
+    process.env.CYPRESS_COLLECT_COVERAGE === 'true' && registerMultilanguageCoveragePlugin({ workingDirectory: path.join(__dirname, '..'), saveRawCoverage: true, distributionFile: '../../../build/libs/Artemis-${version}.war' })(on, config);`;
+const oldInsertionMarker =
   'module.exports = (on: (arg0: string, arg1: {}) => void, config: any) => {';
+const newInsertionMarker = 'setupNodeEvents(on) {';
+const insertionMarkerReplacement = `setupNodeEvents(on, config) {`;
 const taskMarker = 'error(message: string) {';
 const logTask = `log(message: string) {
                     console.log('\x1b[37m', 'LOG: ', message, '\x1b[0m');
                     return null;
                 },
 `;
-export const updateOldCypressConfig = () => {
-  const configContent = jetpack.read(
-    'src/test/cypress/plugins/index.ts',
-    'utf8'
-  );
-  const insertionIndex =
-    configContent.indexOf(insertionMarker) + insertionMarker.length;
+export const updateCypressConfig = (
+  artemisVersion: string,
+  newCypress: boolean
+) => {
+  const cypressConfigFile = newCypress
+    ? 'src/test/cypress/cypress.config.ts'
+    : 'src/test/cypress/plugins/index.ts';
+  const configContent = jetpack.read(cypressConfigFile, 'utf8');
+  const insertionMarker = newCypress ? newInsertionMarker : oldInsertionMarker;
+  const insertionIndex = configContent.indexOf(insertionMarker);
   // insert line after the module.exports line
   const newConfigContent =
     configContent.slice(0, insertionIndex) +
-    cypressConfig +
+    (newCypress ? insertionMarkerReplacement : oldInsertionMarker) +
+    cypressConfig(artemisVersion) +
     configContent.slice(insertionIndex);
 
   const taskIndex = newConfigContent.indexOf(taskMarker);
@@ -35,10 +41,7 @@ export const updateOldCypressConfig = () => {
   // add imports
   const newConfigContentWithImports =
     cypressImports + newConfigContentWithLogTask;
-  jetpack.write(
-    'src/test/cypress/plugins/index.ts',
-    newConfigContentWithImports
-  );
+  jetpack.write(cypressConfigFile, newConfigContentWithImports);
 };
 
 const rerunLogger = `
