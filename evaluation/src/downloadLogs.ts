@@ -19,6 +19,7 @@ async function run() {
   await page.locator("#loginForm_save").click();
   for (const branch of data.branches) {
     for (const plan of branch.plans) {
+      if(!plan.saveLogs) continue;
       console.log(`Downloading logs for ${plan.planKey}`);
       await page.goto(`https://bamboobruegge.in.tum.de/browse/${plan.planKey}`);
       await page.locator(`[id="history\\:${plan.planKey}"]`).click();
@@ -46,7 +47,7 @@ async function run() {
           downloadPromise.catch(() => {});
           await page
             .getByRole("link", { name: "Download" })
-            .click({ timeout: 2000 });
+            .click({ timeout: 500 });
           const download = await downloadPromise;
           await download.saveAs(
             `./data/logs/${plan.planKey}/${buildNumber}.txt`
@@ -56,8 +57,8 @@ async function run() {
           );
         } catch (e) {
           console.log("Download failed");
-          continue;
         }
+        console.log();
       }
     }
   }
