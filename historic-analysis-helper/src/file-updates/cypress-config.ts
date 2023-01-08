@@ -30,7 +30,7 @@ export const updateCypressConfig = (
     configContent.slice(0, insertionIndex) +
     (newCypress ? insertionMarkerReplacement : oldInsertionMarker) +
     cypressConfig(artemisVersion) +
-    configContent.slice(insertionIndex);
+    configContent.slice(insertionIndex + insertionMarker.length);
 
   const taskIndex = newConfigContent.indexOf(taskMarker);
   const newConfigContentWithLogTask =

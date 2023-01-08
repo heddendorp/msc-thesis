@@ -61,6 +61,10 @@ export function registerCreateBranchCommand(program: Command) {
       }
 
       const artemisPackage = jetpack.read('package.json', 'json');
+      const cypressPackage = jetpack.read(
+        'src/test/cypress/package.json',
+        'json'
+      );
 
       console.log(chalk.gray(`Installing flaky test detection dependencies`));
       const { stdout: installStdout, stderr: installStderr } = await exec(
@@ -82,7 +86,7 @@ export function registerCreateBranchCommand(program: Command) {
       console.log(chalk.green(`Done!`));
       console.log(chalk.gray(`Adding cypress plugin`));
       console.log(chalk.gray(`Determining cypress version`));
-      const cypressVersion = artemisPackage.devDependencies.cypress;
+      const cypressVersion = cypressPackage.devDependencies.cypress;
       console.log(
         chalk.gray(`Adding cypress plugin for version ${cypressVersion}`)
       );
