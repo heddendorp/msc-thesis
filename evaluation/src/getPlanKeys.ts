@@ -47,7 +47,7 @@ async function run() {
         {
           planKey: regularKey,
           isFlakeCheck: false,
-          runGoal: 4,
+          runningGoal: 4,
           saveLogs: true,
         },
         {

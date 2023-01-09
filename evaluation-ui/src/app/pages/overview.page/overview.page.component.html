@@ -1,0 +1,48 @@
+<main class="prose max-w-none p-6">
+  <h1>Overview</h1>
+  <h2>Branches</h2>
+  <div class="not-prose flex flex-col gap-4">
+    <div
+      *ngFor="let branch of branchData$ | async"
+      class="card flex flex-col border bg-base-100 p-0"
+    >
+      <div class="p-4">
+        <h3>{{ branch.name }}</h3>
+      </div>
+      <div class="flex flex-row divide-x">
+        <div
+          *ngFor="let plan of branch.plans"
+          class="relative flex-1 border-t p-4"
+        >
+          <h4>
+            {{ plan.planKey }}
+            <span
+              *ngIf="plan.isFlakeCheck"
+              class="ml-2 rounded-full bg-info px-2 py-1 text-xs font-semibold text-info-content"
+            >
+              flake check
+            </span>
+          </h4>
+          <div class="stats stats-vertical lg:stats-horizontal">
+            <div class="stat">
+              <div class="stat-title">Runs</div>
+              <div class="stat-value">
+                {{ plan.informationFiles.length + 1 }} / {{ plan.runningGoal }}
+              </div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">Fails</div>
+              <div class="stat-value">{{ plan.fails }}</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">Avg Time</div>
+              <div class="stat-value">{{ plan.averageTime }}min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

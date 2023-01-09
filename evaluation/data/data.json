@@ -6,7 +6,7 @@
         {
           "planKey": "ARTEMIS-AETG1222",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -23,7 +23,7 @@
         {
           "planKey": "ARTEMIS-AETG1223",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -40,7 +40,7 @@
         {
           "planKey": "ARTEMIS-AETG1224",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -57,7 +57,7 @@
         {
           "planKey": "ARTEMIS-AETG1225",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -74,7 +74,7 @@
         {
           "planKey": "ARTEMIS-AETG1226",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -91,7 +91,7 @@
         {
           "planKey": "ARTEMIS-AETG1227",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -108,7 +108,7 @@
         {
           "planKey": "ARTEMIS-AETG1228",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -125,7 +125,7 @@
         {
           "planKey": "ARTEMIS-AETG1229",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -142,7 +142,7 @@
         {
           "planKey": "ARTEMIS-AETG1230",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -159,7 +159,7 @@
         {
           "planKey": "ARTEMIS-AETG1231",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
@@ -176,7 +176,7 @@
         {
           "planKey": "ARTEMIS-AETG1232",
           "isFlakeCheck": false,
-          "runGoal": 4,
+          "runningGoal": 4,
           "saveLogs": true
         },
         {
