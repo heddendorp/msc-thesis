@@ -15,12 +15,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          
+
       - name: Install dependencies for evaluation
         run: yarn
         working-directory: evaluation
       - name: Extract information from logs
         run: node -r @swc-node/register ./src/extractTestInformation.ts
+        working-directory: evaluation
 
       - name: Install dependencies for angular
         run: yarn
