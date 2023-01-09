@@ -8,10 +8,10 @@ export class DataService {
   constructor(private httpClient: HttpClient) {}
 
   public getIndexData() {
-    return this.httpClient.get('/data/json/index.json');
+    return this.httpClient.get('./data/json/index.json');
   }
 
   public getCofigData() {
-    return this.httpClient.get('/data/data.json');
+    return this.httpClient.get('./data/data.json');
   }
 }

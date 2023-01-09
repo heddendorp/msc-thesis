@@ -1,5 +1,10 @@
 name: CI / CD for Angular
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - evaluation-ui/**
   workflow_run:
     workflows: [Download logs for analysis]
     types:
