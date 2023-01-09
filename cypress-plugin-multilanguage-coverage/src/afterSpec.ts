@@ -34,37 +34,44 @@ export function handleAfterSpec(
       {empty: false}
     );
     console.log('Collecting code coverage for spec: ' + specName);
-
-    const client = await ChromeClient.get();
-    const profilerCoverage = await client.Profiler.takePreciseCoverage();
-    await client.Profiler.stopPreciseCoverage();
-    const jsCoverage = profilerCoverage.result.filter(
-      res => res.url.includes('.js') && !res.url.includes('__')
-    );
-    const coverageResultMap = {};
-    await Promise.all(
-      jsCoverage.map(async res => {
-        const fileName = res.url.split('/').pop();
-        if (!fileName) return;
-        const filePath = path.join(
-          config.workingDirectory,
-          config.frontendBuildLocation,
-          fileName
-        );
-        const converter = v8ToIstanbul(filePath);
-        await converter.load();
-        converter.applyCoverage(res.functions);
-        Object.assign(coverageResultMap, converter.toIstanbul());
-      })
-    );
-    const frontendCoverage = Object.values(coverageResultMap);
-    const frontendFiles = frontendCoverage
-      .filter(
-        (entry: any) =>
-          Object.values(entry.s).some((v: any) => v > 0) ||
-          Object.values(entry.f).some((v: any) => v > 0)
-      )
-      .map((entry: any) => entry.path.split('webpack:\\').pop());
+    let frontendFiles: string[] = [];
+    let frontendCoverage: any = {error: 'Collection failed'};
+    try {
+      const client = await ChromeClient.get();
+      const profilerCoverage = await client.Profiler.takePreciseCoverage();
+      await client.Profiler.stopPreciseCoverage();
+      const jsCoverage = profilerCoverage.result.filter(
+        res => res.url.includes('.js') && !res.url.includes('__')
+      );
+      const coverageResultMap = {};
+      await Promise.all(
+        jsCoverage.map(async res => {
+          const fileName = res.url.split('/').pop();
+          if (!fileName) return;
+          const filePath = path.join(
+            config.workingDirectory,
+            config.frontendBuildLocation,
+            fileName
+          );
+          const converter = v8ToIstanbul(filePath);
+          await converter.load();
+          converter.applyCoverage(res.functions);
+          Object.assign(coverageResultMap, converter.toIstanbul());
+        })
+      );
+      frontendCoverage = Object.values(coverageResultMap);
+      frontendFiles = frontendCoverage
+        .filter(
+          (entry: any) =>
+            Object.values(entry.s).some((v: any) => v > 0) ||
+            Object.values(entry.f).some((v: any) => v > 0)
+        )
+        .map((entry: any) => entry.path.split('webpack:\\').pop());
+    } catch (e) {
+      console.error(e);
+      console.warn('could not collect frontend coverage');
+      console.log('==ERROR:COVERAGE-COLLECTION:NO-FRONTEND==');
+    }
 
     if (config.enableJavaCoverage) {
       await exec(

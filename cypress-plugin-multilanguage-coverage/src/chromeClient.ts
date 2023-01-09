@@ -6,11 +6,17 @@ export class ChromeClient {
    * @private
    */
   private static client?: CDP.Client;
+  private static lastPort?: number;
 
   public static requestConnection(port: number) {
     let tries = 0;
     const maxTries = 100;
     const interval = 100;
+    this.lastPort = port;
+    if (this.client) {
+      console.log('Chrome client already connected');
+      return;
+    }
     const intervalId = setInterval(async () => {
       try {
         await this.connect(port);
@@ -28,6 +34,14 @@ export class ChromeClient {
         tries++;
       }
     }, interval);
+  }
+
+  public static restoreConnection() {
+    if (this.lastPort) {
+      this.requestConnection(this.lastPort);
+    } else {
+      throw new Error('No port to restore connection to');
+    }
   }
 
   public static async connect(port: number): Promise<void> {
