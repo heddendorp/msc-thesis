@@ -19,7 +19,7 @@ async function run() {
   await page.locator("#loginForm_save").click();
   for (const branch of data.branches) {
     for (const plan of branch.plans) {
-      if(!plan.saveLogs) continue;
+      if (!plan.saveLogs) continue;
       console.log(`Downloading logs for ${plan.planKey}`);
       await page.goto(`https://bamboobruegge.in.tum.de/browse/${plan.planKey}`);
       await page.locator(`[id="history\\:${plan.planKey}"]`).click();
@@ -28,13 +28,12 @@ async function run() {
         if (!row.trim().startsWith("#")) continue;
         const buildNumber = row.match(/#(\d+)/)?.[1] ?? "";
         console.log(`Checking build #${buildNumber}`);
-        const logExists = jetpack.exists(
-          `./data/logs/${plan.planKey}/${buildNumber}.txt`
-        );
-        if (logExists){
+        const logPath = `./data/logs/${branch.branchName}/${plan.planKey}/${buildNumber}.txt`;
+        const logExists = jetpack.exists(logPath);
+        if (logExists) {
           console.log("Log already exists");
           continue;
-        };
+        }
         await page.goto(
           `https://bamboobruegge.in.tum.de/browse/${plan.planKey}-${buildNumber}`
         );
@@ -49,11 +48,9 @@ async function run() {
             .getByRole("link", { name: "Download" })
             .click({ timeout: 500 });
           const download = await downloadPromise;
-          await download.saveAs(
-            `./data/logs/${plan.planKey}/${buildNumber}.txt`
-          );
+          await download.saveAs(logPath);
           console.log(
-            `Downloaded logs for ${plan.planKey} #${buildNumber} to ./data/logs/${plan.planKey}/${buildNumber}.txt`
+            `Downloaded logs for ${plan.planKey} #${buildNumber} to ${logPath}`
           );
         } catch (e) {
           console.log("Download failed");

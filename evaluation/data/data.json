@@ -12,7 +12,7 @@
         {
           "planKey": "ARTEMIS-AECF110",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -29,7 +29,7 @@
         {
           "planKey": "ARTEMIS-AECF111",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -46,7 +46,7 @@
         {
           "planKey": "ARTEMIS-AECF112",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -63,7 +63,7 @@
         {
           "planKey": "ARTEMIS-AECF113",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -80,7 +80,7 @@
         {
           "planKey": "ARTEMIS-AECF114",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -97,7 +97,7 @@
         {
           "planKey": "ARTEMIS-AECF115",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -114,7 +114,7 @@
         {
           "planKey": "ARTEMIS-AECF116",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -131,7 +131,7 @@
         {
           "planKey": "ARTEMIS-AECF117",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -148,7 +148,7 @@
         {
           "planKey": "ARTEMIS-AECF118",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -165,7 +165,7 @@
         {
           "planKey": "ARTEMIS-AECF119",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]
@@ -182,7 +182,7 @@
         {
           "planKey": "ARTEMIS-AECF120",
           "isFlakeCheck": true,
-          "runningGoal": 11,
+          "runningGoal": 17,
           "saveLogs": true
         }
       ]

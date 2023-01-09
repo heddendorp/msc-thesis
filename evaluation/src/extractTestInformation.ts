@@ -30,11 +30,11 @@ async function run() {
     console.log(`Branch: ${branch.branchName}`);
     for (const plan of branch.plans) {
       console.log(`Plan: ${plan.planKey}`);
-      if (!jetpack.exists(`./data/logs/${plan.planKey}`)) {
+      if (!jetpack.exists(`./data/logs/${branch.branchName}/${plan.planKey}`)) {
         console.log(`No logs for ${plan.planKey}`);
         continue;
       }
-      const logFiles = jetpack.find(`./data/logs/${plan.planKey}`, {
+      const logFiles = jetpack.find(`./data/logs/${branch.branchName}/${plan.planKey}`, {
         matching: "*.txt",
       });
       const informationFiles: string[] = [];
@@ -89,7 +89,6 @@ async function run() {
             .filter(line => line.includes('artemis-cypress_1'))
             .map((line) => line.slice(line.indexOf("|") + 6))
             .join("\n");
-            console.log(flakeOutput);
           flakeData = JSON.parse(flakeOutput);
         }
 

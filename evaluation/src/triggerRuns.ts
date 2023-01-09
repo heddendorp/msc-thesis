@@ -23,7 +23,7 @@ async function run() {
       await page.goto(`https://bamboobruegge.in.tum.de/browse/${plan.planKey}`);
       await page.locator(`[id="history\\:${plan.planKey}"]`).click();
       const firstRowInnerText = await page.getByRole("row").nth(1).innerText();
-      const firstBuildNumber = firstRowInnerText.match(/#(\d+)/)?.[1] ?? "";
+      const firstBuildNumber = Number(firstRowInnerText.match(/#(\d+)/)?.[1] ?? "");
       if (firstBuildNumber <= plan.runningGoal) {
         const runButton = await page.getByRole("button", { name: "Run " });
         const buttonIsDisabled = await runButton.getAttribute("aria-disabled");
@@ -35,8 +35,9 @@ async function run() {
           console.log("Run button is disabled");
         }
       } else {
-        console.log("Already reached running goal");
+        console.log(`Already reached running goal: ${firstBuildNumber} / ${plan.runningGoal} for ${plan.planKey}`);
       }
+      console.log();
     }
   }
   browser.close();
