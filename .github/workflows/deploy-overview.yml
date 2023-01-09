@@ -15,22 +15,23 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          
       - name: Install dependencies for evaluation
         run: yarn
-        cwd: evaluation
+        working-directory: evaluation
       - name: Extract information from logs
         run: node -r @swc-node/register ./src/extractTestInformation.ts
 
       - name: Install dependencies for angular
         run: yarn
-        cwd: evaluation-ui
+        working-directory: evaluation-ui
       - name: Build Angular
         run: yarn build:pages
-        cwd: evaluation-ui
+        working-directory: evaluation-ui
 
       - name: Copy index to 404
         run: cp dist/evaluation-ui/index.html dist/evaluation-ui/404.html
-        cwd: evaluation-ui
+        working-directory: evaluation-ui
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.7
