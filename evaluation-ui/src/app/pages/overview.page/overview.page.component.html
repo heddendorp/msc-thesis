@@ -1,7 +1,7 @@
 <main class="prose max-w-none p-6">
   <h1>Overview</h1>
   <h2>Branches</h2>
-  <div class="not-prose flex flex-col gap-4">
+  <div class="not-prose flex flex-col gap-6">
     <div
       *ngFor="let branch of branchData$ | async"
       class="card flex flex-col border bg-base-100 p-0"
@@ -9,7 +9,7 @@
       <div class="p-4">
         <h3>{{ branch.name }}</h3>
       </div>
-      <div class="flex flex-row divide-x">
+      <div class="flex flex-col divide-y md:flex-row md:divide-x">
         <div
           *ngFor="let plan of branch.plans"
           class="relative flex-1 border-t p-4"
