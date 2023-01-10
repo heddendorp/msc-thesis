@@ -1,0 +1,1824 @@
+simple	10-Jan-2023 03:21:57	Build Artemis - Artemis E2E (Cypress - Docker- Flaky) - test-build-792 - Cypress E2E flake detection #7 (ARTEMIS-AECF110-DA-7) started building on agent ls1Agent-l-13.ase.in.tum.de, bamboo version: 8.2.5
+simple	10-Jan-2023 03:21:57	Remote agent on host ls1Agent-l-13.ase.in.tum.de
+simple	10-Jan-2023 03:21:57	Build working directory is /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA
+simple	10-Jan-2023 03:21:57	Executing build Artemis - Artemis E2E (Cypress - Docker- Flaky) - test-build-792 - Cypress E2E flake detection #7 (ARTEMIS-AECF110-DA-7)
+simple	10-Jan-2023 03:21:57	Running pre-build action: Build Log Labeller Pre Build Action
+simple	10-Jan-2023 03:21:57	Running pre-build action: VCS Version Collector
+command	10-Jan-2023 03:21:57	Substituting password variable: ${bamboo.GitHubSecret}
+command	10-Jan-2023 03:21:57	Substituting variable: ${bamboo.shortJobName} with Cypress E2E flake detection
+command	10-Jan-2023 03:21:57	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AECF110-DA-7
+command	10-Jan-2023 03:21:57	Substituting variable: ${bamboo.repository.revision.number} with 3925a89c1e404a82a1b9895e3ac2eb76ba362d75
+simple	10-Jan-2023 03:21:57	Starting task 'Github: Set build to pending' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	10-Jan-2023 03:21:57	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - test-build-792 - Cypress E2E flake detection #7 (ARTEMIS-AECF110-DA-7)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF110-DA-7-ScriptBuildTask-6775264715039895696.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA\n
+error	10-Jan-2023 03:21:57	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+error	10-Jan-2023 03:21:57	                                 Dload  Upload   Total   Spent    Left  Speed
+error	10-Jan-2023 03:21:57	
+error	10-Jan-2023 03:21:57	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+error	10-Jan-2023 03:21:57	100  1745  100  1574  100   171   4484    487 --:--:-- --:--:-- --:--:--  4971
+simple	10-Jan-2023 03:21:57	Finished task 'Github: Set build to pending' with result: Success
+simple	10-Jan-2023 03:21:57	Starting task 'Source Code Checkout' of type 'com.atlassian.bamboo.plugins.vcs:task.vcs.checkout'
+simple	10-Jan-2023 03:21:57	Checking out into /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA
+simple	10-Jan-2023 03:21:57	Updating source code to revision: 3925a89c1e404a82a1b9895e3ac2eb76ba362d75
+simple	10-Jan-2023 03:21:57	Creating local git repository in '/opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA/.git'.
+simple	10-Jan-2023 03:21:57	Initialized empty Git repository in /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA/.git/
+simple	10-Jan-2023 03:21:58	Fetching 'refs/heads/test/build-792' from 'https://github.com/ls1intum/Artemis.git'. Will try to do a shallow fetch.
+simple	10-Jan-2023 03:22:03	From https://github.com/ls1intum/Artemis
+simple	10-Jan-2023 03:22:03	 * [new branch]      test/build-792 -> test/build-792
+simple	10-Jan-2023 03:22:03	Checking out revision 3925a89c1e404a82a1b9895e3ac2eb76ba362d75.
+simple	10-Jan-2023 03:22:04	Switched to branch 'test/build-792'
+simple	10-Jan-2023 03:22:04	Updated source code to revision: 3925a89c1e404a82a1b9895e3ac2eb76ba362d75
+simple	10-Jan-2023 03:22:04	Finished task 'Source Code Checkout' with result: Success
+simple	10-Jan-2023 03:22:04	Starting task 'Download Artemis Executable' of type 'com.atlassian.bamboo.plugins.bamboo-artifact-downloader-plugin:artifactdownloadertask'
+simple	10-Jan-2023 03:22:04	Preparing to download plan result ARTEMIS-WEBAPP4769-1 artifact: Non required shared artifact: [war], pattern: [*.war] anchored at: [build/libs]
+simple	10-Jan-2023 03:22:14	Artifact [war] downloaded successfully in 9.760 s to working directory
+simple	10-Jan-2023 03:22:14	Finished task 'Download Artemis Executable' with result: Success
+command	10-Jan-2023 03:22:14	Substituting variable: ${bamboo.artemis_admin_username} with artemis-cypress-admin
+command	10-Jan-2023 03:22:14	Substituting password variable: ${bamboo.artemis_admin_password}
+command	10-Jan-2023 03:22:14	Substituting variable: ${bamboo.cypress_username_template} with artemis_test_user_USERID
+command	10-Jan-2023 03:22:14	Substituting password variable: ${bamboo.cypress_password_template}
+command	10-Jan-2023 03:22:14	Substituting variable: ${bamboo.planKey} with ARTEMIS-AECF110
+command	10-Jan-2023 03:22:14	Substituting password variable: ${bamboo.BAMBOO_PERSONAL_SECRET}
+command	10-Jan-2023 03:22:14	Substituting password variable: ${bamboo.ARTEMIS_CONTINUOUS_INTEGRATION_ARTEMIS_AUTHENTICATION_TOKEN_VALUE_SECRET}
+command	10-Jan-2023 03:22:14	Substituting password variable: ${bamboo.ARTEMIS_CONTINUOUS_INTEGRATION_TOKEN_SECRET}
+command	10-Jan-2023 03:22:14	Substituting variable: ${bamboo.GH_REGISTRY_TOKEN} with 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
+simple	10-Jan-2023 03:22:14	Starting task 'Deploy Artemis and run Cypress tests' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	10-Jan-2023 03:22:14	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - test-build-792 - Cypress E2E flake detection #7 (ARTEMIS-AECF110-DA-7)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF110-DA-7-ScriptBuildTask-4788261715584781098.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA\n
+error	10-Jan-2023 03:22:32	From https://github.com/ls1intum/Artemis
+error	10-Jan-2023 03:22:32	 * [new branch]      3486-better-names-for-weight-bonus-multiplier-bonus-points -> origin/3486-better-names-for-weight-bonus-multiplier-bonus-points
+error	10-Jan-2023 03:22:32	 * [new branch]      New-filter-and-LDAP-feature-on-user-administration-view -> origin/New-filter-and-LDAP-feature-on-user-administration-view
+error	10-Jan-2023 03:22:32	 * [new branch]      add-build-agent-to-atlassian -> origin/add-build-agent-to-atlassian
+error	10-Jan-2023 03:22:32	 * [new branch]      basic-git-server-resource -> origin/basic-git-server-resource
+error	10-Jan-2023 03:22:32	 * [new branch]      before-new-e2e-tests   -> origin/before-new-e2e-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/complaint/align_text_boxes -> origin/bugfix/complaint/align_text_boxes
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/course-management-overview -> origin/bugfix/course-management-overview
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/course-scores   -> origin/bugfix/course-scores
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/creating-example-results -> origin/bugfix/creating-example-results
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/default-branch  -> origin/bugfix/default-branch
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/different-npm-version -> origin/bugfix/different-npm-version
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/dockerfile-swiftlint -> origin/bugfix/dockerfile-swiftlint
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/emojis-not-matching-darkmode -> origin/bugfix/emojis-not-matching-darkmode
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/exercise-assessment-exam-legend -> origin/bugfix/exercise-assessment-exam-legend
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/exercise-dashboard -> origin/bugfix/exercise-dashboard
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/feedbacks-not-grouped-correctly -> origin/bugfix/feedbacks-not-grouped-correctly
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/fix-example-test-submission -> origin/bugfix/fix-example-test-submission
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/fix-guided-tutorial-step -> origin/bugfix/fix-guided-tutorial-step
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/fix-hanging-test-student-exams -> origin/bugfix/fix-hanging-test-student-exams
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/fix-programming-exercise-timeline-styling-overflow -> origin/bugfix/fix-programming-exercise-timeline-styling-overflow
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/fix-referenced-feedback-for-code -> origin/bugfix/fix-referenced-feedback-for-code
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/header-points   -> origin/bugfix/header-points
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/hibernate-validation -> origin/bugfix/hibernate-validation
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/hide-email-address -> origin/bugfix/hide-email-address
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/inconsistent-categories-tooltip -> origin/bugfix/inconsistent-categories-tooltip
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/iphone/notification-sidebar -> origin/bugfix/iphone/notification-sidebar
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/jenkins-user-management/various-issues -> origin/bugfix/jenkins-user-management/various-issues
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/k6-programming-simulation -> origin/bugfix/k6-programming-simulation
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/k6-quiz-tests   -> origin/bugfix/k6-quiz-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/k6-sca          -> origin/bugfix/k6-sca
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/k6-tests        -> origin/bugfix/k6-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/localize-ngx-datatable -> origin/bugfix/localize-ngx-datatable
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/login-css-test  -> origin/bugfix/login-css-test
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/notification-white-space -> origin/bugfix/notification-white-space
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/participation-table-spacing -> origin/bugfix/participation-table-spacing
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/performance-monitoring -> origin/bugfix/performance-monitoring
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/plagiarism-ui   -> origin/bugfix/plagiarism-ui
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/plagiarism/disregard-test-runs -> origin/bugfix/plagiarism/disregard-test-runs
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/programming-exercises/fix-task-with-zero-tests -> origin/bugfix/programming-exercises/fix-task-with-zero-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/programming-exercises/read-permissions -> origin/bugfix/programming-exercises/read-permissions
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/quiz/add-missing-translations -> origin/bugfix/quiz/add-missing-translations
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/quiz/added-batch-edit -> origin/bugfix/quiz/added-batch-edit
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/quiz/remove-release-date-for-exam-exercises -> origin/bugfix/quiz/remove-release-date-for-exam-exercises
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/set-min-test-execution-date-in-exam-mode -> origin/bugfix/set-min-test-execution-date-in-exam-mode
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/structured-grading-instructions/edit-instructions-after-assessment -> origin/bugfix/structured-grading-instructions/edit-instructions-after-assessment
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/student-exam-instructor-rights -> origin/bugfix/student-exam-instructor-rights
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/team-add-students -> origin/bugfix/team-add-students
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/teams-add-students -> origin/bugfix/teams-add-students
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/tutor-complaint-handling -> origin/bugfix/tutor-complaint-handling
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/tutorial-group-issues-jan-2023 -> origin/bugfix/tutorial-group-issues-jan-2023
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/webpack-reload  -> origin/bugfix/webpack-reload
+error	10-Jan-2023 03:22:32	 * [new branch]      bugfix/websocket       -> origin/bugfix/websocket
+error	10-Jan-2023 03:22:32	 * [new branch]      chore-chartjs-update-2 -> origin/chore-chartjs-update-2
+error	10-Jan-2023 03:22:32	 * [new branch]      chore-improve-client-test-programming-update-component -> origin/chore-improve-client-test-programming-update-component
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/adapt-security   -> origin/chore/adapt-security
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/change-websocket-path -> origin/chore/change-websocket-path
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/client-test-ci   -> origin/chore/client-test-ci
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/db-util-prefix   -> origin/chore/db-util-prefix
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/dependencies-july27 -> origin/chore/dependencies-july27
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/duplication-branch-check -> origin/chore/duplication-branch-check
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/enhancement/metis-filter-sens -> origin/chore/enhancement/metis-filter-sens
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/exercise-has-ended -> origin/chore/exercise-has-ended
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/exercises/remove-participation-status -> origin/chore/exercises/remove-participation-status
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/jhipster-7.1.0   -> origin/chore/jhipster-7.1.0
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/orphan-delete-service -> origin/chore/orphan-delete-service
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/postgres-fixes   -> origin/chore/postgres-fixes
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/refactor-tutor-complaint-side -> origin/chore/refactor-tutor-complaint-side
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/replace-wrong-icon-text-usages -> origin/chore/replace-wrong-icon-text-usages
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/spring-boot-3    -> origin/chore/spring-boot-3
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/spring-boot-3-hibernate -> origin/chore/spring-boot-3-hibernate
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/spring-profile-constants -> origin/chore/spring-profile-constants
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/teardown-client-tests -> origin/chore/teardown-client-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/test-speedups    -> origin/chore/test-speedups
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/test/improve-jenkins-user-management-coverage -> origin/chore/test/improve-jenkins-user-management-coverage
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/test/k6-modeling-exercise-logs -> origin/chore/test/k6-modeling-exercise-logs
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/tests/increase-gitlab-coverage -> origin/chore/tests/increase-gitlab-coverage
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/update-client-tests -> origin/chore/update-client-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/update-dependencies-august4 -> origin/chore/update-dependencies-august4
+error	10-Jan-2023 03:22:32	 * [new branch]      chore/update-test-build-online-editor-fix -> origin/chore/update-test-build-online-editor-fix
+error	10-Jan-2023 03:22:32	 * [new branch]      ci/add-action-db-team-auto-assign -> origin/ci/add-action-db-team-auto-assign
+error	10-Jan-2023 03:22:32	 * [new branch]      client/darkmode        -> origin/client/darkmode
+error	10-Jan-2023 03:22:32	 * [new branch]      communication/private_messages -> origin/communication/private_messages
+error	10-Jan-2023 03:22:32	 * [new branch]      database/migrate_feedback_reference_to_feedback_id_of_text_blocks -> origin/database/migrate_feedback_reference_to_feedback_id_of_text_blocks
+error	10-Jan-2023 03:22:32	 * [new branch]      database/migration-merge -> origin/database/migration-merge
+error	10-Jan-2023 03:22:32	 * [new branch]      decoupling/lecture     -> origin/decoupling/lecture
+error	10-Jan-2023 03:22:32	 * [new branch]      decoupling/quiz        -> origin/decoupling/quiz
+error	10-Jan-2023 03:22:32	 * [new branch]      develop                -> origin/develop
+error	10-Jan-2023 03:22:32	 * [new branch]      develop-achievements   -> origin/develop-achievements
+error	10-Jan-2023 03:22:32	 * [new branch]      develop-deployment-wg  -> origin/develop-deployment-wg
+error	10-Jan-2023 03:22:32	 * [new branch]      develop-gitlab-ci      -> origin/develop-gitlab-ci
+error	10-Jan-2023 03:22:32	 * [new branch]      develop-microservices  -> origin/develop-microservices
+error	10-Jan-2023 03:22:32	 * [new branch]      development/add-git-commit-header -> origin/development/add-git-commit-header
+error	10-Jan-2023 03:22:32	 * [new branch]      development/add-sphinx-gradle-plugin -> origin/development/add-sphinx-gradle-plugin
+error	10-Jan-2023 03:22:32	 * [new branch]      development/charts/bugfix/fix-active-students-line-charts -> origin/development/charts/bugfix/fix-active-students-line-charts
+error	10-Jan-2023 03:22:32	 * [new branch]      development/danger-js  -> origin/development/danger-js
+error	10-Jan-2023 03:22:32	 * [new branch]      development/tests/programming-exercise-instruction-analysis -> origin/development/tests/programming-exercise-instruction-analysis
+error	10-Jan-2023 03:22:32	 * [new branch]      discussion/reference_lectures -> origin/discussion/reference_lectures
+error	10-Jan-2023 03:22:32	 * [new branch]      docker-compose-restructuring -> origin/docker-compose-restructuring
+error	10-Jan-2023 03:22:32	 * [new branch]      docs/extend-ux-docs    -> origin/docs/extend-ux-docs
+error	10-Jan-2023 03:22:32	 * [new branch]      documentation/textual  -> origin/documentation/textual
+error	10-Jan-2023 03:22:32	 * [new branch]      draft/simple-user-mgmt-filter -> origin/draft/simple-user-mgmt-filter
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/FileServer/use-path-instead-of-string -> origin/enhancement/FileServer/use-path-instead-of-string
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/client/improve-displayed-buttons-consistency -> origin/enhancement/client/improve-displayed-buttons-consistency
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/course-management/exercises-list -> origin/enhancement/course-management/exercises-list
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/error-page -> origin/enhancement/error-page
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/exam-live-statistics/adapt-subscriptions -> origin/enhancement/exam-live-statistics/adapt-subscriptions
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/exam-routes-improvements -> origin/enhancement/exam-routes-improvements
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/exam/fix-exercise-selection -> origin/enhancement/exam/fix-exercise-selection
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/hestia-smaller-improvements -> origin/enhancement/hestia-smaller-improvements
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/pe-log-removal-gradle -> origin/enhancement/pe-log-removal-gradle
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/programming-exercise-details/aux-click-for-buildplan-links -> origin/enhancement/programming-exercise-details/aux-click-for-buildplan-links
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/programming-exercises/always-access-submissions -> origin/enhancement/programming-exercises/always-access-submissions
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/programming-exercises/switch-tutorial-to-intellij -> origin/enhancement/programming-exercises/switch-tutorial-to-intellij
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/publish-build-plan -> origin/enhancement/publish-build-plan
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/result-string-missing-result -> origin/enhancement/result-string-missing-result
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/slow-test-removal -> origin/enhancement/slow-test-removal
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/slow-tests-fix-2 -> origin/enhancement/slow-tests-fix-2
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/spring-configuration-cleanup -> origin/enhancement/spring-configuration-cleanup
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/statistic-page-css-fixes -> origin/enhancement/statistic-page-css-fixes
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/statistics-performance-improvements -> origin/enhancement/statistics-performance-improvements
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/structured-grading-criteria/display-infinity-for-undefined-usage-count-move-scss -> origin/enhancement/structured-grading-criteria/display-infinity-for-undefined-usage-count-move-scss
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/ui-bonus-grading-key -> origin/enhancement/ui-bonus-grading-key
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/user       -> origin/enhancement/user
+error	10-Jan-2023 03:22:32	 * [new branch]      enhancement/user-role/extending-editor-access-rights -> origin/enhancement/user-role/extending-editor-access-rights
+error	10-Jan-2023 03:22:32	 * [new branch]      exp-branch             -> origin/exp-branch
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/add-access-complaint-button-for-submissions-page -> origin/feature/add-access-complaint-button-for-submissions-page
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/add-api-versioning -> origin/feature/add-api-versioning
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/add-api-versioning-upgrade -> origin/feature/add-api-versioning-upgrade
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/add-authorization-test-2 -> origin/feature/add-authorization-test-2
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/add-information-to-feedback-view -> origin/feature/add-information-to-feedback-view
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/basic-lecture-unit-interaction -> origin/feature/basic-lecture-unit-interaction
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/course-archive-second-iteration -> origin/feature/course-archive-second-iteration
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/course-discussion-overview-page/pagination-and-server-side-filtering-2 -> origin/feature/course-discussion-overview-page/pagination-and-server-side-filtering-2
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/cypress-with-nginx-and-test-certificate -> origin/feature/cypress-with-nginx-and-test-certificate
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/delete-assessments -> origin/feature/delete-assessments
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/deployment/monitoring -> origin/feature/deployment/monitoring
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/disable-override-assessment-button-when-no-change -> origin/feature/disable-override-assessment-button-when-no-change
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/docker-java-non-root -> origin/feature/docker-java-non-root
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/documentation-links -> origin/feature/documentation-links
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/e2e-test/add-cypress-support -> origin/feature/e2e-test/add-cypress-support
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/e2e-test/add-selenium-support -> origin/feature/e2e-test/add-selenium-support
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/exam-live-statistics/database -> origin/feature/exam-live-statistics/database
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/exam-live-statistics/timeline -> origin/feature/exam-live-statistics/timeline
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/exam/file-upload-exercises -> origin/feature/exam/file-upload-exercises
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/exam/refactor-next-exam-component -> origin/feature/exam/refactor-next-exam-component
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/exercise-import-course-exam-filter -> origin/feature/exercise-import-course-exam-filter
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/export-cluster-hierarchy -> origin/feature/export-cluster-hierarchy
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/export-results-with-test-case-info -> origin/feature/export-results-with-test-case-info
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/flaky-test-detection -> origin/feature/flaky-test-detection
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/gitlab-lrz     -> origin/feature/gitlab-lrz
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/hazelcast-multicast -> origin/feature/hazelcast-multicast
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/jenkins/docker-flags -> origin/feature/jenkins/docker-flags
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/kubernetes-deployment -> origin/feature/kubernetes-deployment
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/leaderboards/student-leaderboard -> origin/feature/leaderboards/student-leaderboard
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/learning-goal-progress -> origin/feature/learning-goal-progress
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/learning-goal-redesign -> origin/feature/learning-goal-redesign
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/learning-goals-redesign -> origin/feature/learning-goals-redesign
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/limit-docker-resources-via-config -> origin/feature/limit-docker-resources-via-config
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/local-git-service -> origin/feature/local-git-service
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/messages-page/ui-improvements -> origin/feature/messages-page/ui-improvements
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/metrics-exercises-exams -> origin/feature/metrics-exercises-exams
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/new-instructor-buttons-student-exam-detail-page -> origin/feature/new-instructor-buttons-student-exam-detail-page
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/new-score-calculation-mathod -> origin/feature/new-score-calculation-mathod
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/online-editor/open-student-submission-in-online-editor -> origin/feature/online-editor/open-student-submission-in-online-editor
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/plagiarism-management-and-notifications -> origin/feature/plagiarism-management-and-notifications
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/plagiarism-reduce-data-load -> origin/feature/plagiarism-reduce-data-load
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/plagiarism/auditing-and-exam -> origin/feature/plagiarism/auditing-and-exam
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/plagiarism/rework-data-model -> origin/feature/plagiarism/rework-data-model
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/process-lecture-file-units -> origin/feature/process-lecture-file-units
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/programing-exercises/bamboo-add-custom-feedback-support -> origin/feature/programing-exercises/bamboo-add-custom-feedback-support
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/programming-assessment/inline-feedback-in-code-editor -> origin/feature/programming-assessment/inline-feedback-in-code-editor
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/programming-exercise/submission-policies -> origin/feature/programming-exercise/submission-policies
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/prorgramming-exercise-wizard-mode -> origin/feature/prorgramming-exercise-wizard-mode
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/quiz/short-answer-number-spot -> origin/feature/quiz/short-answer-number-spot
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/sca-import     -> origin/feature/sca-import
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/service-decoupling -> origin/feature/service-decoupling
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/student-link-buttons -> origin/feature/student-link-buttons
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/teamCreationByStudents -> origin/feature/teamCreationByStudents
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/transformation-modeling-exercise -> origin/feature/transformation-modeling-exercise
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/traverse-cluster-tree-for-feedback -> origin/feature/traverse-cluster-tree-for-feedback
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/update-jhipster-7 -> origin/feature/update-jhipster-7
+error	10-Jan-2023 03:22:32	 * [new branch]      feature/visual-multiple-choice-editor -> origin/feature/visual-multiple-choice-editor
+error	10-Jan-2023 03:22:32	 * [new branch]      fix/footer-mobile      -> origin/fix/footer-mobile
+error	10-Jan-2023 03:22:32	 * [new branch]      fix/footer-space       -> origin/fix/footer-space
+error	10-Jan-2023 03:22:32	 * [new branch]      fix/temporarily-disable-some-tests -> origin/fix/temporarily-disable-some-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      fix/test/cypress/user-selection -> origin/fix/test/cypress/user-selection
+error	10-Jan-2023 03:22:32	 * [new branch]      guided-tutorial        -> origin/guided-tutorial
+error	10-Jan-2023 03:22:32	 * [new branch]      hest                   -> origin/hest
+error	10-Jan-2023 03:22:32	 * [new branch]      hotfix/jenkins-docs-push-token-workaround -> origin/hotfix/jenkins-docs-push-token-workaround
+error	10-Jan-2023 03:22:32	 * [new branch]      improvement/add-copy-button-to-lti-configuration -> origin/improvement/add-copy-button-to-lti-configuration
+error	10-Jan-2023 03:22:32	 * [new branch]      improvement/course-exericses-grace-period -> origin/improvement/course-exericses-grace-period
+error	10-Jan-2023 03:22:32	 * [new branch]      improvement/programming-exercises/hide-student-information-for-TAs -> origin/improvement/programming-exercises/hide-student-information-for-TAs
+error	10-Jan-2023 03:22:32	 * [new branch]      improvement/programming-exercises/improve-feedback-preview-for-python-exercises -> origin/improvement/programming-exercises/improve-feedback-preview-for-python-exercises
+error	10-Jan-2023 03:22:32	 * [new branch]      improvement/remove-lti-user-id -> origin/improvement/remove-lti-user-id
+error	10-Jan-2023 03:22:32	 * [new branch]      jhipster_upgrade       -> origin/jhipster_upgrade
+error	10-Jan-2023 03:22:32	 * [new branch]      main                   -> origin/main
+error	10-Jan-2023 03:22:32	 * [new branch]      manyToOne_to_manyToMany_textBlock_textCluster_relationship -> origin/manyToOne_to_manyToMany_textBlock_textCluster_relationship
+error	10-Jan-2023 03:22:32	 * [new branch]      microservices/remove-lecture-microservice-features-from-artemis -> origin/microservices/remove-lecture-microservice-features-from-artemis
+error	10-Jan-2023 03:22:32	 * [new branch]      microservices/remove-moved-lecture-features-from-artemis -> origin/microservices/remove-moved-lecture-features-from-artemis
+error	10-Jan-2023 03:22:32	 * [new branch]      microservices/user-management-service-remove-from-artemis -> origin/microservices/user-management-service-remove-from-artemis
+error	10-Jan-2023 03:22:32	 * [new branch]      migrate_feedback_reference_to_textblock_feedback_id -> origin/migrate_feedback_reference_to_textblock_feedback_id
+error	10-Jan-2023 03:22:32	 * [new branch]      origin/sentry/nan-when-computing-score -> origin/origin/sentry/nan-when-computing-score
+error	10-Jan-2023 03:22:32	 * [new branch]      pat-testing            -> origin/pat-testing
+error	10-Jan-2023 03:22:32	 * [new branch]      plagiarism-management-backup -> origin/plagiarism-management-backup
+error	10-Jan-2023 03:22:32	 * [new branch]      plagiarism/plagiarism-case-data-model -> origin/plagiarism/plagiarism-case-data-model
+error	10-Jan-2023 03:22:32	 * [new branch]      refactor/5741-move-course-score-calculation-to-the-server -> origin/refactor/5741-move-course-score-calculation-to-the-server
+error	10-Jan-2023 03:22:32	 * [new branch]      refactor/feedback-view -> origin/refactor/feedback-view
+error	10-Jan-2023 03:22:32	 * [new branch]      refactor/improve-fileupload-assessment-resource -> origin/refactor/improve-fileupload-assessment-resource
+error	10-Jan-2023 03:22:32	 * [new branch]      refactor/improve-fileupload-submission-resource -> origin/refactor/improve-fileupload-submission-resource
+error	10-Jan-2023 03:22:32	 * [new branch]      refactor/max-compassScore-to-max-points -> origin/refactor/max-compassScore-to-max-points
+error	10-Jan-2023 03:22:32	 * [new branch]      refactor/programming-exercise-grading-service -> origin/refactor/programming-exercise-grading-service
+error	10-Jan-2023 03:22:32	 * [new branch]      refactor/programming-exercises/repository-service -> origin/refactor/programming-exercises/repository-service
+error	10-Jan-2023 03:22:32	 * [new branch]      refactor/submissions-dashboards-to-one-dashboard -> origin/refactor/submissions-dashboards-to-one-dashboard
+error	10-Jan-2023 03:22:32	 * [new branch]      releases/5.12.x        -> origin/releases/5.12.x
+error	10-Jan-2023 03:22:32	 * [new branch]      send_existing_text_block_to_athene -> origin/send_existing_text_block_to_athene
+error	10-Jan-2023 03:22:32	 * [new branch]      test-cypress-update    -> origin/test-cypress-update
+error	10-Jan-2023 03:22:32	 * [new branch]      test-flakiness         -> origin/test-flakiness
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-771         -> origin/test/build-771
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-773         -> origin/test/build-773
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-775         -> origin/test/build-775
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-776         -> origin/test/build-776
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-777         -> origin/test/build-777
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-778         -> origin/test/build-778
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-781         -> origin/test/build-781
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-782         -> origin/test/build-782
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-788         -> origin/test/build-788
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-789         -> origin/test/build-789
+error	10-Jan-2023 03:22:32	 * [new branch]      test/build-792         -> origin/test/build-792
+error	10-Jan-2023 03:22:32	 * [new branch]      test/cypress/add-exam-participation-tests -> origin/test/cypress/add-exam-participation-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      test/cypress/add-file-upload-exercise-tests -> origin/test/cypress/add-file-upload-exercise-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      test/cypress/add-manage-exam-exercise-tests -> origin/test/cypress/add-manage-exam-exercise-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      test/cypress/add-manage-exam-tests -> origin/test/cypress/add-manage-exam-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      test/cypress/manage-exam-exercise-tests -> origin/test/cypress/manage-exam-exercise-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      test/fix-exam-p-c-leak -> origin/test/fix-exam-p-c-leak
+error	10-Jan-2023 03:22:32	 * [new branch]      test/improve-coverage/example-modeling-submission-component -> origin/test/improve-coverage/example-modeling-submission-component
+error	10-Jan-2023 03:22:32	 * [new branch]      test/test-ci           -> origin/test/test-ci
+error	10-Jan-2023 03:22:32	 * [new branch]      test/test-runtime      -> origin/test/test-runtime
+error	10-Jan-2023 03:22:32	 * [new branch]      test_s1                -> origin/test_s1
+error	10-Jan-2023 03:22:32	 * [new branch]      testing-session-exam-mode-20220728 -> origin/testing-session-exam-mode-20220728
+error	10-Jan-2023 03:22:32	 * [new branch]      testing/apollon-scaling-fix -> origin/testing/apollon-scaling-fix
+error	10-Jan-2023 03:22:32	 * [new branch]      testing/exam-live-statistics/decentralized -> origin/testing/exam-live-statistics/decentralized
+error	10-Jan-2023 03:22:32	 * [new branch]      tests/file-upload-and-guided-tour-improvements -> origin/tests/file-upload-and-guided-tour-improvements
+error	10-Jan-2023 03:22:32	 * [new branch]      tests/file-upload-exercise-assessment-dashboard-tests -> origin/tests/file-upload-exercise-assessment-dashboard-tests
+error	10-Jan-2023 03:22:32	 * [new branch]      tests/modeling-assessment-integration-test-fix -> origin/tests/modeling-assessment-integration-test-fix
+error	10-Jan-2023 03:22:32	 * [new branch]      tests/team-student-search-component -> origin/tests/team-student-search-component
+error	10-Jan-2023 03:22:32	 * [new branch]      update-c-template      -> origin/update-c-template
+error	10-Jan-2023 03:22:32	 * [new branch]      update-docker-compose-file -> origin/update-docker-compose-file
+error	10-Jan-2023 03:22:32	 * [new branch]      update-docker-compose-with-yml-values -> origin/update-docker-compose-with-yml-values
+error	10-Jan-2023 03:22:32	 * [new branch]      update-test-build      -> origin/update-test-build
+error	10-Jan-2023 03:22:32	 * [new tag]         5.12.4                 -> 5.12.4
+error	10-Jan-2023 03:22:32	 * [new tag]         5.12.9                 -> 5.12.9
+error	10-Jan-2023 03:22:32	 * [new tag]         5.4.1                  -> 5.4.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.0.4                  -> 4.0.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.0.5                  -> 4.0.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.0.6                  -> 4.0.6
+error	10-Jan-2023 03:22:32	 * [new tag]             4.1.0                  -> 4.1.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.1.1                  -> 4.1.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.1.2                  -> 4.1.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.1.3                  -> 4.1.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.10.0                 -> 4.10.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.10.1                 -> 4.10.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.10.2                 -> 4.10.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.10.3                 -> 4.10.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.10.4                 -> 4.10.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.10.5                 -> 4.10.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.10.6                 -> 4.10.6
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.0                 -> 4.11.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.1                 -> 4.11.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.2                 -> 4.11.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.3                 -> 4.11.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.4                 -> 4.11.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.5                 -> 4.11.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.6                 -> 4.11.6
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.8                 -> 4.11.8
+error	10-Jan-2023 03:22:32	 * [new tag]             4.11.9                 -> 4.11.9
+error	10-Jan-2023 03:22:32	 * [new tag]             4.12.0                 -> 4.12.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.12.1                 -> 4.12.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.12.2                 -> 4.12.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.12.3                 -> 4.12.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.12.4                 -> 4.12.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.12.5                 -> 4.12.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.0                  -> 4.2.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.1                  -> 4.2.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.10                 -> 4.2.10
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.11                 -> 4.2.11
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.12                 -> 4.2.12
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.2                  -> 4.2.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.3                  -> 4.2.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.4                  -> 4.2.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.5                  -> 4.2.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.6                  -> 4.2.6
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.7                  -> 4.2.7
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.8                  -> 4.2.8
+error	10-Jan-2023 03:22:32	 * [new tag]             4.2.9                  -> 4.2.9
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.0                  -> 4.3.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.1                  -> 4.3.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.10                 -> 4.3.10
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.2                  -> 4.3.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.3                  -> 4.3.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.4                  -> 4.3.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.5                  -> 4.3.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.6                  -> 4.3.6
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.7                  -> 4.3.7
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.8                  -> 4.3.8
+error	10-Jan-2023 03:22:32	 * [new tag]             4.3.9                  -> 4.3.9
+error	10-Jan-2023 03:22:32	 * [new tag]             4.4.0                  -> 4.4.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.4.1                  -> 4.4.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.4.2                  -> 4.4.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.4.3                  -> 4.4.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.4.4                  -> 4.4.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.4.5                  -> 4.4.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.4.6                  -> 4.4.6
+error	10-Jan-2023 03:22:32	 * [new tag]             4.5.0                  -> 4.5.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.5.1                  -> 4.5.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.5.2                  -> 4.5.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.6.0                  -> 4.6.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.6.1                  -> 4.6.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.6.2                  -> 4.6.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.6.3                  -> 4.6.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.6.4                  -> 4.6.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.7.0                  -> 4.7.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.7.1                  -> 4.7.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.7.2                  -> 4.7.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.7.3                  -> 4.7.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.7.4                  -> 4.7.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.7.5                  -> 4.7.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.7.6                  -> 4.7.6
+error	10-Jan-2023 03:22:32	 * [new tag]             4.8.0                  -> 4.8.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.8.1                  -> 4.8.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.8.2                  -> 4.8.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.8.3                  -> 4.8.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.8.4                  -> 4.8.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.8.5                  -> 4.8.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.8.6                  -> 4.8.6
+error	10-Jan-2023 03:22:32	 * [new tag]             4.9.0                  -> 4.9.0
+error	10-Jan-2023 03:22:32	 * [new tag]             4.9.1                  -> 4.9.1
+error	10-Jan-2023 03:22:32	 * [new tag]             4.9.2                  -> 4.9.2
+error	10-Jan-2023 03:22:32	 * [new tag]             4.9.3                  -> 4.9.3
+error	10-Jan-2023 03:22:32	 * [new tag]             4.9.4                  -> 4.9.4
+error	10-Jan-2023 03:22:32	 * [new tag]             4.9.5                  -> 4.9.5
+error	10-Jan-2023 03:22:32	 * [new tag]             4.9.6                  -> 4.9.6
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.0                  -> 5.0.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.0.rc1              -> 5.0.0.rc1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.0.rc2              -> 5.0.0.rc2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.1                  -> 5.0.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.2                  -> 5.0.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.3                  -> 5.0.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.4                  -> 5.0.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.5                  -> 5.0.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.6                  -> 5.0.6
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.7                  -> 5.0.7
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.8                  -> 5.0.8
+error	10-Jan-2023 03:22:32	 * [new tag]             5.0.9                  -> 5.0.9
+error	10-Jan-2023 03:22:32	 * [new tag]             5.1.0                  -> 5.1.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.1.1                  -> 5.1.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.1.2                  -> 5.1.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.1.3                  -> 5.1.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.1.4                  -> 5.1.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.1.5                  -> 5.1.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.1.6                  -> 5.1.6
+error	10-Jan-2023 03:22:32	 * [new tag]             5.10.0                 -> 5.10.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.10.1                 -> 5.10.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.10.2                 -> 5.10.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.11.0                 -> 5.11.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.11.1                 -> 5.11.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.11.2                 -> 5.11.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.11.3                 -> 5.11.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.11.4                 -> 5.11.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.12.0                 -> 5.12.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.12.1                 -> 5.12.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.12.2                 -> 5.12.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.12.3                 -> 5.12.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.12.5                 -> 5.12.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.12.6                 -> 5.12.6
+error	10-Jan-2023 03:22:32	 * [new tag]             5.12.7                 -> 5.12.7
+error	10-Jan-2023 03:22:32	 * [new tag]             5.12.8                 -> 5.12.8
+error	10-Jan-2023 03:22:32	 * [new tag]             5.2.0                  -> 5.2.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.2.1                  -> 5.2.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.2.2                  -> 5.2.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.2.3                  -> 5.2.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.2.4                  -> 5.2.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.2.5                  -> 5.2.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.2.6                  -> 5.2.6
+error	10-Jan-2023 03:22:32	 * [new tag]             5.2.7                  -> 5.2.7
+error	10-Jan-2023 03:22:32	 * [new tag]             5.3.0                  -> 5.3.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.3.1                  -> 5.3.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.3.2                  -> 5.3.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.3.3                  -> 5.3.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.3.4                  -> 5.3.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.3.5                  -> 5.3.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.4.0                  -> 5.4.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.4.2                  -> 5.4.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.4.3                  -> 5.4.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.4.4                  -> 5.4.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.5.0                  -> 5.5.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.5.1                  -> 5.5.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.5.2                  -> 5.5.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.5.3                  -> 5.5.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.5.4                  -> 5.5.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.5.5                  -> 5.5.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.6.0                  -> 5.6.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.6.1                  -> 5.6.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.7.0                  -> 5.7.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.7.1                  -> 5.7.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.7.2                  -> 5.7.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.7.3                  -> 5.7.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.7.4                  -> 5.7.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.7.5                  -> 5.7.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.8.0                  -> 5.8.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.8.1                  -> 5.8.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.8.2                  -> 5.8.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.8.3                  -> 5.8.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.8.4                  -> 5.8.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.8.5                  -> 5.8.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.8.6                  -> 5.8.6
+error	10-Jan-2023 03:22:32	 * [new tag]             5.8.7                  -> 5.8.7
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.0                  -> 5.9.0
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.1                  -> 5.9.1
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.2                  -> 5.9.2
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.3                  -> 5.9.3
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.4                  -> 5.9.4
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.5                  -> 5.9.5
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.6                  -> 5.9.6
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.7                  -> 5.9.7
+error	10-Jan-2023 03:22:32	 * [new tag]             5.9.8                  -> 5.9.8
+error	10-Jan-2023 03:22:35	There is no tracking information for the current branch.
+error	10-Jan-2023 03:22:35	Please specify which branch you want to merge with.
+error	10-Jan-2023 03:22:35	See git-pull(1) for details.
+error	10-Jan-2023 03:22:35	
+error	10-Jan-2023 03:22:35	    git pull <remote> <branch>
+error	10-Jan-2023 03:22:35	
+error	10-Jan-2023 03:22:35	If you wish to set tracking information for this branch you can do so with:
+error	10-Jan-2023 03:22:35	
+error	10-Jan-2023 03:22:35	    git branch --set-upstream-to=origin/<branch> test/build-792
+error	10-Jan-2023 03:22:35	
+build	10-Jan-2023 03:22:39	Sending build context to Docker daemon  598.1MB
+build	10-Jan-2023 03:22:39	
+build	10-Jan-2023 03:22:39	Step 1/23 : FROM docker.io/library/eclipse-temurin:17-jdk
+build	10-Jan-2023 03:22:42	17-jdk: Pulling from library/eclipse-temurin
+build	10-Jan-2023 03:22:42	6e3729cf69e0: Already exists
+build	10-Jan-2023 03:22:42	4d8d923227d8: Already exists
+build	10-Jan-2023 03:22:42	eda8241fd25f: Already exists
+build	10-Jan-2023 03:22:42	35dccabde73d: Already exists
+build	10-Jan-2023 03:22:42	Digest: sha256:37646e9acfed59dd6de0849b40aedcee4b873ec05722b88b5df47d82e20883e8
+build	10-Jan-2023 03:22:42	Status: Downloaded newer image for eclipse-temurin:17-jdk
+build	10-Jan-2023 03:22:42	 ---> 9ef86393bfda
+build	10-Jan-2023 03:22:42	Step 2/23 : ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS     JHIPSTER_SLEEP=0     JAVA_OPTS=""
+build	10-Jan-2023 03:22:42	 ---> Running in b300effe1f6a
+build	10-Jan-2023 03:22:43	Removing intermediate container b300effe1f6a
+build	10-Jan-2023 03:22:43	 ---> 420cae24b58b
+build	10-Jan-2023 03:22:43	Step 3/23 : ENV spring.profiles.active ""
+build	10-Jan-2023 03:22:43	 ---> Running in 874043d92c72
+build	10-Jan-2023 03:22:43	Removing intermediate container 874043d92c72
+build	10-Jan-2023 03:22:43	 ---> abf300466445
+build	10-Jan-2023 03:22:43	Step 4/23 : RUN echo "Installing needed dependencies"   && apt-get update && apt-get install -y --no-install-recommends locales graphviz wget   && apt-get clean   && rm -rf /var/lib/apt/lists/*
+build	10-Jan-2023 03:22:43	 ---> Running in e150ae0284a9
+build	10-Jan-2023 03:22:43	Installing needed dependencies
+build	10-Jan-2023 03:22:43	Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+build	10-Jan-2023 03:22:43	Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+build	10-Jan-2023 03:22:43	Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [114 kB]
+build	10-Jan-2023 03:22:43	Get:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [99.8 kB]
+build	10-Jan-2023 03:22:43	Get:5 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [624 kB]
+build	10-Jan-2023 03:22:43	Get:6 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+build	10-Jan-2023 03:22:43	Get:7 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [786 kB]
+build	10-Jan-2023 03:22:43	Get:8 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [4,732 B]
+build	10-Jan-2023 03:22:43	Get:9 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [694 kB]
+build	10-Jan-2023 03:22:43	Get:10 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1,792 kB]
+build	10-Jan-2023 03:22:43	Get:11 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+build	10-Jan-2023 03:22:43	Get:12 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+build	10-Jan-2023 03:22:43	Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1,010 kB]
+build	10-Jan-2023 03:22:43	Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [8,978 B]
+build	10-Jan-2023 03:22:43	Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [988 kB]
+build	10-Jan-2023 03:22:43	Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [679 kB]
+build	10-Jan-2023 03:22:43	Get:17 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [7,286 B]
+build	10-Jan-2023 03:22:43	Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [3,520 B]
+build	10-Jan-2023 03:22:44	Fetched 25.1 MB in 1s (17.2 MB/s)
+build	10-Jan-2023 03:22:45	Reading package lists...
+build	10-Jan-2023 03:22:46	Reading package lists...
+build	10-Jan-2023 03:22:46	Building dependency tree...
+build	10-Jan-2023 03:22:46	Reading state information...
+build	10-Jan-2023 03:22:46	wget is already the newest version (1.21.2-2ubuntu1).
+build	10-Jan-2023 03:22:46	locales is already the newest version (2.35-0ubuntu3.1).
+build	10-Jan-2023 03:22:46	The following additional packages will be installed:
+build	10-Jan-2023 03:22:46	  libann0 libbsd0 libcairo2 libcdt5 libcgraph6 libdatrie1 libdeflate0
+build	10-Jan-2023 03:22:46	  libfribidi0 libgd3 libglib2.0-0 libgraphite2-3 libgts-0.7-5 libgvc6 libgvpr2
+build	10-Jan-2023 03:22:46	  libharfbuzz0b libice6 libjbig0 libjpeg-turbo8 libjpeg8 liblab-gamut1
+build	10-Jan-2023 03:22:46	  libltdl7 libmd0 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+build	10-Jan-2023 03:22:46	  libpathplan4 libpixman-1-0 libsm6 libthai-data libthai0 libtiff5 libwebp7
+build	10-Jan-2023 03:22:46	  libx11-6 libx11-data libxau6 libxaw7 libxcb-render0 libxcb-shm0 libxcb1
+build	10-Jan-2023 03:22:46	  libxdmcp6 libxext6 libxmu6 libxpm4 libxrender1 libxt6 x11-common
+build	10-Jan-2023 03:22:46	Suggested packages:
+build	10-Jan-2023 03:22:46	  gsfonts graphviz-doc libgd-tools
+build	10-Jan-2023 03:22:46	Recommended packages:
+build	10-Jan-2023 03:22:46	  fonts-liberation libglib2.0-data shared-mime-info xdg-user-dirs libgts-bin
+build	10-Jan-2023 03:22:46	The following NEW packages will be installed:
+build	10-Jan-2023 03:22:46	  graphviz libann0 libbsd0 libcairo2 libcdt5 libcgraph6 libdatrie1 libdeflate0
+build	10-Jan-2023 03:22:46	  libfribidi0 libgd3 libglib2.0-0 libgraphite2-3 libgts-0.7-5 libgvc6 libgvpr2
+build	10-Jan-2023 03:22:46	  libharfbuzz0b libice6 libjbig0 libjpeg-turbo8 libjpeg8 liblab-gamut1
+build	10-Jan-2023 03:22:46	  libltdl7 libmd0 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+build	10-Jan-2023 03:22:46	  libpathplan4 libpixman-1-0 libsm6 libthai-data libthai0 libtiff5 libwebp7
+build	10-Jan-2023 03:22:46	  libx11-6 libx11-data libxau6 libxaw7 libxcb-render0 libxcb-shm0 libxcb1
+build	10-Jan-2023 03:22:46	  libxdmcp6 libxext6 libxmu6 libxpm4 libxrender1 libxt6 x11-common
+build	10-Jan-2023 03:22:47	0 upgraded, 47 newly installed, 0 to remove and 5 not upgraded.
+build	10-Jan-2023 03:22:47	Need to get 9,464 kB of archives.
+build	10-Jan-2023 03:22:47	After this operation, 25.8 MB of additional disk space will be used.
+build	10-Jan-2023 03:22:47	Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 libmd0 amd64 1.0.4-1build1 [23.0 kB]
+build	10-Jan-2023 03:22:47	Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libbsd0 amd64 0.11.5-1 [44.8 kB]
+build	10-Jan-2023 03:22:47	Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libfribidi0 amd64 1.0.8-2ubuntu3.1 [26.1 kB]
+build	10-Jan-2023 03:22:47	Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libglib2.0-0 amd64 2.72.4-0ubuntu1 [1,461 kB]
+build	10-Jan-2023 03:22:47	Get:5 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxau6 amd64 1:1.0.9-1build5 [7,634 B]
+build	10-Jan-2023 03:22:47	Get:6 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxdmcp6 amd64 1:1.1.3-0ubuntu5 [10.9 kB]
+build	10-Jan-2023 03:22:47	Get:7 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcb1 amd64 1.14-3ubuntu3 [49.0 kB]
+build	10-Jan-2023 03:22:47	Get:8 http://archive.ubuntu.com/ubuntu jammy/main amd64 libx11-data all 2:1.7.5-1 [119 kB]
+build	10-Jan-2023 03:22:47	Get:9 http://archive.ubuntu.com/ubuntu jammy/main amd64 libx11-6 amd64 2:1.7.5-1 [666 kB]
+build	10-Jan-2023 03:22:47	Get:10 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxext6 amd64 2:1.3.4-1build1 [31.8 kB]
+build	10-Jan-2023 03:22:47	Get:11 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libann0 amd64 1.1.2+doc-7build1 [26.0 kB]
+build	10-Jan-2023 03:22:47	Get:12 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libcdt5 amd64 2.42.2-6 [21.1 kB]
+build	10-Jan-2023 03:22:47	Get:13 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libcgraph6 amd64 2.42.2-6 [45.8 kB]
+build	10-Jan-2023 03:22:47	Get:14 http://archive.ubuntu.com/ubuntu jammy/main amd64 libjpeg-turbo8 amd64 2.1.2-0ubuntu1 [134 kB]
+build	10-Jan-2023 03:22:48	Get:15 http://archive.ubuntu.com/ubuntu jammy/main amd64 libjpeg8 amd64 8c-2ubuntu10 [2,264 B]
+build	10-Jan-2023 03:22:48	Get:16 http://archive.ubuntu.com/ubuntu jammy/main amd64 libdeflate0 amd64 1.10-2 [70.9 kB]
+build	10-Jan-2023 03:22:48	Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libjbig0 amd64 2.1-3.1ubuntu0.22.04.1 [29.2 kB]
+build	10-Jan-2023 03:22:48	Get:18 http://archive.ubuntu.com/ubuntu jammy/main amd64 libwebp7 amd64 1.2.2-2 [206 kB]
+build	10-Jan-2023 03:22:48	Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libtiff5 amd64 4.3.0-6ubuntu0.3 [183 kB]
+build	10-Jan-2023 03:22:48	Get:20 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxpm4 amd64 1:3.5.12-1build2 [36.2 kB]
+build	10-Jan-2023 03:22:48	Get:21 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgd3 amd64 2.3.0-2ubuntu2 [129 kB]
+build	10-Jan-2023 03:22:48	Get:22 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libgts-0.7-5 amd64 0.7.6+darcs121130-5 [164 kB]
+build	10-Jan-2023 03:22:48	Get:23 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpixman-1-0 amd64 0.40.0-1ubuntu0.22.04.1 [264 kB]
+build	10-Jan-2023 03:22:48	Get:24 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcb-render0 amd64 1.14-3ubuntu3 [16.4 kB]
+build	10-Jan-2023 03:22:48	Get:25 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcb-shm0 amd64 1.14-3ubuntu3 [5,780 B]
+build	10-Jan-2023 03:22:48	Get:26 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxrender1 amd64 1:0.9.10-1build4 [19.7 kB]
+build	10-Jan-2023 03:22:48	Get:27 http://archive.ubuntu.com/ubuntu jammy/main amd64 libcairo2 amd64 1.16.0-5ubuntu2 [628 kB]
+build	10-Jan-2023 03:22:48	Get:28 http://archive.ubuntu.com/ubuntu jammy/main amd64 libltdl7 amd64 2.4.6-15build2 [39.6 kB]
+build	10-Jan-2023 03:22:48	Get:29 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgraphite2-3 amd64 1.3.14-1build2 [71.3 kB]
+build	10-Jan-2023 03:22:48	Get:30 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libharfbuzz0b amd64 2.7.4-1ubuntu3.1 [352 kB]
+build	10-Jan-2023 03:22:48	Get:31 http://archive.ubuntu.com/ubuntu jammy/main amd64 libthai-data all 0.1.29-1build1 [162 kB]
+build	10-Jan-2023 03:22:48	Get:32 http://archive.ubuntu.com/ubuntu jammy/main amd64 libdatrie1 amd64 0.2.13-2 [19.9 kB]
+build	10-Jan-2023 03:22:48	Get:33 http://archive.ubuntu.com/ubuntu jammy/main amd64 libthai0 amd64 0.1.29-1build1 [19.2 kB]
+build	10-Jan-2023 03:22:48	Get:34 http://archive.ubuntu.com/ubuntu jammy/main amd64 libpango-1.0-0 amd64 1.50.6+ds-2 [230 kB]
+build	10-Jan-2023 03:22:48	Get:35 http://archive.ubuntu.com/ubuntu jammy/main amd64 libpangoft2-1.0-0 amd64 1.50.6+ds-2 [53.9 kB]
+build	10-Jan-2023 03:22:48	Get:36 http://archive.ubuntu.com/ubuntu jammy/main amd64 libpangocairo-1.0-0 amd64 1.50.6+ds-2 [39.8 kB]
+build	10-Jan-2023 03:22:48	Get:37 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libpathplan4 amd64 2.42.2-6 [23.5 kB]
+build	10-Jan-2023 03:22:48	Get:38 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libgvc6 amd64 2.42.2-6 [726 kB]
+build	10-Jan-2023 03:22:48	Get:39 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libgvpr2 amd64 2.42.2-6 [191 kB]
+build	10-Jan-2023 03:22:48	Get:40 http://archive.ubuntu.com/ubuntu jammy/universe amd64 liblab-gamut1 amd64 2.42.2-6 [1,964 kB]
+build	10-Jan-2023 03:22:48	Get:41 http://archive.ubuntu.com/ubuntu jammy/main amd64 x11-common all 1:7.7+23ubuntu2 [23.4 kB]
+build	10-Jan-2023 03:22:48	Get:42 http://archive.ubuntu.com/ubuntu jammy/main amd64 libice6 amd64 2:1.0.10-1build2 [42.6 kB]
+build	10-Jan-2023 03:22:48	Get:43 http://archive.ubuntu.com/ubuntu jammy/main amd64 libsm6 amd64 2:1.2.3-1build2 [16.7 kB]
+build	10-Jan-2023 03:22:48	Get:44 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxt6 amd64 1:1.2.1-1 [177 kB]
+build	10-Jan-2023 03:22:48	Get:45 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxmu6 amd64 2:1.1.3-3 [49.6 kB]
+build	10-Jan-2023 03:22:48	Get:46 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxaw7 amd64 2:1.0.14-1 [191 kB]
+build	10-Jan-2023 03:22:48	Get:47 http://archive.ubuntu.com/ubuntu jammy/universe amd64 graphviz amd64 2.42.2-6 [650 kB]
+build	10-Jan-2023 03:22:48	[91mdebconf: delaying package configuration, since apt-utils is not installed
+build	10-Jan-2023 03:22:48	[0mFetched 9,464 kB in 2s (5,465 kB/s)
+build	10-Jan-2023 03:22:48	Selecting previously unselected package libmd0:amd64.
+build	10-Jan-2023 03:22:48	(Reading database ... 
+build	10-Jan-2023 03:22:48	(Reading database ... 5%
+build	10-Jan-2023 03:22:48	(Reading database ... 10%
+build	10-Jan-2023 03:22:48	(Reading database ... 15%
+build	10-Jan-2023 03:22:48	(Reading database ... 20%
+build	10-Jan-2023 03:22:48	(Reading database ... 25%
+build	10-Jan-2023 03:22:48	(Reading database ... 30%
+build	10-Jan-2023 03:22:48	(Reading database ... 35%
+build	10-Jan-2023 03:22:48	(Reading database ... 40%
+build	10-Jan-2023 03:22:48	(Reading database ... 45%
+build	10-Jan-2023 03:22:48	(Reading database ... 50%
+build	10-Jan-2023 03:22:48	(Reading database ... 55%
+build	10-Jan-2023 03:22:48	(Reading database ... 60%
+build	10-Jan-2023 03:22:48	(Reading database ... 65%
+build	10-Jan-2023 03:22:48	(Reading database ... 70%
+build	10-Jan-2023 03:22:48	(Reading database ... 75%
+build	10-Jan-2023 03:22:48	(Reading database ... 80%
+build	10-Jan-2023 03:22:48	(Reading database ... 85%
+build	10-Jan-2023 03:22:48	(Reading database ... 90%
+build	10-Jan-2023 03:22:48	(Reading database ... 95%
+build	10-Jan-2023 03:22:48	(Reading database ... 100%
+build	10-Jan-2023 03:22:48	(Reading database ... 7916 files and directories currently installed.)
+build	10-Jan-2023 03:22:48	Preparing to unpack .../00-libmd0_1.0.4-1build1_amd64.deb ...
+build	10-Jan-2023 03:22:48	Unpacking libmd0:amd64 (1.0.4-1build1) ...
+build	10-Jan-2023 03:22:48	Selecting previously unselected package libbsd0:amd64.
+build	10-Jan-2023 03:22:48	Preparing to unpack .../01-libbsd0_0.11.5-1_amd64.deb ...
+build	10-Jan-2023 03:22:48	Unpacking libbsd0:amd64 (0.11.5-1) ...
+build	10-Jan-2023 03:22:48	Selecting previously unselected package libfribidi0:amd64.
+build	10-Jan-2023 03:22:48	Preparing to unpack .../02-libfribidi0_1.0.8-2ubuntu3.1_amd64.deb ...
+build	10-Jan-2023 03:22:48	Unpacking libfribidi0:amd64 (1.0.8-2ubuntu3.1) ...
+build	10-Jan-2023 03:22:48	Selecting previously unselected package libglib2.0-0:amd64.
+build	10-Jan-2023 03:22:48	Preparing to unpack .../03-libglib2.0-0_2.72.4-0ubuntu1_amd64.deb ...
+build	10-Jan-2023 03:22:48	Unpacking libglib2.0-0:amd64 (2.72.4-0ubuntu1) ...
+build	10-Jan-2023 03:22:48	Selecting previously unselected package libxau6:amd64.
+build	10-Jan-2023 03:22:48	Preparing to unpack .../04-libxau6_1%3a1.0.9-1build5_amd64.deb ...
+build	10-Jan-2023 03:22:48	Unpacking libxau6:amd64 (1:1.0.9-1build5) ...
+build	10-Jan-2023 03:22:48	Selecting previously unselected package libxdmcp6:amd64.
+build	10-Jan-2023 03:22:48	Preparing to unpack .../05-libxdmcp6_1%3a1.1.3-0ubuntu5_amd64.deb ...
+build	10-Jan-2023 03:22:48	Unpacking libxdmcp6:amd64 (1:1.1.3-0ubuntu5) ...
+build	10-Jan-2023 03:22:48	Selecting previously unselected package libxcb1:amd64.
+build	10-Jan-2023 03:22:48	Preparing to unpack .../06-libxcb1_1.14-3ubuntu3_amd64.deb ...
+build	10-Jan-2023 03:22:48	Unpacking libxcb1:amd64 (1.14-3ubuntu3) ...
+build	10-Jan-2023 03:22:48	Selecting previously unselected package libx11-data.
+build	10-Jan-2023 03:22:48	Preparing to unpack .../07-libx11-data_2%3a1.7.5-1_all.deb ...
+build	10-Jan-2023 03:22:48	Unpacking libx11-data (2:1.7.5-1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libx11-6:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../08-libx11-6_2%3a1.7.5-1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libx11-6:amd64 (2:1.7.5-1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libxext6:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../09-libxext6_2%3a1.3.4-1build1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libxext6:amd64 (2:1.3.4-1build1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libann0.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../10-libann0_1.1.2+doc-7build1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libann0 (1.1.2+doc-7build1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libcdt5:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../11-libcdt5_2.42.2-6_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libcdt5:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libcgraph6:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../12-libcgraph6_2.42.2-6_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libcgraph6:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libjpeg-turbo8:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../13-libjpeg-turbo8_2.1.2-0ubuntu1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libjpeg-turbo8:amd64 (2.1.2-0ubuntu1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libjpeg8:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../14-libjpeg8_8c-2ubuntu10_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libjpeg8:amd64 (8c-2ubuntu10) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libdeflate0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../15-libdeflate0_1.10-2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libdeflate0:amd64 (1.10-2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libjbig0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../16-libjbig0_2.1-3.1ubuntu0.22.04.1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libjbig0:amd64 (2.1-3.1ubuntu0.22.04.1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libwebp7:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../17-libwebp7_1.2.2-2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libwebp7:amd64 (1.2.2-2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libtiff5:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../18-libtiff5_4.3.0-6ubuntu0.3_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libtiff5:amd64 (4.3.0-6ubuntu0.3) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libxpm4:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../19-libxpm4_1%3a3.5.12-1build2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libxpm4:amd64 (1:3.5.12-1build2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libgd3:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../20-libgd3_2.3.0-2ubuntu2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libgd3:amd64 (2.3.0-2ubuntu2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libgts-0.7-5:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../21-libgts-0.7-5_0.7.6+darcs121130-5_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libgts-0.7-5:amd64 (0.7.6+darcs121130-5) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libpixman-1-0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../22-libpixman-1-0_0.40.0-1ubuntu0.22.04.1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libpixman-1-0:amd64 (0.40.0-1ubuntu0.22.04.1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libxcb-render0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../23-libxcb-render0_1.14-3ubuntu3_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libxcb-render0:amd64 (1.14-3ubuntu3) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libxcb-shm0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../24-libxcb-shm0_1.14-3ubuntu3_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libxcb-shm0:amd64 (1.14-3ubuntu3) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libxrender1:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../25-libxrender1_1%3a0.9.10-1build4_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libxrender1:amd64 (1:0.9.10-1build4) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libcairo2:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../26-libcairo2_1.16.0-5ubuntu2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libcairo2:amd64 (1.16.0-5ubuntu2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libltdl7:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../27-libltdl7_2.4.6-15build2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libltdl7:amd64 (2.4.6-15build2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libgraphite2-3:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../28-libgraphite2-3_1.3.14-1build2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libgraphite2-3:amd64 (1.3.14-1build2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libharfbuzz0b:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../29-libharfbuzz0b_2.7.4-1ubuntu3.1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libharfbuzz0b:amd64 (2.7.4-1ubuntu3.1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libthai-data.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../30-libthai-data_0.1.29-1build1_all.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libthai-data (0.1.29-1build1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libdatrie1:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../31-libdatrie1_0.2.13-2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libdatrie1:amd64 (0.2.13-2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libthai0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../32-libthai0_0.1.29-1build1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libthai0:amd64 (0.1.29-1build1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libpango-1.0-0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../33-libpango-1.0-0_1.50.6+ds-2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libpango-1.0-0:amd64 (1.50.6+ds-2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libpangoft2-1.0-0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../34-libpangoft2-1.0-0_1.50.6+ds-2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libpangoft2-1.0-0:amd64 (1.50.6+ds-2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libpangocairo-1.0-0:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../35-libpangocairo-1.0-0_1.50.6+ds-2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libpangocairo-1.0-0:amd64 (1.50.6+ds-2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libpathplan4:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../36-libpathplan4_2.42.2-6_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libpathplan4:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libgvc6.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../37-libgvc6_2.42.2-6_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libgvc6 (2.42.2-6) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libgvpr2:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../38-libgvpr2_2.42.2-6_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libgvpr2:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package liblab-gamut1:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../39-liblab-gamut1_2.42.2-6_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking liblab-gamut1:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package x11-common.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../40-x11-common_1%3a7.7+23ubuntu2_all.deb ...
+build	10-Jan-2023 03:22:49	Unpacking x11-common (1:7.7+23ubuntu2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libice6:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../41-libice6_2%3a1.0.10-1build2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libice6:amd64 (2:1.0.10-1build2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libsm6:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../42-libsm6_2%3a1.2.3-1build2_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libsm6:amd64 (2:1.2.3-1build2) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libxt6:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../43-libxt6_1%3a1.2.1-1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libxt6:amd64 (1:1.2.1-1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libxmu6:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../44-libxmu6_2%3a1.1.3-3_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libxmu6:amd64 (2:1.1.3-3) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package libxaw7:amd64.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../45-libxaw7_2%3a1.0.14-1_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking libxaw7:amd64 (2:1.0.14-1) ...
+build	10-Jan-2023 03:22:49	Selecting previously unselected package graphviz.
+build	10-Jan-2023 03:22:49	Preparing to unpack .../46-graphviz_2.42.2-6_amd64.deb ...
+build	10-Jan-2023 03:22:49	Unpacking graphviz (2.42.2-6) ...
+build	10-Jan-2023 03:22:50	Setting up libgraphite2-3:amd64 (1.3.14-1build2) ...
+build	10-Jan-2023 03:22:50	Setting up libpixman-1-0:amd64 (0.40.0-1ubuntu0.22.04.1) ...
+build	10-Jan-2023 03:22:50	Setting up libxau6:amd64 (1:1.0.9-1build5) ...
+build	10-Jan-2023 03:22:50	Setting up libdatrie1:amd64 (0.2.13-2) ...
+build	10-Jan-2023 03:22:50	Setting up libglib2.0-0:amd64 (2.72.4-0ubuntu1) ...
+build	10-Jan-2023 03:22:50	No schema files found: doing nothing.
+build	10-Jan-2023 03:22:50	Setting up liblab-gamut1:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:50	Setting up x11-common (1:7.7+23ubuntu2) ...
+build	10-Jan-2023 03:22:50	debconf: unable to initialize frontend: Dialog
+build	10-Jan-2023 03:22:50	debconf: (TERM is not set, so the dialog frontend is not usable.)
+build	10-Jan-2023 03:22:50	debconf: falling back to frontend: Readline
+build	10-Jan-2023 03:22:50	debconf: unable to initialize frontend: Readline
+build	10-Jan-2023 03:22:50	debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.34.0 /usr/local/share/perl/5.34.0 /usr/lib/x86_64-linux-gnu/perl5/5.34 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.34 /usr/share/perl/5.34 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+build	10-Jan-2023 03:22:50	debconf: falling back to frontend: Teletype
+build	10-Jan-2023 03:22:50	invoke-rc.d: could not determine current runlevel
+build	10-Jan-2023 03:22:50	invoke-rc.d: policy-rc.d denied execution of start.
+build	10-Jan-2023 03:22:50	Setting up libdeflate0:amd64 (1.10-2) ...
+build	10-Jan-2023 03:22:50	Setting up libjbig0:amd64 (2.1-3.1ubuntu0.22.04.1) ...
+build	10-Jan-2023 03:22:50	Setting up libgts-0.7-5:amd64 (0.7.6+darcs121130-5) ...
+build	10-Jan-2023 03:22:50	Setting up libx11-data (2:1.7.5-1) ...
+build	10-Jan-2023 03:22:50	Setting up libpathplan4:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:50	Setting up libann0 (1.1.2+doc-7build1) ...
+build	10-Jan-2023 03:22:50	Setting up libfribidi0:amd64 (1.0.8-2ubuntu3.1) ...
+build	10-Jan-2023 03:22:50	Setting up libjpeg-turbo8:amd64 (2.1.2-0ubuntu1) ...
+build	10-Jan-2023 03:22:50	Setting up libltdl7:amd64 (2.4.6-15build2) ...
+build	10-Jan-2023 03:22:50	Setting up libwebp7:amd64 (1.2.2-2) ...
+build	10-Jan-2023 03:22:50	Setting up libmd0:amd64 (1.0.4-1build1) ...
+build	10-Jan-2023 03:22:50	Setting up libharfbuzz0b:amd64 (2.7.4-1ubuntu3.1) ...
+build	10-Jan-2023 03:22:50	Setting up libthai-data (0.1.29-1build1) ...
+build	10-Jan-2023 03:22:50	Setting up libcdt5:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:50	Setting up libcgraph6:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:50	Setting up libbsd0:amd64 (0.11.5-1) ...
+build	10-Jan-2023 03:22:50	Setting up libjpeg8:amd64 (8c-2ubuntu10) ...
+build	10-Jan-2023 03:22:50	Setting up libice6:amd64 (2:1.0.10-1build2) ...
+build	10-Jan-2023 03:22:50	Setting up libxdmcp6:amd64 (1:1.1.3-0ubuntu5) ...
+build	10-Jan-2023 03:22:50	Setting up libxcb1:amd64 (1.14-3ubuntu3) ...
+build	10-Jan-2023 03:22:50	Setting up libxcb-render0:amd64 (1.14-3ubuntu3) ...
+build	10-Jan-2023 03:22:50	Setting up libxcb-shm0:amd64 (1.14-3ubuntu3) ...
+build	10-Jan-2023 03:22:50	Setting up libthai0:amd64 (0.1.29-1build1) ...
+build	10-Jan-2023 03:22:50	Setting up libgvpr2:amd64 (2.42.2-6) ...
+build	10-Jan-2023 03:22:50	Setting up libx11-6:amd64 (2:1.7.5-1) ...
+build	10-Jan-2023 03:22:50	Setting up libtiff5:amd64 (4.3.0-6ubuntu0.3) ...
+build	10-Jan-2023 03:22:50	Setting up libsm6:amd64 (2:1.2.3-1build2) ...
+build	10-Jan-2023 03:22:50	Setting up libxpm4:amd64 (1:3.5.12-1build2) ...
+build	10-Jan-2023 03:22:50	Setting up libxrender1:amd64 (1:0.9.10-1build4) ...
+build	10-Jan-2023 03:22:50	Setting up libpango-1.0-0:amd64 (1.50.6+ds-2) ...
+build	10-Jan-2023 03:22:50	Setting up libxext6:amd64 (2:1.3.4-1build1) ...
+build	10-Jan-2023 03:22:50	Setting up libcairo2:amd64 (1.16.0-5ubuntu2) ...
+build	10-Jan-2023 03:22:50	Setting up libgd3:amd64 (2.3.0-2ubuntu2) ...
+build	10-Jan-2023 03:22:50	Setting up libxt6:amd64 (1:1.2.1-1) ...
+build	10-Jan-2023 03:22:50	Setting up libpangoft2-1.0-0:amd64 (1.50.6+ds-2) ...
+build	10-Jan-2023 03:22:50	Setting up libpangocairo-1.0-0:amd64 (1.50.6+ds-2) ...
+build	10-Jan-2023 03:22:50	Setting up libxmu6:amd64 (2:1.1.3-3) ...
+build	10-Jan-2023 03:22:50	Setting up libxaw7:amd64 (2:1.0.14-1) ...
+build	10-Jan-2023 03:22:50	Setting up libgvc6 (2.42.2-6) ...
+build	10-Jan-2023 03:22:50	Setting up graphviz (2.42.2-6) ...
+build	10-Jan-2023 03:22:50	Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+build	10-Jan-2023 03:22:50	Removing intermediate container e150ae0284a9
+build	10-Jan-2023 03:22:50	 ---> 50084dec90da
+build	10-Jan-2023 03:22:50	Step 5/23 : RUN echo "Fixing locales"   && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen   && locale-gen
+build	10-Jan-2023 03:22:50	 ---> Running in c4488a85c783
+build	10-Jan-2023 03:22:51	Fixing locales
+build	10-Jan-2023 03:22:51	Generating locales (this might take a while)...
+build	10-Jan-2023 03:22:52	  en_US.UTF-8... done
+build	10-Jan-2023 03:22:52	Generation complete.
+build	10-Jan-2023 03:22:53	Removing intermediate container c4488a85c783
+build	10-Jan-2023 03:22:53	 ---> 9e176a202d38
+build	10-Jan-2023 03:22:53	Step 6/23 : ENV LC_ALL en_US.UTF-8
+build	10-Jan-2023 03:22:53	 ---> Running in 75547b71d9d2
+build	10-Jan-2023 03:22:53	Removing intermediate container 75547b71d9d2
+build	10-Jan-2023 03:22:53	 ---> 8e42f947aa8d
+build	10-Jan-2023 03:22:53	Step 7/23 : ENV LANG en_US.UTF-8
+build	10-Jan-2023 03:22:53	 ---> Running in ac776b9a8cd2
+build	10-Jan-2023 03:22:53	Removing intermediate container ac776b9a8cd2
+build	10-Jan-2023 03:22:53	 ---> 03ce6286fee2
+build	10-Jan-2023 03:22:53	Step 8/23 : ENV LANGUAGE en_US.UTF-8
+build	10-Jan-2023 03:22:53	 ---> Running in eb3a13c22748
+build	10-Jan-2023 03:22:53	Removing intermediate container eb3a13c22748
+build	10-Jan-2023 03:22:53	 ---> 3ac126499a0a
+build	10-Jan-2023 03:22:53	Step 9/23 : ARG GOSU_VERSION=1.12
+build	10-Jan-2023 03:22:53	 ---> Running in c072a2bb3e4c
+build	10-Jan-2023 03:22:53	Removing intermediate container c072a2bb3e4c
+build	10-Jan-2023 03:22:53	 ---> c818f6db1f5a
+build	10-Jan-2023 03:22:53	Step 10/23 : RUN echo "Installing gosu (needed for bootstrap.sh)"   && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"   && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"   && chmod +x /usr/local/bin/gosu   && gosu nobody true
+build	10-Jan-2023 03:22:53	 ---> Running in b2657141cbd1
+build	10-Jan-2023 03:22:53	Installing gosu (needed for bootstrap.sh)
+build	10-Jan-2023 03:22:53	[91m--2023-01-10 02:22:53--  https://github.com/tianon/gosu/releases/download/1.12/gosu-amd64
+build	10-Jan-2023 03:22:53	Resolving github.com (github.com)... [0m[91m140.82.121.4
+build	10-Jan-2023 03:22:53	Connecting to github.com (github.com)|140.82.121.4|:443... [0m[91mconnected.
+build	10-Jan-2023 03:22:53	[0m[91mHTTP request sent, awaiting response... [0m[91m302 Found
+build	10-Jan-2023 03:22:53	Location: https://objects.githubusercontent.com/github-production-release-asset-2e65be/19708981/93269500-7f72-11ea-94c5-37b92917e2b5?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230110%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230110T022244Z&X-Amz-Expires=300&X-Amz-Signature=d53a947648085304c075deb1ff17e29241432c9ea52400526c34647cf073c108&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=19708981&response-content-disposition=attachment%3B%20filename%3Dgosu-amd64&response-content-type=application%2Foctet-stream [following]
+build	10-Jan-2023 03:22:53	--2023-01-10 02:22:53--  https://objects.githubusercontent.com/github-production-release-asset-2e65be/19708981/93269500-7f72-11ea-94c5-37b92917e2b5?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230110%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230110T022244Z&X-Amz-Expires=300&X-Amz-Signature=d53a947648085304c075deb1ff17e29241432c9ea52400526c34647cf073c108&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=19708981&response-content-disposition=attachment%3B%20filename%3Dgosu-amd64&response-content-type=application%2Foctet-stream
+build	10-Jan-2023 03:22:53	Resolving objects.githubusercontent.com (objects.githubusercontent.com)... [0m[91m185.199.109.133, 185.199.110.133, 185.199.111.133, ...
+build	10-Jan-2023 03:22:53	Connecting to objects.githubusercontent.com (objects.githubusercontent.com)|185.199.109.133|:443... [0m[91mconnected.
+build	10-Jan-2023 03:22:53	[0m[91mHTTP request sent, awaiting response... [0m[91m200 OK
+build	10-Jan-2023 03:22:53	[0m[91mLength: 2404352 (2.3M) [application/octet-stream]
+build	10-Jan-2023 03:22:53	[0m[91mSaving to: ‘/usr/local/bin/gosu’
+build	10-Jan-2023 03:22:53	[0m[91m
+build	10-Jan-2023 03:22:53	     0K ........[0m[91m.. ......[0m[91m.... ....[0m[91m..[0m[91m.... ..[0m[91m......[0m[91m.. .[0m[91m.......[0m[91m..  2% 5.21M 0s
+build	10-Jan-2023 03:22:53	    50K .......... ....[0m[91m...... ..........[0m[91m .......... ......[0m[91m....  4% 6.16M 0s
+build	10-Jan-2023 03:22:53	   100K .......... ..[0m[91m........ ........[0m[91m.. .......... ....[0m[91m......  6% 23.7M 0s
+build	10-Jan-2023 03:22:53	   150K ..........[0m[91m .......... .......... .......... ..[0m[91m........  8% 35.3M 0s
+build	10-Jan-2023 03:22:53	   200K .......... .......... ....[0m[91m...... ..........[0m[91m .......... 10% 9.32M 0s
+build	10-Jan-2023 03:22:53	   250K .......... .......... ..[0m[91m........ .......... .......... 12% 40.3M 0s
+build	10-Jan-2023 03:22:53	   300K ....[0m[91m...... .......... .......... .......... .......... 14% 50.2M 0s
+build	10-Jan-2023 03:22:53	   350K ..[0m[91m........ ........[0m[91m.. .......... ....[0m[91m...... .......... 17% 41.4M 0s
+build	10-Jan-2023 03:22:53	   400K .......... .......... .......... ..[0m[91m........ ........[0m[91m.. 19% 46.8M 0s
+build	10-Jan-2023 03:22:53	   450K .......... .......... .......... .......... ......[0m[91m.... 21% 13.2M 0s
+build	10-Jan-2023 03:22:53	   500K .......... ..[0m[91m........ ........[0m[91m.. .......... .......... 23% 69.1M 0s
+build	10-Jan-2023 03:22:53	   550K ..........[0m[91m .......... .......... .......... .......... 25% 42.5M 0s
+build	10-Jan-2023 03:22:53	   600K .......... .......... ....[0m[91m...... ..........[0m[91m .......... 27% 63.2M 0s
+build	10-Jan-2023 03:22:53	   650K .......... .......... .......... .......... .......... 29%  207M 0s
+build	10-Jan-2023 03:22:53	   700K .......... .......... .......... .......... .......... 31%  226M 0s
+build	10-Jan-2023 03:22:53	   750K ..[0m[91m........ ........[0m[91m.. .......... .......... .......... 34% 61.9M 0s
+build	10-Jan-2023 03:22:53	   800K .......... ......[0m[91m.... .......... ..[0m[91m........ .......... 36%  115M 0s
+build	10-Jan-2023 03:22:53	   850K .......... .......... ..........[0m[91m .......... .......... 38% 88.9M 0s
+build	10-Jan-2023 03:22:53	   900K .......... .......... .......... .......... ....[0m[91m...... 40% 99.4M 0s
+build	10-Jan-2023 03:22:53	   950K .......... .......... .......... .......... .......... 42%  314M 0s
+build	10-Jan-2023 03:22:53	  1000K ........[0m[91m.. .......... .......... .......... .......... 44% 14.5M 0s
+build	10-Jan-2023 03:22:53	  1050K .......... .......... ..[0m[91m........ .......... .......... 46% 84.2M 0s
+build	10-Jan-2023 03:22:53	  1100K .......... .......... .......... ......[0m[91m.... .......... 48% 48.3M 0s
+build	10-Jan-2023 03:22:53	  1150K .......... .......... .......... .......... .......... 51%  328M 0s
+build	10-Jan-2023 03:22:53	  1200K .......... .......... .......... .......... .......... 53%  223M 0s
+build	10-Jan-2023 03:22:53	  1250K .......... ....[0m[91m...... ..[0m[91m........ .......... .......... 55%  111M 0s
+build	10-Jan-2023 03:22:53	  1300K[0m[91m .......... .......... .......... .......... ....[0m[91m...... 57%  199M 0s
+build	10-Jan-2023 03:22:53	  1350K ..[0m[91m........[0m[91m ........[0m[91m.. .......... ....[0m[91m...... .......... 59%  155M 0s
+build	10-Jan-2023 03:22:53	  1400K ........[0m[91m.. .......... .......... ..[0m[91m........ ........[0m[91m.. 61%  177M 0s
+build	10-Jan-2023 03:22:53	  1450K .......... .......... ..[0m[91m........[0m[91m .......... ......[0m[91m.... 63%  209M 0s
+build	10-Jan-2023 03:22:53	  1500K .......... ..[0m[91m........ .......... .......... ....[0m[91m...... 66%  201M 0s
+build	10-Jan-2023 03:22:53	  1550K .......... .......... ......[0m[91m.... .......... .......... 68%  149M 0s[0m[91m
+build	10-Jan-2023 03:22:53	  1600K[0m[91m .......... [0m[91m......[0m[91m.... ....[0m[91m...... ..........[0m[91m .......... 70%  179M 0s
+build	10-Jan-2023 03:22:53	  1650K .......... ......[0m[91m.... .......... ..[0m[91m........ ........[0m[91m.. 72%  187M 0s
+build	10-Jan-2023 03:22:53	  1700K .......... ....[0m[91m...... ...[0m[91m.......[0m[91m .......... ......[0m[91m.... 74%  206M 0s
+build	10-Jan-2023 03:22:53	  1750K .......... ..[0m[91m........ ........[0m[91m.. .......... ....[0m[91m...... 76%  165M 0s
+build	10-Jan-2023 03:22:53	  1800K .........[0m[91m. .......... ......[0m[91m.... .......... ..[0m[91m........ 78%  201M 0s
+build	10-Jan-2023 03:22:53	  1850K ........[0m[91m.. .......... .......... ..........[0m[91m ........[0m[91m.. 80%  182M 0s
+build	10-Jan-2023 03:22:53	  1900K ......[0m[91m.... .......... ..[0m[91m........ ........[0m[91m.. .......... 83%  220M 0s
+build	10-Jan-2023 03:22:53	  1950K ....[0m[91m...... ..........[0m[91m .......... ......[0m[91m.... .......... 85%  281M 0s
+build	10-Jan-2023 03:22:53	  2000K ..[0m[91m........ ........[0m[91m.. .......... .......... .......... 87% 19.6M 0s[0m[91m
+build	10-Jan-2023 03:22:53	  2050K .......... .......... [0m[91m.......... ..[0m[91m........ ........[0m[91m.. 89%  176M 0s
+build	10-Jan-2023 03:22:53	  2100K .......... .......... ..[0m[91m........ .......... ......[0m[91m.... 91%  143M 0s
+build	10-Jan-2023 03:22:53	  2150K .......... ..[0m[91m........ ........[0m[91m.. .......... ....[0m[91m...... 93%  175M 0s
+build	10-Jan-2023 03:22:53	  2200K ..[0m[91m........ ........[0m[91m.. ......[0m[91m.... .......... ..[0m[91m........ 95%  285M 0s[0m[91m
+build	10-Jan-2023 03:22:53	  2250K ........[0m[91m.. .......... ....[0m[91m...... ..........[0m[91m .......... 97% 82.2M 0s
+build	10-Jan-2023 03:22:53	  2300K ......[0m[91m.... .......... ..[0m[91m........ ........[0m[91m.. ........  100%  269M=0.05s
+build	10-Jan-2023 03:22:53	
+build	10-Jan-2023 03:22:53	[0m[91m2023-01-10 02:22:53 (43.0 MB/s) - ‘/usr/local/bin/gosu’ saved [2404352/2404352]
+build	10-Jan-2023 03:22:53	
+build	10-Jan-2023 03:22:54	[0mRemoving intermediate container b2657141cbd1
+build	10-Jan-2023 03:22:54	 ---> b4e2da321cf2
+build	10-Jan-2023 03:22:54	Step 11/23 : WORKDIR /defaults/artemis
+build	10-Jan-2023 03:22:54	 ---> Running in 7ffae7b74389
+build	10-Jan-2023 03:22:54	Removing intermediate container 7ffae7b74389
+build	10-Jan-2023 03:22:54	 ---> 2d1c183fb4f4
+build	10-Jan-2023 03:22:54	Step 12/23 : COPY src/main/resources/config/application*.yml ./
+build	10-Jan-2023 03:22:54	 ---> c1209d94421b
+build	10-Jan-2023 03:22:54	Step 13/23 : WORKDIR /opt/artemis
+build	10-Jan-2023 03:22:54	 ---> Running in 3552605cd792
+build	10-Jan-2023 03:22:54	Removing intermediate container 3552605cd792
+build	10-Jan-2023 03:22:54	 ---> 8068ead2bea3
+build	10-Jan-2023 03:22:54	Step 14/23 : ARG WAR_PATH=build/libs
+build	10-Jan-2023 03:22:54	 ---> Running in a5303dfae334
+build	10-Jan-2023 03:22:54	Removing intermediate container a5303dfae334
+build	10-Jan-2023 03:22:54	 ---> 2a52d37fd953
+build	10-Jan-2023 03:22:54	Step 15/23 : COPY $WAR_PATH/*.war Artemis.war
+build	10-Jan-2023 03:22:57	 ---> e4c3e6a242eb
+build	10-Jan-2023 03:22:57	Step 16/23 : COPY bootstrap.sh /bootstrap.sh
+build	10-Jan-2023 03:22:57	 ---> a8b1d3a5a931
+build	10-Jan-2023 03:22:57	Step 17/23 : RUN chmod +x /bootstrap.sh   && useradd -ms /bin/bash artemis
+build	10-Jan-2023 03:22:57	 ---> Running in f8fb674abc30
+build	10-Jan-2023 03:22:57	Removing intermediate container f8fb674abc30
+build	10-Jan-2023 03:22:57	 ---> bbdb006756df
+build	10-Jan-2023 03:22:57	Step 18/23 : RUN mkdir -p /opt/artemis/config /opt/artemis/data /opt/artemis/public/content
+build	10-Jan-2023 03:22:57	 ---> Running in d653999a3e0b
+build	10-Jan-2023 03:22:58	Removing intermediate container d653999a3e0b
+build	10-Jan-2023 03:22:58	 ---> d75017a70ad1
+build	10-Jan-2023 03:22:58	Step 19/23 : VOLUME ["/opt/artemis/config"]
+build	10-Jan-2023 03:22:58	 ---> Running in bc4b2058dd1a
+build	10-Jan-2023 03:22:58	Removing intermediate container bc4b2058dd1a
+build	10-Jan-2023 03:22:58	 ---> 98852c5e2eb1
+build	10-Jan-2023 03:22:58	Step 20/23 : VOLUME ["/opt/artemis/data"]
+build	10-Jan-2023 03:22:58	 ---> Running in 481db8286964
+build	10-Jan-2023 03:22:58	Removing intermediate container 481db8286964
+build	10-Jan-2023 03:22:58	 ---> 3c1a831931c6
+build	10-Jan-2023 03:22:58	Step 21/23 : VOLUME ["/opt/artemis/public/content"]
+build	10-Jan-2023 03:22:58	 ---> Running in 1868818fc677
+build	10-Jan-2023 03:22:58	Removing intermediate container 1868818fc677
+build	10-Jan-2023 03:22:58	 ---> d16d7a166af7
+build	10-Jan-2023 03:22:58	Step 22/23 : EXPOSE 8080
+build	10-Jan-2023 03:22:58	 ---> Running in 29dad31c9da3
+build	10-Jan-2023 03:22:58	Removing intermediate container 29dad31c9da3
+build	10-Jan-2023 03:22:58	 ---> 8b83b61fc326
+build	10-Jan-2023 03:22:58	Step 23/23 : ENTRYPOINT ["/bin/bash", "/bootstrap.sh"]
+build	10-Jan-2023 03:22:58	 ---> Running in 51c294a98e51
+build	10-Jan-2023 03:22:58	Removing intermediate container 51c294a98e51
+build	10-Jan-2023 03:22:58	 ---> da7625537658
+build	10-Jan-2023 03:22:59	Successfully built da7625537658
+build	10-Jan-2023 03:22:59	Successfully tagged artemis:coverage-latest
+error	10-Jan-2023 03:22:59	/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF110-DA-7-ScriptBuildTask-4788261715584781098.sh: 17: npm: not found
+error	10-Jan-2023 03:22:59	Pulling artemis-mysql   ... 
+error	10-Jan-2023 03:22:59	Pulling artemis-app     ... 
+error	10-Jan-2023 03:22:59	Pulling artemis-cypress ... 
+error	10-Jan-2023 03:22:59	[2A[2K
+error	10-Jan-2023 03:22:59	Pulling artemis-app     ... [32mdone[0m
+error	10-Jan-2023 03:23:01	[2B[1A[2K
+error	10-Jan-2023 03:23:01	Pulling artemis-cypress ... pulling from cypress/browsers
+error	10-Jan-2023 03:23:01	[1B[3A[2K
+error	10-Jan-2023 03:23:01	Pulling artemis-mysql   ... pulling from library/mysql
+error	10-Jan-2023 03:23:02	[3B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... pulling fs layer
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... waiting
+error	10-Jan-2023 03:23:02	[1B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... pulling fs layer
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[3A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-mysql   ... waiting
+error	10-Jan-2023 03:23:02	[3B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (81.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (100.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (1.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (1.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (1.2%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (53.2%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (100.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (20.3%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (0.3%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (47.8%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... extracting (1.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (1.3%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (6.8%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (85.4%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (100.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... extracting (12.5%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (14.7%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (100.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (100.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... extracting (26.1%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (1.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (22.5%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (6.3%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (100.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... extracting (39.6%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (21.1%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (30.4%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... extracting (50.1%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (66.4%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (0.4%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (37.5%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... extracting (57.4%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (100.0%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (12.3%)
+error	10-Jan-2023 03:23:02	[1B[1A[2K
+error	10-Jan-2023 03:23:02	Pulling artemis-cypress ... downloading (45.8%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (1.0%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (72.0%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (26.2%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (53.7%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (87.6%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (17.1%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (39.0%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (56.1%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (91.8%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (54.5%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (51.7%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (57.4%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (90.8%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (63.7%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (95.9%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (59.2%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (100.0%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (75.2%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (66.0%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (98.0%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (1.7%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... extracting (1.0%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (100.0%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (1.1%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (86.4%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (72.3%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... extracting (9.4%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (100.0%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (96.8%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (78.9%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (100.0%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... extracting (15.7%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (100.0%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (1.0%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (85.7%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (1.0%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (1.0%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (24.1%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... extracting (23.0%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... downloading (92.7%)
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... extracting (10.2%)
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (11.8%)
+error	10-Jan-2023 03:23:03	[3B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... downloading (52.1%)
+error	10-Jan-2023 03:23:03	[3B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... verifying checksum
+error	10-Jan-2023 03:23:03	[1B[1A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-cypress ... download complete
+error	10-Jan-2023 03:23:03	[1B[3A[2K
+error	10-Jan-2023 03:23:03	Pulling artemis-mysql   ... extracting (34.5%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (19.3%)
+error	10-Jan-2023 03:23:04	[1B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... downloading (62.8%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... downloading (100.0%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... downloading (29.4%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... downloading (80.0%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... downloading (100.0%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (42.9%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... downloading (59.8%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (29.5%)
+error	10-Jan-2023 03:23:04	[1B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (55.4%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... downloading (87.3%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (41.7%)
+error	10-Jan-2023 03:23:04	[1B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... verifying checksum
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... download complete
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (66.9%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (55.9%)
+error	10-Jan-2023 03:23:04	[1B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (77.4%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (68.1%)
+error	10-Jan-2023 03:23:04	[1B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (89.9%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (75.2%)
+error	10-Jan-2023 03:23:04	[1B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (94.1%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (78.3%)
+error	10-Jan-2023 03:23:04	[1B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (97.3%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (81.3%)
+error	10-Jan-2023 03:23:04	[1B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:04	[3B[3A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-mysql   ... extracting (3.5%)
+error	10-Jan-2023 03:23:04	[3B[1A[2K
+error	10-Jan-2023 03:23:04	Pulling artemis-cypress ... extracting (84.4%)
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (1.4%)
+error	10-Jan-2023 03:23:05	[3B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (87.4%)
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (46.9%)
+error	10-Jan-2023 03:23:05	[3B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (90.5%)
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[3B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (93.5%)
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[3B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:05	[3B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (96.6%)
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (1.0%)
+error	10-Jan-2023 03:23:05	[3B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (99.6%)
+error	10-Jan-2023 03:23:05	[1B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (7.9%)
+error	10-Jan-2023 03:23:05	[3B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:05	[1B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (1.2%)
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (16.9%)
+error	10-Jan-2023 03:23:05	[3B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (87.6%)
+error	10-Jan-2023 03:23:05	[1B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[1B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:05	[1B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[1B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:05	[1B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (25.8%)
+error	10-Jan-2023 03:23:05	[3B[1A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-cypress ... extracting (0.3%)
+error	10-Jan-2023 03:23:05	[1B[3A[2K
+error	10-Jan-2023 03:23:05	Pulling artemis-mysql   ... extracting (34.8%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (1.9%)
+error	10-Jan-2023 03:23:06	[1B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (42.7%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (4.6%)
+error	10-Jan-2023 03:23:06	[1B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (52.7%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (6.2%)
+error	10-Jan-2023 03:23:06	[1B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (59.6%)
+error	10-Jan-2023 03:23:06	[3B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (66.6%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (6.7%)
+error	10-Jan-2023 03:23:06	[1B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (74.5%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (7.3%)
+error	10-Jan-2023 03:23:06	[1B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (81.5%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (8.6%)
+error	10-Jan-2023 03:23:06	[1B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (89.4%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (10.0%)
+error	10-Jan-2023 03:23:06	[1B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (95.4%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (11.9%)
+error	10-Jan-2023 03:23:06	[1B[3A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:06	[3B[1A[2K
+error	10-Jan-2023 03:23:06	Pulling artemis-cypress ... extracting (14.8%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:07	[3B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:07	[3B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (17.5%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (20.0%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (1.0%)
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (22.7%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (10.1%)
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (25.9%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (21.2%)
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (28.1%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (30.3%)
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (29.4%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (36.4%)
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (31.3%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (37.4%)
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (32.9%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (38.4%)
+error	10-Jan-2023 03:23:07	[3B[1A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-cypress ... extracting (34.8%)
+error	10-Jan-2023 03:23:07	[1B[3A[2K
+error	10-Jan-2023 03:23:07	Pulling artemis-mysql   ... extracting (39.4%)
+error	10-Jan-2023 03:23:08	[3B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (37.0%)
+error	10-Jan-2023 03:23:08	[1B[3A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-mysql   ... extracting (40.4%)
+error	10-Jan-2023 03:23:08	[3B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (39.7%)
+error	10-Jan-2023 03:23:08	[1B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (41.8%)
+error	10-Jan-2023 03:23:08	[1B[3A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-mysql   ... extracting (41.4%)
+error	10-Jan-2023 03:23:08	[3B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (43.7%)
+error	10-Jan-2023 03:23:08	[1B[3A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-mysql   ... extracting (42.5%)
+error	10-Jan-2023 03:23:08	[3B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (45.6%)
+error	10-Jan-2023 03:23:08	[1B[3A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-mysql   ... extracting (43.5%)
+error	10-Jan-2023 03:23:08	[3B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (48.0%)
+error	10-Jan-2023 03:23:08	[1B[3A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-mysql   ... extracting (44.5%)
+error	10-Jan-2023 03:23:08	[3B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (50.2%)
+error	10-Jan-2023 03:23:08	[1B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (51.8%)
+error	10-Jan-2023 03:23:08	[1B[3A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-mysql   ... extracting (45.5%)
+error	10-Jan-2023 03:23:08	[3B[1A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-cypress ... extracting (54.3%)
+error	10-Jan-2023 03:23:08	[1B[3A[2K
+error	10-Jan-2023 03:23:08	Pulling artemis-mysql   ... extracting (46.5%)
+error	10-Jan-2023 03:23:09	[3B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (56.7%)
+error	10-Jan-2023 03:23:09	[1B[3A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-mysql   ... extracting (47.5%)
+error	10-Jan-2023 03:23:09	[3B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (58.0%)
+error	10-Jan-2023 03:23:09	[1B[3A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-mysql   ... extracting (48.5%)
+error	10-Jan-2023 03:23:09	[3B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (59.1%)
+error	10-Jan-2023 03:23:09	[1B[3A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-mysql   ... extracting (50.5%)
+error	10-Jan-2023 03:23:09	[3B[3A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-mysql   ... extracting (53.6%)
+error	10-Jan-2023 03:23:09	[3B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (59.7%)
+error	10-Jan-2023 03:23:09	[1B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (62.1%)
+error	10-Jan-2023 03:23:09	[1B[3A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-mysql   ... extracting (64.7%)
+error	10-Jan-2023 03:23:09	[3B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (65.9%)
+error	10-Jan-2023 03:23:09	[1B[3A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-mysql   ... extracting (68.7%)
+error	10-Jan-2023 03:23:09	[3B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (69.4%)
+error	10-Jan-2023 03:23:09	[1B[3A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-mysql   ... extracting (74.8%)
+error	10-Jan-2023 03:23:09	[3B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (72.6%)
+error	10-Jan-2023 03:23:09	[1B[3A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-mysql   ... extracting (78.8%)
+error	10-Jan-2023 03:23:09	[3B[1A[2K
+error	10-Jan-2023 03:23:09	Pulling artemis-cypress ... extracting (75.3%)
+error	10-Jan-2023 03:23:10	[1B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (80.9%)
+error	10-Jan-2023 03:23:10	[3B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (76.4%)
+error	10-Jan-2023 03:23:10	[1B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (83.9%)
+error	10-Jan-2023 03:23:10	[3B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (78.8%)
+error	10-Jan-2023 03:23:10	[1B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (85.9%)
+error	10-Jan-2023 03:23:10	[3B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (80.2%)
+error	10-Jan-2023 03:23:10	[1B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (89.0%)
+error	10-Jan-2023 03:23:10	[3B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (83.4%)
+error	10-Jan-2023 03:23:10	[1B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (92.0%)
+error	10-Jan-2023 03:23:10	[3B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (85.8%)
+error	10-Jan-2023 03:23:10	[1B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (88.0%)
+error	10-Jan-2023 03:23:10	[1B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (98.1%)
+error	10-Jan-2023 03:23:10	[3B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:10	[3B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (90.4%)
+error	10-Jan-2023 03:23:10	[1B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (91.2%)
+error	10-Jan-2023 03:23:10	[1B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:10	[3B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:10	[3B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:10	[3B[1A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-cypress ... extracting (93.4%)
+error	10-Jan-2023 03:23:10	[1B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:10	[3B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:10	[3B[3A[2K
+error	10-Jan-2023 03:23:10	Pulling artemis-mysql   ... extracting (100.0%)
+error	10-Jan-2023 03:23:11	[3B[3A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-mysql   ... pull complete
+error	10-Jan-2023 03:23:11	[3B[3A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-mysql   ... digest: sha256:3d7ae561cf6095f6ac...
+error	10-Jan-2023 03:23:11	[3B[3A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-mysql   ... status: downloaded newer image fo...
+error	10-Jan-2023 03:23:11	[3B[3A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-mysql   ... [32mdone[0m
+error	10-Jan-2023 03:23:11	[3B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... extracting (94.2%)
+error	10-Jan-2023 03:23:11	[1B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... extracting (95.8%)
+error	10-Jan-2023 03:23:11	[1B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... extracting (96.9%)
+error	10-Jan-2023 03:23:11	[1B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... extracting (97.7%)
+error	10-Jan-2023 03:23:11	[1B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... extracting (98.8%)
+error	10-Jan-2023 03:23:11	[1B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... extracting (99.6%)
+error	10-Jan-2023 03:23:11	[1B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:11	[1B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:11	[1B[1A[2K
+error	10-Jan-2023 03:23:11	Pulling artemis-cypress ... extracting (1.7%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (94.2%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (1.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (24.1%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (45.3%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (68.4%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (90.5%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (99.6%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (61.2%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:12	[1B[1A[2K
+error	10-Jan-2023 03:23:12	Pulling artemis-cypress ... extracting (0.4%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (6.8%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (10.7%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (15.5%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (19.9%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (26.2%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (33.4%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (38.6%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (44.5%)
+error	10-Jan-2023 03:23:13	[1B[1A[2K
+error	10-Jan-2023 03:23:13	Pulling artemis-cypress ... extracting (50.5%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (56.4%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (62.8%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (68.8%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (72.7%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (79.1%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (83.5%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (87.1%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (91.4%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (98.2%)
+error	10-Jan-2023 03:23:14	[1B[1A[2K
+error	10-Jan-2023 03:23:14	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:15	[1B[1A[2K
+error	10-Jan-2023 03:23:15	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:15	[1B[1A[2K
+error	10-Jan-2023 03:23:15	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:15	[1B[1A[2K
+error	10-Jan-2023 03:23:15	Pulling artemis-cypress ... extracting (100.0%)
+error	10-Jan-2023 03:23:15	[1B[1A[2K
+error	10-Jan-2023 03:23:15	Pulling artemis-cypress ... pull complete
+error	10-Jan-2023 03:23:15	[1B[1A[2K
+error	10-Jan-2023 03:23:15	Pulling artemis-cypress ... digest: sha256:bfdbf9b64fdaad364f...
+error	10-Jan-2023 03:23:15	[1B[1A[2K
+error	10-Jan-2023 03:23:15	Pulling artemis-cypress ... status: downloaded newer image fo...
+error	10-Jan-2023 03:23:15	[1B[1A[2K
+error	10-Jan-2023 03:23:15	Pulling artemis-cypress ... [32mdone[0m
+error	10-Jan-2023 03:23:15	[1Bartemis-mysql uses an image, skipping
+error	10-Jan-2023 03:23:15	Building artemis-app
+build	10-Jan-2023 03:23:23	Step 1/4 : FROM artemis:coverage-latest
+error	10-Jan-2023 03:23:27	Service 'artemis-app' failed to build: pull access denied for artemis, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+error	10-Jan-2023 03:23:28	using --exit-code-from implies --abort-on-container-exit
+error	10-Jan-2023 03:23:28	Building artemis-app
+build	10-Jan-2023 03:23:33	Step 1/4 : FROM artemis:coverage-latest
+error	10-Jan-2023 03:23:37	Service 'artemis-app' failed to build: pull access denied for artemis, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+build	10-Jan-2023 03:23:37	Cypress container exit code: 1
+build	10-Jan-2023 03:23:37	Not creating success file because the tests failed
+simple	10-Jan-2023 03:23:37	Finished task 'Deploy Artemis and run Cypress tests' with result: Success
+simple	10-Jan-2023 03:23:37	Starting task 'Parse test results' of type 'com.atlassian.bamboo.plugins.testresultparser:task.testresultparser.junit'
+simple	10-Jan-2023 03:23:37	Parsing test results under /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA...
+simple	10-Jan-2023 03:23:37	Failing task since test cases were expected but none were found.
+simple	10-Jan-2023 03:23:37	Finished task 'Parse test results' with result: Failed
+simple	10-Jan-2023 03:23:37	Starting task 'Make sure all docker containers are cleaned up' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	10-Jan-2023 03:23:37	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - test-build-792 - Cypress E2E flake detection #7 (ARTEMIS-AECF110-DA-7)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF110-DA-7-ScriptBuildTask-4500518521725982725.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA\n
+build	10-Jan-2023 03:23:38	No stopped containers
+simple	10-Jan-2023 03:23:38	Finished task 'Make sure all docker containers are cleaned up' with result: Success
+command	10-Jan-2023 03:23:38	Substituting password variable: ${bamboo.GitHubSecret}
+command	10-Jan-2023 03:23:38	Substituting variable: ${bamboo.shortJobName} with Cypress E2E flake detection
+command	10-Jan-2023 03:23:38	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AECF110-DA-7
+command	10-Jan-2023 03:23:38	Substituting variable: ${bamboo.repository.revision.number} with 3925a89c1e404a82a1b9895e3ac2eb76ba362d75
+command	10-Jan-2023 03:23:38	Substituting password variable: ${bamboo.GitHubSecret}
+command	10-Jan-2023 03:23:38	Substituting variable: ${bamboo.shortJobName} with Cypress E2E flake detection
+command	10-Jan-2023 03:23:38	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AECF110-DA-7
+command	10-Jan-2023 03:23:38	Substituting variable: ${bamboo.repository.revision.number} with 3925a89c1e404a82a1b9895e3ac2eb76ba362d75
+simple	10-Jan-2023 03:23:38	Starting task 'GitHub: Update Build Status' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	10-Jan-2023 03:23:38	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - test-build-792 - Cypress E2E flake detection #7 (ARTEMIS-AECF110-DA-7)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF110-DA-7-ScriptBuildTask-218353283348868677.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF110-DA\n
+build	10-Jan-2023 03:23:38	Sending failure to github
+error	10-Jan-2023 03:23:38	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+error	10-Jan-2023 03:23:38	                                 Dload  Upload   Total   Spent    Left  Speed
+error	10-Jan-2023 03:23:38	
+error	10-Jan-2023 03:23:39	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+error	10-Jan-2023 03:23:39	100  1739  100  1571  100   168   3603    385 --:--:-- --:--:-- --:--:--  3988
+simple	10-Jan-2023 03:23:39	Finished task 'GitHub: Update Build Status' with result: Success
+simple	10-Jan-2023 03:23:39	Running post build plugin 'Docker Container Cleanup'
+simple	10-Jan-2023 03:23:39	Running post build plugin 'NCover Results Collector'
+simple	10-Jan-2023 03:23:39	Running post build plugin 'Build Results Label Collector'
+simple	10-Jan-2023 03:23:39	Running post build plugin 'Clover Results Collector'
+simple	10-Jan-2023 03:23:39	Running post build plugin 'npm Cache Cleanup'
+simple	10-Jan-2023 03:23:39	Running post build plugin 'Artifact Copier'
+simple	10-Jan-2023 03:23:39	Finalising the build...
+simple	10-Jan-2023 03:23:39	Stopping timer.
+simple	10-Jan-2023 03:23:39	Build ARTEMIS-AECF110-DA-7 completed.
+simple	10-Jan-2023 03:23:39	Running on server: post build plugin 'Build Hanging Detection Configuration'
+simple	10-Jan-2023 03:23:39	Running on server: post build plugin 'NCover Results Collector'
+simple	10-Jan-2023 03:23:39	Running on server: post build plugin 'Build Labeller'
+simple	10-Jan-2023 03:23:39	Running on server: post build plugin 'Clover Delta Calculator'
+simple	10-Jan-2023 03:23:39	Running on server: post build plugin 'Maven Dependencies Postprocessor'
+simple	10-Jan-2023 03:23:39	All post build plugins have finished
+simple	10-Jan-2023 03:23:39	Generating build results summary...
+simple	10-Jan-2023 03:23:39	Saving build results to disk...
+simple	10-Jan-2023 03:23:39	Store variable context...
+simple	10-Jan-2023 03:23:39	Finished building ARTEMIS-AECF110-DA-7.
