@@ -6,13 +6,13 @@
         {
           "planKey": "ARTEMIS-AETG1222",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF110",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -23,13 +23,13 @@
         {
           "planKey": "ARTEMIS-AETG1223",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF111",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -40,13 +40,13 @@
         {
           "planKey": "ARTEMIS-AETG1224",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF112",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -57,13 +57,13 @@
         {
           "planKey": "ARTEMIS-AETG1225",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF113",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -74,13 +74,13 @@
         {
           "planKey": "ARTEMIS-AETG1226",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF114",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -91,13 +91,13 @@
         {
           "planKey": "ARTEMIS-AETG1227",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF115",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -108,13 +108,13 @@
         {
           "planKey": "ARTEMIS-AETG1228",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF116",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -125,13 +125,13 @@
         {
           "planKey": "ARTEMIS-AETG1229",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF117",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -142,13 +142,13 @@
         {
           "planKey": "ARTEMIS-AETG1230",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF118",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -159,13 +159,13 @@
         {
           "planKey": "ARTEMIS-AETG1231",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF119",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
@@ -176,19 +176,85 @@
         {
           "planKey": "ARTEMIS-AETG1232",
           "isFlakeCheck": false,
-          "runningGoal": 4,
+          "runningGoal": 6,
           "saveLogs": true
         },
         {
           "planKey": "ARTEMIS-AECF120",
           "isFlakeCheck": true,
-          "runningGoal": 17,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "test/build-795",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1255",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF143",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "test/build-794",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1256",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF144",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "test/build-793",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1257",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF145",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
           "saveLogs": true
         }
       ]
     }
   ],
   "analyzedBuilds": [
+    {
+      "planKey": "ARTEMIS-AETG",
+      "target": 795,
+      "lastSuccess": 794
+    },
+    {
+      "planKey": "ARTEMIS-AETG",
+      "target": 794,
+      "lastSuccess": 793
+    },
+    {
+      "planKey": "ARTEMIS-AETG",
+      "target": 793,
+      "lastSuccess": 792
+    },
     {
       "planKey": "ARTEMIS-AETG",
       "target": 792,
