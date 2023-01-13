@@ -74,7 +74,7 @@ export function registerCliCompareCommand(program: Command) {
     .option('-l, --limit <limit>', 'Maximum commits to inspect', '10')
     .option('-json', 'Output in JSON format')
     .action(async (options) => {
-      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${process.env.npm_package_version}`);
+      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${require('../../package.json').version}`);
       const exitCode = await runAnalysis(options);
       process.exit(exitCode);
     });

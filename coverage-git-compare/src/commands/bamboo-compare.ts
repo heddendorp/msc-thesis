@@ -24,7 +24,7 @@ export function registerBambooCompareCommand(program: Command) {
     )
     .action(async (planKey, token, { path, branch }) => {
       console.log(
-        `COVERAGE_GIT_COMPARE-VERSION: ${process.env.npm_package_version}`
+        `COVERAGE_GIT_COMPARE-VERSION: ${require('../../package.json').version}`
       );
       let lastSuccessfulCommit = 'HEAD^';
       const planResponse = await fetch(
