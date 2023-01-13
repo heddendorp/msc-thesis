@@ -11,7 +11,9 @@ export function registerMultilanguageCoveragePlugin(
   config: Partial<Config>
 ): PluginConfig {
   console.log(
-    `CYPRESS_PLUGIN_MULIILANGUAGE_COVERAGE-VERSION: ${process.env.npm_package_version}`
+    `CYPRESS_PLUGIN_MULIILANGUAGE_COVERAGE-VERSION: ${
+      require('../package.json').version
+    }`
   );
   console.log('Writing file for timekeeping to times.txt');
   fs.writeFileSync('times.txt', '0');

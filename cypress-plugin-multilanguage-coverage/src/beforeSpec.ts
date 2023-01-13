@@ -3,7 +3,7 @@ import util from 'util';
 import {Config} from './index';
 import PluginConfigOptions = Cypress.PluginConfigOptions;
 import jetpack from 'fs-jetpack';
-import { ChromeClient } from './chromeClient';
+import {ChromeClient} from './chromeClient';
 
 const exec = util.promisify(require('child_process').exec);
 

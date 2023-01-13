@@ -25,6 +25,15 @@ export function handleAfterSpec(
     const startTime = Date.now();
     if (config.onlySaveOnFailure && !results.stats.failures) {
       console.log('Skipping coverage report for spec: ' + spec.name);
+      try {
+        const client = await ChromeClient.get();
+        await client.Profiler.stopPreciseCoverage();
+      } catch (e) {
+        console.log('Error stopping coverage', e);
+      }
+      const endTime = Date.now();
+      jetpack.append('times.txt', (endTime - startTime).toString());
+      console.log('TIME_PASSED', endTime - startTime);
       return;
     }
 
