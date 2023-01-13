@@ -61,5 +61,8 @@ if (!config.isInteractive && config.reporter !== 'spec') {
 }`;
 
 export const addRerunLogger = () => {
-  jetpack.append('src/test/cypress/support/index.ts', rerunLogger);
+  const fileContent = jetpack.read('src/test/cypress/support/index.ts', 'utf8');
+  if(!fileContent.includes(`cy.task('log', \` RERUN: (Attempt'`)){
+    jetpack.append('src/test/cypress/support/index.ts', rerunLogger);
+  }
 };
