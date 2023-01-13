@@ -6,41 +6,35 @@ export class ChromeClient {
    * @private
    */
   private static client?: CDP.Client;
-  private static lastPort?: number;
+  private static chromePort?: number;
 
-  public static requestConnection(port: number) {
+  public static setPort(port: number) {
+    this.chromePort = port;
+  }
+
+  public static async startCoverage() {
+    if (!this.chromePort) {
+      throw new Error('No port to start coverage on');
+    }
     let tries = 0;
     const maxTries = 100;
     const interval = 100;
-    this.lastPort = port;
     if (this.client) {
       console.log('Chrome client already connected');
       return;
     }
-    const intervalId = setInterval(async () => {
+    while (tries < maxTries) {
       try {
-        await this.connect(port);
-        clearInterval(intervalId);
+        await this.connect(this.chromePort);
+        break;
       } catch (e) {
-        console.log(`Could not connect to Chrome client: ${e}`);
-        console.log(`Retrying in ${interval}ms`);
-        console.log(`Tries: ${tries}`);
-        if (tries >= maxTries) {
-          clearInterval(intervalId);
-          throw new Error(
-            `Could not connect to Chrome Debugging Protocol on port ${port}`
-          );
-        }
+        console.log(`Connection to Chrome failed, retrying in ${interval}ms`);
         tries++;
+        await new Promise(resolve => setTimeout(resolve, interval));
       }
-    }, interval);
-  }
-
-  public static restoreConnection() {
-    if (this.lastPort) {
-      this.requestConnection(this.lastPort);
-    } else {
-      throw new Error('No port to restore connection to');
+    }
+    if (tries >= maxTries) {
+      throw new Error('Could not connect to Chrome');
     }
   }
 

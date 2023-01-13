@@ -28,7 +28,7 @@ export function handleBeforeBrowserLaunch(config: Config) {
       return launchOptions;
     }
     const rdp = parseInt(rdpArgument.split('=')[1]);
-    ChromeClient.requestConnection(rdp);
+    ChromeClient.setPort(rdp);
     const endTime = Date.now();
     jetpack.append('times.txt', (endTime - startTime).toString());
     console.log('TIME_PASSED', endTime - startTime);

@@ -3,6 +3,7 @@ import util from 'util';
 import {Config} from './index';
 import PluginConfigOptions = Cypress.PluginConfigOptions;
 import jetpack from 'fs-jetpack';
+import { ChromeClient } from './chromeClient';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -16,6 +17,7 @@ export function handleBeforeSpec(
   return async (spec: Cypress.Cypress['spec']) => {
     const startTime = Date.now();
     console.log('Starting code coverage for spec: ' + spec.name);
+    await ChromeClient.startCoverage();
     if (config.resetCoverageOnSpecStart && config.enableJavaCoverage) {
       await exec(
         `java -jar ${path.join(
