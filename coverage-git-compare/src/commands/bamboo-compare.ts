@@ -23,7 +23,9 @@ export function registerBambooCompareCommand(program: Command) {
       'devlop'
     )
     .action(async (planKey, token, { path, branch }) => {
-      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${process.env.npm_package_version}`);
+      console.log(
+        `COVERAGE_GIT_COMPARE-VERSION: ${process.env.npm_package_version}`
+      );
       let lastSuccessfulCommit = 'HEAD^';
       const planResponse = await fetch(
         `https://bamboobruegge.in.tum.de/rest/api/latest/result/${planKey}`,
@@ -35,9 +37,25 @@ export function registerBambooCompareCommand(program: Command) {
       );
       const planXml = await planResponse.text();
       const planData = xmlParser.parse(planXml);
-      const lastSuccessfulBuild = planData.results.results.result.find(
-        (result: any) => result.buildState === 'Successful'
-      )?.buildResultKey;
+      let lastSuccessfulBuild;
+      try {
+        const result = planData.results.results.result;
+        if (Array.isArray(result)) {
+          lastSuccessfulBuild = result.find(
+            (result: any) => result.buildState === 'Successful'
+          )?.buildResultKey;
+        } else {
+          lastSuccessfulBuild = result.buildState === 'Successful'
+            ? result.buildResultKey
+            : undefined;
+        }
+      } catch (e) {
+        console.warn(
+          'Problem when parsing data from request: ',
+          `https://bamboobruegge.in.tum.de/rest/api/latest/result/${planKey}`
+        );
+        console.log('Issue loading last successful build: ', e);
+      }
       if (lastSuccessfulBuild) {
         console.debug(`Last successful build: ${lastSuccessfulBuild}`);
         const successfulBuildResponse = await fetch(
