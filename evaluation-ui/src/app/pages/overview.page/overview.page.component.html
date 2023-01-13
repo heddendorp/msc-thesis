@@ -41,6 +41,45 @@
               <div class="stat-value">{{ plan.averageTime }}min</div>
             </div>
           </div>
+          <div class="flex flex-col gap-2">
+            <ng-container *ngFor="let run$ of plan.runs">
+              <div *ngIf="run$ | async as run" class="flex flex-col">
+                <div class="flex flex-row items-center gap-2">
+                  <mat-icon
+                    [svgIcon]="run.failedBuild ? 'icon-cancel' : 'icon-ok'"
+                  ></mat-icon>
+                  <p class="w-6">{{ run.runNumber }}</p>
+                  <p class="w-12">{{ run.totalTime }}</p>
+                  <p class="w-6">
+                    {{ run.analyzedTestcases }}
+                  </p>
+                  <p>Testcases</p>
+                  <a
+                    href="https://bamboobruegge.in.tum.de/browse/{{
+                      plan.planKey
+                    }}-{{ run.runNumber }}"
+                    target="_blank"
+                    mat-icon-button
+                    ><mat-icon svgIcon="icon-external-link-squared"></mat-icon>
+                  </a>
+                </div>
+                <div class="flex flex-row items-center gap-2">
+                  <span
+                    *ngIf="run.flakeCheckIssue"
+                    class="ml-2 rounded-full bg-info px-2 py-1 text-xs font-semibold text-info-content"
+                  >
+                    flake check issue
+                  </span>
+                  <span
+                    *ngIf="run.confirmedFlaky"
+                    class="ml-2 rounded-full bg-info px-2 py-1 text-xs font-semibold text-info-content"
+                  >
+                    confirmed flaky
+                  </span>
+                </div>
+              </div>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>

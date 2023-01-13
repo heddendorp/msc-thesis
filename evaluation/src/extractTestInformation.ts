@@ -110,6 +110,14 @@ async function run() {
         const confirmedFlaky = !failedBuild && hasRerun;
         const flakeCheckIssue = failedBuild && suspectedNotFlaky;
 
+        const runNumber = logFile
+          .split("\\")
+          .pop()
+          ?.split("_")
+          .pop()
+          ?.split(".")
+          .shift();
+
         const jsonFile = logFile
           .replace(".txt", ".json")
           .replace("logs", "json");
@@ -124,6 +132,7 @@ async function run() {
         jetpack.write(jsonFile, {
           analyzedTests: testsuites.length,
           analyzedTestcases: testcases.length,
+          runNumber,
           failedBuild,
           hasRerun,
           suspectedFlaky,
@@ -135,6 +144,19 @@ async function run() {
           testcases,
         });
       }
+      // Sort information files by run number
+      informationFiles.sort((a, b) => {
+        const aRunNumber = Number(a.split("/")
+        .pop()
+        ?.split(".")
+        .shift());
+        const bRunNumber = Number(b.split("/")
+        .pop()
+        ?.split(".")
+        .shift());
+        return bRunNumber - aRunNumber;
+      });
+
       const averageTime =
         Math.round(
           (times.reduce((a, b) => a + b, 0) / times.length / 60) * 100
