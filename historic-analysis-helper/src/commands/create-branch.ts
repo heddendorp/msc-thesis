@@ -23,6 +23,7 @@ export async function createBranch(
   analyzedRun,
   { token, prefix, skipGit }
 ) {
+  console.log(`HISTORIC_ANALYSIS_HELPER-VERSION: ${process.env.npm_package_version}`);
   console.log(
     chalk.green(
       `Setting up analysis for Build ${analyzedRun} of Plan ${planKey}`
