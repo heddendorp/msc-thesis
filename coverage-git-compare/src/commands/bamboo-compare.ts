@@ -23,6 +23,7 @@ export function registerBambooCompareCommand(program: Command) {
       'devlop'
     )
     .action(async (planKey, token, { path, branch }) => {
+      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${process.env.npm_package_version}`);
       let lastSuccessfulCommit = 'HEAD^';
       const planResponse = await fetch(
         `https://bamboobruegge.in.tum.de/rest/api/latest/result/${planKey}`,
