@@ -6,15 +6,12 @@ import PluginConfig = Cypress.PluginConfig;
 import {handleBeforeRun} from './beforeRun';
 import * as fs from 'fs';
 import {handleAfterRun} from './afterRun';
+import {version} from '../package.json';
 
 export function registerMultilanguageCoveragePlugin(
   config: Partial<Config>
 ): PluginConfig {
-  console.log(
-    `CYPRESS_PLUGIN_MULIILANGUAGE_COVERAGE-VERSION: ${
-      require('../package.json').version
-    }`
-  );
+  console.log(`CYPRESS_PLUGIN_MULIILANGUAGE_COVERAGE-VERSION: ${version}`);
   console.log('Writing file for timekeeping to times.txt');
   fs.writeFileSync('times.txt', '0');
   const pluginConfig: Config = {

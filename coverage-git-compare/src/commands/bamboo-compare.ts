@@ -7,6 +7,7 @@ import { getPathsFromPackageLock } from '../helpers/package-lock-handler';
 import jetpack from 'fs-jetpack';
 import minimatch from 'minimatch';
 import { compareFiles } from '../helpers/compare-files';
+import {version} from '../../package.json';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -24,7 +25,7 @@ export function registerBambooCompareCommand(program: Command) {
     )
     .action(async (planKey, token, { path, branch }) => {
       console.log(
-        `COVERAGE_GIT_COMPARE-VERSION: ${require('../../package.json').version}`
+        `COVERAGE_GIT_COMPARE-VERSION: ${version}`
       );
       let lastSuccessfulCommit = 'HEAD^';
       const planResponse = await fetch(

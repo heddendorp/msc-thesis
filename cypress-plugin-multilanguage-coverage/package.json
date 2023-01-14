@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/cypress-plugin-multilanguage-coverage",
-  "version": "1.4.9",
+  "version": "1.4.13",
   "description": "",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -47,5 +47,11 @@
     "fs-jetpack": "^5.1.0",
     "jacoco-parse": "^2.0.1",
     "v8-to-istanbul": "^9.0.1"
+  },
+  "engines": {
+    "node": "^18.12.1"
+  },
+  "volta": {
+    "node": "18.12.1"
   }
 }

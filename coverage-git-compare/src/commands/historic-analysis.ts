@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 import { runAnalysis } from './cli-compare';
+import {version} from '../../package.json';
 
 export function registerHistoricAnalysisCommand(program: Command) {
   program
@@ -8,7 +9,7 @@ export function registerHistoricAnalysisCommand(program: Command) {
     .option('-p, --path <path>', 'Path to coverage report', './coverage')
     .option('-l, --limit <limit>', 'Maximum commits to inspect', '20')
     .action(async ({ commit, path, limit }) => {
-      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${require('../../package.json').version}`);
+      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${version}`);
       console.log('==FLAKECHECK:START==');
       console.log(
         `{ "commit": "${commit}", "path": "${path}", "limit": "${limit}", "runs": [`

@@ -14,6 +14,7 @@ export class ChromeClient {
 
   public static async startCoverage() {
     if (!this.chromePort) {
+      console.log('No port to start coverage on');
       throw new Error('No port to start coverage on');
     }
     let tries = 0;
@@ -34,8 +35,10 @@ export class ChromeClient {
       }
     }
     if (tries >= maxTries) {
+      console.log('Could not connect to Chrome');
       throw new Error('Could not connect to Chrome');
     }
+    console.log('Chrome client coverage started');
   }
 
   public static async connect(port: number): Promise<void> {

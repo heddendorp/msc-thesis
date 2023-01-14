@@ -4,6 +4,7 @@ import jetpack from 'fs-jetpack';
 import { Command } from 'commander';
 import util from 'util';
 import { compareFiles } from '../helpers/compare-files';
+import {version} from '../../package.json';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -74,7 +75,7 @@ export function registerCliCompareCommand(program: Command) {
     .option('-l, --limit <limit>', 'Maximum commits to inspect', '10')
     .option('-json', 'Output in JSON format')
     .action(async (options) => {
-      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${require('../../package.json').version}`);
+      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${version}`);
       const exitCode = await runAnalysis(options);
       process.exit(exitCode);
     });

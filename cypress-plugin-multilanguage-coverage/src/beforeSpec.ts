@@ -38,6 +38,10 @@ export function handleBeforeSpec(
         jetpack.append('times.txt', (endTime - startTime).toString());
         console.log('TIME_PASSED', endTime - startTime);
       });
+    } else {
+      const endTime = Date.now();
+      jetpack.append('times.txt', (endTime - startTime).toString());
+      console.log('TIME_PASSED', endTime - startTime);
     }
   };
 }
