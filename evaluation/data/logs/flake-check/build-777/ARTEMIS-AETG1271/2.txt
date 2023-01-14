@@ -1,0 +1,146 @@
+simple	14-Jan-2023 18:13:14	Build Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-777 - Cypress E2E Tests on Bamboo #2 (ARTEMIS-AETG1271-DA-2) started building on agent ls1Agent-l-8.ase.in.tum.de, bamboo version: 8.2.5
+simple	14-Jan-2023 18:13:14	Remote agent on host ls1Agent-l-8.ase.in.tum.de
+simple	14-Jan-2023 18:13:14	Build working directory is /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA
+simple	14-Jan-2023 18:13:14	Executing build Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-777 - Cypress E2E Tests on Bamboo #2 (ARTEMIS-AETG1271-DA-2)
+simple	14-Jan-2023 18:13:14	Running pre-build action: Build Log Labeller Pre Build Action
+simple	14-Jan-2023 18:13:14	Running pre-build action: VCS Version Collector
+command	14-Jan-2023 18:13:14	Substituting password variable: ${bamboo.GitHubSecret}
+command	14-Jan-2023 18:13:14	Substituting variable: ${bamboo.shortJobName} with Cypress E2E Tests on Bamboo
+command	14-Jan-2023 18:13:14	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AETG1271-DA-2
+command	14-Jan-2023 18:13:14	Substituting variable: ${bamboo.repository.revision.number} with a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+simple	14-Jan-2023 18:13:14	Starting task 'Github: Set build to pending' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	14-Jan-2023 18:13:14	Beginning to execute external process for build 'Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-777 - Cypress E2E Tests on Bamboo #2 (ARTEMIS-AETG1271-DA-2)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AETG1271-DA-2-ScriptBuildTask-7801704122433570189.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA\n
+error	14-Jan-2023 18:13:14	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+error	14-Jan-2023 18:13:14	                                 Dload  Upload   Total   Spent    Left  Speed
+error	14-Jan-2023 18:13:14	
+error	14-Jan-2023 18:13:15	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+error	14-Jan-2023 18:13:15	100  1747  100  1575  100   172   3438    375 --:--:-- --:--:-- --:--:--  3814
+simple	14-Jan-2023 18:13:15	Finished task 'Github: Set build to pending' with result: Success
+simple	14-Jan-2023 18:13:15	Starting task 'Source Code Checkout' of type 'com.atlassian.bamboo.plugins.vcs:task.vcs.checkout'
+simple	14-Jan-2023 18:13:15	Checking out into /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA
+simple	14-Jan-2023 18:13:15	Updating source code to revision: a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+simple	14-Jan-2023 18:13:15	Creating local git repository in '/opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA/.git'.
+simple	14-Jan-2023 18:13:15	Initialized empty Git repository in /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA/.git/
+simple	14-Jan-2023 18:13:15	Fetching 'refs/heads/flake-check/build-777' from 'https://github.com/ls1intum/Artemis.git'. Will try to do a shallow fetch.
+simple	14-Jan-2023 18:13:20	From https://github.com/ls1intum/Artemis
+simple	14-Jan-2023 18:13:20	 * [new branch]      flake-check/build-777 -> flake-check/build-777
+simple	14-Jan-2023 18:13:20	Checking out revision a8ca339ac610c06b5e70f4852ba9fec5db2883dd.
+simple	14-Jan-2023 18:13:21	Switched to branch 'flake-check/build-777'
+simple	14-Jan-2023 18:13:21	Updated source code to revision: a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+simple	14-Jan-2023 18:13:21	Finished task 'Source Code Checkout' with result: Success
+simple	14-Jan-2023 18:13:21	Starting task 'Download Artemis Executable' of type 'com.atlassian.bamboo.plugins.bamboo-artifact-downloader-plugin:artifactdownloadertask'
+simple	14-Jan-2023 18:13:21	Preparing to download plan result ARTEMIS-WEBAPP4819-1 artifact: Non required shared artifact: [war], pattern: [*.war] anchored at: [build/libs]
+simple	14-Jan-2023 18:13:30	Artifact [war] downloaded successfully in 9.345 s to working directory
+simple	14-Jan-2023 18:13:30	Finished task 'Download Artemis Executable' with result: Success
+command	14-Jan-2023 18:13:30	Substituting variable: ${bamboo.artemis_admin_username} with artemis-cypress-admin
+command	14-Jan-2023 18:13:30	Substituting password variable: ${bamboo.artemis_admin_password}
+command	14-Jan-2023 18:13:30	Substituting variable: ${bamboo.cypress_username_template} with artemis_test_user_USERID
+command	14-Jan-2023 18:13:30	Substituting password variable: ${bamboo.cypress_password_template}
+command	14-Jan-2023 18:13:30	Substituting password variable: ${bamboo.ARTEMIS_CONTINUOUS_INTEGRATION_ARTEMIS_AUTHENTICATION_TOKEN_VALUE_SECRET}
+command	14-Jan-2023 18:13:30	Substituting password variable: ${bamboo.ARTEMIS_CONTINUOUS_INTEGRATION_TOKEN_SECRET}
+simple	14-Jan-2023 18:13:30	Starting task 'Deploy Artemis and run Cypress tests' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	14-Jan-2023 18:13:30	Beginning to execute external process for build 'Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-777 - Cypress E2E Tests on Bamboo #2 (ARTEMIS-AETG1271-DA-2)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AETG1271-DA-2-ScriptBuildTask-2560174874816138280.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA\n
+error	14-Jan-2023 18:13:31	Pulling artemis-mysql   ... 
+error	14-Jan-2023 18:13:31	Pulling artemis-app     ... 
+error	14-Jan-2023 18:13:31	Pulling artemis-cypress ... 
+error	14-Jan-2023 18:13:31	[2A[2K
+error	14-Jan-2023 18:13:31	Pulling artemis-app     ... [32mdone[0m
+error	14-Jan-2023 18:13:33	[2B[3A[2K
+error	14-Jan-2023 18:13:33	Pulling artemis-mysql   ... pulling from library/mysql
+error	14-Jan-2023 18:13:33	[3B[1A[2K
+error	14-Jan-2023 18:13:33	Pulling artemis-cypress ... pulling from cypress/browsers
+error	14-Jan-2023 18:13:33	[1B[3A[2K
+error	14-Jan-2023 18:13:33	Pulling artemis-mysql   ... digest: sha256:3d7ae561cf6095f6ac...
+error	14-Jan-2023 18:13:33	[3B[3A[2K
+error	14-Jan-2023 18:13:33	Pulling artemis-mysql   ... status: image is up to date for m...
+error	14-Jan-2023 18:13:33	[3B[1A[2K
+error	14-Jan-2023 18:13:33	Pulling artemis-cypress ... digest: sha256:bfdbf9b64fdaad364f...
+error	14-Jan-2023 18:13:33	[1B[1A[2K
+error	14-Jan-2023 18:13:33	Pulling artemis-cypress ... status: downloaded newer image fo...
+error	14-Jan-2023 18:13:33	[1B[3A[2K
+error	14-Jan-2023 18:13:33	Pulling artemis-mysql   ... [32mdone[0m
+error	14-Jan-2023 18:13:33	[3B[1A[2K
+error	14-Jan-2023 18:13:33	Pulling artemis-cypress ... [32mdone[0m
+error	14-Jan-2023 18:13:33	[1Bartemis-mysql uses an image, skipping
+error	14-Jan-2023 18:13:33	artemis-cypress uses an image, skipping
+error	14-Jan-2023 18:13:33	Building artemis-app
+error	14-Jan-2023 18:13:34	[1642892] Failed to execute script docker-compose
+error	14-Jan-2023 18:13:34	Traceback (most recent call last):
+error	14-Jan-2023 18:13:34	  File "site-packages/docker/utils/build.py", line 97, in create_archive
+error	14-Jan-2023 18:13:34	  File "tarfile.py", line 1970, in addfile
+error	14-Jan-2023 18:13:34	  File "tarfile.py", line 250, in copyfileobj
+error	14-Jan-2023 18:13:34	  File "tempfile.py", line 481, in func_wrapper
+error	14-Jan-2023 18:13:34	OSError: [Errno 28] No space left on device
+error	14-Jan-2023 18:13:34	
+error	14-Jan-2023 18:13:34	During handling of the above exception, another exception occurred:
+error	14-Jan-2023 18:13:34	
+error	14-Jan-2023 18:13:34	Traceback (most recent call last):
+error	14-Jan-2023 18:13:34	  File "bin/docker-compose", line 6, in <module>
+error	14-Jan-2023 18:13:34	  File "compose/cli/main.py", line 72, in main
+error	14-Jan-2023 18:13:34	  File "compose/cli/main.py", line 128, in perform_command
+error	14-Jan-2023 18:13:34	  File "compose/cli/main.py", line 304, in build
+error	14-Jan-2023 18:13:34	  File "compose/project.py", line 403, in build
+error	14-Jan-2023 18:13:34	  File "compose/project.py", line 385, in build_service
+error	14-Jan-2023 18:13:34	  File "compose/service.py", line 1106, in build
+error	14-Jan-2023 18:13:34	  File "site-packages/docker/api/build.py", line 160, in build
+error	14-Jan-2023 18:13:34	  File "site-packages/docker/utils/build.py", line 31, in tar
+error	14-Jan-2023 18:13:34	  File "site-packages/docker/utils/build.py", line 100, in create_archive
+error	14-Jan-2023 18:13:34	OSError: Can not read file in context: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA/build/libs/Artemis-6.0.0.war
+error	14-Jan-2023 18:13:35	using --exit-code-from implies --abort-on-container-exit
+error	14-Jan-2023 18:13:35	Creating cypress_artemis-mysql_1 ... 
+error	14-Jan-2023 18:13:37	[1A[2K
+error	14-Jan-2023 18:13:37	Creating cypress_artemis-mysql_1 ... [32mdone[0m
+error	14-Jan-2023 18:13:38	[1B
+error	14-Jan-2023 18:13:38	ERROR: for artemis-app  Container "a6b668fc4e70" is unhealthy.
+error	14-Jan-2023 18:13:38	Encountered errors while bringing up the project.
+build	14-Jan-2023 18:13:39	Cypress container exit code: 1
+build	14-Jan-2023 18:13:39	Not creating success file because the tests failed
+simple	14-Jan-2023 18:13:39	Finished task 'Deploy Artemis and run Cypress tests' with result: Success
+simple	14-Jan-2023 18:13:39	Starting task 'Parse test results' of type 'com.atlassian.bamboo.plugins.testresultparser:task.testresultparser.junit'
+simple	14-Jan-2023 18:13:39	Parsing test results under /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA...
+simple	14-Jan-2023 18:13:39	Failing task since test cases were expected but none were found.
+simple	14-Jan-2023 18:13:39	Finished task 'Parse test results' with result: Failed
+simple	14-Jan-2023 18:13:39	Starting task 'Make sure all docker containers are cleaned up' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	14-Jan-2023 18:13:39	Beginning to execute external process for build 'Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-777 - Cypress E2E Tests on Bamboo #2 (ARTEMIS-AETG1271-DA-2)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AETG1271-DA-2-ScriptBuildTask-6824025330141930032.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA\n
+error	14-Jan-2023 18:13:40	Removing cypress_artemis-mysql_1 ... 
+error	14-Jan-2023 18:13:40	[1A[2K
+error	14-Jan-2023 18:13:40	Removing cypress_artemis-mysql_1 ... [32mdone[0m
+build	14-Jan-2023 18:13:40	Going to remove cypress_artemis-mysql_1
+error	14-Jan-2023 18:13:40	[1B
+simple	14-Jan-2023 18:13:40	Finished task 'Make sure all docker containers are cleaned up' with result: Success
+command	14-Jan-2023 18:13:40	Substituting password variable: ${bamboo.GitHubSecret}
+command	14-Jan-2023 18:13:40	Substituting variable: ${bamboo.shortJobName} with Cypress E2E Tests on Bamboo
+command	14-Jan-2023 18:13:40	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AETG1271-DA-2
+command	14-Jan-2023 18:13:40	Substituting variable: ${bamboo.repository.revision.number} with a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+command	14-Jan-2023 18:13:40	Substituting password variable: ${bamboo.GitHubSecret}
+command	14-Jan-2023 18:13:40	Substituting variable: ${bamboo.shortJobName} with Cypress E2E Tests on Bamboo
+command	14-Jan-2023 18:13:40	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AETG1271-DA-2
+command	14-Jan-2023 18:13:40	Substituting variable: ${bamboo.repository.revision.number} with a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+simple	14-Jan-2023 18:13:40	Starting task 'GitHub: Update Build Status' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	14-Jan-2023 18:13:40	Beginning to execute external process for build 'Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-777 - Cypress E2E Tests on Bamboo #2 (ARTEMIS-AETG1271-DA-2)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AETG1271-DA-2-ScriptBuildTask-5559557110051989810.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1271-DA\n
+build	14-Jan-2023 18:13:40	Sending failure to github
+error	14-Jan-2023 18:13:40	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+error	14-Jan-2023 18:13:40	                                 Dload  Upload   Total   Spent    Left  Speed
+error	14-Jan-2023 18:13:40	
+error	14-Jan-2023 18:13:41	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+error	14-Jan-2023 18:13:41	100  1741  100  1572  100   169   3516    378 --:--:-- --:--:-- --:--:--  3894
+simple	14-Jan-2023 18:13:41	Finished task 'GitHub: Update Build Status' with result: Success
+simple	14-Jan-2023 18:13:41	Running post build plugin 'Docker Container Cleanup'
+simple	14-Jan-2023 18:13:41	Running post build plugin 'NCover Results Collector'
+simple	14-Jan-2023 18:13:41	Running post build plugin 'Build Results Label Collector'
+simple	14-Jan-2023 18:13:41	Running post build plugin 'Clover Results Collector'
+simple	14-Jan-2023 18:13:41	Running post build plugin 'npm Cache Cleanup'
+simple	14-Jan-2023 18:13:41	Running post build plugin 'Artifact Copier'
+simple	14-Jan-2023 18:13:41	Finalising the build...
+simple	14-Jan-2023 18:13:41	Stopping timer.
+simple	14-Jan-2023 18:13:41	Build ARTEMIS-AETG1271-DA-2 completed.
+simple	14-Jan-2023 18:13:41	Running on server: post build plugin 'Build Hanging Detection Configuration'
+simple	14-Jan-2023 18:13:41	Running on server: post build plugin 'NCover Results Collector'
+simple	14-Jan-2023 18:13:41	Running on server: post build plugin 'Build Labeller'
+simple	14-Jan-2023 18:13:41	Running on server: post build plugin 'Clover Delta Calculator'
+simple	14-Jan-2023 18:13:41	Running on server: post build plugin 'Maven Dependencies Postprocessor'
+simple	14-Jan-2023 18:13:41	All post build plugins have finished
+simple	14-Jan-2023 18:13:41	Generating build results summary...
+simple	14-Jan-2023 18:13:41	Saving build results to disk...
+simple	14-Jan-2023 18:13:41	Store variable context...
+simple	14-Jan-2023 18:13:41	Finished building ARTEMIS-AETG1271-DA-2.
