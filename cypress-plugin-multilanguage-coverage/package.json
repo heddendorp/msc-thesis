@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/cypress-plugin-multilanguage-coverage",
-  "version": "1.4.13",
+  "version": "1.5.1",
   "description": "",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -45,7 +45,7 @@
     "adm-zip": "^0.5.9",
     "chrome-remote-interface": "^0.31.3",
     "fs-jetpack": "^5.1.0",
-    "jacoco-parse": "^2.0.1",
+    "@heddendorp/jacoco-parse": "^2.1.0",
     "v8-to-istanbul": "^9.0.1"
   },
   "engines": {

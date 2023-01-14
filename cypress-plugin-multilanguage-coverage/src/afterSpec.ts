@@ -4,7 +4,7 @@ import {Config} from './index';
 import util from 'util';
 import path from 'path';
 // @ts-ignore - no types available
-import jacoco from 'jacoco-parse';
+import jacoco from '@heddendorp/jacoco-parse';
 import v8ToIstanbul from 'v8-to-istanbul';
 import jetpack from 'fs-jetpack';
 import PluginConfigOptions = Cypress.PluginConfigOptions;
