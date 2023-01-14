@@ -122,13 +122,8 @@ async function run() {
         const confirmedFlaky = !failedBuild && hasRerun;
         const flakeCheckIssue = failedBuild && suspectedNotFlaky;
 
-        const runNumber = logFile
-          .split("\\")
-          .pop()
-          ?.split("_")
-          .pop()
-          ?.split(".")
-          .shift();
+        const runNumber = logFile.replaceAll("\\", "/")
+        .split("/").pop()?.split(".").shift();
 
         const jsonFile = logFile
           .replace(".txt", ".json")
