@@ -19,7 +19,7 @@ export const compareFiles = async (
     });
     console.log(`], "coverageFiles": [`);
     coverageFiles.forEach((file, index) => {
-      console.log(`"${file}"${index < changedFiles.length - 1 ? ',' : ''}`);
+      console.log(`"${file}"${index < coverageFiles.length - 1 ? ',' : ''}`);
     });
     console.log(`],`);
   } else {
@@ -35,6 +35,7 @@ export const compareFiles = async (
     );
   }
   let nonFlakyFail = false;
+  let isFirst = true;
   if (json) {
     console.log(`"testResults": [`);
   }
@@ -66,10 +67,14 @@ export const compareFiles = async (
         );
         console.log(changedFilesForTest.join(`\n`));
       } else {
+        if (!isFirst) {
+          console.log(`,`);
+        }
+        isFirst = false;
         console.log(
-          `{"testName": "${testName}", "changedFiles": [${changedFilesForTest.join(
-            ','
-          )}]},`
+          `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
+            changedFilesForTest
+          )}, "coveredFiles": ${JSON.stringify(coveredFiles)}}`
         );
       }
     } else {
@@ -80,7 +85,15 @@ export const compareFiles = async (
           )
         );
       } else {
-        console.log(`{"testName": "${testName}", "changedFiles": []},`);
+        if (!isFirst) {
+          console.log(`,`);
+        }
+        isFirst = false;
+        console.log(
+          `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
+            changedFilesForTest
+          )}, "coveredFiles": ${JSON.stringify(coveredFiles)}}`
+        );
       }
     }
   }

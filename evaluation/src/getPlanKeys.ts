@@ -25,8 +25,13 @@ async function run() {
       );
       const regularXml = await regularPlanResponse.text();
       const regularData = xmlParser.parse(regularXml);
-      const regularKey =
+      let regularKey
+      try{
+        regularKey =
         regularData.searchResults.searchResults.searchEntity.key;
+      } catch (e) {
+        console.log(`Could not find regular plan for ${branch.branchName}`);
+      }
 
       const flakyPlanResponse = await fetch(
         `https://bamboobruegge.in.tum.de/rest/api/latest/search/branches?masterPlanKey=${masterPlanKeyFlaky}&searchTerm=${branch.branchName.replace(
@@ -41,7 +46,13 @@ async function run() {
       );
       const flakyXml = await flakyPlanResponse.text();
       const flakyData = xmlParser.parse(flakyXml);
-      const flakyKey = flakyData.searchResults.searchResults.searchEntity.key;
+      let flakyKey
+      try{
+        flakyKey =
+        flakyData.searchResults.searchResults.searchEntity.key;
+      } catch (e) {
+        console.log(`Could not find flaky plan for ${branch.branchName}`);
+      }
 
       const plans = [
         {
@@ -57,7 +68,13 @@ async function run() {
           saveLogs: true,
         },
       ];
-      return {...branch, plans};
+      if(!regularKey || !flakyKey){
+        return branch;
+      }
+      return {
+        ...branch,
+        plans,
+      };
     })
   );
   jetpack.write("./data/data.json", { ...data, branches: newBranches });

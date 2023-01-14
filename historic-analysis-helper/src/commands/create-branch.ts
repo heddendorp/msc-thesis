@@ -12,6 +12,7 @@ import {
 } from '../file-updates/cypress-config.js';
 import { updateComposeFile } from '../file-updates/compose-update';
 import jetpack from 'fs-jetpack';
+import {version} from '../../package.json';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -21,9 +22,11 @@ export async function createBranch(
   planKey,
   latestSuccess,
   analyzedRun,
-  { token, prefix, skipGit }
+  { token, prefix, skipGit, local }
 ) {
-  console.log(`HISTORIC_ANALYSIS_HELPER-VERSION: ${require('../../package.json').version}`);
+  console.log(
+    `HISTORIC_ANALYSIS_HELPER-VERSION: ${version}`
+  );
   console.log(
     chalk.green(
       `Setting up analysis for Build ${analyzedRun} of Plan ${planKey}`
@@ -51,6 +54,15 @@ export async function createBranch(
   const analyzedBuildXml = await analyzedBuildResponse.text();
   const analyzedBuildData = xmlParser.parse(analyzedBuildXml);
   const analyzedCommit = analyzedBuildData.result.vcsRevisionKey;
+  // Save current branch name
+  const { stdout: currentBranchStdout, stderr: currentBranchStderr } = await exec(
+    `git rev-parse --abbrev-ref HEAD`
+  );
+  if (currentBranchStderr) {
+    console.log(chalk.red(currentBranchStderr));
+  }
+  const currentBranch = currentBranchStdout.trim();
+  console.log(chalk.gray(`Current branch: ${currentBranch}`));
   console.log(chalk.gray(`Creating branch for ${analyzedCommit}`));
   const { stdout: branchStdout, stderr: branchStderr } = await exec(
     `git checkout -b ${prefix}/build-${analyzedRun} ${analyzedCommit}`
@@ -103,18 +115,22 @@ export async function createBranch(
     console.log(chalk.red(commitStderr));
   }
   console.log(chalk.green(`Done!`));
-  console.log(chalk.gray(`Pushing changes`));
-  const { stdout: pushStdout, stderr: pushStderr } = await exec(
-    `git push --set-upstream origin ${prefix}/build-${analyzedRun}`
-  );
-  if (pushStderr) {
-    console.log(chalk.red(pushStderr));
+  if (local) {
+    console.log(chalk.green(`Skipping git push`));
+  } else {
+    console.log(chalk.gray(`Pushing changes`));
+    const { stdout: pushStdout, stderr: pushStderr } = await exec(
+      `git push --set-upstream origin ${prefix}/build-${analyzedRun}`
+    );
+    if (pushStderr) {
+      console.log(chalk.red(pushStderr));
+    }
+    console.log(chalk.green(`Done!`));
   }
-  console.log(chalk.green(`Done!`));
   console.log(chalk.green(`Branch created!`));
-  console.log(chalk.gray(`Switching back to main branch`));
+  console.log(chalk.gray(`Switching back to '${currentBranch}' branch`));
   const { stdout: checkoutStdout, stderr: checkoutStderr } = await exec(
-    `git checkout develop`
+    `git checkout ${currentBranch}`
   );
   if (checkoutStderr) {
     console.log(chalk.red(checkoutStderr));
@@ -133,7 +149,8 @@ export function registerCreateBranchCommand(program: Command) {
       'Prefix for the created branch',
       'flaky-history'
     )
-    .option('-s, --skip-git', 'Skip git commands')
+    .option('-g, --skip-git', 'Skip git commands')
+    .option('-l, --local', "Don't push to remote")
     .option('-t, --token <token>', 'Bamboo access token')
     .action((planKey, latestSuccess, analyzedRun, options) =>
       createBranch(planKey, latestSuccess, analyzedRun, options)

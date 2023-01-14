@@ -28,15 +28,22 @@ async function run() {
   const index: any[] = [];
   for (const branch of data.branches) {
     console.log(`Branch: ${branch.branchName}`);
+    if(!branch.plans) {
+      console.log(`No plans for ${branch.branchName}`);
+      continue;
+    }
     for (const plan of branch.plans) {
       console.log(`Plan: ${plan.planKey}`);
       if (!jetpack.exists(`./data/logs/${branch.branchName}/${plan.planKey}`)) {
         console.log(`No logs for ${plan.planKey}`);
         continue;
       }
-      const logFiles = jetpack.find(`./data/logs/${branch.branchName}/${plan.planKey}`, {
-        matching: "*.txt",
-      });
+      const logFiles = jetpack.find(
+        `./data/logs/${branch.branchName}/${plan.planKey}`,
+        {
+          matching: "*.txt",
+        }
+      );
       const informationFiles: string[] = [];
       let confirmedFlakes = 0;
       let fails = 0;
@@ -86,10 +93,15 @@ async function run() {
         if (flakeOutputStartLine !== -1 && flakeOutputEndLine !== -1) {
           const flakeOutput = lines
             .slice(flakeOutputStartLine + 1, flakeOutputEndLine)
-            .filter(line => line.includes('artemis-cypress_1'))
+            .filter((line) => line.includes("artemis-cypress_1"))
             .map((line) => line.slice(line.indexOf("|") + 6))
             .join("\n");
-          flakeData = JSON.parse(flakeOutput);
+          try {
+            flakeData = JSON.parse(flakeOutput);
+          } catch (e) {
+            console.error("Error parsing flake output");
+            jetpack.write("./data/json/error.txt", flakeOutput);
+          }
         }
 
         const testcases = testsuites.flatMap((testsuite) =>
@@ -146,14 +158,8 @@ async function run() {
       }
       // Sort information files by run number
       informationFiles.sort((a, b) => {
-        const aRunNumber = Number(a.split("/")
-        .pop()
-        ?.split(".")
-        .shift());
-        const bRunNumber = Number(b.split("/")
-        .pop()
-        ?.split(".")
-        .shift());
+        const aRunNumber = Number(a.split("/").pop()?.split(".").shift());
+        const bRunNumber = Number(b.split("/").pop()?.split(".").shift());
         return bRunNumber - aRunNumber;
       });
 

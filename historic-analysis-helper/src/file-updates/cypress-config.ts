@@ -8,7 +8,7 @@ const cypressConfig = (version, newCypress) => `
       newCypress ? '' : ", '..'"
     }), saveRawCoverage: true, distributionFile: '../../../build/libs/Artemis-${version}.war' })(on, config);`;
 const oldInsertionMarker =
-  'module.exports = (on: (arg0: string, arg1: {}) => void, config: any) => {';
+  'module.exports = (on: (arg0: string, arg1: any) => void, config: any) => {';
 const newInsertionMarker = 'setupNodeEvents(on) {';
 const insertionMarkerReplacement = `setupNodeEvents(on, config) {`;
 const taskMarker = 'error(message: string) {';

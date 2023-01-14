@@ -18,6 +18,9 @@ async function run() {
   await page.getByLabel("Remember my login on this computer").check();
   await page.locator("#loginForm_save").click();
   for (const branch of data.branches) {
+    if(!branch.plans){
+      continue;
+    }
     for (const plan of branch.plans) {
       if (!plan.saveLogs) continue;
       console.log(`Downloading logs for ${plan.planKey}`);
