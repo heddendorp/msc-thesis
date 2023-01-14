@@ -7,7 +7,7 @@ export function registerHistoricAnalysisCommand(program: Command) {
     .command('history')
     .option('-c, --commit <commit>', 'First commit to compare with')
     .option('-p, --path <path>', 'Path to coverage report', './coverage')
-    .option('-l, --limit <limit>', 'Maximum commits to inspect', '20')
+    .option('-l, --limit <limit>', 'Maximum commits to inspect', '30')
     .action(async ({ commit, path, limit }) => {
       console.log(`COVERAGE_GIT_COMPARE-VERSION: ${version}`);
       console.log('==FLAKECHECK:START==');
