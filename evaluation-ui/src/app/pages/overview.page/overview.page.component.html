@@ -12,17 +12,16 @@
       <div class="flex flex-col divide-y md:flex-row md:divide-x">
         <div
           *ngFor="let plan of branch.plans"
-          class="relative flex-1 border-t p-4"
+          class="relative flex flex-1 flex-col gap-4 border-t p-4"
         >
-          <h4>
-            {{ plan.planKey }}
-            <span
-              *ngIf="plan.isFlakeCheck"
-              class="ml-2 rounded-full bg-info px-2 py-1 text-xs font-semibold text-info-content"
-            >
+          <div class="flex flex-row items-center gap-4">
+            <h4>
+              {{ plan.planKey }}
+            </h4>
+            <span *ngIf="plan.isFlakeCheck" class="badge-outline badge">
               flake check
             </span>
-          </h4>
+          </div>
           <div class="stats stats-vertical lg:stats-horizontal">
             <div class="stat">
               <div class="stat-title">Runs</div>
@@ -55,27 +54,42 @@
                   </p>
                   <p>Testcases</p>
                   <a
+                    mat-stroked-button
+                    routerLink="/run"
+                    [queryParams]="{ file: run.path }"
+                  >
+                    <mat-icon svgIcon="icon-info"></mat-icon>
+                    Details
+                  </a>
+                  <a
                     href="https://bamboobruegge.in.tum.de/browse/{{
                       plan.planKey
                     }}-{{ run.runNumber }}"
                     target="_blank"
-                    mat-icon-button
-                    ><mat-icon svgIcon="icon-external-link-squared"></mat-icon>
+                    mat-stroked-button
+                  >
+                    <mat-icon svgIcon="icon-external-link-squared"></mat-icon>
+                    Bamboo
                   </a>
                 </div>
-                <div class="flex flex-row items-center gap-2">
-                  <span
-                    *ngIf="run.flakeCheckIssue"
-                    class="ml-2 rounded-full bg-info px-2 py-1 text-xs font-semibold text-info-content"
-                  >
-                    flake check issue
-                  </span>
-                  <span
-                    *ngIf="run.confirmedFlaky"
-                    class="ml-2 rounded-full bg-info px-2 py-1 text-xs font-semibold text-info-content"
-                  >
-                    confirmed flaky
-                  </span>
+                <div class="flex flex-col gap-2 pl-6">
+                  <div *ngIf="run.flakeData">
+                    Flake Check runs: {{ run.flakeData.runs.length }}
+                  </div>
+                  <div class="flex flex-row items-center gap-2">
+                    <span *ngIf="run.suspectedFlaky" class="badge">
+                      suspected flaky
+                    </span>
+                    <span
+                      *ngIf="run.flakeCheckIssue"
+                      class="badge-warning badge"
+                    >
+                      flake check issue
+                    </span>
+                    <span *ngIf="run.confirmedFlaky" class="badge-info badge">
+                      confirmed flaky
+                    </span>
+                  </div>
                 </div>
               </div>
             </ng-container>

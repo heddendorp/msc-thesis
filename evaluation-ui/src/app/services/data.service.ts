@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { map, shareReplay } from 'rxjs';
 
 export interface TestResult {
   testName: string;
-  changedFiles: any[];
+  changedFiles: string[];
   coveredFiles: string[];
 }
 
@@ -19,11 +19,26 @@ export interface Run {
   flag: string;
 }
 
-export interface RunData {
+export interface FlakeData {
   commit: string;
   path: string;
   limit: string;
   runs: Run[];
+}
+
+export interface RunData {
+  analyzedTestcases: number;
+  analyzedTests: number;
+  confirmedFlaky: boolean;
+  failedBuild: boolean;
+  flakeCheckIssue: boolean;
+  flakeData?: FlakeData;
+  hasRerun: boolean;
+  runNumber: number;
+  suspectedFlaky: boolean;
+  testcases: string[];
+  tests: string[];
+  totalTime: number;
 }
 
 export interface IndexData {
@@ -50,11 +65,18 @@ export class DataService {
         data.map((plan) => ({
           ...plan,
           runs: plan.informationFiles.map((file: string) =>
-            this.httpClient.get<RunData>(file)
+            this.httpClient
+              .get<RunData>(file)
+              .pipe(map((run) => ({ ...run, path: file })))
           ),
         }))
-      )
+      ),
+      shareReplay(1)
     );
+  }
+
+  public getRunData(file: string) {
+    return this.httpClient.get<RunData>(file);
   }
 
   public getCofigData() {

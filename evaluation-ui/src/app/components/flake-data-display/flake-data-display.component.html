@@ -1,0 +1,22 @@
+<h3>Flake check results</h3>
+<ng-container *ngIf="flakeData">
+  <p>
+    Run based on commit <span class="font-mono">{{ flakeData.commit }}</span>
+  </p>
+  <div class="flex flex-col gap-2">
+    <div *ngFor="let run of flakeData.runs">
+      <p>
+        Including {{ run.commitNumber }} commits:
+        {{ run.suspectedFlaky ? "✅" : "❌" }}
+      </p>
+      <p>Detected {{ run.changedFiles.length }} changed files</p>
+      <p>Test results:</p>
+      <div *ngFor="let result of run.testResults">
+        <p>
+          Tests in "{{ result.testName }}" covered
+          {{ result.coveredFiles.length }} files
+        </p>
+      </div>
+    </div>
+  </div>
+</ng-container>

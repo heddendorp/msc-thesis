@@ -3,6 +3,10 @@
 @use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -29,15 +33,27 @@ $evaluation-ui-theme: mat.define-light-theme(
   )
 );
 
+$evaluation-ui-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $evaluation-ui-primary,
+      accent: $evaluation-ui-accent,
+      warn: $evaluation-ui-warn,
+    ),
+  )
+);
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($evaluation-ui-theme);
 
+// Include dark theme based on media query
+@media (prefers-color-scheme: dark) {
+  @include mat.all-component-colors($evaluation-ui-dark-theme);
+}
+
 /* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 html,
 body {
   height: 100%;
@@ -45,4 +61,7 @@ body {
 body {
   margin: 0;
   font-family: Inter, "Helvetica Neue", sans-serif;
+}
+a[mat-stroked-button] {
+  @apply rounded-full;
 }

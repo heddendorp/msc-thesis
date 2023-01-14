@@ -1,0 +1,14 @@
+<main class="prose p-4" *ngIf="runData$ | async as data">
+  <div class="mb-4 flex flex-row items-center gap-6">
+    <h1 class="m-0">Run {{ data.runNumber }}</h1>
+    <div class="not-prose">
+      <a href="/" mat-stroked-button>Back to overview</a>
+    </div>
+  </div>
+  <div class="not-prose">
+    <app-flake-data-display
+      *ngIf="data.flakeData"
+      [flakeData]="data.flakeData"
+    ></app-flake-data-display>
+  </div>
+</main>
