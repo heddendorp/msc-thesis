@@ -32,6 +32,7 @@ export function handleBeforeBrowserLaunch(config: Config) {
     const endTime = Date.now();
     jetpack.append('times.txt', (endTime - startTime).toString());
     console.log('TIME_PASSED', endTime - startTime);
+    launchOptions.args.push('--lang=en');
     return launchOptions;
   };
 }

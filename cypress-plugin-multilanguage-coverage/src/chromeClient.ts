@@ -7,15 +7,27 @@ export class ChromeClient {
    */
   private static client?: CDP.Client;
   private static chromePort?: number;
+  private static firstTry = true;
 
   public static setPort(port: number) {
+    console.log('Setting port to', port);
     this.chromePort = port;
   }
 
   public static async startCoverage() {
     if (!this.chromePort) {
-      console.log('No port to start coverage on');
-      throw new Error('No port to start coverage on');
+      if (this.firstTry) {
+        this.firstTry = false;
+        console.log(
+          'No port to start coverage on. Start coverage after browser launch'
+        );
+        throw new Error(
+          'No port to start coverage on. Start coverage after browser launch'
+        );
+      } else {
+        console.log('No port to start coverage on');
+        throw new Error('No port to start coverage on');
+      }
     }
     let tries = 0;
     const maxTries = 100;

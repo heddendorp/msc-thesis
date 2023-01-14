@@ -17,7 +17,11 @@ export function handleBeforeSpec(
   return async (spec: Cypress.Cypress['spec']) => {
     const startTime = Date.now();
     console.log('Starting code coverage for spec: ' + spec.name);
-    await ChromeClient.startCoverage();
+    try {
+      await ChromeClient.startCoverage();
+    } catch (e) {
+      console.log('Error starting chrome coverage', e);
+    }
     if (config.resetCoverageOnSpecStart && config.enableJavaCoverage) {
       await exec(
         `java -jar ${path.join(
