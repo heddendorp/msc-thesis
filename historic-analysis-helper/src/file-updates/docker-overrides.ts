@@ -57,7 +57,7 @@ exec gosu artemis java \\
   -javaagent:jacocoagent.jar=output=tcpserver,address=* \\
   -jar Artemis.war
 `;
-const dockerComposeFile = `
+const dockerComposeFile = (cypressTag:string) => `
 version: '2.4'
 services:
     artemis-app:
@@ -71,7 +71,7 @@ services:
             context: .
             dockerfile: Cypress-Dockerfile
             args:
-                - CYPRESS_BROWSER=node18.12.0-chrome107
+                - CYPRESS_BROWSER=${cypressTag}
         environment:
             - BAMBOO_PLAN_KEY
             - BAMBOO_TOKEN
@@ -79,10 +79,10 @@ services:
         # Wait up to 5 minutes until Artemis has booted
         command: sh -c "cd /app/artemis/src/test/cypress && chmod 777 /root && npm ci && npm exec -- wait-on -i 1000 -t 300000 http://artemis-app:\${SERVER_PORT} && npm run cypress:run || npm run detect:flakies"
 `;
-export const addDockerOverrides = () => {
+export const addDockerOverrides = (cypressImage:string) => {
   const dockerFilesPath = 'src/main/docker/cypress';
   jetpack.write(`${dockerFilesPath}/Coverage-Dockerfile`, coverageDockerfile);
   jetpack.write(`${dockerFilesPath}/Cypress-Dockerfile`, cypressDockerfile);
   jetpack.write(`${dockerFilesPath}/bootstrap-coverage.sh`, bootstrapFile);
-  jetpack.write(`${dockerFilesPath}/docker-compose.coverage.yml`, dockerComposeFile);
+  jetpack.write(`${dockerFilesPath}/docker-compose.coverage.yml`, dockerComposeFile(cypressImage));
 }

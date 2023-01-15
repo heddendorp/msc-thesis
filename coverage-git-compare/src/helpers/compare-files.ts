@@ -13,15 +13,7 @@ export const compareFiles = async (
     matching: '*files.json',
   });
   if (json) {
-    console.log(`"commitNumber": "${commitNumber}", "changedFiles": [`);
-    changedFiles.forEach((file, index) => {
-      console.log(`"${file}"${index < changedFiles.length - 1 ? ',' : ''}`);
-    });
-    console.log(`], "coverageFiles": [`);
-    coverageFiles.forEach((file, index) => {
-      console.log(`"${file}"${index < coverageFiles.length - 1 ? ',' : ''}`);
-    });
-    console.log(`],`);
+    console.log(`"commitNumber": "${commitNumber}", "changedFiles": ${JSON.stringify(changedFiles)}, "coverageFiles": ${JSON.stringify(coverageFiles)},`);
   } else {
     console.log(
       chalk.gray(

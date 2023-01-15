@@ -28,7 +28,7 @@ async function run() {
   const index: any[] = [];
   for (const branch of data.branches) {
     console.log(`Branch: ${branch.branchName}`);
-    if(!branch.plans) {
+    if (!branch.plans) {
       console.log(`No plans for ${branch.branchName}`);
       continue;
     }
@@ -98,6 +98,15 @@ async function run() {
             .join("\n");
           try {
             flakeData = JSON.parse(flakeOutput);
+            // flakeData.runs = flakeData.runs.map((run: any) => ({
+            //   ...run,
+            //   testResults: run.testResults.map((result) => ({
+            //     ...result,
+            //     coveredFiles: result.coveredFiles.map((file) =>
+            //       file.split("webpack:").pop().substring(1)
+            //     ),
+            //   })),
+            // }));
           } catch (e) {
             console.error("Error parsing flake output");
             jetpack.write("./data/json/error.txt", flakeOutput);
@@ -119,11 +128,23 @@ async function run() {
         const hasRerun = log.includes("RERUN:");
         const suspectedFlaky = log.includes("FLAKECHECK:POSITIVE");
         const suspectedNotFlaky = log.includes("FLAKECHECK:NEGATIVE");
+        const chromeIssue = log.includes("Could not connect to Chrome");
+        // Extract coverage compare version from `COVERAGE_GIT_COMPARE-VERSION: ${version}`
+        const coverageCompareVersion = lines.find((line) =>
+          line.includes("COVERAGE_GIT_COMPARE-VERSION")
+        )?.split(":").pop()?.trim();
+        const cypressPluginVersion = lines.find((line) =>
+          line.includes("CYPRESS_PLUGIN_MULIILANGUAGE_COVERAGE-VERSION")
+        )?.split(":").pop()?.trim();
         const confirmedFlaky = !failedBuild && hasRerun;
         const flakeCheckIssue = failedBuild && suspectedNotFlaky;
 
-        const runNumber = logFile.replaceAll("\\", "/")
-        .split("/").pop()?.split(".").shift();
+        const runNumber = logFile
+          .replaceAll("\\", "/")
+          .split("/")
+          .pop()
+          ?.split(".")
+          .shift();
 
         const jsonFile = logFile
           .replace(".txt", ".json")
@@ -142,9 +163,12 @@ async function run() {
           runNumber,
           failedBuild,
           hasRerun,
+          coverageCompareVersion,
+          cypressPluginVersion,
           suspectedFlaky,
           confirmedFlaky,
           flakeCheckIssue,
+          chromeIssue,
           totalTime: Math.round((Math.round(totalTime) / 60) * 100) / 100,
           tests: testsuites,
           flakeData,

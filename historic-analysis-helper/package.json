@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/historic-analysis-helper",
-  "version": "1.2.8",
+  "version": "1.2.11",
   "description": "",
   "main": "dist/src/index.js",
   "bin": {
@@ -37,7 +37,8 @@
     "chalk": "^4.1.2",
     "commander": "^9.4.1",
     "fast-xml-parser": "^4.0.12",
-    "fs-jetpack": "^5.1.0"
+    "fs-jetpack": "^5.1.0",
+    "yaml": "^2.2.1"
   },
   "engines": {
     "node": "^18.12.1"

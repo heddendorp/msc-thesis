@@ -75,7 +75,7 @@ export function handleAfterSpec(
             Object.values(entry.s).some((v: any) => v > 0) ||
             Object.values(entry.f).some((v: any) => v > 0)
         )
-        .map((entry: any) => entry.path.split('webpack:\\').pop());
+        .map((entry: any) => entry.path.split('webpack:').pop().substring(1));
     } catch (e) {
       console.error(e);
       console.warn('could not collect frontend coverage');

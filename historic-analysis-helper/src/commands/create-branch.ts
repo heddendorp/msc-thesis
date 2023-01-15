@@ -13,6 +13,7 @@ import {
 import { updateComposeFile } from '../file-updates/compose-update';
 import jetpack from 'fs-jetpack';
 import {version} from '../../package.json';
+import { parse } from 'yaml';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -84,8 +85,14 @@ export async function createBranch(
   console.log(chalk.gray(`Adding flaky test detection script to package.json`));
   updatePackageScripts(lastSuccessfulCommit);
   console.log(chalk.green(`Done!`));
+  console.log(chalk.gray(`Determining cypress docker image`));
+  const dockerComposeContent = jetpack.read('src/main/docker/cypress/docker-compose.yml',
+  'utf8');
+  const dockerComposeData = parse(dockerComposeContent);
+  const cypressImage = dockerComposeData.services['artemis-cypress'].image.split(':')[1];
+  console.log(chalk.gray(`Using cypress docker image ${cypressImage}`));
   console.log(chalk.gray(`Adding Docker override files`));
-  addDockerOverrides();
+  addDockerOverrides(cypressImage);
   console.log(chalk.green(`Done!`));
   console.log(chalk.gray(`Adding gradle dependencies`));
   updateGradleDependencies();

@@ -9,6 +9,8 @@ const cypressConfig = (version, newCypress) => `
     }), saveRawCoverage: true, distributionFile: '../../../build/libs/Artemis-${version}.war' })(on, config);`;
 const oldInsertionMarker =
   'module.exports = (on: (arg0: string, arg1: any) => void, config: any) => {';
+const veryOldInsertionMarker =
+  'module.exports = (on: (arg0: string, arg1: {}) => void, config: any) => {';
 const newInsertionMarker = 'setupNodeEvents(on) {';
 const insertionMarkerReplacement = `setupNodeEvents(on, config) {`;
 const taskMarker = 'error(message: string) {';
@@ -25,12 +27,12 @@ export const updateCypressConfig = (
     ? 'src/test/cypress/cypress.config.ts'
     : 'src/test/cypress/plugins/index.ts';
   const configContent = jetpack.read(cypressConfigFile, 'utf8');
-  const insertionMarker = newCypress ? newInsertionMarker : oldInsertionMarker;
+  const insertionMarker = newCypress ? newInsertionMarker : configContent.includes(oldInsertionMarker) ? oldInsertionMarker : veryOldInsertionMarker;
   const insertionIndex = configContent.indexOf(insertionMarker);
   // insert line after the module.exports line
   const newConfigContent =
     configContent.slice(0, insertionIndex) +
-    (newCypress ? insertionMarkerReplacement : oldInsertionMarker) +
+    (newCypress ? insertionMarkerReplacement : configContent.includes(oldInsertionMarker) ? oldInsertionMarker : veryOldInsertionMarker) +
     cypressConfig(artemisVersion, newCypress) +
     configContent.slice(insertionIndex + insertionMarker.length);
 

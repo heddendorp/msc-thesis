@@ -32,6 +32,9 @@ export interface RunData {
   confirmedFlaky: boolean;
   failedBuild: boolean;
   flakeCheckIssue: boolean;
+  chromeIssue: boolean;
+  coverageCompareVersion: string;
+  cypressPluginVersion: string;
   flakeData?: FlakeData;
   hasRerun: boolean;
   runNumber: number;

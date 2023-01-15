@@ -220,6 +220,40 @@
           "saveLogs": true
         }
       ]
+    },
+    {
+      "branchName": "flake-check/build-719",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1276",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF164",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "flake-check/build-718",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1277",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF165",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
     }
   ],
   "analyzedBuilds": [
@@ -292,6 +326,11 @@
       "planKey": "ARTEMIS-AETG",
       "target": 767,
       "lastSuccess": 759
+    },
+    {
+      "planKey": "ARTEMIS-AETG",
+      "target": 718,
+      "lastSuccess": 716
     }
   ]
 }

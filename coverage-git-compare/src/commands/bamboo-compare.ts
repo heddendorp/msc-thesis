@@ -21,7 +21,7 @@ export function registerBambooCompareCommand(program: Command) {
     .option(
       '-b, --branch [branch]',
       'Branch to compare against if no build is found',
-      'devlop'
+      'develop'
     )
     .action(async (planKey, token, { path, branch }) => {
       console.log(

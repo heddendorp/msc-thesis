@@ -42,7 +42,7 @@
           </div>
           <div class="flex flex-col gap-2">
             <ng-container *ngFor="let run$ of plan.runs">
-              <div *ngIf="run$ | async as run" class="flex flex-col">
+              <div *ngIf="run$ | async as run" class="flex flex-col gap-2">
                 <div class="flex flex-row items-center gap-2">
                   <mat-icon
                     [svgIcon]="run.failedBuild ? 'icon-cancel' : 'icon-ok'"
@@ -73,12 +73,27 @@
                   </a>
                 </div>
                 <div class="flex flex-col gap-2 pl-6">
-                  <div *ngIf="run.flakeData">
-                    Flake Check runs: {{ run.flakeData.runs.length }}
-                  </div>
                   <div class="flex flex-row items-center gap-2">
+                    <span *ngIf="run.cypressPluginVersion" class="badge">
+                      CMC: {{ run.cypressPluginVersion }}
+                    </span>
+                    <span *ngIf="run.coverageCompareVersion" class="badge">
+                      CGC: {{ run.coverageCompareVersion }}
+                    </span>
+                    <span
+                      *ngIf="run.analyzedTestcases < 60"
+                      class="badge-error badge"
+                    >
+                      run error
+                    </span>
                     <span *ngIf="run.suspectedFlaky" class="badge">
                       suspected flaky
+                    </span>
+                    <span *ngIf="run.flakeData" class="badge">
+                      flake check {{ run.flakeData.runs.length }}/30
+                    </span>
+                    <span *ngIf="run.chromeIssue" class="badge-error badge">
+                      chrome issue
                     </span>
                     <span
                       *ngIf="run.flakeCheckIssue"
@@ -87,7 +102,7 @@
                       flake check issue
                     </span>
                     <span *ngIf="run.confirmedFlaky" class="badge-info badge">
-                      confirmed flaky
+                      has rerun
                     </span>
                   </div>
                 </div>
