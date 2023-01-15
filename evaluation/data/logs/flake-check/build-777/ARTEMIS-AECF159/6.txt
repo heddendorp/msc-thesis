@@ -1,0 +1,1091 @@
+simple	15-Jan-2023 05:46:25	Build Artemis - Artemis E2E (Cypress - Docker- Flaky) - flake-check-build-777 - Cypress E2E flake detection #6 (ARTEMIS-AECF159-DA-6) started building on agent ls1Agent-l-7.ase.in.tum.de, bamboo version: 8.2.5
+simple	15-Jan-2023 05:46:25	Remote agent on host ls1Agent-l-7.ase.in.tum.de
+simple	15-Jan-2023 05:46:25	Build working directory is /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA
+simple	15-Jan-2023 05:46:25	Executing build Artemis - Artemis E2E (Cypress - Docker- Flaky) - flake-check-build-777 - Cypress E2E flake detection #6 (ARTEMIS-AECF159-DA-6)
+simple	15-Jan-2023 05:46:25	Running pre-build action: Build Log Labeller Pre Build Action
+simple	15-Jan-2023 05:46:25	Running pre-build action: VCS Version Collector
+command	15-Jan-2023 05:46:25	Substituting password variable: ${bamboo.GitHubSecret}
+command	15-Jan-2023 05:46:25	Substituting variable: ${bamboo.shortJobName} with Cypress E2E flake detection
+command	15-Jan-2023 05:46:25	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AECF159-DA-6
+command	15-Jan-2023 05:46:25	Substituting variable: ${bamboo.repository.revision.number} with a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+simple	15-Jan-2023 05:46:25	Starting task 'Github: Set build to pending' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 05:46:25	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - flake-check-build-777 - Cypress E2E flake detection #6 (ARTEMIS-AECF159-DA-6)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF159-DA-6-ScriptBuildTask-3994095280368882882.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA\n
+error	15-Jan-2023 05:46:25	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+error	15-Jan-2023 05:46:25	                                 Dload  Upload   Total   Spent    Left  Speed
+error	15-Jan-2023 05:46:25	
+error	15-Jan-2023 05:46:26	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+error	15-Jan-2023 05:46:26	100  1745  100  1574  100   171   3348    363 --:--:-- --:--:-- --:--:--  3712
+simple	15-Jan-2023 05:46:26	Finished task 'Github: Set build to pending' with result: Success
+simple	15-Jan-2023 05:46:26	Starting task 'Source Code Checkout' of type 'com.atlassian.bamboo.plugins.vcs:task.vcs.checkout'
+simple	15-Jan-2023 05:46:26	Checking out into /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA
+simple	15-Jan-2023 05:46:26	Updating source code to revision: a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+simple	15-Jan-2023 05:46:26	Creating local git repository in '/opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA/.git'.
+simple	15-Jan-2023 05:46:26	Initialized empty Git repository in /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA/.git/
+simple	15-Jan-2023 05:46:26	Fetching 'refs/heads/flake-check/build-777' from 'https://github.com/ls1intum/Artemis.git'. Will try to do a shallow fetch.
+simple	15-Jan-2023 05:46:31	From https://github.com/ls1intum/Artemis
+simple	15-Jan-2023 05:46:31	 * [new branch]      flake-check/build-777 -> flake-check/build-777
+simple	15-Jan-2023 05:46:31	Checking out revision a8ca339ac610c06b5e70f4852ba9fec5db2883dd.
+simple	15-Jan-2023 05:46:32	Switched to branch 'flake-check/build-777'
+simple	15-Jan-2023 05:46:32	Updated source code to revision: a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+simple	15-Jan-2023 05:46:32	Finished task 'Source Code Checkout' with result: Success
+simple	15-Jan-2023 05:46:32	Starting task 'Download Artemis Executable' of type 'com.atlassian.bamboo.plugins.bamboo-artifact-downloader-plugin:artifactdownloadertask'
+simple	15-Jan-2023 05:46:32	Preparing to download plan result ARTEMIS-WEBAPP4819-1 artifact: Non required shared artifact: [war], pattern: [*.war] anchored at: [build/libs]
+simple	15-Jan-2023 05:46:42	Artifact [war] downloaded successfully in 9.392 s to working directory
+simple	15-Jan-2023 05:46:42	Finished task 'Download Artemis Executable' with result: Success
+simple	15-Jan-2023 05:46:42	Starting task 'Update flaky dependencies' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 05:46:42	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - flake-check-build-777 - Cypress E2E flake detection #6 (ARTEMIS-AECF159-DA-6)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF159-DA-6-ScriptBuildTask-3318313330498900854.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA/src/main/docker/cypress\n
+build	15-Jan-2023 05:46:42	Updating flaky dependencies
+simple	15-Jan-2023 05:46:42	Finished task 'Update flaky dependencies' with result: Success
+command	15-Jan-2023 05:46:42	Substituting variable: ${bamboo.artemis_admin_username} with artemis-cypress-admin
+command	15-Jan-2023 05:46:42	Substituting password variable: ${bamboo.artemis_admin_password}
+command	15-Jan-2023 05:46:42	Substituting variable: ${bamboo.cypress_username_template} with artemis_test_user_USERID
+command	15-Jan-2023 05:46:42	Substituting password variable: ${bamboo.cypress_password_template}
+command	15-Jan-2023 05:46:42	Substituting variable: ${bamboo.planKey} with ARTEMIS-AECF159
+command	15-Jan-2023 05:46:42	Substituting password variable: ${bamboo.BAMBOO_PERSONAL_SECRET}
+command	15-Jan-2023 05:46:42	Substituting password variable: ${bamboo.ARTEMIS_CONTINUOUS_INTEGRATION_ARTEMIS_AUTHENTICATION_TOKEN_VALUE_SECRET}
+command	15-Jan-2023 05:46:42	Substituting password variable: ${bamboo.ARTEMIS_CONTINUOUS_INTEGRATION_TOKEN_SECRET}
+command	15-Jan-2023 05:46:42	Substituting variable: ${bamboo.GH_REGISTRY_TOKEN} with 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
+simple	15-Jan-2023 05:46:42	Starting task 'Deploy Artemis and run Cypress tests' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 05:46:42	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - flake-check-build-777 - Cypress E2E flake detection #6 (ARTEMIS-AECF159-DA-6)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF159-DA-6-ScriptBuildTask-5047880141831651083.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA\n
+error	15-Jan-2023 05:47:07	From https://github.com/ls1intum/Artemis
+error	15-Jan-2023 05:47:07	 * [new branch]      3486-better-names-for-weight-bonus-multiplier-bonus-points -> origin/3486-better-names-for-weight-bonus-multiplier-bonus-points
+error	15-Jan-2023 05:47:07	 * [new branch]      New-filter-and-LDAP-feature-on-user-administration-view -> origin/New-filter-and-LDAP-feature-on-user-administration-view
+error	15-Jan-2023 05:47:07	 * [new branch]      add-build-agent-to-atlassian -> origin/add-build-agent-to-atlassian
+error	15-Jan-2023 05:47:07	 * [new branch]      basic-git-server-resource -> origin/basic-git-server-resource
+error	15-Jan-2023 05:47:07	 * [new branch]      before-new-e2e-tests   -> origin/before-new-e2e-tests
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/5936-exam-updating-an-exercise-results-in-internal-server-error -> origin/bugfix/5936-exam-updating-an-exercise-results-in-internal-server-error
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/complaint/align_text_boxes -> origin/bugfix/complaint/align_text_boxes
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/course-management-overview -> origin/bugfix/course-management-overview
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/course-scores   -> origin/bugfix/course-scores
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/creating-example-results -> origin/bugfix/creating-example-results
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/default-branch  -> origin/bugfix/default-branch
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/different-npm-version -> origin/bugfix/different-npm-version
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/dockerfile-swiftlint -> origin/bugfix/dockerfile-swiftlint
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/emojis-not-matching-darkmode -> origin/bugfix/emojis-not-matching-darkmode
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/exercise-assessment-exam-legend -> origin/bugfix/exercise-assessment-exam-legend
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/exercise-dashboard -> origin/bugfix/exercise-dashboard
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/fix-example-test-submission -> origin/bugfix/fix-example-test-submission
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/fix-guided-tutorial-step -> origin/bugfix/fix-guided-tutorial-step
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/fix-hanging-test-student-exams -> origin/bugfix/fix-hanging-test-student-exams
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/fix-programming-exercise-timeline-styling-overflow -> origin/bugfix/fix-programming-exercise-timeline-styling-overflow
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/fix-referenced-feedback-for-code -> origin/bugfix/fix-referenced-feedback-for-code
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/header-points   -> origin/bugfix/header-points
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/hibernate-validation -> origin/bugfix/hibernate-validation
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/hide-email-address -> origin/bugfix/hide-email-address
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/iphone/notification-sidebar -> origin/bugfix/iphone/notification-sidebar
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/jenkins-user-management/various-issues -> origin/bugfix/jenkins-user-management/various-issues
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/k6-programming-simulation -> origin/bugfix/k6-programming-simulation
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/k6-quiz-tests   -> origin/bugfix/k6-quiz-tests
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/k6-sca          -> origin/bugfix/k6-sca
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/k6-tests        -> origin/bugfix/k6-tests
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/localize-ngx-datatable -> origin/bugfix/localize-ngx-datatable
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/login-css-test  -> origin/bugfix/login-css-test
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/notification-white-space -> origin/bugfix/notification-white-space
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/participation-table-spacing -> origin/bugfix/participation-table-spacing
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/performance-monitoring -> origin/bugfix/performance-monitoring
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/plagiarism-ui   -> origin/bugfix/plagiarism-ui
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/plagiarism/disregard-test-runs -> origin/bugfix/plagiarism/disregard-test-runs
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/programming-exercises/fix-task-with-zero-tests -> origin/bugfix/programming-exercises/fix-task-with-zero-tests
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/programming-exercises/read-permissions -> origin/bugfix/programming-exercises/read-permissions
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/programming-exercises/result-details-safari -> origin/bugfix/programming-exercises/result-details-safari
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/quiz/add-missing-translations -> origin/bugfix/quiz/add-missing-translations
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/quiz/added-batch-edit -> origin/bugfix/quiz/added-batch-edit
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/quiz/remove-release-date-for-exam-exercises -> origin/bugfix/quiz/remove-release-date-for-exam-exercises
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/set-min-test-execution-date-in-exam-mode -> origin/bugfix/set-min-test-execution-date-in-exam-mode
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/show-custom-course-groups -> origin/bugfix/show-custom-course-groups
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/structured-grading-instructions/edit-instructions-after-assessment -> origin/bugfix/structured-grading-instructions/edit-instructions-after-assessment
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/student-exam-instructor-rights -> origin/bugfix/student-exam-instructor-rights
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/team-add-students -> origin/bugfix/team-add-students
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/teams-add-students -> origin/bugfix/teams-add-students
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/tutor-complaint-handling -> origin/bugfix/tutor-complaint-handling
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/tutorial-group-issues-jan-2023 -> origin/bugfix/tutorial-group-issues-jan-2023
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/webpack-reload  -> origin/bugfix/webpack-reload
+error	15-Jan-2023 05:47:07	 * [new branch]      bugfix/websocket       -> origin/bugfix/websocket
+error	15-Jan-2023 05:47:07	 * [new branch]      chore-chartjs-update-2 -> origin/chore-chartjs-update-2
+error	15-Jan-2023 05:47:07	 * [new branch]      chore-improve-client-test-programming-update-component -> origin/chore-improve-client-test-programming-update-component
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/adapt-security   -> origin/chore/adapt-security
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/change-websocket-path -> origin/chore/change-websocket-path
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/client-test-ci   -> origin/chore/client-test-ci
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/client-update    -> origin/chore/client-update
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/db-util-prefix   -> origin/chore/db-util-prefix
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/dependencies-july27 -> origin/chore/dependencies-july27
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/duplication-branch-check -> origin/chore/duplication-branch-check
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/enhancement/metis-filter-sens -> origin/chore/enhancement/metis-filter-sens
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/exercise-has-ended -> origin/chore/exercise-has-ended
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/exercises/remove-participation-status -> origin/chore/exercises/remove-participation-status
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/improve-performance -> origin/chore/improve-performance
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/jhipster-7.1.0   -> origin/chore/jhipster-7.1.0
+error	15-Jan-2023 05:47:07	 * [new branch]      chore/orphan-delete-service -> origin/chore/orphan-delete-service
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/refactor-tutor-complaint-side -> origin/chore/refactor-tutor-complaint-side
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/replace-wrong-icon-text-usages -> origin/chore/replace-wrong-icon-text-usages
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/spring-boot-3    -> origin/chore/spring-boot-3
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/spring-boot-3-hibernate -> origin/chore/spring-boot-3-hibernate
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/spring-profile-constants -> origin/chore/spring-profile-constants
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/teardown-client-tests -> origin/chore/teardown-client-tests
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/test-speedups    -> origin/chore/test-speedups
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/test/improve-jenkins-user-management-coverage -> origin/chore/test/improve-jenkins-user-management-coverage
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/test/k6-modeling-exercise-logs -> origin/chore/test/k6-modeling-exercise-logs
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/tests/increase-gitlab-coverage -> origin/chore/tests/increase-gitlab-coverage
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/update-client-tests -> origin/chore/update-client-tests
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/update-dependencies-august4 -> origin/chore/update-dependencies-august4
+error	15-Jan-2023 05:47:08	 * [new branch]      chore/update-test-build-online-editor-fix -> origin/chore/update-test-build-online-editor-fix
+error	15-Jan-2023 05:47:08	 * [new branch]      ci/add-action-db-team-auto-assign -> origin/ci/add-action-db-team-auto-assign
+error	15-Jan-2023 05:47:08	 * [new branch]      client/darkmode        -> origin/client/darkmode
+error	15-Jan-2023 05:47:08	 * [new branch]      communication/private_messages -> origin/communication/private_messages
+error	15-Jan-2023 05:47:08	 * [new branch]      database/migrate_feedback_reference_to_feedback_id_of_text_blocks -> origin/database/migrate_feedback_reference_to_feedback_id_of_text_blocks
+error	15-Jan-2023 05:47:08	 * [new branch]      database/migration-merge -> origin/database/migration-merge
+error	15-Jan-2023 05:47:08	 * [new branch]      decoupling/lecture     -> origin/decoupling/lecture
+error	15-Jan-2023 05:47:08	 * [new branch]      decoupling/quiz        -> origin/decoupling/quiz
+error	15-Jan-2023 05:47:08	 * [new branch]      develop                -> origin/develop
+error	15-Jan-2023 05:47:08	 * [new branch]      develop-achievements   -> origin/develop-achievements
+error	15-Jan-2023 05:47:08	 * [new branch]      develop-deployment-wg  -> origin/develop-deployment-wg
+error	15-Jan-2023 05:47:08	 * [new branch]      develop-gitlab-ci      -> origin/develop-gitlab-ci
+error	15-Jan-2023 05:47:08	 * [new branch]      develop-microservices  -> origin/develop-microservices
+error	15-Jan-2023 05:47:08	 * [new branch]      development/add-git-commit-header -> origin/development/add-git-commit-header
+error	15-Jan-2023 05:47:08	 * [new branch]      development/add-sphinx-gradle-plugin -> origin/development/add-sphinx-gradle-plugin
+error	15-Jan-2023 05:47:08	 * [new branch]      development/charts/bugfix/fix-active-students-line-charts -> origin/development/charts/bugfix/fix-active-students-line-charts
+error	15-Jan-2023 05:47:08	 * [new branch]      development/danger-js  -> origin/development/danger-js
+error	15-Jan-2023 05:47:08	 * [new branch]      development/tests/programming-exercise-instruction-analysis -> origin/development/tests/programming-exercise-instruction-analysis
+error	15-Jan-2023 05:47:08	 * [new branch]      discussion/reference_lectures -> origin/discussion/reference_lectures
+error	15-Jan-2023 05:47:08	 * [new branch]      docker-compose-restructuring -> origin/docker-compose-restructuring
+error	15-Jan-2023 05:47:08	 * [new branch]      docs/extend-ux-docs    -> origin/docs/extend-ux-docs
+error	15-Jan-2023 05:47:08	 * [new branch]      documentation/textual  -> origin/documentation/textual
+error	15-Jan-2023 05:47:08	 * [new branch]      draft/simple-user-mgmt-filter -> origin/draft/simple-user-mgmt-filter
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/FileServer/use-path-instead-of-string -> origin/enhancement/FileServer/use-path-instead-of-string
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/client/improve-displayed-buttons-consistency -> origin/enhancement/client/improve-displayed-buttons-consistency
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/course-management/exercises-list -> origin/enhancement/course-management/exercises-list
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/error-page -> origin/enhancement/error-page
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/exam-live-statistics/adapt-subscriptions -> origin/enhancement/exam-live-statistics/adapt-subscriptions
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/exam-routes-improvements -> origin/enhancement/exam-routes-improvements
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/exam/fix-exercise-selection -> origin/enhancement/exam/fix-exercise-selection
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/hestia-smaller-improvements -> origin/enhancement/hestia-smaller-improvements
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/pe-log-removal-gradle -> origin/enhancement/pe-log-removal-gradle
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/programming-exercise-details/aux-click-for-buildplan-links -> origin/enhancement/programming-exercise-details/aux-click-for-buildplan-links
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/programming-exercises/always-access-submissions -> origin/enhancement/programming-exercises/always-access-submissions
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/programming-exercises/remove-advertisement-for-sourcetree -> origin/enhancement/programming-exercises/remove-advertisement-for-sourcetree
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/programming-exercises/results-and-tasks -> origin/enhancement/programming-exercises/results-and-tasks
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/programming-exercises/switch-tutorial-to-intellij -> origin/enhancement/programming-exercises/switch-tutorial-to-intellij
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/publish-build-plan -> origin/enhancement/publish-build-plan
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/result-string-missing-result -> origin/enhancement/result-string-missing-result
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/slow-test-removal -> origin/enhancement/slow-test-removal
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/slow-tests-fix-2 -> origin/enhancement/slow-tests-fix-2
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/spring-configuration-cleanup -> origin/enhancement/spring-configuration-cleanup
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/statistic-page-css-fixes -> origin/enhancement/statistic-page-css-fixes
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/statistics-performance-improvements -> origin/enhancement/statistics-performance-improvements
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/structured-grading-criteria/display-infinity-for-undefined-usage-count-move-scss -> origin/enhancement/structured-grading-criteria/display-infinity-for-undefined-usage-count-move-scss
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/ui-bonus-grading-key -> origin/enhancement/ui-bonus-grading-key
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/user       -> origin/enhancement/user
+error	15-Jan-2023 05:47:08	 * [new branch]      enhancement/user-role/extending-editor-access-rights -> origin/enhancement/user-role/extending-editor-access-rights
+error	15-Jan-2023 05:47:08	 * [new branch]      exp-branch             -> origin/exp-branch
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/add-access-complaint-button-for-submissions-page -> origin/feature/add-access-complaint-button-for-submissions-page
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/add-api-versioning -> origin/feature/add-api-versioning
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/add-api-versioning-upgrade -> origin/feature/add-api-versioning-upgrade
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/add-authorization-test-2 -> origin/feature/add-authorization-test-2
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/basic-lecture-unit-interaction -> origin/feature/basic-lecture-unit-interaction
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/course-archive-second-iteration -> origin/feature/course-archive-second-iteration
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/course-discussion-overview-page/pagination-and-server-side-filtering-2 -> origin/feature/course-discussion-overview-page/pagination-and-server-side-filtering-2
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/cypress-with-nginx-and-test-certificate -> origin/feature/cypress-with-nginx-and-test-certificate
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/db-testdata-user -> origin/feature/db-testdata-user
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/delete-assessments -> origin/feature/delete-assessments
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/deployment/monitoring -> origin/feature/deployment/monitoring
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/disable-override-assessment-button-when-no-change -> origin/feature/disable-override-assessment-button-when-no-change
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/docker-java-non-root -> origin/feature/docker-java-non-root
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/documentation-links -> origin/feature/documentation-links
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/e2e-test/add-cypress-support -> origin/feature/e2e-test/add-cypress-support
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/e2e-test/add-selenium-support -> origin/feature/e2e-test/add-selenium-support
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/exam-live-statistics/database -> origin/feature/exam-live-statistics/database
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/exam-live-statistics/timeline -> origin/feature/exam-live-statistics/timeline
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/exam/file-upload-exercises -> origin/feature/exam/file-upload-exercises
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/exam/refactor-next-exam-component -> origin/feature/exam/refactor-next-exam-component
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/exams/hide-unregistered-exams -> origin/feature/exams/hide-unregistered-exams
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/exercise-import-course-exam-filter -> origin/feature/exercise-import-course-exam-filter
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/export-cluster-hierarchy -> origin/feature/export-cluster-hierarchy
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/export-results-with-test-case-info -> origin/feature/export-results-with-test-case-info
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/gitlab-lrz     -> origin/feature/gitlab-lrz
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/hazelcast-multicast -> origin/feature/hazelcast-multicast
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/jenkins/docker-flags -> origin/feature/jenkins/docker-flags
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/kubernetes-deployment -> origin/feature/kubernetes-deployment
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/leaderboards/student-leaderboard -> origin/feature/leaderboards/student-leaderboard
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/learning-goal-progress -> origin/feature/learning-goal-progress
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/learning-goal-redesign -> origin/feature/learning-goal-redesign
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/learning-goals-redesign -> origin/feature/learning-goals-redesign
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/limit-docker-resources-via-config -> origin/feature/limit-docker-resources-via-config
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/local-git-service -> origin/feature/local-git-service
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/messages-page/ui-improvements -> origin/feature/messages-page/ui-improvements
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/metrics-exercises-exams -> origin/feature/metrics-exercises-exams
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/new-instructor-buttons-student-exam-detail-page -> origin/feature/new-instructor-buttons-student-exam-detail-page
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/new-score-calculation-mathod -> origin/feature/new-score-calculation-mathod
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/online-editor/open-student-submission-in-online-editor -> origin/feature/online-editor/open-student-submission-in-online-editor
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/plagiarism-management-and-notifications -> origin/feature/plagiarism-management-and-notifications
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/plagiarism-reduce-data-load -> origin/feature/plagiarism-reduce-data-load
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/plagiarism/auditing-and-exam -> origin/feature/plagiarism/auditing-and-exam
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/plagiarism/rework-data-model -> origin/feature/plagiarism/rework-data-model
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/postresql-container -> origin/feature/postresql-container
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/process-lecture-file-units -> origin/feature/process-lecture-file-units
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/programing-exercises/bamboo-add-custom-feedback-support -> origin/feature/programing-exercises/bamboo-add-custom-feedback-support
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/programming-assessment/inline-feedback-in-code-editor -> origin/feature/programming-assessment/inline-feedback-in-code-editor
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/programming-exercise/submission-policies -> origin/feature/programming-exercise/submission-policies
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/prorgramming-exercise-wizard-mode -> origin/feature/prorgramming-exercise-wizard-mode
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/quiz/short-answer-number-spot -> origin/feature/quiz/short-answer-number-spot
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/sca-import     -> origin/feature/sca-import
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/service-decoupling -> origin/feature/service-decoupling
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/student-link-buttons -> origin/feature/student-link-buttons
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/teamCreationByStudents -> origin/feature/teamCreationByStudents
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/transformation-modeling-exercise -> origin/feature/transformation-modeling-exercise
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/traverse-cluster-tree-for-feedback -> origin/feature/traverse-cluster-tree-for-feedback
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/update-jhipster-7 -> origin/feature/update-jhipster-7
+error	15-Jan-2023 05:47:08	 * [new branch]      feature/visual-multiple-choice-editor -> origin/feature/visual-multiple-choice-editor
+error	15-Jan-2023 05:47:08	 * [new branch]      fix/flaky-programming-exercise-schedule-service-test -> origin/fix/flaky-programming-exercise-schedule-service-test
+error	15-Jan-2023 05:47:08	 * [new branch]      fix/temporarily-disable-some-tests -> origin/fix/temporarily-disable-some-tests
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-767  -> origin/flake-check/build-767
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-769  -> origin/flake-check/build-769
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-770  -> origin/flake-check/build-770
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-771  -> origin/flake-check/build-771
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-773  -> origin/flake-check/build-773
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-775  -> origin/flake-check/build-775
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-776  -> origin/flake-check/build-776
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-777  -> origin/flake-check/build-777
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-778  -> origin/flake-check/build-778
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-781  -> origin/flake-check/build-781
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-782  -> origin/flake-check/build-782
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-788  -> origin/flake-check/build-788
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-789  -> origin/flake-check/build-789
+error	15-Jan-2023 05:47:08	 * [new branch]      flake-check/build-792  -> origin/flake-check/build-792
+error	15-Jan-2023 05:47:08	 * [new branch]      hest                   -> origin/hest
+error	15-Jan-2023 05:47:08	 * [new branch]      hotfix/jenkins-docs-push-token-workaround -> origin/hotfix/jenkins-docs-push-token-workaround
+error	15-Jan-2023 05:47:08	 * [new branch]      improvement/add-copy-button-to-lti-configuration -> origin/improvement/add-copy-button-to-lti-configuration
+error	15-Jan-2023 05:47:08	 * [new branch]      improvement/course-exericses-grace-period -> origin/improvement/course-exericses-grace-period
+error	15-Jan-2023 05:47:08	 * [new branch]      improvement/programming-exercises/hide-student-information-for-TAs -> origin/improvement/programming-exercises/hide-student-information-for-TAs
+error	15-Jan-2023 05:47:08	 * [new branch]      improvement/programming-exercises/improve-feedback-preview-for-python-exercises -> origin/improvement/programming-exercises/improve-feedback-preview-for-python-exercises
+error	15-Jan-2023 05:47:08	 * [new branch]      improvement/remove-lti-user-id -> origin/improvement/remove-lti-user-id
+error	15-Jan-2023 05:47:08	 * [new branch]      jhipster_upgrade       -> origin/jhipster_upgrade
+error	15-Jan-2023 05:47:08	 * [new branch]      main                   -> origin/main
+error	15-Jan-2023 05:47:08	 * [new branch]      manyToOne_to_manyToMany_textBlock_textCluster_relationship -> origin/manyToOne_to_manyToMany_textBlock_textCluster_relationship
+error	15-Jan-2023 05:47:08	 * [new branch]      microservices/remove-lecture-microservice-features-from-artemis -> origin/microservices/remove-lecture-microservice-features-from-artemis
+error	15-Jan-2023 05:47:08	 * [new branch]      microservices/remove-moved-lecture-features-from-artemis -> origin/microservices/remove-moved-lecture-features-from-artemis
+error	15-Jan-2023 05:47:08	 * [new branch]      microservices/user-management-service-remove-from-artemis -> origin/microservices/user-management-service-remove-from-artemis
+error	15-Jan-2023 05:47:08	 * [new branch]      migrate_feedback_reference_to_textblock_feedback_id -> origin/migrate_feedback_reference_to_textblock_feedback_id
+error	15-Jan-2023 05:47:08	 * [new branch]      origin/sentry/nan-when-computing-score -> origin/origin/sentry/nan-when-computing-score
+error	15-Jan-2023 05:47:08	 * [new branch]      pat-testing            -> origin/pat-testing
+error	15-Jan-2023 05:47:08	 * [new branch]      plagiarism-management-backup -> origin/plagiarism-management-backup
+error	15-Jan-2023 05:47:08	 * [new branch]      plagiarism/plagiarism-case-data-model -> origin/plagiarism/plagiarism-case-data-model
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/5741-move-course-score-calculation-to-the-server -> origin/refactor/5741-move-course-score-calculation-to-the-server
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/feedback-view -> origin/refactor/feedback-view
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/improve-fileupload-assessment-resource -> origin/refactor/improve-fileupload-assessment-resource
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/improve-fileupload-submission-resource -> origin/refactor/improve-fileupload-submission-resource
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/max-compassScore-to-max-points -> origin/refactor/max-compassScore-to-max-points
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/programming-exercise-grading-service -> origin/refactor/programming-exercise-grading-service
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/programming-exercises/repository-service -> origin/refactor/programming-exercises/repository-service
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/remove-redundant-result-information-from-detail-rest-call -> origin/refactor/remove-redundant-result-information-from-detail-rest-call
+error	15-Jan-2023 05:47:08	 * [new branch]      refactor/submissions-dashboards-to-one-dashboard -> origin/refactor/submissions-dashboards-to-one-dashboard
+error	15-Jan-2023 05:47:08	 * [new branch]      releases/5.12.x        -> origin/releases/5.12.x
+error	15-Jan-2023 05:47:08	 * [new branch]      send_existing_text_block_to_athene -> origin/send_existing_text_block_to_athene
+error	15-Jan-2023 05:47:08	 * [new branch]      test-cypress-update    -> origin/test-cypress-update
+error	15-Jan-2023 05:47:08	 * [new branch]      test/chore/client-update -> origin/test/chore/client-update
+error	15-Jan-2023 05:47:08	 * [new branch]      test/cypress/add-exam-participation-tests -> origin/test/cypress/add-exam-participation-tests
+error	15-Jan-2023 05:47:08	 * [new branch]      test/cypress/add-file-upload-exercise-tests -> origin/test/cypress/add-file-upload-exercise-tests
+error	15-Jan-2023 05:47:08	 * [new branch]      test/cypress/add-manage-exam-exercise-tests -> origin/test/cypress/add-manage-exam-exercise-tests
+error	15-Jan-2023 05:47:08	 * [new branch]      test/cypress/add-test-exam-creation-deletion -> origin/test/cypress/add-test-exam-creation-deletion
+error	15-Jan-2023 05:47:08	 * [new branch]      test/cypress/debug     -> origin/test/cypress/debug
+error	15-Jan-2023 05:47:08	 * [new branch]      test/cypress/manage-exam-exercise-tests -> origin/test/cypress/manage-exam-exercise-tests
+error	15-Jan-2023 05:47:08	 * [new branch]      test/fix-exam-p-c-leak -> origin/test/fix-exam-p-c-leak
+error	15-Jan-2023 05:47:08	 * [new branch]      test/improve-coverage/example-modeling-submission-component -> origin/test/improve-coverage/example-modeling-submission-component
+error	15-Jan-2023 05:47:08	 * [new branch]      test/test-ci           -> origin/test/test-ci
+error	15-Jan-2023 05:47:08	 * [new branch]      test/test-runtime      -> origin/test/test-runtime
+error	15-Jan-2023 05:47:08	 * [new branch]      test_s1                -> origin/test_s1
+error	15-Jan-2023 05:47:08	 * [new branch]      testing-session-exam-mode-20220728 -> origin/testing-session-exam-mode-20220728
+error	15-Jan-2023 05:47:08	 * [new branch]      testing/apollon-scaling-fix -> origin/testing/apollon-scaling-fix
+error	15-Jan-2023 05:47:08	 * [new branch]      testing/exam-live-statistics/decentralized -> origin/testing/exam-live-statistics/decentralized
+error	15-Jan-2023 05:47:08	 * [new branch]      tests/file-upload-and-guided-tour-improvements -> origin/tests/file-upload-and-guided-tour-improvements
+error	15-Jan-2023 05:47:08	 * [new branch]      tests/file-upload-exercise-assessment-dashboard-tests -> origin/tests/file-upload-exercise-assessment-dashboard-tests
+error	15-Jan-2023 05:47:08	 * [new branch]      tests/modeling-assessment-integration-test-fix -> origin/tests/modeling-assessment-integration-test-fix
+error	15-Jan-2023 05:47:08	 * [new branch]      tests/team-student-search-component -> origin/tests/team-student-search-component
+error	15-Jan-2023 05:47:08	 * [new branch]      update-c-template      -> origin/update-c-template
+error	15-Jan-2023 05:47:08	 * [new branch]      update-docker-compose-file -> origin/update-docker-compose-file
+error	15-Jan-2023 05:47:08	 * [new branch]      update-docker-compose-with-yml-values -> origin/update-docker-compose-with-yml-values
+error	15-Jan-2023 05:47:08	 * [new branch]      update-test-build      -> origin/update-test-build
+error	15-Jan-2023 05:47:08	 * [new tag]         5.12.4                 -> 5.12.4
+error	15-Jan-2023 05:47:08	 * [new tag]         5.12.9                 -> 5.12.9
+error	15-Jan-2023 05:47:08	 * [new tag]         5.4.1                  -> 5.4.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.0.4                  -> 4.0.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.0.5                  -> 4.0.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.0.6                  -> 4.0.6
+error	15-Jan-2023 05:47:08	 * [new tag]             4.1.0                  -> 4.1.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.1.1                  -> 4.1.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.1.2                  -> 4.1.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.1.3                  -> 4.1.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.10.0                 -> 4.10.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.10.1                 -> 4.10.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.10.2                 -> 4.10.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.10.3                 -> 4.10.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.10.4                 -> 4.10.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.10.5                 -> 4.10.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.10.6                 -> 4.10.6
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.0                 -> 4.11.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.1                 -> 4.11.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.2                 -> 4.11.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.3                 -> 4.11.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.4                 -> 4.11.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.5                 -> 4.11.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.6                 -> 4.11.6
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.8                 -> 4.11.8
+error	15-Jan-2023 05:47:08	 * [new tag]             4.11.9                 -> 4.11.9
+error	15-Jan-2023 05:47:08	 * [new tag]             4.12.0                 -> 4.12.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.12.1                 -> 4.12.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.12.2                 -> 4.12.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.12.3                 -> 4.12.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.12.4                 -> 4.12.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.12.5                 -> 4.12.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.0                  -> 4.2.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.1                  -> 4.2.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.10                 -> 4.2.10
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.11                 -> 4.2.11
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.12                 -> 4.2.12
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.2                  -> 4.2.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.3                  -> 4.2.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.4                  -> 4.2.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.5                  -> 4.2.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.6                  -> 4.2.6
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.7                  -> 4.2.7
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.8                  -> 4.2.8
+error	15-Jan-2023 05:47:08	 * [new tag]             4.2.9                  -> 4.2.9
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.0                  -> 4.3.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.1                  -> 4.3.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.10                 -> 4.3.10
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.2                  -> 4.3.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.3                  -> 4.3.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.4                  -> 4.3.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.5                  -> 4.3.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.6                  -> 4.3.6
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.7                  -> 4.3.7
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.8                  -> 4.3.8
+error	15-Jan-2023 05:47:08	 * [new tag]             4.3.9                  -> 4.3.9
+error	15-Jan-2023 05:47:08	 * [new tag]             4.4.0                  -> 4.4.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.4.1                  -> 4.4.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.4.2                  -> 4.4.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.4.3                  -> 4.4.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.4.4                  -> 4.4.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.4.5                  -> 4.4.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.4.6                  -> 4.4.6
+error	15-Jan-2023 05:47:08	 * [new tag]             4.5.0                  -> 4.5.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.5.1                  -> 4.5.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.5.2                  -> 4.5.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.6.0                  -> 4.6.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.6.1                  -> 4.6.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.6.2                  -> 4.6.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.6.3                  -> 4.6.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.6.4                  -> 4.6.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.7.0                  -> 4.7.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.7.1                  -> 4.7.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.7.2                  -> 4.7.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.7.3                  -> 4.7.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.7.4                  -> 4.7.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.7.5                  -> 4.7.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.7.6                  -> 4.7.6
+error	15-Jan-2023 05:47:08	 * [new tag]             4.8.0                  -> 4.8.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.8.1                  -> 4.8.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.8.2                  -> 4.8.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.8.3                  -> 4.8.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.8.4                  -> 4.8.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.8.5                  -> 4.8.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.8.6                  -> 4.8.6
+error	15-Jan-2023 05:47:08	 * [new tag]             4.9.0                  -> 4.9.0
+error	15-Jan-2023 05:47:08	 * [new tag]             4.9.1                  -> 4.9.1
+error	15-Jan-2023 05:47:08	 * [new tag]             4.9.2                  -> 4.9.2
+error	15-Jan-2023 05:47:08	 * [new tag]             4.9.3                  -> 4.9.3
+error	15-Jan-2023 05:47:08	 * [new tag]             4.9.4                  -> 4.9.4
+error	15-Jan-2023 05:47:08	 * [new tag]             4.9.5                  -> 4.9.5
+error	15-Jan-2023 05:47:08	 * [new tag]             4.9.6                  -> 4.9.6
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.0                  -> 5.0.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.0.rc1              -> 5.0.0.rc1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.0.rc2              -> 5.0.0.rc2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.1                  -> 5.0.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.2                  -> 5.0.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.3                  -> 5.0.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.4                  -> 5.0.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.5                  -> 5.0.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.6                  -> 5.0.6
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.7                  -> 5.0.7
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.8                  -> 5.0.8
+error	15-Jan-2023 05:47:08	 * [new tag]             5.0.9                  -> 5.0.9
+error	15-Jan-2023 05:47:08	 * [new tag]             5.1.0                  -> 5.1.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.1.1                  -> 5.1.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.1.2                  -> 5.1.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.1.3                  -> 5.1.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.1.4                  -> 5.1.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.1.5                  -> 5.1.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.1.6                  -> 5.1.6
+error	15-Jan-2023 05:47:08	 * [new tag]             5.10.0                 -> 5.10.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.10.1                 -> 5.10.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.10.2                 -> 5.10.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.11.0                 -> 5.11.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.11.1                 -> 5.11.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.11.2                 -> 5.11.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.11.3                 -> 5.11.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.11.4                 -> 5.11.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.12.0                 -> 5.12.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.12.1                 -> 5.12.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.12.2                 -> 5.12.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.12.3                 -> 5.12.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.12.5                 -> 5.12.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.12.6                 -> 5.12.6
+error	15-Jan-2023 05:47:08	 * [new tag]             5.12.7                 -> 5.12.7
+error	15-Jan-2023 05:47:08	 * [new tag]             5.12.8                 -> 5.12.8
+error	15-Jan-2023 05:47:08	 * [new tag]             5.2.0                  -> 5.2.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.2.1                  -> 5.2.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.2.2                  -> 5.2.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.2.3                  -> 5.2.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.2.4                  -> 5.2.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.2.5                  -> 5.2.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.2.6                  -> 5.2.6
+error	15-Jan-2023 05:47:08	 * [new tag]             5.2.7                  -> 5.2.7
+error	15-Jan-2023 05:47:08	 * [new tag]             5.3.0                  -> 5.3.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.3.1                  -> 5.3.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.3.2                  -> 5.3.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.3.3                  -> 5.3.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.3.4                  -> 5.3.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.3.5                  -> 5.3.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.4.0                  -> 5.4.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.4.2                  -> 5.4.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.4.3                  -> 5.4.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.4.4                  -> 5.4.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.5.0                  -> 5.5.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.5.1                  -> 5.5.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.5.2                  -> 5.5.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.5.3                  -> 5.5.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.5.4                  -> 5.5.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.5.5                  -> 5.5.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.6.0                  -> 5.6.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.6.1                  -> 5.6.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.7.0                  -> 5.7.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.7.1                  -> 5.7.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.7.2                  -> 5.7.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.7.3                  -> 5.7.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.7.4                  -> 5.7.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.7.5                  -> 5.7.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.8.0                  -> 5.8.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.8.1                  -> 5.8.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.8.2                  -> 5.8.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.8.3                  -> 5.8.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.8.4                  -> 5.8.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.8.5                  -> 5.8.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.8.6                  -> 5.8.6
+error	15-Jan-2023 05:47:08	 * [new tag]             5.8.7                  -> 5.8.7
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.0                  -> 5.9.0
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.1                  -> 5.9.1
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.2                  -> 5.9.2
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.3                  -> 5.9.3
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.4                  -> 5.9.4
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.5                  -> 5.9.5
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.6                  -> 5.9.6
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.7                  -> 5.9.7
+error	15-Jan-2023 05:47:08	 * [new tag]             5.9.8                  -> 5.9.8
+error	15-Jan-2023 05:47:11	There is no tracking information for the current branch.
+error	15-Jan-2023 05:47:11	Please specify which branch you want to merge with.
+error	15-Jan-2023 05:47:11	See git-pull(1) for details.
+error	15-Jan-2023 05:47:11	
+error	15-Jan-2023 05:47:11	    git pull <remote> <branch>
+error	15-Jan-2023 05:47:11	
+error	15-Jan-2023 05:47:11	If you wish to set tracking information for this branch you can do so with:
+error	15-Jan-2023 05:47:11	
+error	15-Jan-2023 05:47:11	    git branch --set-upstream-to=origin/<branch> flake-check/build-777
+error	15-Jan-2023 05:47:11	
+build	15-Jan-2023 05:47:16	Sending build context to Docker daemon  597.4MB
+build	15-Jan-2023 05:47:16	
+build	15-Jan-2023 05:47:16	Step 1/23 : FROM docker.io/library/eclipse-temurin:17-jdk
+build	15-Jan-2023 05:47:16	 ---> 9ef86393bfda
+build	15-Jan-2023 05:47:16	Step 2/23 : ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS     JHIPSTER_SLEEP=0     JAVA_OPTS=""
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> 4276ee3ad5d9
+build	15-Jan-2023 05:47:16	Step 3/23 : ENV spring.profiles.active ""
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> 7a97e4d252e2
+build	15-Jan-2023 05:47:16	Step 4/23 : RUN echo "Installing needed dependencies"   && apt-get update && apt-get install -y --no-install-recommends locales graphviz wget   && apt-get clean   && rm -rf /var/lib/apt/lists/*
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> d3fc6a1f347b
+build	15-Jan-2023 05:47:16	Step 5/23 : RUN echo "Fixing locales"   && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen   && locale-gen
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> 7882b2b94da1
+build	15-Jan-2023 05:47:16	Step 6/23 : ENV LC_ALL en_US.UTF-8
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> 624505b7252e
+build	15-Jan-2023 05:47:16	Step 7/23 : ENV LANG en_US.UTF-8
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> 975ea64d7d0a
+build	15-Jan-2023 05:47:16	Step 8/23 : ENV LANGUAGE en_US.UTF-8
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> eefd95eef1f9
+build	15-Jan-2023 05:47:16	Step 9/23 : ARG GOSU_VERSION=1.12
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> 6c15fd07128e
+build	15-Jan-2023 05:47:16	Step 10/23 : RUN echo "Installing gosu (needed for bootstrap.sh)"   && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"   && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"   && chmod +x /usr/local/bin/gosu   && gosu nobody true
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> b86b9b05267a
+build	15-Jan-2023 05:47:16	Step 11/23 : WORKDIR /defaults/artemis
+build	15-Jan-2023 05:47:16	 ---> Using cache
+build	15-Jan-2023 05:47:16	 ---> 42a31ca0a349
+build	15-Jan-2023 05:47:16	Step 12/23 : COPY src/main/resources/config/application*.yml ./
+build	15-Jan-2023 05:47:18	 ---> 18dabfb2a134
+build	15-Jan-2023 05:47:18	Step 13/23 : WORKDIR /opt/artemis
+build	15-Jan-2023 05:47:18	 ---> Running in 15dc2342c0b5
+build	15-Jan-2023 05:47:18	Removing intermediate container 15dc2342c0b5
+build	15-Jan-2023 05:47:18	 ---> 225eb1482a83
+build	15-Jan-2023 05:47:18	Step 14/23 : ARG WAR_PATH=build/libs
+build	15-Jan-2023 05:47:18	 ---> Running in 3faf695aa4bb
+build	15-Jan-2023 05:47:18	Removing intermediate container 3faf695aa4bb
+build	15-Jan-2023 05:47:18	 ---> 8847e3e18148
+build	15-Jan-2023 05:47:18	Step 15/23 : COPY $WAR_PATH/*.war Artemis.war
+build	15-Jan-2023 05:47:21	 ---> 10b07134a5ac
+build	15-Jan-2023 05:47:21	Step 16/23 : COPY bootstrap.sh /bootstrap.sh
+build	15-Jan-2023 05:47:21	 ---> ca00bbc5d12a
+build	15-Jan-2023 05:47:21	Step 17/23 : RUN chmod +x /bootstrap.sh   && useradd -ms /bin/bash artemis
+build	15-Jan-2023 05:47:21	 ---> Running in 72be19c3f70b
+build	15-Jan-2023 05:47:22	Removing intermediate container 72be19c3f70b
+build	15-Jan-2023 05:47:22	 ---> 6dcf2d9b8a6b
+build	15-Jan-2023 05:47:22	Step 18/23 : RUN mkdir -p /opt/artemis/config /opt/artemis/data /opt/artemis/public/content
+build	15-Jan-2023 05:47:22	 ---> Running in 39749b7f4696
+build	15-Jan-2023 05:47:22	Removing intermediate container 39749b7f4696
+build	15-Jan-2023 05:47:22	 ---> 1f25449ba2d3
+build	15-Jan-2023 05:47:22	Step 19/23 : VOLUME ["/opt/artemis/config"]
+build	15-Jan-2023 05:47:22	 ---> Running in 65fb809f6b84
+build	15-Jan-2023 05:47:23	Removing intermediate container 65fb809f6b84
+build	15-Jan-2023 05:47:23	 ---> 9b0c6c3660f4
+build	15-Jan-2023 05:47:23	Step 20/23 : VOLUME ["/opt/artemis/data"]
+build	15-Jan-2023 05:47:23	 ---> Running in c4ac7f2b1af6
+build	15-Jan-2023 05:47:23	Removing intermediate container c4ac7f2b1af6
+build	15-Jan-2023 05:47:23	 ---> d879017cef86
+build	15-Jan-2023 05:47:23	Step 21/23 : VOLUME ["/opt/artemis/public/content"]
+build	15-Jan-2023 05:47:23	 ---> Running in 1816fa467c96
+build	15-Jan-2023 05:47:23	Removing intermediate container 1816fa467c96
+build	15-Jan-2023 05:47:23	 ---> 53b993252c2a
+build	15-Jan-2023 05:47:23	Step 22/23 : EXPOSE 8080
+build	15-Jan-2023 05:47:23	 ---> Running in 520abd0315b0
+build	15-Jan-2023 05:47:23	Removing intermediate container 520abd0315b0
+build	15-Jan-2023 05:47:23	 ---> 26370dca1a06
+build	15-Jan-2023 05:47:23	Step 23/23 : ENTRYPOINT ["/bin/bash", "/bootstrap.sh"]
+build	15-Jan-2023 05:47:23	 ---> Running in 67ef1b052fec
+build	15-Jan-2023 05:47:23	Removing intermediate container 67ef1b052fec
+build	15-Jan-2023 05:47:23	 ---> 12f0f72451db
+build	15-Jan-2023 05:47:23	Successfully built 12f0f72451db
+build	15-Jan-2023 05:47:23	Successfully tagged artemis:coverage-latest
+error	15-Jan-2023 05:47:24	Pulling artemis-mysql   ... 
+error	15-Jan-2023 05:47:24	Pulling artemis-app     ... 
+error	15-Jan-2023 05:47:24	Pulling artemis-cypress ... 
+error	15-Jan-2023 05:47:24	[2A[2K
+error	15-Jan-2023 05:47:24	Pulling artemis-app     ... [32mdone[0m
+error	15-Jan-2023 05:47:26	[2B[3A[2K
+error	15-Jan-2023 05:47:26	Pulling artemis-mysql   ... pulling from library/mysql
+error	15-Jan-2023 05:47:26	[3B[3A[2K
+error	15-Jan-2023 05:47:26	Pulling artemis-mysql   ... digest: sha256:3d7ae561cf6095f6ac...
+error	15-Jan-2023 05:47:26	[3B[3A[2K
+error	15-Jan-2023 05:47:26	Pulling artemis-mysql   ... status: image is up to date for m...
+error	15-Jan-2023 05:47:26	[3B[1A[2K
+error	15-Jan-2023 05:47:26	Pulling artemis-cypress ... pulling from cypress/browsers
+error	15-Jan-2023 05:47:26	[1B[3A[2K
+error	15-Jan-2023 05:47:26	Pulling artemis-mysql   ... [32mdone[0m
+error	15-Jan-2023 05:47:26	[3B[1A[2K
+error	15-Jan-2023 05:47:26	Pulling artemis-cypress ... digest: sha256:bfdbf9b64fdaad364f...
+error	15-Jan-2023 05:47:26	[1B[1A[2K
+error	15-Jan-2023 05:47:26	Pulling artemis-cypress ... status: image is up to date for c...
+error	15-Jan-2023 05:47:26	[1B[1A[2K
+error	15-Jan-2023 05:47:26	Pulling artemis-cypress ... [32mdone[0m
+error	15-Jan-2023 05:47:26	[1Bartemis-mysql uses an image, skipping
+error	15-Jan-2023 05:47:26	Building artemis-app
+build	15-Jan-2023 05:47:35	Step 1/4 : FROM artemis:coverage-latest
+build	15-Jan-2023 05:47:35	 ---> 12f0f72451db
+build	15-Jan-2023 05:47:35	Step 2/4 : RUN echo "Installing needed dependencies"   && apt-get update && apt-get install -y --no-install-recommends unzip   && apt-get clean   && rm -rf /var/lib/apt/lists/*
+build	15-Jan-2023 05:47:35	 ---> Running in b653107959a7
+build	15-Jan-2023 05:47:35	Installing needed dependencies
+build	15-Jan-2023 05:47:36	Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+build	15-Jan-2023 05:47:36	Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+build	15-Jan-2023 05:47:36	Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [114 kB]
+build	15-Jan-2023 05:47:36	Get:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [99.8 kB]
+build	15-Jan-2023 05:47:36	Get:5 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [720 kB]
+build	15-Jan-2023 05:47:36	Get:6 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [659 kB]
+build	15-Jan-2023 05:47:36	Get:7 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [4,732 B]
+build	15-Jan-2023 05:47:36	Get:8 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [786 kB]
+build	15-Jan-2023 05:47:36	Get:9 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+build	15-Jan-2023 05:47:36	Get:10 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1,792 kB]
+build	15-Jan-2023 05:47:36	Get:11 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+build	15-Jan-2023 05:47:36	Get:12 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+build	15-Jan-2023 05:47:36	Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [708 kB]
+build	15-Jan-2023 05:47:36	Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [8,978 B]
+build	15-Jan-2023 05:47:36	Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [990 kB]
+build	15-Jan-2023 05:47:36	Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1,035 kB]
+build	15-Jan-2023 05:47:36	Get:17 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [3,520 B]
+build	15-Jan-2023 05:47:36	Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [7,286 B]
+build	15-Jan-2023 05:47:38	Fetched 25.2 MB in 2s (12.7 MB/s)
+build	15-Jan-2023 05:47:39	Reading package lists...
+build	15-Jan-2023 05:47:40	Reading package lists...
+build	15-Jan-2023 05:47:40	Building dependency tree...
+build	15-Jan-2023 05:47:40	Reading state information...
+build	15-Jan-2023 05:47:40	Suggested packages:
+build	15-Jan-2023 05:47:40	  zip
+build	15-Jan-2023 05:47:40	The following NEW packages will be installed:
+build	15-Jan-2023 05:47:40	  unzip
+build	15-Jan-2023 05:47:40	0 upgraded, 1 newly installed, 0 to remove and 5 not upgraded.
+build	15-Jan-2023 05:47:40	Need to get 174 kB of archives.
+build	15-Jan-2023 05:47:40	After this operation, 385 kB of additional disk space will be used.
+build	15-Jan-2023 05:47:40	Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 unzip amd64 6.0-26ubuntu3.1 [174 kB]
+build	15-Jan-2023 05:47:40	[91mdebconf: delaying package configuration, since apt-utils is not installed
+build	15-Jan-2023 05:47:40	[0mFetched 174 kB in 0s (1,269 kB/s)
+build	15-Jan-2023 05:47:40	Selecting previously unselected package unzip.
+build	15-Jan-2023 05:47:40	(Reading database ... 
+build	15-Jan-2023 05:47:40	(Reading database ... 5%
+build	15-Jan-2023 05:47:40	(Reading database ... 10%
+build	15-Jan-2023 05:47:40	(Reading database ... 15%
+build	15-Jan-2023 05:47:40	(Reading database ... 20%
+build	15-Jan-2023 05:47:40	(Reading database ... 25%
+build	15-Jan-2023 05:47:40	(Reading database ... 30%
+build	15-Jan-2023 05:47:40	(Reading database ... 35%
+build	15-Jan-2023 05:47:40	(Reading database ... 40%
+build	15-Jan-2023 05:47:40	(Reading database ... 45%
+build	15-Jan-2023 05:47:40	(Reading database ... 50%
+build	15-Jan-2023 05:47:40	(Reading database ... 55%
+build	15-Jan-2023 05:47:40	(Reading database ... 60%
+build	15-Jan-2023 05:47:41	(Reading database ... 65%
+build	15-Jan-2023 05:47:41	(Reading database ... 70%
+build	15-Jan-2023 05:47:41	(Reading database ... 75%
+build	15-Jan-2023 05:47:41	(Reading database ... 80%
+build	15-Jan-2023 05:47:41	(Reading database ... 85%
+build	15-Jan-2023 05:47:41	(Reading database ... 90%
+build	15-Jan-2023 05:47:41	(Reading database ... 95%
+build	15-Jan-2023 05:47:41	(Reading database ... 100%
+build	15-Jan-2023 05:47:41	(Reading database ... 8590 files and directories currently installed.)
+build	15-Jan-2023 05:47:41	Preparing to unpack .../unzip_6.0-26ubuntu3.1_amd64.deb ...
+build	15-Jan-2023 05:47:41	Unpacking unzip (6.0-26ubuntu3.1) ...
+build	15-Jan-2023 05:47:41	Setting up unzip (6.0-26ubuntu3.1) ...
+build	15-Jan-2023 05:47:41	Removing intermediate container b653107959a7
+build	15-Jan-2023 05:47:41	 ---> 09a842bc4b8d
+build	15-Jan-2023 05:47:41	Step 3/4 : COPY src/main/docker/cypress/bootstrap-coverage.sh /bootstrap.sh
+build	15-Jan-2023 05:47:41	 ---> fb0896a6fce8
+build	15-Jan-2023 05:47:41	Step 4/4 : RUN chmod +x /bootstrap.sh
+build	15-Jan-2023 05:47:41	 ---> Running in 8a6e7cf7e6ae
+build	15-Jan-2023 05:47:42	Removing intermediate container 8a6e7cf7e6ae
+build	15-Jan-2023 05:47:42	 ---> b815cdad9dd8
+build	15-Jan-2023 05:47:42	
+build	15-Jan-2023 05:47:42	Successfully built b815cdad9dd8
+build	15-Jan-2023 05:47:42	Successfully tagged cypress_artemis-app:latest
+error	15-Jan-2023 05:47:42	Building artemis-cypress
+build	15-Jan-2023 05:47:42	Step 1/3 : ARG CYPRESS_BROWSER=node18.6.0-chrome105-ff104
+build	15-Jan-2023 05:47:42	Step 2/3 : FROM cypress/browsers:${CYPRESS_BROWSER}
+build	15-Jan-2023 05:47:42	 ---> f72e0260bf9d
+build	15-Jan-2023 05:47:42	Step 3/3 : RUN export DEBIAN_FRONTEND=noninteractive &&     apt update &&         apt -y install openjdk-17-jdk
+build	15-Jan-2023 05:47:42	 ---> Running in 6fc715250a66
+build	15-Jan-2023 05:47:42	[91m
+build	15-Jan-2023 05:47:42	WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+build	15-Jan-2023 05:47:42	
+build	15-Jan-2023 05:47:42	[0mGet:1 http://deb.debian.org/debian bullseye InRelease [116 kB]
+build	15-Jan-2023 05:47:43	Get:2 http://deb.debian.org/debian-security bullseye-security InRelease [48.4 kB]
+build	15-Jan-2023 05:47:43	Get:3 http://deb.debian.org/debian bullseye-updates InRelease [44.1 kB]
+build	15-Jan-2023 05:47:43	Get:4 https://dl.google.com/linux/chrome/deb stable InRelease [1811 B]
+build	15-Jan-2023 05:47:43	Get:5 http://deb.debian.org/debian bullseye/main amd64 Packages [8183 kB]
+build	15-Jan-2023 05:47:43	Get:6 http://deb.debian.org/debian-security bullseye-security/main amd64 Packages [214 kB]
+build	15-Jan-2023 05:47:43	Get:7 http://deb.debian.org/debian bullseye-updates/main amd64 Packages [14.6 kB]
+build	15-Jan-2023 05:47:43	Get:8 https://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1075 B]
+build	15-Jan-2023 05:47:44	Fetched 8622 kB in 2s (5321 kB/s)
+build	15-Jan-2023 05:47:45	Reading package lists...
+build	15-Jan-2023 05:47:45	Building dependency tree...
+build	15-Jan-2023 05:47:45	Reading state information...
+build	15-Jan-2023 05:47:45	15 packages can be upgraded. Run 'apt list --upgradable' to see them.
+build	15-Jan-2023 05:47:45	[91m
+build	15-Jan-2023 05:47:45	WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+build	15-Jan-2023 05:47:45	
+build	15-Jan-2023 05:47:46	[0mReading package lists...
+build	15-Jan-2023 05:47:46	Building dependency tree...
+build	15-Jan-2023 05:47:46	Reading state information...
+build	15-Jan-2023 05:47:46	The following additional packages will be installed:
+build	15-Jan-2023 05:47:46	  ca-certificates-java fonts-dejavu-extra java-common libatk-wrapper-java
+build	15-Jan-2023 05:47:46	  libatk-wrapper-java-jni libgif7 libice-dev libpcsclite1
+build	15-Jan-2023 05:47:46	  libpthread-stubs0-dev libsm-dev libx11-dev libxau-dev libxcb1-dev
+build	15-Jan-2023 05:47:46	  libxdmcp-dev libxt-dev openjdk-17-jdk-headless openjdk-17-jre
+build	15-Jan-2023 05:47:46	  openjdk-17-jre-headless x11proto-dev xorg-sgml-doctools xtrans-dev
+build	15-Jan-2023 05:47:46	Suggested packages:
+build	15-Jan-2023 05:47:46	  default-jre libice-doc pcscd libsm-doc libx11-doc libxcb-doc libxt-doc
+build	15-Jan-2023 05:47:46	  openjdk-17-demo openjdk-17-source visualvm libnss-mdns fonts-ipafont-gothic
+build	15-Jan-2023 05:47:46	  fonts-ipafont-mincho fonts-indic
+build	15-Jan-2023 05:47:46	The following NEW packages will be installed:
+build	15-Jan-2023 05:47:46	  ca-certificates-java fonts-dejavu-extra java-common libatk-wrapper-java
+build	15-Jan-2023 05:47:46	  libatk-wrapper-java-jni libgif7 libice-dev libpcsclite1
+build	15-Jan-2023 05:47:46	  libpthread-stubs0-dev libsm-dev libx11-dev libxau-dev libxcb1-dev
+build	15-Jan-2023 05:47:46	  libxdmcp-dev libxt-dev openjdk-17-jdk openjdk-17-jdk-headless openjdk-17-jre
+build	15-Jan-2023 05:47:46	  openjdk-17-jre-headless x11proto-dev xorg-sgml-doctools xtrans-dev
+build	15-Jan-2023 05:47:46	0 upgraded, 22 newly installed, 0 to remove and 15 not upgraded.
+build	15-Jan-2023 05:47:46	Need to get 283 MB of archives.
+build	15-Jan-2023 05:47:46	After this operation, 452 MB of additional disk space will be used.
+build	15-Jan-2023 05:47:46	Get:1 http://deb.debian.org/debian bullseye/main amd64 java-common all 0.72 [14.5 kB]
+build	15-Jan-2023 05:47:46	Get:2 http://deb.debian.org/debian bullseye/main amd64 libpcsclite1 amd64 1.9.1-1 [60.2 kB]
+build	15-Jan-2023 05:47:46	Get:3 http://deb.debian.org/debian bullseye/main amd64 openjdk-17-jre-headless amd64 17.0.4+8-1~deb11u1 [43.5 MB]
+build	15-Jan-2023 05:47:47	Get:4 http://deb.debian.org/debian bullseye/main amd64 ca-certificates-java all 20190909 [15.7 kB]
+build	15-Jan-2023 05:47:47	Get:5 http://deb.debian.org/debian bullseye/main amd64 fonts-dejavu-extra all 2.37-2 [2070 kB]
+build	15-Jan-2023 05:47:47	Get:6 http://deb.debian.org/debian bullseye/main amd64 libatk-wrapper-java all 0.38.0-2+deb11u1 [64.7 kB]
+build	15-Jan-2023 05:47:47	Get:7 http://deb.debian.org/debian bullseye/main amd64 libatk-wrapper-java-jni amd64 0.38.0-2+deb11u1 [56.2 kB]
+build	15-Jan-2023 05:47:47	Get:8 http://deb.debian.org/debian bullseye/main amd64 libgif7 amd64 5.1.9-2 [45.1 kB]
+build	15-Jan-2023 05:47:47	Get:9 http://deb.debian.org/debian bullseye/main amd64 xorg-sgml-doctools all 1:1.11-1.1 [22.1 kB]
+build	15-Jan-2023 05:47:47	Get:10 http://deb.debian.org/debian bullseye/main amd64 x11proto-dev all 2020.1-1 [594 kB]
+build	15-Jan-2023 05:47:47	Get:11 http://deb.debian.org/debian bullseye/main amd64 libice-dev amd64 2:1.0.10-1 [67.1 kB]
+build	15-Jan-2023 05:47:47	Get:12 http://deb.debian.org/debian bullseye/main amd64 libpthread-stubs0-dev amd64 0.4-1 [5344 B]
+build	15-Jan-2023 05:47:47	Get:13 http://deb.debian.org/debian bullseye/main amd64 libsm-dev amd64 2:1.2.3-1 [38.0 kB]
+build	15-Jan-2023 05:47:47	Get:14 http://deb.debian.org/debian bullseye/main amd64 libxau-dev amd64 1:1.0.9-1 [22.9 kB]
+build	15-Jan-2023 05:47:47	Get:15 http://deb.debian.org/debian bullseye/main amd64 libxdmcp-dev amd64 1:1.1.2-3 [42.2 kB]
+build	15-Jan-2023 05:47:47	Get:16 http://deb.debian.org/debian bullseye/main amd64 xtrans-dev all 1.4.0-1 [98.7 kB]
+build	15-Jan-2023 05:47:47	Get:17 http://deb.debian.org/debian bullseye/main amd64 libxcb1-dev amd64 1.14-3 [176 kB]
+build	15-Jan-2023 05:47:47	Get:18 http://deb.debian.org/debian bullseye/main amd64 libx11-dev amd64 2:1.7.2-1 [841 kB]
+build	15-Jan-2023 05:47:47	Get:19 http://deb.debian.org/debian bullseye/main amd64 libxt-dev amd64 1:1.2.0-1 [407 kB]
+build	15-Jan-2023 05:47:47	Get:20 http://deb.debian.org/debian bullseye/main amd64 openjdk-17-jre amd64 17.0.4+8-1~deb11u1 [167 kB]
+build	15-Jan-2023 05:47:47	Get:21 http://deb.debian.org/debian bullseye/main amd64 openjdk-17-jdk-headless amd64 17.0.4+8-1~deb11u1 [234 MB]
+build	15-Jan-2023 05:47:49	Get:22 http://deb.debian.org/debian bullseye/main amd64 openjdk-17-jdk amd64 17.0.4+8-1~deb11u1 [10.5 kB]
+build	15-Jan-2023 05:47:49	[91mdebconf: delaying package configuration, since apt-utils is not installed
+build	15-Jan-2023 05:47:49	[0mFetched 283 MB in 3s (107 MB/s)
+build	15-Jan-2023 05:47:49	Selecting previously unselected package java-common.
+build	15-Jan-2023 05:47:49	(Reading database ... 
+build	15-Jan-2023 05:47:49	(Reading database ... 5%
+build	15-Jan-2023 05:47:49	(Reading database ... 10%
+build	15-Jan-2023 05:47:49	(Reading database ... 15%
+build	15-Jan-2023 05:47:49	(Reading database ... 20%
+build	15-Jan-2023 05:47:49	(Reading database ... 25%
+build	15-Jan-2023 05:47:49	(Reading database ... 30%
+build	15-Jan-2023 05:47:49	(Reading database ... 35%
+build	15-Jan-2023 05:47:49	(Reading database ... 40%
+build	15-Jan-2023 05:47:49	(Reading database ... 45%
+build	15-Jan-2023 05:47:49	(Reading database ... 50%
+build	15-Jan-2023 05:47:49	(Reading database ... 55%
+build	15-Jan-2023 05:47:49	(Reading database ... 60%
+build	15-Jan-2023 05:47:49	(Reading database ... 65%
+build	15-Jan-2023 05:47:49	(Reading database ... 70%
+build	15-Jan-2023 05:47:49	(Reading database ... 75%
+build	15-Jan-2023 05:47:49	(Reading database ... 80%
+build	15-Jan-2023 05:47:49	(Reading database ... 85%
+build	15-Jan-2023 05:47:49	(Reading database ... 90%
+build	15-Jan-2023 05:47:49	(Reading database ... 95%
+build	15-Jan-2023 05:47:49	(Reading database ... 100%
+build	15-Jan-2023 05:47:49	(Reading database ... 26897 files and directories currently installed.)
+build	15-Jan-2023 05:47:49	Preparing to unpack .../00-java-common_0.72_all.deb ...
+build	15-Jan-2023 05:47:49	Unpacking java-common (0.72) ...
+build	15-Jan-2023 05:47:49	Selecting previously unselected package libpcsclite1:amd64.
+build	15-Jan-2023 05:47:49	Preparing to unpack .../01-libpcsclite1_1.9.1-1_amd64.deb ...
+build	15-Jan-2023 05:47:49	Unpacking libpcsclite1:amd64 (1.9.1-1) ...
+build	15-Jan-2023 05:47:50	Selecting previously unselected package openjdk-17-jre-headless:amd64.
+build	15-Jan-2023 05:47:50	Preparing to unpack .../02-openjdk-17-jre-headless_17.0.4+8-1~deb11u1_amd64.deb ...
+build	15-Jan-2023 05:47:50	Unpacking openjdk-17-jre-headless:amd64 (17.0.4+8-1~deb11u1) ...
+build	15-Jan-2023 05:47:54	Selecting previously unselected package ca-certificates-java.
+build	15-Jan-2023 05:47:54	Preparing to unpack .../03-ca-certificates-java_20190909_all.deb ...
+build	15-Jan-2023 05:47:54	Unpacking ca-certificates-java (20190909) ...
+build	15-Jan-2023 05:47:54	Selecting previously unselected package fonts-dejavu-extra.
+build	15-Jan-2023 05:47:54	Preparing to unpack .../04-fonts-dejavu-extra_2.37-2_all.deb ...
+build	15-Jan-2023 05:47:54	Unpacking fonts-dejavu-extra (2.37-2) ...
+build	15-Jan-2023 05:47:54	Selecting previously unselected package libatk-wrapper-java.
+build	15-Jan-2023 05:47:54	Preparing to unpack .../05-libatk-wrapper-java_0.38.0-2+deb11u1_all.deb ...
+build	15-Jan-2023 05:47:54	Unpacking libatk-wrapper-java (0.38.0-2+deb11u1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libatk-wrapper-java-jni:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../06-libatk-wrapper-java-jni_0.38.0-2+deb11u1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libatk-wrapper-java-jni:amd64 (0.38.0-2+deb11u1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libgif7:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../07-libgif7_5.1.9-2_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libgif7:amd64 (5.1.9-2) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package xorg-sgml-doctools.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../08-xorg-sgml-doctools_1%3a1.11-1.1_all.deb ...
+build	15-Jan-2023 05:47:55	Unpacking xorg-sgml-doctools (1:1.11-1.1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package x11proto-dev.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../09-x11proto-dev_2020.1-1_all.deb ...
+build	15-Jan-2023 05:47:55	Unpacking x11proto-dev (2020.1-1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libice-dev:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../10-libice-dev_2%3a1.0.10-1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libice-dev:amd64 (2:1.0.10-1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libpthread-stubs0-dev:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../11-libpthread-stubs0-dev_0.4-1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libpthread-stubs0-dev:amd64 (0.4-1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libsm-dev:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../12-libsm-dev_2%3a1.2.3-1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libsm-dev:amd64 (2:1.2.3-1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libxau-dev:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../13-libxau-dev_1%3a1.0.9-1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libxau-dev:amd64 (1:1.0.9-1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libxdmcp-dev:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../14-libxdmcp-dev_1%3a1.1.2-3_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libxdmcp-dev:amd64 (1:1.1.2-3) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package xtrans-dev.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../15-xtrans-dev_1.4.0-1_all.deb ...
+build	15-Jan-2023 05:47:55	Unpacking xtrans-dev (1.4.0-1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libxcb1-dev:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../16-libxcb1-dev_1.14-3_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libxcb1-dev:amd64 (1.14-3) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libx11-dev:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../17-libx11-dev_2%3a1.7.2-1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libx11-dev:amd64 (2:1.7.2-1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package libxt-dev:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../18-libxt-dev_1%3a1.2.0-1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking libxt-dev:amd64 (1:1.2.0-1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package openjdk-17-jre:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../19-openjdk-17-jre_17.0.4+8-1~deb11u1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking openjdk-17-jre:amd64 (17.0.4+8-1~deb11u1) ...
+build	15-Jan-2023 05:47:55	Selecting previously unselected package openjdk-17-jdk-headless:amd64.
+build	15-Jan-2023 05:47:55	Preparing to unpack .../20-openjdk-17-jdk-headless_17.0.4+8-1~deb11u1_amd64.deb ...
+build	15-Jan-2023 05:47:55	Unpacking openjdk-17-jdk-headless:amd64 (17.0.4+8-1~deb11u1) ...
+build	15-Jan-2023 05:48:06	Selecting previously unselected package openjdk-17-jdk:amd64.
+build	15-Jan-2023 05:48:06	Preparing to unpack .../21-openjdk-17-jdk_17.0.4+8-1~deb11u1_amd64.deb ...
+build	15-Jan-2023 05:48:06	Unpacking openjdk-17-jdk:amd64 (17.0.4+8-1~deb11u1) ...
+build	15-Jan-2023 05:48:06	Setting up java-common (0.72) ...
+build	15-Jan-2023 05:48:06	Setting up libpthread-stubs0-dev:amd64 (0.4-1) ...
+build	15-Jan-2023 05:48:06	Setting up xtrans-dev (1.4.0-1) ...
+build	15-Jan-2023 05:48:06	Setting up libpcsclite1:amd64 (1.9.1-1) ...
+build	15-Jan-2023 05:48:06	Setting up libgif7:amd64 (5.1.9-2) ...
+build	15-Jan-2023 05:48:06	Setting up fonts-dejavu-extra (2.37-2) ...
+build	15-Jan-2023 05:48:06	Setting up xorg-sgml-doctools (1:1.11-1.1) ...
+build	15-Jan-2023 05:48:06	Setting up libatk-wrapper-java (0.38.0-2+deb11u1) ...
+build	15-Jan-2023 05:48:06	Setting up x11proto-dev (2020.1-1) ...
+build	15-Jan-2023 05:48:06	Setting up libxau-dev:amd64 (1:1.0.9-1) ...
+build	15-Jan-2023 05:48:06	Setting up libice-dev:amd64 (2:1.0.10-1) ...
+build	15-Jan-2023 05:48:06	Setting up libsm-dev:amd64 (2:1.2.3-1) ...
+build	15-Jan-2023 05:48:06	Setting up libatk-wrapper-java-jni:amd64 (0.38.0-2+deb11u1) ...
+build	15-Jan-2023 05:48:06	Setting up libxdmcp-dev:amd64 (1:1.1.2-3) ...
+build	15-Jan-2023 05:48:06	Setting up libxcb1-dev:amd64 (1.14-3) ...
+build	15-Jan-2023 05:48:06	Setting up libx11-dev:amd64 (2:1.7.2-1) ...
+build	15-Jan-2023 05:48:06	Setting up libxt-dev:amd64 (1:1.2.0-1) ...
+build	15-Jan-2023 05:48:06	Setting up ca-certificates-java (20190909) ...
+build	15-Jan-2023 05:48:06	head: cannot open '/etc/ssl/certs/java/cacerts' for reading: No such file or directory
+build	15-Jan-2023 05:48:06	Adding debian:certSIGN_Root_CA_G2.pem
+build	15-Jan-2023 05:48:06	Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
+build	15-Jan-2023 05:48:06	Adding debian:IdenTrust_Commercial_Root_CA_1.pem
+build	15-Jan-2023 05:48:06	Adding debian:Network_Solutions_Certificate_Authority.pem
+build	15-Jan-2023 05:48:06	Adding debian:Global_Chambersign_Root_-_2008.pem
+build	15-Jan-2023 05:48:06	Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
+build	15-Jan-2023 05:48:06	Adding debian:DigiCert_Global_Root_G3.pem
+build	15-Jan-2023 05:48:06	Adding debian:Security_Communication_RootCA2.pem
+build	15-Jan-2023 05:48:06	Adding debian:GDCA_TrustAUTH_R5_ROOT.pem
+build	15-Jan-2023 05:48:06	Adding debian:SSL.com_Root_Certification_Authority_RSA.pem
+build	15-Jan-2023 05:48:07	Adding debian:COMODO_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
+build	15-Jan-2023 05:48:07	Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+build	15-Jan-2023 05:48:07	Adding debian:Certigna.pem
+build	15-Jan-2023 05:48:07	Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:GlobalSign_Root_CA_-_R3.pem
+build	15-Jan-2023 05:48:07	Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
+build	15-Jan-2023 05:48:07	Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
+build	15-Jan-2023 05:48:07	Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
+build	15-Jan-2023 05:48:07	Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:DigiCert_Global_Root_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:Chambers_of_Commerce_Root_-_2008.pem
+build	15-Jan-2023 05:48:07	Adding debian:Trustwave_Global_ECC_P384_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:QuoVadis_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:Comodo_AAA_Services_root.pem
+build	15-Jan-2023 05:48:07	Adding debian:DigiCert_Trusted_Root_G4.pem
+build	15-Jan-2023 05:48:07	Adding debian:SwissSign_Silver_CA_-_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:TeliaSonera_Root_CA_v1.pem
+build	15-Jan-2023 05:48:07	Adding debian:Amazon_Root_CA_4.pem
+build	15-Jan-2023 05:48:07	Adding debian:Hongkong_Post_Root_CA_1.pem
+build	15-Jan-2023 05:48:07	Adding debian:QuoVadis_Root_CA_3.pem
+build	15-Jan-2023 05:48:07	Adding debian:certSIGN_ROOT_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:Entrust_Root_Certification_Authority_-_G4.pem
+build	15-Jan-2023 05:48:07	Adding debian:USERTrust_ECC_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:DigiCert_Global_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:emSign_Root_CA_-_G1.pem
+build	15-Jan-2023 05:48:07	Adding debian:Izenpe.com.pem
+build	15-Jan-2023 05:48:07	Adding debian:GTS_Root_R3.pem
+build	15-Jan-2023 05:48:07	Adding debian:ACCVRAIZ1.pem
+build	15-Jan-2023 05:48:07	Adding debian:Secure_Global_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:TrustCor_RootCert_CA-2.pem
+build	15-Jan-2023 05:48:07	Adding debian:SSL.com_EV_Root_Certification_Authority_ECC.pem
+build	15-Jan-2023 05:48:07	Adding debian:COMODO_ECC_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:SwissSign_Gold_CA_-_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:Trustwave_Global_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
+build	15-Jan-2023 05:48:07	Adding debian:GTS_Root_R2.pem
+build	15-Jan-2023 05:48:07	Adding debian:SSL.com_EV_Root_Certification_Authority_RSA_R2.pem
+build	15-Jan-2023 05:48:07	Adding debian:DigiCert_Assured_ID_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
+build	15-Jan-2023 05:48:07	Adding debian:Cybertrust_Global_Root.pem
+build	15-Jan-2023 05:48:07	Adding debian:DigiCert_Assured_ID_Root_G3.pem
+build	15-Jan-2023 05:48:07	Adding debian:Buypass_Class_3_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:QuoVadis_Root_CA_1_G3.pem
+build	15-Jan-2023 05:48:07	Adding debian:emSign_Root_CA_-_C1.pem
+build	15-Jan-2023 05:48:07	Adding debian:Certum_Trusted_Network_CA_2.pem
+build	15-Jan-2023 05:48:07	Adding debian:Amazon_Root_CA_3.pem
+build	15-Jan-2023 05:48:07	Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:SZAFIR_ROOT_CA2.pem
+build	15-Jan-2023 05:48:07	Adding debian:Entrust_Root_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:Microsoft_ECC_Root_Certificate_Authority_2017.pem
+build	15-Jan-2023 05:48:07	Adding debian:GlobalSign_Root_CA_-_R2.pem
+build	15-Jan-2023 05:48:07	Adding debian:SecureTrust_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:Buypass_Class_2_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:AffirmTrust_Commercial.pem
+build	15-Jan-2023 05:48:07	Adding debian:Certum_Trusted_Network_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:TrustCor_ECA-1.pem
+build	15-Jan-2023 05:48:07	Adding debian:Amazon_Root_CA_1.pem
+build	15-Jan-2023 05:48:07	Adding debian:Starfield_Class_2_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:QuoVadis_Root_CA_2_G3.pem
+build	15-Jan-2023 05:48:07	Adding debian:emSign_ECC_Root_CA_-_C3.pem
+build	15-Jan-2023 05:48:07	Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem
+build	15-Jan-2023 05:48:07	Adding debian:NAVER_Global_Root_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.pem
+build	15-Jan-2023 05:48:07	Adding debian:AffirmTrust_Networking.pem
+build	15-Jan-2023 05:48:07	Adding debian:Trustwave_Global_ECC_P256_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:e-Szigno_Root_CA_2017.pem
+build	15-Jan-2023 05:48:07	Adding debian:TrustCor_RootCert_CA-1.pem
+build	15-Jan-2023 05:48:07	Adding debian:UCA_Global_G2_Root.pem
+build	15-Jan-2023 05:48:07	Adding debian:Certigna_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:GTS_Root_R4.pem
+build	15-Jan-2023 05:48:07	Adding debian:TWCA_Root_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:UCA_Extended_Validation_Root.pem
+build	15-Jan-2023 05:48:07	Adding debian:CFCA_EV_ROOT.pem
+build	15-Jan-2023 05:48:07	Adding debian:ISRG_Root_X1.pem
+build	15-Jan-2023 05:48:07	Adding debian:Actalis_Authentication_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:XRamp_Global_CA_Root.pem
+build	15-Jan-2023 05:48:07	Adding debian:GlobalSign_Root_CA_-_R6.pem
+build	15-Jan-2023 05:48:07	Adding debian:Staat_der_Nederlanden_EV_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:Amazon_Root_CA_2.pem
+build	15-Jan-2023 05:48:07	Adding debian:SecureSign_RootCA11.pem
+build	15-Jan-2023 05:48:07	Adding debian:Hongkong_Post_Root_CA_3.pem
+build	15-Jan-2023 05:48:07	Adding debian:VeriSign_Universal_Root_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
+build	15-Jan-2023 05:48:07	Adding debian:Hellenic_Academic_and_Research_Institutions_ECC_RootCA_2015.pem
+build	15-Jan-2023 05:48:07	Adding debian:Go_Daddy_Class_2_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:ePKI_Root_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:Sonera_Class_2_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:AffirmTrust_Premium_ECC.pem
+build	15-Jan-2023 05:48:07	Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:QuoVadis_Root_CA_2.pem
+build	15-Jan-2023 05:48:07	Adding debian:Security_Communication_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:AC_RAIZ_FNMT-RCM.pem
+build	15-Jan-2023 05:48:07	Adding debian:USERTrust_RSA_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:TWCA_Global_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:Staat_der_Nederlanden_Root_CA_-_G3.pem
+build	15-Jan-2023 05:48:07	Adding debian:SSL.com_Root_Certification_Authority_ECC.pem
+build	15-Jan-2023 05:48:07	Adding debian:Atos_TrustedRoot_2011.pem
+build	15-Jan-2023 05:48:07	Adding debian:EC-ACC.pem
+build	15-Jan-2023 05:48:07	Adding debian:CA_Disig_Root_R2.pem
+build	15-Jan-2023 05:48:07	Adding debian:COMODO_RSA_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:Trustis_FPS_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:E-Tugra_Certification_Authority.pem
+build	15-Jan-2023 05:48:07	Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:Microsoft_RSA_Root_Certificate_Authority_2017.pem
+build	15-Jan-2023 05:48:07	Adding debian:DigiCert_Assured_ID_Root_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:emSign_ECC_Root_CA_-_G3.pem
+build	15-Jan-2023 05:48:07	Adding debian:QuoVadis_Root_CA_3_G3.pem
+build	15-Jan-2023 05:48:07	Adding debian:GlobalSign_Root_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:OISTE_WISeKey_Global_Root_GC_CA.pem
+build	15-Jan-2023 05:48:07	Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
+build	15-Jan-2023 05:48:07	Adding debian:Baltimore_CyberTrust_Root.pem
+build	15-Jan-2023 05:48:07	Adding debian:GTS_Root_R1.pem
+build	15-Jan-2023 05:48:07	Adding debian:AffirmTrust_Premium.pem
+build	15-Jan-2023 05:48:07	Adding debian:GeoTrust_Primary_Certification_Authority_-_G2.pem
+build	15-Jan-2023 05:48:07	Adding debian:DST_Root_CA_X3.pem
+build	15-Jan-2023 05:48:07	Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2015.pem
+build	15-Jan-2023 05:48:07	done.
+build	15-Jan-2023 05:48:07	Processing triggers for fontconfig (2.13.1-4.2) ...
+build	15-Jan-2023 05:48:07	Processing triggers for hicolor-icon-theme (0.17-2) ...
+build	15-Jan-2023 05:48:07	Processing triggers for libc-bin (2.31-13+deb11u5) ...
+build	15-Jan-2023 05:48:07	Processing triggers for ca-certificates (20210119) ...
+build	15-Jan-2023 05:48:07	Updating certificates in /etc/ssl/certs...
+build	15-Jan-2023 05:48:08	0 added, 0 removed; done.
+build	15-Jan-2023 05:48:08	Running hooks in /etc/ca-certificates/update.d...
+build	15-Jan-2023 05:48:08	
+build	15-Jan-2023 05:48:08	/etc/ca-certificates/update.d/jks-keystore: 82: java: not found
+build	15-Jan-2023 05:48:08	E: /etc/ca-certificates/update.d/jks-keystore exited with code 1.
+build	15-Jan-2023 05:48:08	done.
+build	15-Jan-2023 05:48:08	Setting up openjdk-17-jre-headless:amd64 (17.0.4+8-1~deb11u1) ...
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/java to provide /usr/bin/java (java) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jpackage to provide /usr/bin/jpackage (jpackage) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
+build	15-Jan-2023 05:48:08	Setting up openjdk-17-jre:amd64 (17.0.4+8-1~deb11u1) ...
+build	15-Jan-2023 05:48:08	Setting up openjdk-17-jdk-headless:amd64 (17.0.4+8-1~deb11u1) ...
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jar to provide /usr/bin/jar (jar) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jarsigner to provide /usr/bin/jarsigner (jarsigner) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/javac to provide /usr/bin/javac (javac) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/javadoc to provide /usr/bin/javadoc (javadoc) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/javap to provide /usr/bin/javap (javap) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jcmd to provide /usr/bin/jcmd (jcmd) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jdb to provide /usr/bin/jdb (jdb) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jdeprscan to provide /usr/bin/jdeprscan (jdeprscan) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jdeps to provide /usr/bin/jdeps (jdeps) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jfr to provide /usr/bin/jfr (jfr) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jimage to provide /usr/bin/jimage (jimage) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jinfo to provide /usr/bin/jinfo (jinfo) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jlink to provide /usr/bin/jlink (jlink) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jmap to provide /usr/bin/jmap (jmap) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jmod to provide /usr/bin/jmod (jmod) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jps to provide /usr/bin/jps (jps) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jrunscript to provide /usr/bin/jrunscript (jrunscript) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jshell to provide /usr/bin/jshell (jshell) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jstack to provide /usr/bin/jstack (jstack) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jstat to provide /usr/bin/jstat (jstat) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jstatd to provide /usr/bin/jstatd (jstatd) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/serialver to provide /usr/bin/serialver (serialver) in auto mode
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jhsdb to provide /usr/bin/jhsdb (jhsdb) in auto mode
+build	15-Jan-2023 05:48:08	Setting up openjdk-17-jdk:amd64 (17.0.4+8-1~deb11u1) ...
+build	15-Jan-2023 05:48:08	update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jconsole to provide /usr/bin/jconsole (jconsole) in auto mode
+build	15-Jan-2023 05:48:13	Removing intermediate container 6fc715250a66
+build	15-Jan-2023 05:48:13	 ---> caad441f63f9
+build	15-Jan-2023 05:48:13	
+build	15-Jan-2023 05:48:13	Successfully built caad441f63f9
+build	15-Jan-2023 05:48:13	Successfully tagged cypress/browsers:node18.12.0-chrome107
+error	15-Jan-2023 05:48:13	using --exit-code-from implies --abort-on-container-exit
+error	15-Jan-2023 05:48:14	Creating cypress_artemis-mysql_1 ... 
+error	15-Jan-2023 05:48:14	[1A[2K
+error	15-Jan-2023 05:48:14	Creating cypress_artemis-mysql_1 ... [32mdone[0m
+error	15-Jan-2023 05:48:22	[1BCreating cypress_artemis-app_1   ... 
+error	15-Jan-2023 05:48:22	Building artemis-app
+build	15-Jan-2023 05:48:32	Step 1/4 : FROM artemis:coverage-latest
+error	15-Jan-2023 05:48:36	
+error	15-Jan-2023 05:48:36	ERROR: for cypress_artemis-app_1  (<Service: artemis-app>, "pull access denied for artemis, repository does not exist or may require 'docker login': denied: requested access to the resource is denied")
+error	15-Jan-2023 05:48:36	
+error	15-Jan-2023 05:48:36	ERROR: for artemis-app  (<Service: artemis-app>, "pull access denied for artemis, repository does not exist or may require 'docker login': denied: requested access to the resource is denied")
+error	15-Jan-2023 05:48:36	Service 'artemis-app' failed to build: pull access denied for artemis, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+build	15-Jan-2023 05:48:36	Cypress container exit code: 1
+build	15-Jan-2023 05:48:36	Not creating success file because the tests failed
+simple	15-Jan-2023 05:48:36	Finished task 'Deploy Artemis and run Cypress tests' with result: Success
+simple	15-Jan-2023 05:48:36	Starting task 'Parse test results' of type 'com.atlassian.bamboo.plugins.testresultparser:task.testresultparser.junit'
+simple	15-Jan-2023 05:48:36	Parsing test results under /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA...
+simple	15-Jan-2023 05:48:36	Failing task since test cases were expected but none were found.
+simple	15-Jan-2023 05:48:36	Finished task 'Parse test results' with result: Failed
+simple	15-Jan-2023 05:48:36	Starting task 'Make sure all docker containers are cleaned up' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 05:48:36	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - flake-check-build-777 - Cypress E2E flake detection #6 (ARTEMIS-AECF159-DA-6)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF159-DA-6-ScriptBuildTask-8225621820893970455.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA\n
+error	15-Jan-2023 05:48:37	Stopping cypress_artemis-mysql_1 ... 
+error	15-Jan-2023 05:48:38	[1A[2K
+error	15-Jan-2023 05:48:38	Stopping cypress_artemis-mysql_1 ... [32mdone[0m
+error	15-Jan-2023 05:48:39	[1BRemoving cypress_artemis-mysql_1 ... 
+error	15-Jan-2023 05:48:39	[1A[2K
+error	15-Jan-2023 05:48:39	Removing cypress_artemis-mysql_1 ... [32mdone[0m
+build	15-Jan-2023 05:48:39	Going to remove cypress_artemis-mysql_1
+error	15-Jan-2023 05:48:39	[1B
+simple	15-Jan-2023 05:48:39	Finished task 'Make sure all docker containers are cleaned up' with result: Success
+command	15-Jan-2023 05:48:39	Substituting password variable: ${bamboo.GitHubSecret}
+command	15-Jan-2023 05:48:39	Substituting variable: ${bamboo.shortJobName} with Cypress E2E flake detection
+command	15-Jan-2023 05:48:39	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AECF159-DA-6
+command	15-Jan-2023 05:48:39	Substituting variable: ${bamboo.repository.revision.number} with a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+command	15-Jan-2023 05:48:39	Substituting password variable: ${bamboo.GitHubSecret}
+command	15-Jan-2023 05:48:39	Substituting variable: ${bamboo.shortJobName} with Cypress E2E flake detection
+command	15-Jan-2023 05:48:39	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AECF159-DA-6
+command	15-Jan-2023 05:48:39	Substituting variable: ${bamboo.repository.revision.number} with a8ca339ac610c06b5e70f4852ba9fec5db2883dd
+simple	15-Jan-2023 05:48:39	Starting task 'GitHub: Update Build Status' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 05:48:39	Beginning to execute external process for build 'Artemis - Artemis E2E (Cypress - Docker- Flaky) - flake-check-build-777 - Cypress E2E flake detection #6 (ARTEMIS-AECF159-DA-6)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AECF159-DA-6-ScriptBuildTask-2520790978927501818.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AECF159-DA\n
+build	15-Jan-2023 05:48:39	Sending failure to github
+error	15-Jan-2023 05:48:39	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+error	15-Jan-2023 05:48:39	                                 Dload  Upload   Total   Spent    Left  Speed
+error	15-Jan-2023 05:48:39	
+error	15-Jan-2023 05:48:40	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+error	15-Jan-2023 05:48:40	100  1739  100  1571  100   168   3888    415 --:--:-- --:--:-- --:--:--  4304
+simple	15-Jan-2023 05:48:40	Finished task 'GitHub: Update Build Status' with result: Success
+simple	15-Jan-2023 05:48:40	Running post build plugin 'Docker Container Cleanup'
+simple	15-Jan-2023 05:48:40	Running post build plugin 'NCover Results Collector'
+simple	15-Jan-2023 05:48:40	Running post build plugin 'Build Results Label Collector'
+simple	15-Jan-2023 05:48:40	Running post build plugin 'Clover Results Collector'
+simple	15-Jan-2023 05:48:40	Running post build plugin 'npm Cache Cleanup'
+simple	15-Jan-2023 05:48:40	Running post build plugin 'Artifact Copier'
+simple	15-Jan-2023 05:48:40	Finalising the build...
+simple	15-Jan-2023 05:48:40	Stopping timer.
+simple	15-Jan-2023 05:48:40	Build ARTEMIS-AECF159-DA-6 completed.
+simple	15-Jan-2023 05:48:40	Running on server: post build plugin 'Build Hanging Detection Configuration'
+simple	15-Jan-2023 05:48:40	Running on server: post build plugin 'NCover Results Collector'
+simple	15-Jan-2023 05:48:40	Running on server: post build plugin 'Build Labeller'
+simple	15-Jan-2023 05:48:40	Running on server: post build plugin 'Clover Delta Calculator'
+simple	15-Jan-2023 05:48:40	Running on server: post build plugin 'Maven Dependencies Postprocessor'
+simple	15-Jan-2023 05:48:40	All post build plugins have finished
+simple	15-Jan-2023 05:48:40	Generating build results summary...
+simple	15-Jan-2023 05:48:40	Saving build results to disk...
+simple	15-Jan-2023 05:48:40	Store variable context...
+simple	15-Jan-2023 05:48:40	Finished building ARTEMIS-AECF159-DA-6.

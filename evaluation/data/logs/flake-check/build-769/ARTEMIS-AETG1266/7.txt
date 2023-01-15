@@ -1,0 +1,726 @@
+simple	15-Jan-2023 06:00:27	Build Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-769 - Cypress E2E Tests on Bamboo #7 (ARTEMIS-AETG1266-DA-7) started building on agent ls1Agent-l-5.ase.in.tum.de, bamboo version: 8.2.5
+simple	15-Jan-2023 06:00:27	Remote agent on host ls1Agent-l-5.ase.in.tum.de
+simple	15-Jan-2023 06:00:27	Build working directory is /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA
+simple	15-Jan-2023 06:00:27	Executing build Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-769 - Cypress E2E Tests on Bamboo #7 (ARTEMIS-AETG1266-DA-7)
+simple	15-Jan-2023 06:00:27	Running pre-build action: Build Log Labeller Pre Build Action
+simple	15-Jan-2023 06:00:27	Running pre-build action: VCS Version Collector
+command	15-Jan-2023 06:00:27	Substituting password variable: ${bamboo.GitHubSecret}
+command	15-Jan-2023 06:00:27	Substituting variable: ${bamboo.shortJobName} with Cypress E2E Tests on Bamboo
+command	15-Jan-2023 06:00:27	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AETG1266-DA-7
+command	15-Jan-2023 06:00:27	Substituting variable: ${bamboo.repository.revision.number} with 5886aec39435f7afaa4f9e59056da906742ab753
+simple	15-Jan-2023 06:00:27	Starting task 'Github: Set build to pending' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 06:00:27	Beginning to execute external process for build 'Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-769 - Cypress E2E Tests on Bamboo #7 (ARTEMIS-AETG1266-DA-7)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AETG1266-DA-7-ScriptBuildTask-4363980952830447181.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA\n
+error	15-Jan-2023 06:00:27	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+error	15-Jan-2023 06:00:27	                                 Dload  Upload   Total   Spent    Left  Speed
+error	15-Jan-2023 06:00:27	
+error	15-Jan-2023 06:00:27	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+error	15-Jan-2023 06:00:28	100   172    0     0  100   172      0    851 --:--:-- --:--:-- --:--:--   847
+error	15-Jan-2023 06:00:28	100  1747  100  1575  100   172   3555    388 --:--:-- --:--:-- --:--:--  3934
+simple	15-Jan-2023 06:00:28	Finished task 'Github: Set build to pending' with result: Success
+simple	15-Jan-2023 06:00:28	Starting task 'Source Code Checkout' of type 'com.atlassian.bamboo.plugins.vcs:task.vcs.checkout'
+simple	15-Jan-2023 06:00:28	Checking out into /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA
+simple	15-Jan-2023 06:00:28	Updating source code to revision: 5886aec39435f7afaa4f9e59056da906742ab753
+simple	15-Jan-2023 06:00:28	Creating local git repository in '/opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA/.git'.
+simple	15-Jan-2023 06:00:28	Initialized empty Git repository in /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA/.git/
+simple	15-Jan-2023 06:00:28	Fetching 'refs/heads/flake-check/build-769' from 'https://github.com/ls1intum/Artemis.git'. Will try to do a shallow fetch.
+simple	15-Jan-2023 06:00:33	From https://github.com/ls1intum/Artemis
+simple	15-Jan-2023 06:00:33	 * [new branch]      flake-check/build-769 -> flake-check/build-769
+simple	15-Jan-2023 06:00:33	Checking out revision 5886aec39435f7afaa4f9e59056da906742ab753.
+simple	15-Jan-2023 06:00:34	Switched to branch 'flake-check/build-769'
+simple	15-Jan-2023 06:00:34	Updated source code to revision: 5886aec39435f7afaa4f9e59056da906742ab753
+simple	15-Jan-2023 06:00:34	Finished task 'Source Code Checkout' with result: Success
+simple	15-Jan-2023 06:00:34	Starting task 'Download Artemis Executable' of type 'com.atlassian.bamboo.plugins.bamboo-artifact-downloader-plugin:artifactdownloadertask'
+simple	15-Jan-2023 06:00:34	Preparing to download plan result ARTEMIS-WEBAPP4814-1 artifact: Non required shared artifact: [war], pattern: [*.war] anchored at: [build/libs]
+simple	15-Jan-2023 06:00:43	Artifact [war] downloaded successfully in 9.402 s to working directory
+simple	15-Jan-2023 06:00:43	Finished task 'Download Artemis Executable' with result: Success
+command	15-Jan-2023 06:00:43	Substituting variable: ${bamboo.artemis_admin_username} with artemis-cypress-admin
+command	15-Jan-2023 06:00:43	Substituting password variable: ${bamboo.artemis_admin_password}
+command	15-Jan-2023 06:00:43	Substituting variable: ${bamboo.cypress_username_template} with artemis_test_user_USERID
+command	15-Jan-2023 06:00:43	Substituting password variable: ${bamboo.cypress_password_template}
+command	15-Jan-2023 06:00:43	Substituting password variable: ${bamboo.ARTEMIS_CONTINUOUS_INTEGRATION_ARTEMIS_AUTHENTICATION_TOKEN_VALUE_SECRET}
+command	15-Jan-2023 06:00:43	Substituting password variable: ${bamboo.ARTEMIS_CONTINUOUS_INTEGRATION_TOKEN_SECRET}
+simple	15-Jan-2023 06:00:43	Starting task 'Deploy Artemis and run Cypress tests' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 06:00:43	Beginning to execute external process for build 'Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-769 - Cypress E2E Tests on Bamboo #7 (ARTEMIS-AETG1266-DA-7)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AETG1266-DA-7-ScriptBuildTask-2286682877756099394.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA\n
+error	15-Jan-2023 06:00:44	Pulling artemis-mysql   ... 
+error	15-Jan-2023 06:00:44	Pulling artemis-app     ... 
+error	15-Jan-2023 06:00:44	Pulling artemis-cypress ... 
+error	15-Jan-2023 06:00:44	[2A[2K
+error	15-Jan-2023 06:00:44	Pulling artemis-app     ... [32mdone[0m
+error	15-Jan-2023 06:00:46	[2B[1A[2K
+error	15-Jan-2023 06:00:46	Pulling artemis-cypress ... pulling from cypress/browsers
+error	15-Jan-2023 06:00:46	[1B[3A[2K
+error	15-Jan-2023 06:00:46	Pulling artemis-mysql   ... pulling from library/mysql
+error	15-Jan-2023 06:00:46	[3B[3A[2K
+error	15-Jan-2023 06:00:46	Pulling artemis-mysql   ... digest: sha256:3d7ae561cf6095f6ac...
+error	15-Jan-2023 06:00:46	[3B[3A[2K
+error	15-Jan-2023 06:00:46	Pulling artemis-mysql   ... status: image is up to date for m...
+error	15-Jan-2023 06:00:46	[3B[1A[2K
+error	15-Jan-2023 06:00:46	Pulling artemis-cypress ... digest: sha256:bfdbf9b64fdaad364f...
+error	15-Jan-2023 06:00:46	[1B[3A[2K
+error	15-Jan-2023 06:00:46	Pulling artemis-mysql   ... [32mdone[0m
+error	15-Jan-2023 06:00:46	[3B[1A[2K
+error	15-Jan-2023 06:00:46	Pulling artemis-cypress ... status: image is up to date for c...
+error	15-Jan-2023 06:00:46	[1B[1A[2K
+error	15-Jan-2023 06:00:46	Pulling artemis-cypress ... [32mdone[0m
+error	15-Jan-2023 06:00:46	[1Bartemis-mysql uses an image, skipping
+error	15-Jan-2023 06:00:46	artemis-cypress uses an image, skipping
+error	15-Jan-2023 06:00:46	Building artemis-app
+build	15-Jan-2023 06:00:53	Step 1/23 : FROM docker.io/library/eclipse-temurin:17-jdk
+build	15-Jan-2023 06:00:55	17-jdk: Pulling from library/eclipse-temurin
+build	15-Jan-2023 06:00:55	Digest: sha256:21364a8c99cadc93ba7b44780fc60f33d97c90227292b63914296e606545ba5a
+build	15-Jan-2023 06:00:55	Status: Image is up to date for eclipse-temurin:17-jdk
+build	15-Jan-2023 06:00:55	 ---> 9ef86393bfda
+build	15-Jan-2023 06:00:55	Step 2/23 : ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS     JHIPSTER_SLEEP=0     JAVA_OPTS=""
+build	15-Jan-2023 06:00:56	 ---> Running in dd57224916bc
+build	15-Jan-2023 06:00:56	Removing intermediate container dd57224916bc
+build	15-Jan-2023 06:00:56	 ---> 68f44062da9e
+build	15-Jan-2023 06:00:56	Step 3/23 : ENV spring.profiles.active ""
+build	15-Jan-2023 06:00:56	 ---> Running in b65fdb725c0f
+build	15-Jan-2023 06:00:56	Removing intermediate container b65fdb725c0f
+build	15-Jan-2023 06:00:56	 ---> 9900ea29701c
+build	15-Jan-2023 06:00:56	Step 4/23 : RUN echo "Installing needed dependencies"   && apt-get update && apt-get install -y --no-install-recommends locales graphviz wget   && apt-get clean   && rm -rf /var/lib/apt/lists/*
+build	15-Jan-2023 06:00:56	 ---> Running in 304ce3394c32
+build	15-Jan-2023 06:00:56	Installing needed dependencies
+build	15-Jan-2023 06:00:56	Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+build	15-Jan-2023 06:00:56	Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+build	15-Jan-2023 06:00:57	Get:3 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [4,732 B]
+build	15-Jan-2023 06:00:57	Get:4 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [114 kB]
+build	15-Jan-2023 06:00:57	Get:5 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [720 kB]
+build	15-Jan-2023 06:00:57	Get:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [99.8 kB]
+build	15-Jan-2023 06:00:57	Get:7 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
+build	15-Jan-2023 06:00:57	Get:8 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [659 kB]
+build	15-Jan-2023 06:00:57	Get:9 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [786 kB]
+build	15-Jan-2023 06:00:58	Get:10 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
+build	15-Jan-2023 06:00:58	Get:11 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
+build	15-Jan-2023 06:00:58	Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1,792 kB]
+build	15-Jan-2023 06:00:58	Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [990 kB]
+build	15-Jan-2023 06:00:58	Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [708 kB]
+build	15-Jan-2023 06:00:58	Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1,035 kB]
+build	15-Jan-2023 06:00:58	Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [8,978 B]
+build	15-Jan-2023 06:00:58	Get:17 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [7,286 B]
+build	15-Jan-2023 06:00:58	Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [3,520 B]
+build	15-Jan-2023 06:00:59	Fetched 25.2 MB in 3s (8,149 kB/s)
+build	15-Jan-2023 06:01:00	Reading package lists...
+build	15-Jan-2023 06:01:01	Reading package lists...
+build	15-Jan-2023 06:01:02	Building dependency tree...
+build	15-Jan-2023 06:01:02	Reading state information...
+build	15-Jan-2023 06:01:02	wget is already the newest version (1.21.2-2ubuntu1).
+build	15-Jan-2023 06:01:02	locales is already the newest version (2.35-0ubuntu3.1).
+build	15-Jan-2023 06:01:02	The following additional packages will be installed:
+build	15-Jan-2023 06:01:02	  libann0 libbsd0 libcairo2 libcdt5 libcgraph6 libdatrie1 libdeflate0
+build	15-Jan-2023 06:01:02	  libfribidi0 libgd3 libglib2.0-0 libgraphite2-3 libgts-0.7-5 libgvc6 libgvpr2
+build	15-Jan-2023 06:01:02	  libharfbuzz0b libice6 libjbig0 libjpeg-turbo8 libjpeg8 liblab-gamut1
+build	15-Jan-2023 06:01:02	  libltdl7 libmd0 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+build	15-Jan-2023 06:01:02	  libpathplan4 libpixman-1-0 libsm6 libthai-data libthai0 libtiff5 libwebp7
+build	15-Jan-2023 06:01:02	  libx11-6 libx11-data libxau6 libxaw7 libxcb-render0 libxcb-shm0 libxcb1
+build	15-Jan-2023 06:01:02	  libxdmcp6 libxext6 libxmu6 libxpm4 libxrender1 libxt6 x11-common
+build	15-Jan-2023 06:01:02	Suggested packages:
+build	15-Jan-2023 06:01:02	  gsfonts graphviz-doc libgd-tools
+build	15-Jan-2023 06:01:02	Recommended packages:
+build	15-Jan-2023 06:01:02	  fonts-liberation libglib2.0-data shared-mime-info xdg-user-dirs libgts-bin
+build	15-Jan-2023 06:01:02	The following NEW packages will be installed:
+build	15-Jan-2023 06:01:02	  graphviz libann0 libbsd0 libcairo2 libcdt5 libcgraph6 libdatrie1 libdeflate0
+build	15-Jan-2023 06:01:02	  libfribidi0 libgd3 libglib2.0-0 libgraphite2-3 libgts-0.7-5 libgvc6 libgvpr2
+build	15-Jan-2023 06:01:02	  libharfbuzz0b libice6 libjbig0 libjpeg-turbo8 libjpeg8 liblab-gamut1
+build	15-Jan-2023 06:01:02	  libltdl7 libmd0 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+build	15-Jan-2023 06:01:02	  libpathplan4 libpixman-1-0 libsm6 libthai-data libthai0 libtiff5 libwebp7
+build	15-Jan-2023 06:01:02	  libx11-6 libx11-data libxau6 libxaw7 libxcb-render0 libxcb-shm0 libxcb1
+build	15-Jan-2023 06:01:02	  libxdmcp6 libxext6 libxmu6 libxpm4 libxrender1 libxt6 x11-common
+build	15-Jan-2023 06:01:02	0 upgraded, 47 newly installed, 0 to remove and 5 not upgraded.
+build	15-Jan-2023 06:01:02	Need to get 9,464 kB of archives.
+build	15-Jan-2023 06:01:02	After this operation, 25.8 MB of additional disk space will be used.
+build	15-Jan-2023 06:01:02	Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 libmd0 amd64 1.0.4-1build1 [23.0 kB]
+build	15-Jan-2023 06:01:02	Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libbsd0 amd64 0.11.5-1 [44.8 kB]
+build	15-Jan-2023 06:01:02	Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libfribidi0 amd64 1.0.8-2ubuntu3.1 [26.1 kB]
+build	15-Jan-2023 06:01:02	Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libglib2.0-0 amd64 2.72.4-0ubuntu1 [1,461 kB]
+build	15-Jan-2023 06:01:02	Get:5 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxau6 amd64 1:1.0.9-1build5 [7,634 B]
+build	15-Jan-2023 06:01:02	Get:6 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxdmcp6 amd64 1:1.1.3-0ubuntu5 [10.9 kB]
+build	15-Jan-2023 06:01:02	Get:7 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcb1 amd64 1.14-3ubuntu3 [49.0 kB]
+build	15-Jan-2023 06:01:02	Get:8 http://archive.ubuntu.com/ubuntu jammy/main amd64 libx11-data all 2:1.7.5-1 [119 kB]
+build	15-Jan-2023 06:01:02	Get:9 http://archive.ubuntu.com/ubuntu jammy/main amd64 libx11-6 amd64 2:1.7.5-1 [666 kB]
+build	15-Jan-2023 06:01:02	Get:10 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxext6 amd64 2:1.3.4-1build1 [31.8 kB]
+build	15-Jan-2023 06:01:02	Get:11 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libann0 amd64 1.1.2+doc-7build1 [26.0 kB]
+build	15-Jan-2023 06:01:02	Get:12 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libcdt5 amd64 2.42.2-6 [21.1 kB]
+build	15-Jan-2023 06:01:02	Get:13 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libcgraph6 amd64 2.42.2-6 [45.8 kB]
+build	15-Jan-2023 06:01:02	Get:14 http://archive.ubuntu.com/ubuntu jammy/main amd64 libjpeg-turbo8 amd64 2.1.2-0ubuntu1 [134 kB]
+build	15-Jan-2023 06:01:02	Get:15 http://archive.ubuntu.com/ubuntu jammy/main amd64 libjpeg8 amd64 8c-2ubuntu10 [2,264 B]
+build	15-Jan-2023 06:01:02	Get:16 http://archive.ubuntu.com/ubuntu jammy/main amd64 libdeflate0 amd64 1.10-2 [70.9 kB]
+build	15-Jan-2023 06:01:02	Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libjbig0 amd64 2.1-3.1ubuntu0.22.04.1 [29.2 kB]
+build	15-Jan-2023 06:01:02	Get:18 http://archive.ubuntu.com/ubuntu jammy/main amd64 libwebp7 amd64 1.2.2-2 [206 kB]
+build	15-Jan-2023 06:01:02	Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libtiff5 amd64 4.3.0-6ubuntu0.3 [183 kB]
+build	15-Jan-2023 06:01:02	Get:20 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxpm4 amd64 1:3.5.12-1build2 [36.2 kB]
+build	15-Jan-2023 06:01:02	Get:21 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgd3 amd64 2.3.0-2ubuntu2 [129 kB]
+build	15-Jan-2023 06:01:02	Get:22 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libgts-0.7-5 amd64 0.7.6+darcs121130-5 [164 kB]
+build	15-Jan-2023 06:01:02	Get:23 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpixman-1-0 amd64 0.40.0-1ubuntu0.22.04.1 [264 kB]
+build	15-Jan-2023 06:01:02	Get:24 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcb-render0 amd64 1.14-3ubuntu3 [16.4 kB]
+build	15-Jan-2023 06:01:02	Get:25 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcb-shm0 amd64 1.14-3ubuntu3 [5,780 B]
+build	15-Jan-2023 06:01:02	Get:26 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxrender1 amd64 1:0.9.10-1build4 [19.7 kB]
+build	15-Jan-2023 06:01:02	Get:27 http://archive.ubuntu.com/ubuntu jammy/main amd64 libcairo2 amd64 1.16.0-5ubuntu2 [628 kB]
+build	15-Jan-2023 06:01:02	Get:28 http://archive.ubuntu.com/ubuntu jammy/main amd64 libltdl7 amd64 2.4.6-15build2 [39.6 kB]
+build	15-Jan-2023 06:01:02	Get:29 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgraphite2-3 amd64 1.3.14-1build2 [71.3 kB]
+build	15-Jan-2023 06:01:02	Get:30 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libharfbuzz0b amd64 2.7.4-1ubuntu3.1 [352 kB]
+build	15-Jan-2023 06:01:02	Get:31 http://archive.ubuntu.com/ubuntu jammy/main amd64 libthai-data all 0.1.29-1build1 [162 kB]
+build	15-Jan-2023 06:01:02	Get:32 http://archive.ubuntu.com/ubuntu jammy/main amd64 libdatrie1 amd64 0.2.13-2 [19.9 kB]
+build	15-Jan-2023 06:01:02	Get:33 http://archive.ubuntu.com/ubuntu jammy/main amd64 libthai0 amd64 0.1.29-1build1 [19.2 kB]
+build	15-Jan-2023 06:01:02	Get:34 http://archive.ubuntu.com/ubuntu jammy/main amd64 libpango-1.0-0 amd64 1.50.6+ds-2 [230 kB]
+build	15-Jan-2023 06:01:03	Get:35 http://archive.ubuntu.com/ubuntu jammy/main amd64 libpangoft2-1.0-0 amd64 1.50.6+ds-2 [53.9 kB]
+build	15-Jan-2023 06:01:03	Get:36 http://archive.ubuntu.com/ubuntu jammy/main amd64 libpangocairo-1.0-0 amd64 1.50.6+ds-2 [39.8 kB]
+build	15-Jan-2023 06:01:03	Get:37 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libpathplan4 amd64 2.42.2-6 [23.5 kB]
+build	15-Jan-2023 06:01:03	Get:38 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libgvc6 amd64 2.42.2-6 [726 kB]
+build	15-Jan-2023 06:01:03	Get:39 http://archive.ubuntu.com/ubuntu jammy/universe amd64 libgvpr2 amd64 2.42.2-6 [191 kB]
+build	15-Jan-2023 06:01:03	Get:40 http://archive.ubuntu.com/ubuntu jammy/universe amd64 liblab-gamut1 amd64 2.42.2-6 [1,964 kB]
+build	15-Jan-2023 06:01:03	Get:41 http://archive.ubuntu.com/ubuntu jammy/main amd64 x11-common all 1:7.7+23ubuntu2 [23.4 kB]
+build	15-Jan-2023 06:01:03	Get:42 http://archive.ubuntu.com/ubuntu jammy/main amd64 libice6 amd64 2:1.0.10-1build2 [42.6 kB]
+build	15-Jan-2023 06:01:03	Get:43 http://archive.ubuntu.com/ubuntu jammy/main amd64 libsm6 amd64 2:1.2.3-1build2 [16.7 kB]
+build	15-Jan-2023 06:01:03	Get:44 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxt6 amd64 1:1.2.1-1 [177 kB]
+build	15-Jan-2023 06:01:03	Get:45 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxmu6 amd64 2:1.1.3-3 [49.6 kB]
+build	15-Jan-2023 06:01:03	Get:46 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxaw7 amd64 2:1.0.14-1 [191 kB]
+build	15-Jan-2023 06:01:03	Get:47 http://archive.ubuntu.com/ubuntu jammy/universe amd64 graphviz amd64 2.42.2-6 [650 kB]
+build	15-Jan-2023 06:01:03	[91mdebconf: delaying package configuration, since apt-utils is not installed
+build	15-Jan-2023 06:01:03	[0mFetched 9,464 kB in 1s (16.5 MB/s)
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libmd0:amd64.
+build	15-Jan-2023 06:01:03	(Reading database ... 
+build	15-Jan-2023 06:01:03	(Reading database ... 5%
+build	15-Jan-2023 06:01:03	(Reading database ... 10%
+build	15-Jan-2023 06:01:03	(Reading database ... 15%
+build	15-Jan-2023 06:01:03	(Reading database ... 20%
+build	15-Jan-2023 06:01:03	(Reading database ... 25%
+build	15-Jan-2023 06:01:03	(Reading database ... 30%
+build	15-Jan-2023 06:01:03	(Reading database ... 35%
+build	15-Jan-2023 06:01:03	(Reading database ... 40%
+build	15-Jan-2023 06:01:03	(Reading database ... 45%
+build	15-Jan-2023 06:01:03	(Reading database ... 50%
+build	15-Jan-2023 06:01:03	(Reading database ... 55%
+build	15-Jan-2023 06:01:03	(Reading database ... 60%
+build	15-Jan-2023 06:01:03	(Reading database ... 65%
+build	15-Jan-2023 06:01:03	(Reading database ... 70%
+build	15-Jan-2023 06:01:03	(Reading database ... 75%
+build	15-Jan-2023 06:01:03	(Reading database ... 80%
+build	15-Jan-2023 06:01:03	(Reading database ... 85%
+build	15-Jan-2023 06:01:03	(Reading database ... 90%
+build	15-Jan-2023 06:01:03	(Reading database ... 95%
+build	15-Jan-2023 06:01:03	(Reading database ... 100%
+build	15-Jan-2023 06:01:03	(Reading database ... 7916 files and directories currently installed.)
+build	15-Jan-2023 06:01:03	Preparing to unpack .../00-libmd0_1.0.4-1build1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libmd0:amd64 (1.0.4-1build1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libbsd0:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../01-libbsd0_0.11.5-1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libbsd0:amd64 (0.11.5-1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libfribidi0:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../02-libfribidi0_1.0.8-2ubuntu3.1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libfribidi0:amd64 (1.0.8-2ubuntu3.1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libglib2.0-0:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../03-libglib2.0-0_2.72.4-0ubuntu1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libglib2.0-0:amd64 (2.72.4-0ubuntu1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libxau6:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../04-libxau6_1%3a1.0.9-1build5_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libxau6:amd64 (1:1.0.9-1build5) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libxdmcp6:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../05-libxdmcp6_1%3a1.1.3-0ubuntu5_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libxdmcp6:amd64 (1:1.1.3-0ubuntu5) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libxcb1:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../06-libxcb1_1.14-3ubuntu3_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libxcb1:amd64 (1.14-3ubuntu3) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libx11-data.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../07-libx11-data_2%3a1.7.5-1_all.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libx11-data (2:1.7.5-1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libx11-6:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../08-libx11-6_2%3a1.7.5-1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libx11-6:amd64 (2:1.7.5-1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libxext6:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../09-libxext6_2%3a1.3.4-1build1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libxext6:amd64 (2:1.3.4-1build1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libann0.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../10-libann0_1.1.2+doc-7build1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libann0 (1.1.2+doc-7build1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libcdt5:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../11-libcdt5_2.42.2-6_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libcdt5:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libcgraph6:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../12-libcgraph6_2.42.2-6_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libcgraph6:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libjpeg-turbo8:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../13-libjpeg-turbo8_2.1.2-0ubuntu1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libjpeg-turbo8:amd64 (2.1.2-0ubuntu1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libjpeg8:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../14-libjpeg8_8c-2ubuntu10_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libjpeg8:amd64 (8c-2ubuntu10) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libdeflate0:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../15-libdeflate0_1.10-2_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libdeflate0:amd64 (1.10-2) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libjbig0:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../16-libjbig0_2.1-3.1ubuntu0.22.04.1_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libjbig0:amd64 (2.1-3.1ubuntu0.22.04.1) ...
+build	15-Jan-2023 06:01:03	Selecting previously unselected package libwebp7:amd64.
+build	15-Jan-2023 06:01:03	Preparing to unpack .../17-libwebp7_1.2.2-2_amd64.deb ...
+build	15-Jan-2023 06:01:03	Unpacking libwebp7:amd64 (1.2.2-2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libtiff5:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../18-libtiff5_4.3.0-6ubuntu0.3_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libtiff5:amd64 (4.3.0-6ubuntu0.3) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libxpm4:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../19-libxpm4_1%3a3.5.12-1build2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libxpm4:amd64 (1:3.5.12-1build2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libgd3:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../20-libgd3_2.3.0-2ubuntu2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libgd3:amd64 (2.3.0-2ubuntu2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libgts-0.7-5:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../21-libgts-0.7-5_0.7.6+darcs121130-5_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libgts-0.7-5:amd64 (0.7.6+darcs121130-5) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libpixman-1-0:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../22-libpixman-1-0_0.40.0-1ubuntu0.22.04.1_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libpixman-1-0:amd64 (0.40.0-1ubuntu0.22.04.1) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libxcb-render0:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../23-libxcb-render0_1.14-3ubuntu3_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libxcb-render0:amd64 (1.14-3ubuntu3) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libxcb-shm0:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../24-libxcb-shm0_1.14-3ubuntu3_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libxcb-shm0:amd64 (1.14-3ubuntu3) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libxrender1:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../25-libxrender1_1%3a0.9.10-1build4_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libxrender1:amd64 (1:0.9.10-1build4) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libcairo2:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../26-libcairo2_1.16.0-5ubuntu2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libcairo2:amd64 (1.16.0-5ubuntu2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libltdl7:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../27-libltdl7_2.4.6-15build2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libltdl7:amd64 (2.4.6-15build2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libgraphite2-3:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../28-libgraphite2-3_1.3.14-1build2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libgraphite2-3:amd64 (1.3.14-1build2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libharfbuzz0b:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../29-libharfbuzz0b_2.7.4-1ubuntu3.1_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libharfbuzz0b:amd64 (2.7.4-1ubuntu3.1) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libthai-data.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../30-libthai-data_0.1.29-1build1_all.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libthai-data (0.1.29-1build1) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libdatrie1:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../31-libdatrie1_0.2.13-2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libdatrie1:amd64 (0.2.13-2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libthai0:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../32-libthai0_0.1.29-1build1_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libthai0:amd64 (0.1.29-1build1) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libpango-1.0-0:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../33-libpango-1.0-0_1.50.6+ds-2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libpango-1.0-0:amd64 (1.50.6+ds-2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libpangoft2-1.0-0:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../34-libpangoft2-1.0-0_1.50.6+ds-2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libpangoft2-1.0-0:amd64 (1.50.6+ds-2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libpangocairo-1.0-0:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../35-libpangocairo-1.0-0_1.50.6+ds-2_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libpangocairo-1.0-0:amd64 (1.50.6+ds-2) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libpathplan4:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../36-libpathplan4_2.42.2-6_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libpathplan4:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libgvc6.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../37-libgvc6_2.42.2-6_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libgvc6 (2.42.2-6) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package libgvpr2:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../38-libgvpr2_2.42.2-6_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking libgvpr2:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package liblab-gamut1:amd64.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../39-liblab-gamut1_2.42.2-6_amd64.deb ...
+build	15-Jan-2023 06:01:04	Unpacking liblab-gamut1:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:04	Selecting previously unselected package x11-common.
+build	15-Jan-2023 06:01:04	Preparing to unpack .../40-x11-common_1%3a7.7+23ubuntu2_all.deb ...
+build	15-Jan-2023 06:01:04	Unpacking x11-common (1:7.7+23ubuntu2) ...
+build	15-Jan-2023 06:01:05	Selecting previously unselected package libice6:amd64.
+build	15-Jan-2023 06:01:05	Preparing to unpack .../41-libice6_2%3a1.0.10-1build2_amd64.deb ...
+build	15-Jan-2023 06:01:05	Unpacking libice6:amd64 (2:1.0.10-1build2) ...
+build	15-Jan-2023 06:01:05	Selecting previously unselected package libsm6:amd64.
+build	15-Jan-2023 06:01:05	Preparing to unpack .../42-libsm6_2%3a1.2.3-1build2_amd64.deb ...
+build	15-Jan-2023 06:01:05	Unpacking libsm6:amd64 (2:1.2.3-1build2) ...
+build	15-Jan-2023 06:01:05	Selecting previously unselected package libxt6:amd64.
+build	15-Jan-2023 06:01:05	Preparing to unpack .../43-libxt6_1%3a1.2.1-1_amd64.deb ...
+build	15-Jan-2023 06:01:05	Unpacking libxt6:amd64 (1:1.2.1-1) ...
+build	15-Jan-2023 06:01:05	Selecting previously unselected package libxmu6:amd64.
+build	15-Jan-2023 06:01:05	Preparing to unpack .../44-libxmu6_2%3a1.1.3-3_amd64.deb ...
+build	15-Jan-2023 06:01:05	Unpacking libxmu6:amd64 (2:1.1.3-3) ...
+build	15-Jan-2023 06:01:05	Selecting previously unselected package libxaw7:amd64.
+build	15-Jan-2023 06:01:05	Preparing to unpack .../45-libxaw7_2%3a1.0.14-1_amd64.deb ...
+build	15-Jan-2023 06:01:05	Unpacking libxaw7:amd64 (2:1.0.14-1) ...
+build	15-Jan-2023 06:01:05	Selecting previously unselected package graphviz.
+build	15-Jan-2023 06:01:05	Preparing to unpack .../46-graphviz_2.42.2-6_amd64.deb ...
+build	15-Jan-2023 06:01:05	Unpacking graphviz (2.42.2-6) ...
+build	15-Jan-2023 06:01:05	Setting up libgraphite2-3:amd64 (1.3.14-1build2) ...
+build	15-Jan-2023 06:01:05	Setting up libpixman-1-0:amd64 (0.40.0-1ubuntu0.22.04.1) ...
+build	15-Jan-2023 06:01:05	Setting up libxau6:amd64 (1:1.0.9-1build5) ...
+build	15-Jan-2023 06:01:05	Setting up libdatrie1:amd64 (0.2.13-2) ...
+build	15-Jan-2023 06:01:05	Setting up libglib2.0-0:amd64 (2.72.4-0ubuntu1) ...
+build	15-Jan-2023 06:01:05	No schema files found: doing nothing.
+build	15-Jan-2023 06:01:05	Setting up liblab-gamut1:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:05	Setting up x11-common (1:7.7+23ubuntu2) ...
+build	15-Jan-2023 06:01:05	debconf: unable to initialize frontend: Dialog
+build	15-Jan-2023 06:01:05	debconf: (TERM is not set, so the dialog frontend is not usable.)
+build	15-Jan-2023 06:01:05	debconf: falling back to frontend: Readline
+build	15-Jan-2023 06:01:05	debconf: unable to initialize frontend: Readline
+build	15-Jan-2023 06:01:05	debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.34.0 /usr/local/share/perl/5.34.0 /usr/lib/x86_64-linux-gnu/perl5/5.34 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.34 /usr/share/perl/5.34 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+build	15-Jan-2023 06:01:05	debconf: falling back to frontend: Teletype
+build	15-Jan-2023 06:01:05	invoke-rc.d: could not determine current runlevel
+build	15-Jan-2023 06:01:05	invoke-rc.d: policy-rc.d denied execution of start.
+build	15-Jan-2023 06:01:05	Setting up libdeflate0:amd64 (1.10-2) ...
+build	15-Jan-2023 06:01:05	Setting up libjbig0:amd64 (2.1-3.1ubuntu0.22.04.1) ...
+build	15-Jan-2023 06:01:05	Setting up libgts-0.7-5:amd64 (0.7.6+darcs121130-5) ...
+build	15-Jan-2023 06:01:05	Setting up libx11-data (2:1.7.5-1) ...
+build	15-Jan-2023 06:01:05	Setting up libpathplan4:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:05	Setting up libann0 (1.1.2+doc-7build1) ...
+build	15-Jan-2023 06:01:05	Setting up libfribidi0:amd64 (1.0.8-2ubuntu3.1) ...
+build	15-Jan-2023 06:01:05	Setting up libjpeg-turbo8:amd64 (2.1.2-0ubuntu1) ...
+build	15-Jan-2023 06:01:05	Setting up libltdl7:amd64 (2.4.6-15build2) ...
+build	15-Jan-2023 06:01:05	Setting up libwebp7:amd64 (1.2.2-2) ...
+build	15-Jan-2023 06:01:05	Setting up libmd0:amd64 (1.0.4-1build1) ...
+build	15-Jan-2023 06:01:05	Setting up libharfbuzz0b:amd64 (2.7.4-1ubuntu3.1) ...
+build	15-Jan-2023 06:01:05	Setting up libthai-data (0.1.29-1build1) ...
+build	15-Jan-2023 06:01:05	Setting up libcdt5:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:05	Setting up libcgraph6:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:05	Setting up libbsd0:amd64 (0.11.5-1) ...
+build	15-Jan-2023 06:01:05	Setting up libjpeg8:amd64 (8c-2ubuntu10) ...
+build	15-Jan-2023 06:01:05	Setting up libice6:amd64 (2:1.0.10-1build2) ...
+build	15-Jan-2023 06:01:05	Setting up libxdmcp6:amd64 (1:1.1.3-0ubuntu5) ...
+build	15-Jan-2023 06:01:05	Setting up libxcb1:amd64 (1.14-3ubuntu3) ...
+build	15-Jan-2023 06:01:05	Setting up libxcb-render0:amd64 (1.14-3ubuntu3) ...
+build	15-Jan-2023 06:01:05	Setting up libxcb-shm0:amd64 (1.14-3ubuntu3) ...
+build	15-Jan-2023 06:01:05	Setting up libthai0:amd64 (0.1.29-1build1) ...
+build	15-Jan-2023 06:01:05	Setting up libgvpr2:amd64 (2.42.2-6) ...
+build	15-Jan-2023 06:01:05	Setting up libx11-6:amd64 (2:1.7.5-1) ...
+build	15-Jan-2023 06:01:05	Setting up libtiff5:amd64 (4.3.0-6ubuntu0.3) ...
+build	15-Jan-2023 06:01:05	Setting up libsm6:amd64 (2:1.2.3-1build2) ...
+build	15-Jan-2023 06:01:05	Setting up libxpm4:amd64 (1:3.5.12-1build2) ...
+build	15-Jan-2023 06:01:05	Setting up libxrender1:amd64 (1:0.9.10-1build4) ...
+build	15-Jan-2023 06:01:05	Setting up libpango-1.0-0:amd64 (1.50.6+ds-2) ...
+build	15-Jan-2023 06:01:05	Setting up libxext6:amd64 (2:1.3.4-1build1) ...
+build	15-Jan-2023 06:01:05	Setting up libcairo2:amd64 (1.16.0-5ubuntu2) ...
+build	15-Jan-2023 06:01:05	Setting up libgd3:amd64 (2.3.0-2ubuntu2) ...
+build	15-Jan-2023 06:01:05	Setting up libxt6:amd64 (1:1.2.1-1) ...
+build	15-Jan-2023 06:01:05	Setting up libpangoft2-1.0-0:amd64 (1.50.6+ds-2) ...
+build	15-Jan-2023 06:01:05	Setting up libpangocairo-1.0-0:amd64 (1.50.6+ds-2) ...
+build	15-Jan-2023 06:01:05	Setting up libxmu6:amd64 (2:1.1.3-3) ...
+build	15-Jan-2023 06:01:05	Setting up libxaw7:amd64 (2:1.0.14-1) ...
+build	15-Jan-2023 06:01:05	Setting up libgvc6 (2.42.2-6) ...
+build	15-Jan-2023 06:01:05	Setting up graphviz (2.42.2-6) ...
+build	15-Jan-2023 06:01:05	Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+build	15-Jan-2023 06:01:06	Removing intermediate container 304ce3394c32
+build	15-Jan-2023 06:01:06	 ---> d498969a6a3f
+build	15-Jan-2023 06:01:06	Step 5/23 : RUN echo "Fixing locales"   && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen   && locale-gen
+build	15-Jan-2023 06:01:06	 ---> Running in 2747070e1465
+build	15-Jan-2023 06:01:06	Fixing locales
+build	15-Jan-2023 06:01:06	Generating locales (this might take a while)...
+build	15-Jan-2023 06:01:09	  en_US.UTF-8... done
+build	15-Jan-2023 06:01:09	Generation complete.
+build	15-Jan-2023 06:01:09	Removing intermediate container 2747070e1465
+build	15-Jan-2023 06:01:09	 ---> 89cad0ca0bd8
+build	15-Jan-2023 06:01:09	Step 6/23 : ENV LC_ALL en_US.UTF-8
+build	15-Jan-2023 06:01:09	 ---> Running in eb6ef1467fde
+build	15-Jan-2023 06:01:09	Removing intermediate container eb6ef1467fde
+build	15-Jan-2023 06:01:09	 ---> 9b96d13d7052
+build	15-Jan-2023 06:01:09	Step 7/23 : ENV LANG en_US.UTF-8
+build	15-Jan-2023 06:01:09	 ---> Running in f0c1508fdb2e
+build	15-Jan-2023 06:01:09	Removing intermediate container f0c1508fdb2e
+build	15-Jan-2023 06:01:09	 ---> 8b4a9fe4f7f7
+build	15-Jan-2023 06:01:09	Step 8/23 : ENV LANGUAGE en_US.UTF-8
+build	15-Jan-2023 06:01:09	 ---> Running in 9da511cb2390
+build	15-Jan-2023 06:01:09	Removing intermediate container 9da511cb2390
+build	15-Jan-2023 06:01:09	 ---> d3a9cb2c185b
+build	15-Jan-2023 06:01:09	Step 9/23 : ARG GOSU_VERSION=1.12
+build	15-Jan-2023 06:01:09	 ---> Running in 44c234cf3986
+build	15-Jan-2023 06:01:09	Removing intermediate container 44c234cf3986
+build	15-Jan-2023 06:01:09	 ---> 0c1a45ba0633
+build	15-Jan-2023 06:01:09	Step 10/23 : RUN echo "Installing gosu (needed for bootstrap.sh)"   && dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"   && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"   && chmod +x /usr/local/bin/gosu   && gosu nobody true
+build	15-Jan-2023 06:01:09	 ---> Running in b51fc5b7bd58
+build	15-Jan-2023 06:01:10	Installing gosu (needed for bootstrap.sh)
+build	15-Jan-2023 06:01:10	[91m--2023-01-15 05:01:10--  https://github.com/tianon/gosu/releases/download/1.12/gosu-amd64
+build	15-Jan-2023 06:01:10	[0m[91mResolving github.com (github.com)... [0m[91m140.82.121.4
+build	15-Jan-2023 06:01:10	Connecting to github.com (github.com)|140.82.121.4|:443... [0m[91mconnected.
+build	15-Jan-2023 06:01:10	[0m[91mHTTP request sent, awaiting response... [0m[91m302 Found
+build	15-Jan-2023 06:01:10	Location: https://objects.githubusercontent.com/github-production-release-asset-2e65be/19708981/93269500-7f72-11ea-94c5-37b92917e2b5?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230115%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230115T050110Z&X-Amz-Expires=300&X-Amz-Signature=197e4d9e7adb99d3e78358c60e92362da44a7380e38e4f7807360a80cdb5b86c&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=19708981&response-content-disposition=attachment%3B%20filename%3Dgosu-amd64&response-content-type=application%2Foctet-stream [following]
+build	15-Jan-2023 06:01:10	--2023-01-15 05:01:10--  https://objects.githubusercontent.com/github-production-release-asset-2e65be/19708981/93269500-7f72-11ea-94c5-37b92917e2b5?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230115%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230115T050110Z&X-Amz-Expires=300&X-Amz-Signature=197e4d9e7adb99d3e78358c60e92362da44a7380e38e4f7807360a80cdb5b86c&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=19708981&response-content-disposition=attachment%3B%20filename%3Dgosu-amd64&response-content-type=application%2Foctet-stream
+build	15-Jan-2023 06:01:10	Resolving objects.githubusercontent.com (objects.githubusercontent.com)... [0m[91m185.199.108.133, 185.199.111.133, 185.199.109.133, ...
+build	15-Jan-2023 06:01:10	Connecting to objects.githubusercontent.com (objects.githubusercontent.com)|185.199.108.133|:443... [0m[91mconnected.
+build	15-Jan-2023 06:01:10	[0m[91mHTTP request sent, awaiting response... [0m[91m200 OK
+build	15-Jan-2023 06:01:10	Length: 2404352 (2.3M) [application/octet-stream]
+build	15-Jan-2023 06:01:10	Saving to: ‘/usr/local/bin/gosu’
+build	15-Jan-2023 06:01:10	[0m[91m
+build	15-Jan-2023 06:01:10	     0K ......[0m[91m.... ......[0m[91m.... ....[0m[91m...... ..[0m[91m......[0m[91m.. ........[0m[91m..  2% 5.29M 0s
+build	15-Jan-2023 06:01:10	    50K[0m[91m .......... ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ......[0m[91m....  4% 6.40M 0s
+build	15-Jan-2023 06:01:10	   100K ....[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. .......... ....[0m[91m......  6% 21.1M 0s[0m[91m
+build	15-Jan-2023 06:01:10	   150K ..........[0m[91m .......... ......[0m[91m.... .......... ..[0m[91m........  8% 35.4M 0s
+build	15-Jan-2023 06:01:10	   200K .......... .......... ....[0m[91m...... ..........[0m[91m .......... 10% 9.92M 0s
+build	15-Jan-2023 06:01:10	   250K .......... .......... ..[0m[91m........ .......... .......... 12% 32.0M 0s
+build	15-Jan-2023 06:01:10	   300K ....[0m[91m...... .......... .......... .......... .......... 14% 47.2M 0s
+build	15-Jan-2023 06:01:10	   350K .......... ........[0m[91m.. .......... ....[0m[91m...... .......... 17% 42.4M 0s
+build	15-Jan-2023 06:01:10	   400K .......... .......... .......... ..[0m[91m........ ........[0m[91m.. 19% 43.2M 0s
+build	15-Jan-2023 06:01:10	   450K .......... .......... .......... .......... ......[0m[91m.... 21% 13.5M 0s
+build	15-Jan-2023 06:01:10	   500K .......... .......... .......... .......... .......... 23%  135M 0s
+build	15-Jan-2023 06:01:10	   550K .......... ......[0m[91m.... .......... .......... .......... 25% 30.9M 0s
+build	15-Jan-2023 06:01:10	   600K .......... .......[0m[91m... .......... .......... .......... 27% 77.4M 0s
+build	15-Jan-2023 06:01:10	   650K .......... .......... .......... .......... .......... 29%  128M 0s
+build	15-Jan-2023 06:01:10	   700K .......... .......... .......... .......... .....[0m[91m..... 31% 87.1M 0s
+build	15-Jan-2023 06:01:10	   750K .......... .......... .......... .......... .......... 34%  162M 0s
+build	15-Jan-2023 06:01:10	   800K .......... .......... .......... .......... .......... 36% 83.3M 0s
+build	15-Jan-2023 06:01:10	   850K .......... .......... .......... .......... .......... 38%  108M 0s
+build	15-Jan-2023 06:01:10	   900K .......... .......... .......... .......... .......... 40%  188M 0s
+build	15-Jan-2023 06:01:10	   950K .......... .......... .......... .......... .......... 42%  116M 0s
+build	15-Jan-2023 06:01:10	  1000K .[0m[91m......... .......[0m[91m.[0m[91m.. .....[0m[91m..... ...[0m[91m....... ..........[0m[91m 44% 13.5M 0s
+build	15-Jan-2023 06:01:10	  1050K ..[0m[91m.....[0m[91m... .....[0m[91m..... .......... .[0m[91m........[0m[91m. .......... 46%  209M 0s
+build	15-Jan-2023 06:01:10	  1100K .......... .......... .........[0m[91m. .......... .......... 48% 53.9M 0s
+build	15-Jan-2023 06:01:10	  1150K .......... .......... .......... .......... .......... 51%  140M 0s
+build	15-Jan-2023 06:01:10	  1200K .......... .......... .......... .......... .......... 53%  209M 0s
+build	15-Jan-2023 06:01:10	  1250K .......... .......... .......... .......... .......... 55%  126M 0s
+build	15-Jan-2023 06:01:10	  1300K .......... .......... .......... .......... .......... 57%  143M 0s
+build	15-Jan-2023 06:01:10	  1350K .......... .......... .......... .......... .......... 59%  140M 0s
+build	15-Jan-2023 06:01:10	  1400K .......... .......... .......... .......... .......... 61%  147M 0s
+build	15-Jan-2023 06:01:10	  1450K .......... .......... .......... .......... .......... 63%  135M 0s
+build	15-Jan-2023 06:01:10	  1500K .......... .........[0m[91m. .......... .......... .....[0m[91m..... 66%  128M 0s
+build	15-Jan-2023 06:01:10	  1550K ...[0m[91m....... .[0m[91m........[0m[91m. .......... .......... .......... 68%  142M 0s
+build	15-Jan-2023 06:01:10	  1600K .......... .......... .......... .......... .......... 70%  143M 0s
+build	15-Jan-2023 06:01:10	  1650K .......... .......... .......... .......... .......... 72%  170M 0s
+build	15-Jan-2023 06:01:10	  1700K .......... .......... .......... .......... .......... 74%  131M 0s
+build	15-Jan-2023 06:01:10	  1750K .......... .......... .......... .......... .......... 76%  146M 0s
+build	15-Jan-2023 06:01:10	  1800K .......... .......... .......... .......... .......... 78%  243M 0s
+build	15-Jan-2023 06:01:10	  1850K .......... .......... .......... .......... .......... 80%  219M 0s
+build	15-Jan-2023 06:01:10	  1900K .......... .......... .......... .......... .......... 83%  215M 0s
+build	15-Jan-2023 06:01:10	  1950K .......... .......... .......... .......... .......... 85%  242M 0s
+build	15-Jan-2023 06:01:10	  2000K .......... .........[0m[91m. .........[0m[91m. .......... .....[0m[91m..... 87% 18.4M 0s
+build	15-Jan-2023 06:01:10	  2050K .......... .......... .......[0m[91m... .......... ...[0m[91m....... 89%  223M 0s
+build	15-Jan-2023 06:01:10	  2100K .........[0m[91m. .......... .....[0m[91m..... ...[0m[91m....... .........[0m[91m. 91%  139M 0s
+build	15-Jan-2023 06:01:10	  2150K .......[0m[91m... .....[0m[91m..... .......... .[0m[91m......... .......[0m[91m... 93%  159M 0s
+build	15-Jan-2023 06:01:10	  2200K .....[0m[91m..... .......... .[0m[91m......... .......[0m[91m... .......... 95%  196M 0s
+build	15-Jan-2023 06:01:10	  2250K ...[0m[91m....... .........[0m[91m. .......... .....[0m[91m..... ...[0m[91m....... 97%  209M 0s
+build	15-Jan-2023 06:01:10	  2300K .[0m[91m......... .......[0m[91m... .....[0m[91m..... ...[0m[91m....... ........  100%  169M=0.05s
+build	15-Jan-2023 06:01:10	
+build	15-Jan-2023 06:01:10	[0m[91m2023-01-15 05:01:10 (42.6 MB/s) - ‘/usr/local/bin/gosu’ saved [2404352/2404352]
+build	15-Jan-2023 06:01:10	
+build	15-Jan-2023 06:01:11	[0mRemoving intermediate container b51fc5b7bd58
+build	15-Jan-2023 06:01:11	 ---> bac3af09ccf8
+build	15-Jan-2023 06:01:11	Step 11/23 : WORKDIR /defaults/artemis
+build	15-Jan-2023 06:01:11	 ---> Running in 7b4707859aae
+build	15-Jan-2023 06:01:11	Removing intermediate container 7b4707859aae
+build	15-Jan-2023 06:01:11	 ---> 51ddb966080c
+build	15-Jan-2023 06:01:11	Step 12/23 : COPY src/main/resources/config/application*.yml ./
+build	15-Jan-2023 06:01:11	 ---> 6be172e41f10
+build	15-Jan-2023 06:01:11	Step 13/23 : WORKDIR /opt/artemis
+build	15-Jan-2023 06:01:11	 ---> Running in bf5b7810a38e
+build	15-Jan-2023 06:01:11	Removing intermediate container bf5b7810a38e
+build	15-Jan-2023 06:01:11	 ---> df88caec7611
+build	15-Jan-2023 06:01:11	Step 14/23 : ARG WAR_PATH=build/libs
+build	15-Jan-2023 06:01:11	 ---> Running in d6925a9b3a70
+build	15-Jan-2023 06:01:12	Removing intermediate container d6925a9b3a70
+build	15-Jan-2023 06:01:12	 ---> 03d43b8f3bc3
+build	15-Jan-2023 06:01:12	Step 15/23 : COPY $WAR_PATH/*.war Artemis.war
+build	15-Jan-2023 06:01:14	 ---> c273301364fd
+build	15-Jan-2023 06:01:14	Step 16/23 : COPY bootstrap.sh /bootstrap.sh
+build	15-Jan-2023 06:01:15	 ---> 49b61c6be465
+build	15-Jan-2023 06:01:15	Step 17/23 : RUN chmod +x /bootstrap.sh   && useradd -ms /bin/bash artemis
+build	15-Jan-2023 06:01:15	 ---> Running in a7905e099723
+build	15-Jan-2023 06:01:15	Removing intermediate container a7905e099723
+build	15-Jan-2023 06:01:15	 ---> 371deaa1071e
+build	15-Jan-2023 06:01:15	Step 18/23 : RUN mkdir -p /opt/artemis/config /opt/artemis/data /opt/artemis/public/content
+build	15-Jan-2023 06:01:15	 ---> Running in e0fcde57453a
+build	15-Jan-2023 06:01:16	Removing intermediate container e0fcde57453a
+build	15-Jan-2023 06:01:16	 ---> 344bae6f7ccc
+build	15-Jan-2023 06:01:16	Step 19/23 : VOLUME ["/opt/artemis/config"]
+build	15-Jan-2023 06:01:16	 ---> Running in b2734e3f7f88
+build	15-Jan-2023 06:01:16	Removing intermediate container b2734e3f7f88
+build	15-Jan-2023 06:01:16	 ---> d7b2d15decf9
+build	15-Jan-2023 06:01:16	Step 20/23 : VOLUME ["/opt/artemis/data"]
+build	15-Jan-2023 06:01:16	 ---> Running in f6dd9c75bf3c
+build	15-Jan-2023 06:01:16	Removing intermediate container f6dd9c75bf3c
+build	15-Jan-2023 06:01:16	 ---> e8e15af58236
+build	15-Jan-2023 06:01:16	Step 21/23 : VOLUME ["/opt/artemis/public/content"]
+build	15-Jan-2023 06:01:16	 ---> Running in f32d2783a9d4
+build	15-Jan-2023 06:01:16	Removing intermediate container f32d2783a9d4
+build	15-Jan-2023 06:01:16	 ---> 037196a36716
+build	15-Jan-2023 06:01:16	Step 22/23 : EXPOSE 8080
+build	15-Jan-2023 06:01:16	 ---> Running in e080c7a69ef1
+build	15-Jan-2023 06:01:16	Removing intermediate container e080c7a69ef1
+build	15-Jan-2023 06:01:16	 ---> 4c28313b493f
+build	15-Jan-2023 06:01:16	Step 23/23 : ENTRYPOINT ["/bin/bash", "/bootstrap.sh"]
+build	15-Jan-2023 06:01:16	 ---> Running in 35f2c58864bc
+build	15-Jan-2023 06:01:16	Removing intermediate container 35f2c58864bc
+build	15-Jan-2023 06:01:16	 ---> 7467aa5f6fd4
+build	15-Jan-2023 06:01:16	
+build	15-Jan-2023 06:01:17	Successfully built 7467aa5f6fd4
+build	15-Jan-2023 06:01:17	Successfully tagged cypress_artemis-app:latest
+error	15-Jan-2023 06:01:17	using --exit-code-from implies --abort-on-container-exit
+error	15-Jan-2023 06:01:18	Starting cypress_artemis-mysql_1 ... 
+error	15-Jan-2023 06:01:18	[1A[2K
+error	15-Jan-2023 06:01:18	Starting cypress_artemis-mysql_1 ... [32mdone[0m
+error	15-Jan-2023 06:01:20	[1BRecreating cypress_artemis-app_1 ... 
+error	15-Jan-2023 06:01:21	[1A[2K
+error	15-Jan-2023 06:01:21	Recreating cypress_artemis-app_1 ... [32mdone[0m
+error	15-Jan-2023 06:01:21	[1BRecreating cypress_artemis-cypress_1 ... 
+error	15-Jan-2023 06:01:22	[1A[2K
+error	15-Jan-2023 06:01:22	Recreating cypress_artemis-cypress_1 ... [32mdone[0m
+build	15-Jan-2023 06:01:22	Attaching to cypress_artemis-mysql_1, cypress_artemis-app_1, cypress_artemis-cypress_1
+build	15-Jan-2023 06:01:22	[36martemis-app_1      |[0m Config is not empty .. not copying default configs ..
+build	15-Jan-2023 06:01:22	[36martemis-app_1      |[0m Starting application...
+build	15-Jan-2023 06:01:22	[36martemis-app_1      |[0m Picked up _JAVA_OPTIONS: -Xmx5120m -Xms2560m
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15 05:01:18+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.31-1.el8 started.
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15 05:01:18+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15 05:01:18+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.31-1.el8 started.
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.343549Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.343584Z 0 [Warning] [MY-011068] [Server] The syntax '--ssl=off' is deprecated and will be removed in a future release. Please use --tls-version='' instead.
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.346292Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.31) starting as process 1
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.355825Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.583227Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.820831Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.860981Z 0 [Warning] [MY-011302] [Server] Plugin mysqlx reported: 'Failed at SSL configuration: "SSL context is not usable without certificate and private key"'
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.861222Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+build	15-Jan-2023 06:01:22	[32martemis-mysql_1    |[0m 2023-01-15T05:01:19.861347Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.31'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE Unsupported engine {
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE   package: '@heddendorp/coverage-git-compare@1.6.1',
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE   required: { node: '^18.12.1' },
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE   current: { node: 'v18.12.0', npm: '8.19.2' }
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE }
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE Unsupported engine {
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE   package: '@heddendorp/cypress-plugin-multilanguage-coverage@1.6.0',
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE   required: { node: '^18.12.1' },
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE   current: { node: 'v18.12.0', npm: '8.19.2' }
+build	15-Jan-2023 06:01:22	[33martemis-cypress_1  |[0m npm WARN EBADENGINE }
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m 
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m   [31m █████╗ ██████╗ [34m████████╗███████╗███╗   ███╗[31m██╗███████╗
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m   [31m██╔══██╗██╔══██╗[34m╚══██╔══╝██╔════╝████╗ ████║[31m██║██╔════╝
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m   [31m███████║██████╔╝[34m   ██║   █████╗  ██╔████╔██║[31m██║███████╗
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m   [31m██╔══██║██╔══██╗[34m   ██║   ██╔══╝  ██║╚██╔╝██║[31m██║╚════██║
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m   [31m██║  ██║██║  ██║[34m   ██║   ███████╗██║ ╚═╝ ██║[31m██║███████║
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m   [31m╚═╝  ╚═╝╚═╝  ╚═╝[34m   ╚═╝   ╚══════╝╚═╝     ╚═╝[31m╚═╝╚══════╝
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m 
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m [30m:: Interactive Learning with Individual Feedback ::
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m 
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m [30m:: Powered by Spring Boot 2.7.6 ::
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m 
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m [2m2023-01-15 05:01:24.803[0;39m [32m INFO[0;39m [35m1[0;39m [2m---[0;39m [2m[           main][0;39m [36mde.tum.in.www1.artemis.ArtemisApp       [0;39m [2m:[0;39m Starting ArtemisApp v6.0.0 using Java 17.0.5 on f6fa6bf36f48 with PID 1 (/opt/artemis/Artemis.war started by artemis in /opt/artemis)
+build	15-Jan-2023 06:01:24	[36martemis-app_1      |[0m [2m2023-01-15 05:01:24.809[0;39m [32m INFO[0;39m [35m1[0;39m [2m---[0;39m [2m[           main][0;39m [36mde.tum.in.www1.artemis.ArtemisApp       [0;39m [2m:[0;39m The following 6 profiles are active: "prod", "bamboo", "bitbucket", "jira", "artemis", "cypress"
+build	15-Jan-2023 06:01:40	[36martemis-app_1      |[0m [2m2023-01-15 05:01:40.942[0;39m [32m INFO[0;39m [35m1[0;39m [2m---[0;39m [2m[           main][0;39m [36md.t.i.www1.artemis.config.WebConfigurer [0;39m [2m:[0;39m Web application configuration, using profiles: prod
+build	15-Jan-2023 06:01:40	[36martemis-app_1      |[0m [2m2023-01-15 05:01:40.945[0;39m [32m INFO[0;39m [35m1[0;39m [2m---[0;39m [2m[           main][0;39m [36md.t.i.www1.artemis.config.WebConfigurer [0;39m [2m:[0;39m Web application fully configured
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m [2m2023-01-15 05:01:41.559[0;39m [31mERROR[0;39m [35m1[0;39m [2m---[0;39m [2m[           main][0;39m [36md.t.i.w.a.config.LiquibaseConfiguration [0;39m [2m:[0;39m Cannot start Artemis because version table does not exist, but a migration path is necessary! Please start the release 5.12.9 first, otherwise the migration will fail
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m [2m2023-01-15 05:01:41.569[0;39m [33m WARN[0;39m [35m1[0;39m [2m---[0;39m [2m[           main][0;39m [36mConfigServletWebServerApplicationContext[0;39m [2m:[0;39m Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [de/tum/in/www1/artemis/config/LiquibaseConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [liquibase.integration.spring.SpringLiquibase]: Factory method 'liquibase' threw exception; nested exception is java.lang.RuntimeException: Cannot start Artemis because version table does not exist, but a migration path is necessary! Please start the release 5.12.9 first, otherwise the migration will fail
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m [2m2023-01-15 05:01:41.717[0;39m [31mERROR[0;39m [35m1[0;39m [2m---[0;39m [2m[           main][0;39m [36mo.s.boot.SpringApplication              [0;39m [2m:[0;39m Application run failed
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [de/tum/in/www1/artemis/config/LiquibaseConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [liquibase.integration.spring.SpringLiquibase]: Factory method 'liquibase' threw exception; nested exception is java.lang.RuntimeException: Cannot start Artemis because version table does not exist, but a migration path is necessary! Please start the release 5.12.9 first, otherwise the migration will fail
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at de.tum.in.www1.artemis.ArtemisApp.main(ArtemisApp.java:63)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:49)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.boot.loader.Launcher.launch(Launcher.java:108)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.boot.loader.WarLauncher.main(WarLauncher.java:59)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [liquibase.integration.spring.SpringLiquibase]: Factory method 'liquibase' threw exception; nested exception is java.lang.RuntimeException: Cannot start Artemis because version table does not exist, but a migration path is necessary! Please start the release 5.12.9 first, otherwise the migration will fail
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	... 27 common frames omitted
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m Caused by: java.lang.RuntimeException: Cannot start Artemis because version table does not exist, but a migration path is necessary! Please start the release 5.12.9 first, otherwise the migration will fail
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at de.tum.in.www1.artemis.config.LiquibaseConfiguration.getPreviousVersionElseThrow(LiquibaseConfiguration.java:139)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at de.tum.in.www1.artemis.config.LiquibaseConfiguration.checkMigrationPath(LiquibaseConfiguration.java:108)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at de.tum.in.www1.artemis.config.LiquibaseConfiguration.liquibase(LiquibaseConfiguration.java:69)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at de.tum.in.www1.artemis.config.LiquibaseConfiguration$$EnhancerBySpringCGLIB$$8bd6cb64.CGLIB$liquibase$0(<generated>)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at de.tum.in.www1.artemis.config.LiquibaseConfiguration$$EnhancerBySpringCGLIB$$8bd6cb64$$FastClassBySpringCGLIB$$1f8b9c.invoke(<generated>)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at de.tum.in.www1.artemis.config.LiquibaseConfiguration$$EnhancerBySpringCGLIB$$8bd6cb64.liquibase(<generated>)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	... 28 common frames omitted
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m Exception in thread "Logback shutdown hook [default]" java.lang.ArrayIndexOutOfBoundsException: arraycopy: length -2 is negative
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/java.lang.System.arraycopy(Native Method)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/java.util.ArrayList.shiftTailOverGap(ArrayList.java:746)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/java.util.ArrayList.batchRemove(ArrayList.java:839)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/java.util.ArrayList.retainAll(ArrayList.java:811)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at ch.qos.logback.classic.LoggerContext.resetListenersExceptResetResistant(LoggerContext.java:305)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at ch.qos.logback.classic.LoggerContext.reset(LoggerContext.java:227)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at ch.qos.logback.classic.LoggerContext.stop(LoggerContext.java:348)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at ch.qos.logback.core.hook.ShutdownHookBase.stop(ShutdownHookBase.java:39)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at ch.qos.logback.core.hook.DelayingShutdownHook.run(DelayingShutdownHook.java:57)
+build	15-Jan-2023 06:01:41	[36martemis-app_1      |[0m 	at java.base/java.lang.Thread.run(Thread.java:833)
+build	15-Jan-2023 06:01:42	[36mcypress_artemis-app_1 exited with code 1
+error	15-Jan-2023 06:01:42	[1BStopping cypress_artemis-cypress_1   ... 
+error	15-Jan-2023 06:01:42	Stopping cypress_artemis-mysql_1     ... 
+error	15-Jan-2023 06:01:53	[2A[2K
+error	15-Jan-2023 06:01:53	Stopping cypress_artemis-cypress_1   ... [32mdone[0m
+error	15-Jan-2023 06:01:54	[2B[1A[2K
+error	15-Jan-2023 06:01:54	Stopping cypress_artemis-mysql_1     ... [32mdone[0m
+build	15-Jan-2023 06:01:54	[0mAborting on container exit...
+error	15-Jan-2023 06:01:54	[1B
+build	15-Jan-2023 06:01:54	Cypress container exit code: 137
+build	15-Jan-2023 06:01:54	Not creating success file because the tests failed
+simple	15-Jan-2023 06:01:54	Finished task 'Deploy Artemis and run Cypress tests' with result: Success
+simple	15-Jan-2023 06:01:54	Starting task 'Parse test results' of type 'com.atlassian.bamboo.plugins.testresultparser:task.testresultparser.junit'
+simple	15-Jan-2023 06:01:54	Parsing test results under /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA...
+simple	15-Jan-2023 06:01:54	Failing task since test cases were expected but none were found.
+simple	15-Jan-2023 06:01:54	Finished task 'Parse test results' with result: Failed
+simple	15-Jan-2023 06:01:54	Starting task 'Make sure all docker containers are cleaned up' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 06:01:54	Beginning to execute external process for build 'Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-769 - Cypress E2E Tests on Bamboo #7 (ARTEMIS-AETG1266-DA-7)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AETG1266-DA-7-ScriptBuildTask-5965736653435244299.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA\n
+error	15-Jan-2023 06:01:56	Removing cypress_artemis-cypress_1 ... 
+error	15-Jan-2023 06:01:56	Removing cypress_artemis-app_1     ... 
+error	15-Jan-2023 06:01:56	Removing cypress_artemis-mysql_1   ... 
+error	15-Jan-2023 06:01:56	[1A[2K
+error	15-Jan-2023 06:01:56	Removing cypress_artemis-mysql_1   ... [32mdone[0m
+error	15-Jan-2023 06:01:56	[1B[2A[2K
+error	15-Jan-2023 06:01:56	Removing cypress_artemis-app_1     ... [32mdone[0m
+error	15-Jan-2023 06:01:56	[2B[3A[2K
+build	15-Jan-2023 06:01:56	Going to remove cypress_artemis-cypress_1, cypress_artemis-app_1, cypress_artemis-mysql_1
+error	15-Jan-2023 06:01:56	Removing cypress_artemis-cypress_1 ... [32mdone[0m
+error	15-Jan-2023 06:01:56	[3B
+simple	15-Jan-2023 06:01:56	Finished task 'Make sure all docker containers are cleaned up' with result: Success
+command	15-Jan-2023 06:01:56	Substituting password variable: ${bamboo.GitHubSecret}
+command	15-Jan-2023 06:01:56	Substituting variable: ${bamboo.shortJobName} with Cypress E2E Tests on Bamboo
+command	15-Jan-2023 06:01:56	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AETG1266-DA-7
+command	15-Jan-2023 06:01:56	Substituting variable: ${bamboo.repository.revision.number} with 5886aec39435f7afaa4f9e59056da906742ab753
+command	15-Jan-2023 06:01:56	Substituting password variable: ${bamboo.GitHubSecret}
+command	15-Jan-2023 06:01:56	Substituting variable: ${bamboo.shortJobName} with Cypress E2E Tests on Bamboo
+command	15-Jan-2023 06:01:56	Substituting variable: ${bamboo.buildResultsUrl} with https://bamboo.ase.in.tum.de/browse/ARTEMIS-AETG1266-DA-7
+command	15-Jan-2023 06:01:56	Substituting variable: ${bamboo.repository.revision.number} with 5886aec39435f7afaa4f9e59056da906742ab753
+simple	15-Jan-2023 06:01:56	Starting task 'GitHub: Update Build Status' of type 'com.atlassian.bamboo.plugins.scripttask:task.builder.script'
+command	15-Jan-2023 06:01:56	Beginning to execute external process for build 'Artemis - Artemis E2E Tests (Cypress in Docker) - flake-check-build-769 - Cypress E2E Tests on Bamboo #7 (ARTEMIS-AETG1266-DA-7)'\n ... running command line: \n/opt/bambooagent/bamboo-agent-home/temp/ARTEMIS-AETG1266-DA-7-ScriptBuildTask-5594857682116362815.sh\n ... in: /opt/bambooagent/bamboo-agent-home/xml-data/build-dir/ARTEMIS-AETG1266-DA\n
+build	15-Jan-2023 06:01:56	Sending failure to github
+error	15-Jan-2023 06:01:56	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+error	15-Jan-2023 06:01:56	                                 Dload  Upload   Total   Spent    Left  Speed
+error	15-Jan-2023 06:01:56	
+error	15-Jan-2023 06:01:57	  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+error	15-Jan-2023 06:01:57	100   169    0     0  100   169      0    836 --:--:-- --:--:-- --:--:--   832
+error	15-Jan-2023 06:01:57	100  1741  100  1572  100   169   3871    416 --:--:-- --:--:-- --:--:--  4277
+simple	15-Jan-2023 06:01:57	Finished task 'GitHub: Update Build Status' with result: Success
+simple	15-Jan-2023 06:01:57	Running post build plugin 'Docker Container Cleanup'
+simple	15-Jan-2023 06:01:57	Running post build plugin 'NCover Results Collector'
+simple	15-Jan-2023 06:01:57	Running post build plugin 'Build Results Label Collector'
+simple	15-Jan-2023 06:01:57	Running post build plugin 'Clover Results Collector'
+simple	15-Jan-2023 06:01:57	Running post build plugin 'npm Cache Cleanup'
+simple	15-Jan-2023 06:01:57	Running post build plugin 'Artifact Copier'
+simple	15-Jan-2023 06:01:57	Finalising the build...
+simple	15-Jan-2023 06:01:57	Stopping timer.
+simple	15-Jan-2023 06:01:57	Build ARTEMIS-AETG1266-DA-7 completed.
+simple	15-Jan-2023 06:01:57	Running on server: post build plugin 'Build Hanging Detection Configuration'
+simple	15-Jan-2023 06:01:57	Running on server: post build plugin 'NCover Results Collector'
+simple	15-Jan-2023 06:01:57	Running on server: post build plugin 'Build Labeller'
+simple	15-Jan-2023 06:01:57	Running on server: post build plugin 'Clover Delta Calculator'
+simple	15-Jan-2023 06:01:57	Running on server: post build plugin 'Maven Dependencies Postprocessor'
+simple	15-Jan-2023 06:01:57	All post build plugins have finished
+simple	15-Jan-2023 06:01:57	Generating build results summary...
+simple	15-Jan-2023 06:01:57	Saving build results to disk...
+simple	15-Jan-2023 06:01:57	Store variable context...
+simple	15-Jan-2023 06:01:57	Finished building ARTEMIS-AETG1266-DA-7.
