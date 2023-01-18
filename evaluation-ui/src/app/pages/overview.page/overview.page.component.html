@@ -89,14 +89,30 @@
                     <span *ngIf="run.suspectedFlaky" class="badge">
                       suspected flaky
                     </span>
-                    <span *ngIf="run.flakeData" class="badge">
+                    <span
+                      *ngIf="run.flakeData?.allRunsPositive"
+                      class="badge-success badge"
+                    >
+                      flake check perfect
+                    </span>
+                    <span
+                      *ngIf="
+                        run.flakeData &&
+                        !run.flakeData.allRunsPositive &&
+                        run.flakeData.positiveRuns !== 0
+                      "
+                      class="badge"
+                    >
                       flake check {{ run.flakeData.runs.length }}/30
                     </span>
                     <span *ngIf="run.chromeIssue" class="badge-error badge">
                       chrome issue
                     </span>
                     <span
-                      *ngIf="run.flakeCheckIssue"
+                      *ngIf="
+                        run.flakeCheckIssue &&
+                        (run.flakeData?.positiveRuns ?? 0) === 0
+                      "
                       class="badge-warning badge"
                     >
                       flake check issue

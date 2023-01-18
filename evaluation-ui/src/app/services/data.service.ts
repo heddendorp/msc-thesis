@@ -23,6 +23,8 @@ export interface FlakeData {
   commit: string;
   path: string;
   limit: string;
+  positiveRuns: number;
+  allRunsPositive: boolean;
   runs: Run[];
 }
 

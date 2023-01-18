@@ -98,6 +98,10 @@ async function run() {
             .join("\n");
           try {
             flakeData = JSON.parse(flakeOutput);
+            flakeData.positiveRuns = flakeData.runs.filter(
+              (run: any) => run.suspectedFlaky
+            ).length;
+            flakeData.allRunsPositive = flakeData.positiveRuns === flakeData.runs.length;
             // flakeData.runs = flakeData.runs.map((run: any) => ({
             //   ...run,
             //   testResults: run.testResults.map((result) => ({

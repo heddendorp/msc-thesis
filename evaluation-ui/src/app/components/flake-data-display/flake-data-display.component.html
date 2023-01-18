@@ -3,6 +3,25 @@
   <p class="mb-6">
     Run based on commit <span class="font-mono">{{ flakeData.commit }}</span>
   </p>
+  <div class="mb-6 rounded-xl border p-4" *ngIf="flakeData.allRunsPositive">
+    <h3 class="text-xl font-bold">Covered files</h3>
+    <ol class="list-inside list-decimal">
+      <li
+        *ngFor="
+          let result of flakeData.runs[flakeData.runs.length - 1].testResults
+        "
+      >
+        Tests in "{{ result.testName }}" covered
+        {{ result.coveredFiles.length }} files
+
+        <ul class="list-inside list-disc pl-4">
+          <li *ngFor="let file of result.coveredFiles" class="font-mono">
+            {{ file }}
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </div>
   <div class="flex flex-col gap-4">
     <div *ngFor="let run of flakeData.runs">
       <p>
@@ -10,19 +29,21 @@
         {{ run.suspectedFlaky ? "✅" : "❌" }}
       </p>
       <p>Detected {{ run.changedFiles.length }} changed files</p>
-      <p>Test results:</p>
-      <ol class="list-inside list-decimal">
-        <li *ngFor="let result of run.testResults">
-          Tests in "{{ result.testName }}" covered
-          {{ result.coveredFiles.length }} files
+      <ng-container *ngIf="!run.suspectedFlaky">
+        <p>Test results:</p>
+        <ol class="list-inside list-decimal">
+          <li *ngFor="let result of run.testResults">
+            Tests in "{{ result.testName }}" covered
+            {{ result.coveredFiles.length }} files
 
-          <ul class="list-inside list-disc pl-4">
-            <li *ngFor="let file of result.changedFiles">
-              Covered and changed: <span class="font-mono">{{ file }}</span>
-            </li>
-          </ul>
-        </li>
-      </ol>
+            <ul class="list-inside list-disc pl-4">
+              <li *ngFor="let file of result.changedFiles">
+                Covered and changed: <span class="font-mono">{{ file }}</span>
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </ng-container>
     </div>
   </div>
 </ng-container>

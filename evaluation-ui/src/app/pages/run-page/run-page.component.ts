@@ -5,11 +5,17 @@ import { switchMap, tap } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { MatButtonModule } from '@angular/material/button';
 import { FlakeDataDisplayComponent } from '../../components/flake-data-display/flake-data-display.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-run-page',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, FlakeDataDisplayComponent],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    FlakeDataDisplayComponent,
+  ],
   templateUrl: './run-page.component.html',
   styleUrls: ['./run-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
