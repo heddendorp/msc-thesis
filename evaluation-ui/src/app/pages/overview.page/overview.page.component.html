@@ -1,15 +1,40 @@
-<main class="prose max-w-none p-6">
+<main class="prose max-w-none p-6" *ngIf="data$ | async as data">
   <h1>Overview</h1>
+  <div class="not-prose">
+    <div class="stats stats-vertical md:stats-horizontal">
+      <div class="stat">
+        <div class="stat-title">Branches</div>
+        <div class="stat-value">{{ data.branches.length }}</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Cypress Runs</div>
+        <div class="stat-value">{{ data.cypressRuns }}</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Flake Check Runs</div>
+        <div class="stat-value">{{ data.flakeCheckRuns }}</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Total Runs</div>
+        <div class="stat-value">
+          {{ data.flakeCheckRuns + data.cypressRuns }}
+        </div>
+      </div>
+    </div>
+  </div>
   <h2>Branches</h2>
   <div class="not-prose flex flex-col gap-6">
     <div
-      *ngFor="let branch of branchData$ | async"
+      *ngFor="let branch of data.branches"
       class="card flex flex-col border bg-base-100 p-0"
     >
       <div class="p-4">
         <h3>{{ branch.name }}</h3>
       </div>
-      <div class="flex flex-col divide-y md:flex-row md:divide-x">
+      <div class="flex flex-col divide-y lg:flex-row lg:divide-x">
         <div
           *ngFor="let plan of branch.plans"
           class="relative flex flex-1 flex-col gap-4 border-t p-4"
@@ -52,28 +77,47 @@
                   <p class="w-6">
                     {{ run.analyzedTestcases }}
                   </p>
-                  <p>Testcases</p>
-                  <a
-                    mat-stroked-button
-                    routerLink="/run"
-                    [queryParams]="{ file: run.path }"
-                  >
-                    <mat-icon svgIcon="icon-info"></mat-icon>
-                    Details
-                  </a>
-                  <a
-                    href="https://bamboobruegge.in.tum.de/browse/{{
-                      plan.planKey
-                    }}-{{ run.runNumber }}"
-                    target="_blank"
-                    mat-stroked-button
-                  >
-                    <mat-icon svgIcon="icon-external-link-squared"></mat-icon>
-                    Bamboo
-                  </a>
+                  <p>Tests</p>
+                  <ng-container *ngIf="mobileQuery.matches; else bigButtons">
+                    <a
+                      mat-icon-button
+                      routerLink="/run"
+                      [queryParams]="{ file: run.path }"
+                    >
+                      <mat-icon svgIcon="icon-info"></mat-icon>
+                    </a>
+                    <a
+                      href="https://bamboobruegge.in.tum.de/browse/{{
+                        plan.planKey
+                      }}-{{ run.runNumber }}"
+                      target="_blank"
+                      mat-icon-button
+                    >
+                      <mat-icon svgIcon="icon-external-link-squared"></mat-icon>
+                    </a>
+                  </ng-container>
+                  <ng-template #bigButtons>
+                    <a
+                      mat-stroked-button
+                      routerLink="/run"
+                      [queryParams]="{ file: run.path }"
+                    >
+                      <mat-icon svgIcon="icon-info"></mat-icon>Details
+                    </a>
+                    <a
+                      href="https://bamboobruegge.in.tum.de/browse/{{
+                        plan.planKey
+                      }}-{{ run.runNumber }}"
+                      target="_blank"
+                      mat-stroked-button
+                    >
+                      <mat-icon svgIcon="icon-external-link-squared"></mat-icon>
+                      Bamboo
+                    </a>
+                  </ng-template>
                 </div>
                 <div class="flex flex-col gap-2 pl-6">
-                  <div class="flex flex-row items-center gap-2">
+                  <div class="flex flex-row flex-wrap items-center gap-2">
                     <span *ngIf="run.cypressPluginVersion" class="badge">
                       CMC: {{ run.cypressPluginVersion }}
                     </span>

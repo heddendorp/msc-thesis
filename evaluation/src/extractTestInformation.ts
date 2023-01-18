@@ -25,7 +25,9 @@ async function run() {
     },
   });
   const data = jetpack.read("./data/data.json", "json");
-  const index: any[] = [];
+  const plans: any[] = [];
+  let flakeCheckRuns = 0;
+  let cypressRuns = 0;
   for (const branch of data.branches) {
     console.log(`Branch: ${branch.branchName}`);
     if (!branch.plans) {
@@ -49,6 +51,11 @@ async function run() {
       let fails = 0;
       const times: number[] = [];
       for (const logFile of logFiles) {
+        if(plan.isFlakeCheck){
+          flakeCheckRuns++;
+        } else {
+          cypressRuns++;
+        }
         console.log(`Checking logfile: ${logFile}`);
         const log = jetpack.read(logFile, "utf8");
         if (!log) {
@@ -190,7 +197,7 @@ async function run() {
         Math.round(
           (times.reduce((a, b) => a + b, 0) / times.length / 60) * 100
         ) / 100;
-      index.push({
+      plans.push({
         ...plan,
         branch: branch.branchName,
         averageTime,
@@ -199,7 +206,7 @@ async function run() {
         informationFiles,
       });
     }
-    jetpack.write("./data/json/index.json", index);
+    jetpack.write("./data/json/index.json", {plans, branchConfig: data.branches, flakeCheckRuns, cypressRuns});
     console.log();
   }
 }

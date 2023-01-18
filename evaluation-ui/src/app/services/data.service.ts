@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, shareReplay } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs';
 
 export interface TestResult {
   testName: string;
@@ -29,6 +29,7 @@ export interface FlakeData {
 }
 
 export interface RunData {
+  path: string;
   analyzedTestcases: number;
   analyzedTests: number;
   confirmedFlaky: boolean;
@@ -46,7 +47,7 @@ export interface RunData {
   totalTime: number;
 }
 
-export interface IndexData {
+export interface PlanData {
   planKey: string;
   isFlakeCheck: boolean;
   runningGoal: number;
@@ -58,6 +59,13 @@ export interface IndexData {
   informationFiles: string[];
 }
 
+export interface IndexData {
+  plans: PlanData[];
+  branchConfig: any[];
+  flakeCheckRuns: number;
+  cypressRuns: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -65,18 +73,20 @@ export class DataService {
   constructor(private httpClient: HttpClient) {}
 
   public getIndexData() {
-    return this.httpClient.get<IndexData[]>('./data/json/index.json').pipe(
-      map((data) =>
-        data.map((plan) => ({
+    return this.httpClient.get<IndexData>('./data/json/index.json').pipe(
+      map((data) => ({
+        ...data,
+        plans: data.plans.map((plan) => ({
           ...plan,
           runs: plan.informationFiles.map((file: string) =>
             this.httpClient
               .get<RunData>(file)
               .pipe(map((run) => ({ ...run, path: file })))
           ),
-        }))
-      ),
-      shareReplay(1)
+        })),
+      })),
+      shareReplay(1),
+      tap(console.log)
     );
   }
 
