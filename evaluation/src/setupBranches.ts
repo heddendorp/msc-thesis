@@ -36,7 +36,7 @@ async function run() {
     //   `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix}`
     // );
     execSync(
-      `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix} -l`,
+      `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix}`,
       { cwd: artemisDir }
     );
     console.log(`Branch ${branchName} created`);
