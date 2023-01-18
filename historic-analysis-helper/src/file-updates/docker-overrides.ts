@@ -15,9 +15,8 @@ RUN chmod +x /bootstrap.sh
 const cypressDockerfile = `
 ARG CYPRESS_BROWSER=node18.6.0-chrome105-ff104
 FROM cypress/browsers:\${CYPRESS_BROWSER}
-RUN export DEBIAN_FRONTEND=noninteractive && \\
-    apt update && \\
-        apt -y install openjdk-17-jdk
+RUN apt-get update
+RUN apt-get -y install default-jre
 `;
 const bootstrapFile = `#!/bin/bash
 
