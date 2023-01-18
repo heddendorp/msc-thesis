@@ -4,6 +4,9 @@ dotenv.config();
 import { chromium } from "playwright";
 import * as jetpack from "fs-jetpack";
 
+let startedRuns = 0;
+const maxRuns = process.env.MAX_RUNS ? Number(process.env.MAX_RUNS) : 8;
+
 async function run() {
   const data = jetpack.read("./data/data.json", "json");
   const browser = await chromium.launch({ headless: !process.env.DEV });
@@ -22,6 +25,10 @@ async function run() {
       continue;
     }
     for (const plan of branch.plans) {
+      if (startedRuns >= maxRuns) {
+        console.log("Reached max runs");
+        break;
+      }
       console.log(`Checking runs for ${plan.planKey}`);
       await page.goto(`https://bamboobruegge.in.tum.de/browse/${plan.planKey}`);
       await page.locator(`[id="history\\:${plan.planKey}"]`).click();
@@ -34,6 +41,7 @@ async function run() {
           console.log(`Running ${plan.planKey}`);
           await runButton.click();
           await page.getByRole("link", { name: "Run branch" }).click();
+          startedRuns++;
           // wait for 10 to 30 secs
           await new Promise((resolve) => setTimeout(resolve, Math.random() * 20000 + 10000));
         } else {

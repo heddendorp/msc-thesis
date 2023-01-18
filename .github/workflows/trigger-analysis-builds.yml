@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 1-5 * * *"
   workflow_dispatch:
+    inputs:
+      maxRuns:
+        description: 'Maximum number of runs to trigger'
+        required: true
+        default: '16'
 
 jobs:
   run:
@@ -23,3 +28,4 @@ jobs:
         env:
           BAMBOO_USERNAME: ${{ secrets.BAMBOO_USERNAME }}
           BAMBOO_PASSWORD: ${{ secrets.BAMBOO_PASSWORD }}
+          MAX_RUNS: ${{ github.event.inputs.maxRuns || 20 }}
