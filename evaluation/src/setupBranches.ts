@@ -4,7 +4,7 @@ import { execSync } from "child_process";
 import { resolve } from "path";
 import jetpack from "fs-jetpack";
 
-const branchPrefix = "flake-check";
+const branchPrefix = "historic";
 const helperVersion = "latest";
 
 async function branchExists(branchName: string): Promise<boolean> {
@@ -36,7 +36,7 @@ async function run() {
     //   `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix}`
     // );
     execSync(
-      `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix}`,
+      `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix} -l`,
       { cwd: artemisDir }
     );
     console.log(`Branch ${branchName} created`);
@@ -44,7 +44,16 @@ async function run() {
       branchName,
     });
   }
-  jetpack.write("./data/data.json", { ...data, branches });
+  // sort analyzedBuilds by target
+  const analyzedBuilds = data.analyzedBuilds;
+  analyzedBuilds.sort((a, b) => {
+    return Number(a.target) - Number(b.target);
+  });
+  // sort branches by branchName
+  branches.sort((a, b) => {
+    return a.branchName.localeCompare(b.branchName);
+  });
+  jetpack.write("./data/data.json", { ...data, branches, analyzedBuilds });
 }
 
 run();

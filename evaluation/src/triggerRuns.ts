@@ -34,6 +34,8 @@ async function run() {
           console.log(`Running ${plan.planKey}`);
           await runButton.click();
           await page.getByRole("link", { name: "Run branch" }).click();
+          // wait for 10 to 30 secs
+          await new Promise((resolve) => setTimeout(resolve, Math.random() * 20000 + 10000));
         } else {
           console.log("Run button is disabled");
         }
