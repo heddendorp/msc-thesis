@@ -205,13 +205,55 @@
       ]
     },
     {
-      "branchName": "historic/build-777"
+      "branchName": "historic/build-777",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1314",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF201",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "historic/build-778"
+      "branchName": "historic/build-778",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1313",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF200",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "historic/build-781"
+      "branchName": "historic/build-781",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1312",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF199",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "historic/build-782",

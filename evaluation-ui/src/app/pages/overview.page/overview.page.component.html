@@ -1,7 +1,7 @@
 <main class="prose max-w-none p-6" *ngIf="data$ | async as data">
   <h1>Overview</h1>
   <div class="not-prose">
-    <div class="stats stats-vertical md:stats-horizontal">
+    <div class="stats stats-vertical w-full md:stats-horizontal">
       <div class="stat">
         <div class="stat-title">Branches</div>
         <div class="stat-value">{{ data.branches.length }}</div>
