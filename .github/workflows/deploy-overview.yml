@@ -24,6 +24,9 @@ jobs:
         with:
           node-version: 18
           cache: 'yarn'
+          cache-dependency-path: |
+            evaluation/yarn.lock
+            evaluation-ui/yarn.lock
 
       - name: Install dependencies for evaluation
         run: yarn --frozen-lockfile
