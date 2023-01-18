@@ -26,6 +26,14 @@ export const compareFiles = async (
       )
     );
   }
+  if(coverageFiles.length === 0) {
+    if(json) {
+      console.log(`"error": "No coverage files found"`);
+    } else {
+      console.log(chalk.red(`No coverage files found`));
+    }
+    return true;
+  }
   let nonFlakyFail = false;
   let isFirst = true;
   if (json) {

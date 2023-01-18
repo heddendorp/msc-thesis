@@ -69,10 +69,38 @@
       ]
     },
     {
-      "branchName": "historic/build-718"
+      "branchName": "historic/build-718",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1299",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF186",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "historic/build-767"
+      "branchName": "historic/build-767",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1298",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF185",
+          "isFlakeCheck": true,
+          "runningGoal": 20,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "historic/build-769"

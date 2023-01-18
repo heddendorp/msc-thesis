@@ -5,7 +5,6 @@ import util from 'util';
 import chalk from 'chalk';
 import { getPathsFromPackageLock } from '../helpers/package-lock-handler';
 import jetpack from 'fs-jetpack';
-import minimatch from 'minimatch';
 import { compareFiles } from '../helpers/compare-files';
 import {version} from '../../package.json';
 
