@@ -23,16 +23,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'yarn'
 
       - name: Install dependencies for evaluation
-        run: yarn
+        run: yarn --frozen-lockfile
         working-directory: evaluation
       - name: Extract information from logs
         run: node -r @swc-node/register ./src/extractTestInformation.ts
         working-directory: evaluation
 
       - name: Install dependencies for angular
-        run: yarn
+        run: yarn --frozen-lockfile
         working-directory: evaluation-ui
       - name: Build Angular
         run: yarn build:pages
