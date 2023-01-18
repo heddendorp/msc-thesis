@@ -20,7 +20,10 @@ export function registerMultilanguageCoveragePlugin(
   };
   return (on, config) => {
     on('before:run', handleBeforeRun(pluginConfig));
-    on('before:browser:launch', handleBeforeBrowserLaunch(pluginConfig));
+    on(
+      'before:browser:launch',
+      handleBeforeBrowserLaunch(pluginConfig, config)
+    );
     on('before:spec', handleBeforeSpec(pluginConfig, config));
     on('after:spec', handleAfterSpec(pluginConfig, config));
     on('after:run', handleAfterRun(pluginConfig));

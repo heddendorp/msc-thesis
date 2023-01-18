@@ -2,9 +2,13 @@ import * as Cypress from 'cypress';
 import {Config} from './index';
 import {ChromeClient} from './chromeClient';
 import BrowserLaunchOptions = Cypress.BrowserLaunchOptions;
+import PluginConfigOptions = Cypress.PluginConfigOptions;
 import jetpack from 'fs-jetpack';
 
-export function handleBeforeBrowserLaunch(config: Config) {
+export function handleBeforeBrowserLaunch(
+  config: Config,
+  cypressConfig: PluginConfigOptions
+) {
   return async (
     browser: Cypress.Browser,
     launchOptions: Cypress.BrowserLaunchOptions
@@ -29,6 +33,11 @@ export function handleBeforeBrowserLaunch(config: Config) {
     }
     const rdp = parseInt(rdpArgument.split('=')[1]);
     ChromeClient.setPort(rdp);
+    const cypressVersion = Number(cypressConfig.version.split('.')[0]);
+    if (cypressVersion < 10) {
+      console.log('Starting chrome coverage for cypress version <10');
+      void ChromeClient.startCoverage();
+    }
     const endTime = Date.now();
     jetpack.append('times.txt', (endTime - startTime).toString());
     console.log('TIME_PASSED', endTime - startTime);

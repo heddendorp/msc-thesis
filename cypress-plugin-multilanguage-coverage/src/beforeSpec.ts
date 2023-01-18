@@ -17,10 +17,14 @@ export function handleBeforeSpec(
   return async (spec: Cypress.Cypress['spec']) => {
     const startTime = Date.now();
     console.log('Starting code coverage for spec: ' + spec.name);
-    try {
-      await ChromeClient.startCoverage();
-    } catch (e) {
-      console.log('Error starting chrome coverage', e);
+    const cypressVersion = Number(pluginConfig.version.split('.')[0]);
+    if (cypressVersion > 10) {
+      try {
+        console.log('Starting chrome coverage for cypress version 10+');
+        await ChromeClient.startCoverage();
+      } catch (e) {
+        console.log('Error starting chrome coverage', e);
+      }
     }
     if (config.resetCoverageOnSpecStart && config.enableJavaCoverage) {
       await exec(
