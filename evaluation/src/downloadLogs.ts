@@ -44,12 +44,12 @@ async function run() {
         console.log("Trying download");
         try {
           const downloadPromise = page.waitForEvent("download", {
-            timeout: 3000,
+            timeout: 1000,
           });
           downloadPromise.catch(() => {});
           await page
             .getByRole("link", { name: "Download" })
-            .click({ timeout: 500 });
+            .click({ timeout: 200 });
           const download = await downloadPromise;
           await download.saveAs(logPath);
           console.log(
