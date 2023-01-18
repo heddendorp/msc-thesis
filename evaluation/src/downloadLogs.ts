@@ -49,7 +49,7 @@ async function run() {
           downloadPromise.catch(() => {});
           await page
             .getByRole("link", { name: "Download" })
-            .click({ timeout: 200 });
+            .click({ timeout: 500 });
           const download = await downloadPromise;
           await download.saveAs(logPath);
           console.log(
