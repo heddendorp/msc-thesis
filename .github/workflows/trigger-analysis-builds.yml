@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
             node-version: 18
+            cache: yarn
+            cache-dependency-path: evaluation/yarn.lock
       - run: yarn
       - run: node -r @swc-node/register ./src/triggerRuns.ts
         env:
