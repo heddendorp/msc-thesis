@@ -331,6 +331,16 @@
       "planKey": "ARTEMIS-AETG",
       "target": 718,
       "lastSuccess": 716
+    },
+    {
+      "planKey": "ARTEMIS-AETG",
+      "target": 689,
+      "lastSuccess": 682
+    },
+    {
+      "planKey": "ARTEMIS-AETG",
+      "target": 682,
+      "lastSuccess": 681
     }
   ]
 }
