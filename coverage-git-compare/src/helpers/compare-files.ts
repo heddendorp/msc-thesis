@@ -12,6 +12,14 @@ export const compareFiles = async (
   const coverageFiles = await coverageFolder.findAsync({
     matching: '*files.json',
   });
+  if(coverageFiles.length === 0) {
+    if(json) {
+      console.log(`"error": "No coverage files found"`);
+    } else {
+      console.log(chalk.red(`No coverage files found`));
+    }
+    return true;
+  }
   if (json) {
     console.log(`"commitNumber": "${commitNumber}", "changedFiles": ${JSON.stringify(changedFiles)}, "coverageFiles": ${JSON.stringify(coverageFiles)},`);
   } else {
@@ -25,14 +33,6 @@ export const compareFiles = async (
         `Changed files: ${changedFiles.length} files changed in ${commitNumber} commits`
       )
     );
-  }
-  if(coverageFiles.length === 0) {
-    if(json) {
-      console.log(`"error": "No coverage files found"`);
-    } else {
-      console.log(chalk.red(`No coverage files found`));
-    }
-    return true;
   }
   let nonFlakyFail = false;
   let isFirst = true;

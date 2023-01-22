@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import { runAnalysis } from './cli-compare';
 import {version} from '../../package.json';
+import { execSync } from 'child_process';
 
 export function registerHistoricAnalysisCommand(program: Command) {
   program
@@ -15,9 +16,9 @@ export function registerHistoricAnalysisCommand(program: Command) {
         `{ "commit": "${commit}", "path": "${path}", "limit": "${limit}", "runs": [`
       );
       for (let i = 0; i < parseInt(limit); i++) {
-        console.log(`{ "commit": "${commit}~${i}",`);
+        const commit = execSync(`git rev-parse HEAD~${i}`).toString().trim();
         const exitCode = await runAnalysis({
-          commit: `${commit}~${i}`,
+          commit,
           path,
           limit: 10,
           json: true,
