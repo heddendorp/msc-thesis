@@ -4,23 +4,46 @@ import jetpack from 'fs-jetpack';
 import { Command } from 'commander';
 import util from 'util';
 import { compareFiles } from '../helpers/compare-files';
-import {version} from '../../package.json';
+import { version } from '../../package.json';
+import parseDiff from 'parse-diff';
+import { compareLines } from '../helpers/compare-lines';
 
 const exec = util.promisify(require('child_process').exec);
 
 export async function runAnalysis({ commit, path, limit, json }) {
   const { stdout } = await exec(
     `git log ${
-      commit ? `${commit}...HEAD` : `-${limit}`
-    } --pretty="@begin@%h@end@" --name-only`
+      commit ? `${commit}...HEAD` : `HEAD~${limit}...HEAD`
+    } --pretty="@begin@%h@end@" --name-only`,
+    { maxBuffer: 1024 * 500 }
   );
   const commitNumber = stdout.split('@begin@').length - 1;
-  const files = stdout
-    .split('\n')
-    .map((line: string) => line.trim())
-    .filter((line: string) => !line.includes('@begin@') && line.length);
-
-  const changedFiles = Array.from(new Set<string>(files));
+  const { stdout: diff } = await exec(
+    `git diff ${commit ? `${commit}` : `HEAD~${limit}`}`,
+    { maxBuffer: 1024 * 500 }
+  );
+  const changedFiles = parseDiff(diff).map((change) => change.to);
+  const changedLines = parseDiff(diff).map((change) => ({
+    file: change.to,
+    lines: change.chunks.flatMap((chunk) =>
+      Array.from(
+        new Set(
+          chunk.changes.flatMap((change) => {
+            switch (change.type) {
+              case 'add':
+                return [change.ln];
+              case 'normal':
+                return [change.ln1, change.ln2];
+              case 'del':
+                return [change.ln];
+              default:
+                return [];
+            }
+          })
+        )
+      )
+    ),
+  }));
   if (changedFiles.some((file: string) => file === 'package-lock.json')) {
     if (!json) {
       console.log(
@@ -53,8 +76,23 @@ export async function runAnalysis({ commit, path, limit, json }) {
     commitNumber,
     json
   );
+  const nonFlakyFailLines = await compareLines(
+    path,
+    changedLines,
+    commitNumber,
+    json
+  );
   console.log();
   if (nonFlakyFail) {
+    if (!json) {
+      console.log(chalk.yellow('File coverage indicates a non flaky failure'));
+    }
+  } else {
+    if (!json) {
+      console.log(chalk.green('File coverage indicates a flaky failure'));
+    }
+  }
+  if (nonFlakyFailLines) {
     if (!json) {
       console.log(chalk.red('Failure does not appear to be flaky'));
     }

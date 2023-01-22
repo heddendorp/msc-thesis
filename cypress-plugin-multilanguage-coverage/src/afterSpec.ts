@@ -44,6 +44,7 @@ export function handleAfterSpec(
     );
     console.log('Collecting code coverage for spec: ' + specName);
     let frontendFiles: string[] = [];
+    let frontendLines: {file: string; lines: number[]}[] = [];
     let frontendCoverage: any = {error: 'Collection failed'};
     try {
       const client = await ChromeClient.get();
@@ -76,6 +77,29 @@ export function handleAfterSpec(
             Object.values(entry.f).some((v: any) => v > 0)
         )
         .map((entry: any) => entry.path.split('webpack:').pop().substring(1));
+      frontendLines = frontendCoverage
+        .filter((entry: any) => Object.values(entry.s).some((v: any) => v > 0))
+        .map(
+          (entry: {
+            path: string;
+            s: {[id: string]: number};
+            statementMap: {
+              [id: string]: {start: {line: number}; end: {line: number}};
+            };
+          }) => ({
+            file: entry.path.split('webpack:').pop()?.substring(1),
+            lines: Object.entries(entry.s)
+              .filter(([_, v]) => v > 0)
+              .flatMap(([k]) => {
+                const start = entry.statementMap[k].start.line;
+                const end = entry.statementMap[k].end.line;
+                return Array.from(
+                  {length: end - start + 1},
+                  (_, i) => i + start
+                );
+              }),
+          })
+        );
     } catch (e) {
       console.error(e);
       console.warn('could not collect frontend coverage');
@@ -155,11 +179,26 @@ export function handleAfterSpec(
           }
           return entry.file;
         });
+      const javaLines = javaCoverage
+        .filter((entry: any) => entry.lines.hit)
+        .map((entry: any) => ({
+          file: config.distributionFile
+            ? entry.file
+            : entry.file.replace(
+                'de/tum/in/www1/artemis/',
+                'src/main/java/de/tum/in/www1/artemis/'
+              ),
+          lines: entry.lines.details
+            .filter((detail: any) => detail.hit)
+            .map((detail: any) => detail.line),
+        }));
       const coveredFiles = frontendFiles.concat(javaFiles);
+      const coveredLines = frontendLines.concat(javaLines);
       if (config.saveRawCoverage) {
         coverageFolder.write(`${specName}-java.json`, javaCoverage);
       }
       coverageFolder.write(`${specName}-covered-files.json`, coveredFiles);
+      coverageFolder.write(`${specName}-covered-lines.json`, coveredLines);
     }
 
     if (config.saveRawCoverage) {
@@ -168,6 +207,7 @@ export function handleAfterSpec(
 
     if (!config.enableJavaCoverage) {
       coverageFolder.write(`${specName}-covered-files.json`, frontendFiles);
+      coverageFolder.write(`${specName}-covered-lines.json`, frontendLines);
     }
     const endTime = Date.now();
     jetpack.append('times.txt', (endTime - startTime).toString());

@@ -6,7 +6,9 @@ import chalk from 'chalk';
 import { getPathsFromPackageLock } from '../helpers/package-lock-handler';
 import jetpack from 'fs-jetpack';
 import { compareFiles } from '../helpers/compare-files';
-import {version} from '../../package.json';
+import { version } from '../../package.json';
+import parseDiff from 'parse-diff';
+import { compareLines } from '../helpers/compare-lines';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -23,9 +25,7 @@ export function registerBambooCompareCommand(program: Command) {
       'develop'
     )
     .action(async (planKey, token, { path, branch }) => {
-      console.log(
-        `COVERAGE_GIT_COMPARE-VERSION: ${version}`
-      );
+      console.log(`COVERAGE_GIT_COMPARE-VERSION: ${version}`);
       let lastSuccessfulCommit = 'HEAD^';
       const planResponse = await fetch(
         `https://bamboobruegge.in.tum.de/rest/api/latest/result/${planKey}`,
@@ -45,9 +45,10 @@ export function registerBambooCompareCommand(program: Command) {
             (result: any) => result.buildState === 'Successful'
           )?.buildResultKey;
         } else {
-          lastSuccessfulBuild = result.buildState === 'Successful'
-            ? result.buildResultKey
-            : undefined;
+          lastSuccessfulBuild =
+            result.buildState === 'Successful'
+              ? result.buildResultKey
+              : undefined;
         }
       } catch (e) {
         console.warn(
@@ -74,14 +75,35 @@ export function registerBambooCompareCommand(program: Command) {
         lastSuccessfulCommit = branch;
       }
       const { stdout } = await exec(
-        `git log ${lastSuccessfulCommit}...HEAD --pretty="@begin@%h@end@" --name-only`
+        `git log ${lastSuccessfulCommit}...HEAD --pretty="@begin@%h@end@" --name-only`,
+        { maxBuffer: 1024 * 500 }
       );
       const commitNumber = stdout.split('@begin@').length - 1;
-      const files = stdout
-        .split('\n')
-        .map((line: string) => line.trim())
-        .filter((line: string) => !line.includes('@begin@') && line.length);
-      const changedFiles = Array.from(new Set<string>(files));
+      const { stdout: diff } = await exec(`git diff ${lastSuccessfulCommit}`, {
+        maxBuffer: 1024 * 500,
+      });
+      const changedFiles = parseDiff(diff).map((change) => change.to);
+      const changedLines = parseDiff(diff).map((change) => ({
+        file: change.to,
+        lines: change.chunks.flatMap((chunk) =>
+          Array.from(
+            new Set(
+              chunk.changes.flatMap((change) => {
+                switch (change.type) {
+                  case 'add':
+                    return [change.ln];
+                  case 'normal':
+                    return [change.ln1, change.ln2];
+                  case 'del':
+                    return [change.ln];
+                  default:
+                    return [];
+                }
+              })
+            )
+          )
+        ),
+      }));
       if (changedFiles.some((file: string) => file === 'package-lock.json')) {
         console.log(
           chalk.gray(
@@ -103,8 +125,20 @@ export function registerBambooCompareCommand(program: Command) {
         changedFiles.push(...additionalFiles);
       }
       const nonFlakyFail = await compareFiles(path, changedFiles, commitNumber);
+      const nonFlakyFailLines = await compareLines(
+        path,
+        changedLines,
+        commitNumber
+      );
       console.log();
       if (nonFlakyFail) {
+        console.log(
+          chalk.yellow('File coverage indicates a non flaky failure')
+        );
+      } else {
+        console.log(chalk.green('File coverage indicates a flaky failure'));
+      }
+      if (nonFlakyFailLines) {
         console.log(chalk.red('Failure does not appear to be flaky'));
         process.exit(1);
       } else {
