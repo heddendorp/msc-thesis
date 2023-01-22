@@ -51,7 +51,7 @@ async function run() {
       let fails = 0;
       const times: number[] = [];
       for (const logFile of logFiles) {
-        if(plan.isFlakeCheck){
+        if (plan.isFlakeCheck) {
           flakeCheckRuns++;
         } else {
           cypressRuns++;
@@ -108,7 +108,8 @@ async function run() {
             flakeData.positiveRuns = flakeData.runs.filter(
               (run: any) => run.suspectedFlaky
             ).length;
-            flakeData.allRunsPositive = flakeData.positiveRuns === flakeData.runs.length;
+            flakeData.allRunsPositive =
+              flakeData.positiveRuns === flakeData.runs.length;
             // flakeData.runs = flakeData.runs.map((run: any) => ({
             //   ...run,
             //   testResults: run.testResults.map((result) => ({
@@ -140,13 +141,21 @@ async function run() {
         const suspectedFlaky = log.includes("FLAKECHECK:POSITIVE");
         const suspectedNotFlaky = log.includes("FLAKECHECK:NEGATIVE");
         const chromeIssue = log.includes("Could not connect to Chrome");
+        const unshallowError = log.includes("Error: Failed to unshallow repository");
+        const cypressMissing = log.includes("No version of Cypress is installed in: ");
         // Extract coverage compare version from `COVERAGE_GIT_COMPARE-VERSION: ${version}`
-        const coverageCompareVersion = lines.find((line) =>
-          line.includes("COVERAGE_GIT_COMPARE-VERSION")
-        )?.split(":").pop()?.trim();
-        const cypressPluginVersion = lines.find((line) =>
-          line.includes("CYPRESS_PLUGIN_MULIILANGUAGE_COVERAGE-VERSION")
-        )?.split(":").pop()?.trim();
+        const coverageCompareVersion = lines
+          .find((line) => line.includes("COVERAGE_GIT_COMPARE-VERSION"))
+          ?.split(":")
+          .pop()
+          ?.trim();
+        const cypressPluginVersion = lines
+          .find((line) =>
+            line.includes("CYPRESS_PLUGIN_MULIILANGUAGE_COVERAGE-VERSION")
+          )
+          ?.split(":")
+          .pop()
+          ?.trim();
         const confirmedFlaky = !failedBuild && hasRerun;
         const flakeCheckIssue = failedBuild && suspectedNotFlaky;
 
@@ -161,7 +170,9 @@ async function run() {
           .replace(".txt", ".json")
           .replace("logs", "json");
         informationFiles.push(jsonFile.replaceAll("\\", "/"));
-        times.push(totalTime);
+        if (totalTime > 1000) {
+          times.push(totalTime);
+        }
         if (confirmedFlaky) {
           confirmedFlakes++;
         }
@@ -174,6 +185,8 @@ async function run() {
           runNumber,
           failedBuild,
           hasRerun,
+          unshallowError,
+          cypressMissing,
           coverageCompareVersion,
           cypressPluginVersion,
           suspectedFlaky,
@@ -206,7 +219,12 @@ async function run() {
         informationFiles,
       });
     }
-    jetpack.write("./data/json/index.json", {plans, branchConfig: data.branches, flakeCheckRuns, cypressRuns});
+    jetpack.write("./data/json/index.json", {
+      plans,
+      branchConfig: data.branches,
+      flakeCheckRuns,
+      cypressRuns,
+    });
     console.log();
   }
 }

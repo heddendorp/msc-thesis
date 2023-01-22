@@ -4,7 +4,7 @@ import { execSync } from "child_process";
 import { resolve } from "path";
 import jetpack from "fs-jetpack";
 
-const branchPrefix = "falky-evaluation";
+const branchPrefix = "flaky-evaluation";
 const helperVersion = "latest";
 const batchSize = 5;
 
