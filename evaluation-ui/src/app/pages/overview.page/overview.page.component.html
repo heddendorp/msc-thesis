@@ -26,6 +26,12 @@
     </div>
   </div>
   <h2>Branches</h2>
+  <input
+    type="text"
+    placeholder="Filter branches"
+    [formControl]="branchFilterControl"
+    class="input-bordered input mb-6 w-full max-w-xs"
+  />
   <div class="not-prose flex flex-col gap-6">
     <div
       *ngFor="let branch of data.branches"
@@ -148,6 +154,15 @@
                       class="badge"
                     >
                       flake check {{ run.flakeData.runs.length }}/30
+                    </span>
+                    <span *ngIf="run.cypressMissing" class="badge-error badge">
+                      Cypress missing
+                    </span>
+                    <span
+                      *ngIf="run.unshallowError"
+                      class="badge-warning badge"
+                    >
+                      unshallow error
                     </span>
                     <span *ngIf="run.chromeIssue" class="badge-error badge">
                       chrome issue

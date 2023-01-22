@@ -24,26 +24,65 @@
   </div>
   <div class="flex flex-col gap-4">
     <div *ngFor="let run of flakeData.runs">
-      <p>
-        Including {{ run.commitNumber }} commits:
-        {{ run.suspectedFlaky ? "✅" : "❌" }}
-      </p>
-      <p>Detected {{ run.changedFiles.length }} changed files</p>
-      <ng-container *ngIf="!run.suspectedFlaky">
-        <p>Test results:</p>
-        <ol class="list-inside list-decimal">
-          <li *ngFor="let result of run.testResults">
-            Tests in "{{ result.testName }}" covered
-            {{ result.coveredFiles.length }} files
-
-            <ul class="list-inside list-disc pl-4">
-              <li *ngFor="let file of result.changedFiles">
-                Covered and changed: <span class="font-mono">{{ file }}</span>
-              </li>
-            </ul>
-          </li>
-        </ol>
+      <ng-container *ngIf="run.lineCheck; else fileLevel">
+        <p>
+          Including {{ run.commitNumber }} commits:
+          {{ run.suspectedFlaky ? "✅" : "❌" }}
+        </p>
+        <p>Detected {{ run.lineCheck.changedFiles.length }} changed files</p>
+        <ng-container *ngIf="!run.lineCheck.suspectedFlaky">
+          <p>Test results:</p>
+          <ol class="list-inside list-decimal">
+            <li *ngFor="let result of run.lineCheck.testResults">
+              Tests in "{{ result.testName }}" covered
+              {{ result.coveredFiles.length }} files
+              <ul class="list-inside list-disc pl-4">
+                <li *ngFor="let file of result.changedFiles">
+                  Covered and changed:
+                  <span class="font-mono">{{ file.file }}</span> lines
+                  <ng-container
+                    *ngIf="run.commit.includes('~'); else linkLines"
+                  >
+                    {{ file.lines.join(", ") }}
+                  </ng-container>
+                  <ng-template #linkLines>
+                    <a
+                      *ngFor="let line of file.lines"
+                      href="https://github.com/ls1intum/Artemis/blob/{{
+                        run.commit
+                      }}/{{ file.file }}#L{{ line }}"
+                      target="_blank"
+                    >
+                      ,{{ line }}
+                    </a>
+                  </ng-template>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </ng-container>
       </ng-container>
+      <ng-template #fileLevel>
+        <p>
+          Including {{ run.commitNumber }} commits:
+          {{ run.suspectedFlaky ? "✅" : "❌" }}
+        </p>
+        <p>Detected {{ run.changedFiles.length }} changed files</p>
+        <ng-container *ngIf="!run.suspectedFlaky">
+          <p>Test results:</p>
+          <ol class="list-inside list-decimal">
+            <li *ngFor="let result of run.testResults">
+              Tests in "{{ result.testName }}" covered
+              {{ result.coveredFiles.length }} files
+              <ul class="list-inside list-disc pl-4">
+                <li *ngFor="let file of result.changedFiles">
+                  Covered and changed: <span class="font-mono">{{ file }}</span>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </ng-container>
+      </ng-template>
     </div>
   </div>
 </ng-container>

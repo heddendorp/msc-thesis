@@ -17,6 +17,14 @@ export interface Run {
   suspectedFlaky: boolean;
   exitCode: string;
   flag: string;
+  lineCheck?: Omit<Run, 'changedFiles' | 'testResults'> & {
+    changedFiles: { file: string; lines: number[] }[];
+    testResults: Array<{
+      testName: string;
+      coveredFiles: { file: string; lines: number[] }[];
+      changedFiles: { file: string; lines: number[] }[];
+    }>;
+  };
 }
 
 export interface FlakeData {
@@ -36,6 +44,8 @@ export interface RunData {
   failedBuild: boolean;
   flakeCheckIssue: boolean;
   chromeIssue: boolean;
+  unshallowError: boolean;
+  cypressMissing: boolean;
   coverageCompareVersion: string;
   cypressPluginVersion: string;
   flakeData?: FlakeData;
@@ -84,9 +94,7 @@ export class DataService {
               .pipe(map((run) => ({ ...run, path: file })))
           ),
         })),
-      })),
-      shareReplay(1),
-      tap(console.log)
+      }))
     );
   }
 

@@ -11,22 +11,37 @@ import {
   PlanData,
   RunData,
 } from '../../services/data.service';
-import { map, Observable, tap } from 'rxjs';
+import { combineLatest, map, Observable, startWith, tap } from 'rxjs';
 import { groupBy, reduce } from 'lodash-es';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  Router,
+  RouterLink,
+} from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-overview.page',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule, RouterLink],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterLink,
+    ReactiveFormsModule,
+  ],
   templateUrl: './overview.page.component.html',
   styleUrls: ['./overview.page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverviewPageComponent implements OnDestroy {
+  public branchFilterControl = new FormControl<string>('', {
+    nonNullable: true,
+  });
   public data$: Observable<
     IndexData & {
       branches: {
@@ -37,14 +52,17 @@ export class OverviewPageComponent implements OnDestroy {
   >;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
+  private _filterSubscription;
   constructor(
     private dataService: DataService,
     changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher
+    media: MediaMatcher,
+    route: ActivatedRoute,
+    router: Router
   ) {
-    this.data$ = dataService.getIndexData().pipe(
-      map(
-        (data) => ({
+    this.data$ = combineLatest([
+      dataService.getIndexData().pipe(
+        map((data) => ({
           ...data,
           branches: reduce(
             groupBy(data.plans, 'branch'),
@@ -54,9 +72,31 @@ export class OverviewPageComponent implements OnDestroy {
             },
             [] as any[]
           ),
-        }),
-        tap(console.log)
-      )
+        }))
+      ),
+      this.branchFilterControl.valueChanges.pipe(
+        startWith(route.snapshot.queryParams['branch'] || ''),
+        map((branch) => branch.toLowerCase())
+      ),
+    ]).pipe(
+      map(([data, branchFilter]) => ({
+        ...data,
+        branches: data.branches.filter((branch: any) =>
+          branch.name.toLowerCase().includes(branchFilter)
+        ),
+      }))
+    );
+    this.branchFilterControl.setValue(
+      route.snapshot.queryParams['branch'] || ''
+    );
+    this._filterSubscription = this.branchFilterControl.valueChanges.subscribe(
+      (value) => {
+        void router.navigate([], {
+          relativeTo: route,
+          queryParams: { branch: value },
+          queryParamsHandling: 'merge',
+        });
+      }
     );
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -64,5 +104,6 @@ export class OverviewPageComponent implements OnDestroy {
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this._filterSubscription.unsubscribe();
   }
 }
