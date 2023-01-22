@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'thesis/**'
 
 jobs:
   build_release_thesis:
@@ -38,7 +40,8 @@ jobs:
       - name: Compile LaTeX document
         uses: dante-ev/latex-action@master
         with:
-          root_file: ./thesis/thesis.tex
+          root_file: ./thesis.tex
+          working_directory: ./thesis
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
