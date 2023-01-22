@@ -110,18 +110,10 @@ async function run() {
             ).length;
             flakeData.allRunsPositive =
               flakeData.positiveRuns === flakeData.runs.length;
-            // flakeData.runs = flakeData.runs.map((run: any) => ({
-            //   ...run,
-            //   testResults: run.testResults.map((result) => ({
-            //     ...result,
-            //     coveredFiles: result.coveredFiles.map((file) =>
-            //       file.split("webpack:").pop().substring(1)
-            //     ),
-            //   })),
-            // }));
           } catch (e) {
             console.error("Error parsing flake output");
-            jetpack.write("./data/json/error.txt", flakeOutput);
+            jetpack.write(logFile
+              .replace("logs", "json/errors"), flakeOutput);
           }
         }
 

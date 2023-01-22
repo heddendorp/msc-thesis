@@ -11,8 +11,9 @@ const xmlParser = new XMLParser();
 async function run() {
   const data = jetpack.read("./data/data.json", "json");
   const browser = await chromium.launch({ headless: !process.env.DEV });
-  const page = await browser.newPage();
+  let page;
   const login = async () => {
+    const page = await browser.newPage();
     await page.goto(
       "https://bamboobruegge.in.tum.de/userlogin!doDefault.action?os_destination=%2Fstart.action"
     );
@@ -22,6 +23,7 @@ async function run() {
     await page.getByLabel("Password").fill(process.env.BAMBOO_PASSWORD ?? "");
     await page.getByLabel("Remember my login on this computer").check();
     await page.locator("#loginForm_save").click();
+    return page;
   };
   for (const branch of data.branches) {
     if(!branch.plans){
@@ -40,7 +42,7 @@ async function run() {
       );
       const xml = await planResponse.text();
       const data = xmlParser.parse(xml).results.results.result;
-      const results = (Array.isArray(data)?data:[data]).filter((result) => result.buildState !== "Unknown");
+      const results = (Array.isArray(data)?data:data?[data]:[]).filter((result) => result.buildState !== "Unknown");
       for (const result of results) {
         const buildNumber = result.buildNumber;
         console.log(`Checking build #${buildNumber}`);
@@ -50,7 +52,9 @@ async function run() {
           console.log("Log already exists");
           continue;
         }
-        await login();
+        if(!page){
+          page = await login();
+        }
         await page.goto(
           `https://bamboobruegge.in.tum.de/browse/${plan.planKey}-${buildNumber}/log`
         );
