@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     FlakeDataDisplayComponent,
+    RouterLink,
   ],
   templateUrl: './run-page.component.html',
   styleUrls: ['./run-page.component.scss'],
