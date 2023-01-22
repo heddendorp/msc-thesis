@@ -17,6 +17,7 @@ export function registerHistoricAnalysisCommand(program: Command) {
       );
       for (let i = 0; i < parseInt(limit); i++) {
         const commit = execSync(`git rev-parse HEAD~${i}`).toString().trim();
+        console.log(`{ "commit": "${commit}", `);
         const exitCode = await runAnalysis({
           commit,
           path,
