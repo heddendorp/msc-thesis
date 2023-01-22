@@ -80,7 +80,7 @@ export function registerBambooCompareCommand(program: Command) {
       );
       const commitNumber = stdout.split('@begin@').length - 1;
       const { stdout: diff } = await exec(`git diff ${lastSuccessfulCommit}`, {
-        maxBuffer: 1024 * 500,
+        maxBuffer: 1024 * 1000,
       });
       const changedFiles = parseDiff(diff).map((change) => change.to);
       const changedLines = parseDiff(diff).map((change) => ({

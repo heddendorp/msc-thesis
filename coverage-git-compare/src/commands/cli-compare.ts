@@ -20,7 +20,7 @@ export async function runAnalysis({ commit, path, limit, json }) {
   const commitNumber = stdout.split('@begin@').length - 1;
   const { stdout: diff } = await exec(
     `git diff ${commit ? `${commit}` : `HEAD~${limit}`}`,
-    { maxBuffer: 1024 * 500 }
+    { maxBuffer: 1024 * 1000 }
   );
   const changedFiles = parseDiff(diff).map((change) => change.to);
   const changedLines = parseDiff(diff).map((change) => ({
