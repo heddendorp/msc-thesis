@@ -4,8 +4,9 @@ import { execSync } from "child_process";
 import { resolve } from "path";
 import jetpack from "fs-jetpack";
 
-const branchPrefix = "historic";
+const branchPrefix = "falky-evaluation";
 const helperVersion = "latest";
+const batchSize = 5;
 
 async function branchExists(branchName: string): Promise<boolean> {
   try {
@@ -19,9 +20,13 @@ async function branchExists(branchName: string): Promise<boolean> {
 }
 
 async function run() {
+  let branchesCreated = 0;
   const data = jetpack.read("./data/data.json", "json");
   const branches = data.branches;
   for (const buildConfig of data.analyzedBuilds) {
+    if (branchesCreated >= batchSize) {
+      break;
+    }
     console.log(`Checking branch for ${buildConfig.target}...`);
     const branchName = `${branchPrefix}/build-${buildConfig.target}`;
     const branch = await branchExists(branchName);
@@ -39,6 +44,7 @@ async function run() {
       `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix}`,
       { cwd: artemisDir }
     );
+    branchesCreated++;
     console.log(`Branch ${branchName} created`);
     branches.push({
       branchName,

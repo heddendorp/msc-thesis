@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import jetpack from "fs-jetpack";
 import { XMLParser } from "fast-xml-parser";
+import { fetch } from "@whatwg-node/fetch";
 
 const masterPlanKeyRegular = "ARTEMIS-AETG";
 const masterPlanKeyFlaky = "ARTEMIS-AECF";
@@ -58,13 +59,13 @@ async function run() {
         {
           planKey: regularKey,
           isFlakeCheck: false,
-          runningGoal: 6,
+          runningGoal: 2,
           saveLogs: true,
         },
         {
           planKey: flakyKey,
           isFlakeCheck: true,
-          runningGoal: 20,
+          runningGoal: 5,
           saveLogs: true,
         },
       ];
