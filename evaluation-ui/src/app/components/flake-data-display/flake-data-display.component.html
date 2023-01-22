@@ -46,15 +46,26 @@
                     {{ file.lines.join(", ") }}
                   </ng-container>
                   <ng-template #linkLines>
-                    <a
-                      *ngFor="let line of file.lines"
-                      href="https://github.com/ls1intum/Artemis/blob/{{
-                        run.commit
-                      }}/{{ file.file }}#L{{ line }}"
-                      target="_blank"
+                    <ng-container
+                      *ngFor="
+                        let range of groupLines(file.lines);
+                        let f = first
+                      "
                     >
-                      ,{{ line }}
-                    </a>
+                      <span *ngIf="!f">, </span>
+                      <a
+                        href="https://github.com/ls1intum/Artemis/blob/{{
+                          run.commit
+                        }}/{{ file.file }}#L{{ range.start }}-L{{ range.end }}"
+                        target="_blank"
+                        class="underline"
+                        >{{
+                          range.start === range.end
+                            ? range.start
+                            : range.start + "-" + range.end
+                        }}</a
+                      >
+                    </ng-container>
                   </ng-template>
                 </li>
               </ul>
