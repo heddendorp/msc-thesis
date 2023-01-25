@@ -5,13 +5,13 @@ import { map, shareReplay, tap } from 'rxjs';
 export interface TestResult {
   testName: string;
   changedFiles: string[];
-  coveredFiles: string[];
+  coveredFileNum: number;
 }
 
 export interface Run {
   commit: string;
   commitNumber: string;
-  changedFiles: string[];
+  changedFileNum: number;
   coverageFiles: string[];
   testResults: TestResult[];
   suspectedFlaky: boolean;
@@ -21,8 +21,9 @@ export interface Run {
     changedFiles: { file: string; lines: number[] }[];
     testResults: Array<{
       testName: string;
-      coveredFiles: { file: string; lines: number[] }[];
+      coveredFileNum: number;
       changedFiles: { file: string; lines: number[] }[];
+      coveredLineNum: number;
     }>;
   };
 }

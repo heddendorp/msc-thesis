@@ -23,6 +23,7 @@ jobs:
         env:
             BAMBOO_USERNAME: ${{ secrets.BAMBOO_USERNAME }}
             BAMBOO_PASSWORD: ${{ secrets.BAMBOO_PASSWORD }}
+            BAMBOO_TOKEN: ${{ secrets.BAMBOO_TOKEN }}
       - uses: EndBug/add-and-commit@v9
         with:
           message: Update Logs

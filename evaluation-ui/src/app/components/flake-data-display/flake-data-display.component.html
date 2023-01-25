@@ -12,13 +12,7 @@
         "
       >
         Tests in "{{ result.testName }}" covered
-        {{ result.coveredFiles.length }} files
-
-        <ul class="list-inside list-disc pl-4">
-          <li *ngFor="let file of result.coveredFiles" class="font-mono">
-            {{ file }}
-          </li>
-        </ul>
+        {{ result.coveredFileNum }} files
       </li>
     </ol>
   </div>
@@ -29,13 +23,14 @@
           Including {{ run.commitNumber }} commits:
           {{ run.suspectedFlaky ? "✅" : "❌" }}
         </p>
-        <p>Detected {{ run.lineCheck.changedFiles.length }} changed files</p>
+        <p>Detected {{ run.lineCheck.changedFileNum }} changed files</p>
         <ng-container *ngIf="!run.lineCheck.suspectedFlaky">
           <p>Test results:</p>
           <ol class="list-inside list-decimal">
             <li *ngFor="let result of run.lineCheck.testResults">
               Tests in "{{ result.testName }}" covered
-              {{ result.coveredFiles.length }} files
+              {{ result.coveredFileNum }} files and
+              {{ result.coveredLineNum }} lines
               <ul class="list-inside list-disc pl-4">
                 <li *ngFor="let file of result.changedFiles">
                   Covered and changed:
@@ -78,13 +73,13 @@
           Including {{ run.commitNumber }} commits:
           {{ run.suspectedFlaky ? "✅" : "❌" }}
         </p>
-        <p>Detected {{ run.changedFiles.length }} changed files</p>
+        <p>Detected {{ run.changedFileNum }} changed files</p>
         <ng-container *ngIf="!run.suspectedFlaky">
           <p>Test results:</p>
           <ol class="list-inside list-decimal">
             <li *ngFor="let result of run.testResults">
               Tests in "{{ result.testName }}" covered
-              {{ result.coveredFiles.length }} files
+              {{ result.coveredFileNum }} files
               <ul class="list-inside list-disc pl-4">
                 <li *ngFor="let file of result.changedFiles">
                   Covered and changed: <span class="font-mono">{{ file }}</span>

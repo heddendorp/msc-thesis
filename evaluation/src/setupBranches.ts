@@ -4,7 +4,7 @@ import { execSync } from "child_process";
 import { resolve } from "path";
 import jetpack from "fs-jetpack";
 
-const branchPrefix = "flaky-evaluation";
+const branchPrefix = "flaky-evaluation-2";
 const helperVersion = "latest";
 const batchSize = 5;
 
@@ -37,9 +37,6 @@ async function run() {
     console.log(`Branch ${branchName} does not exist`);
     const artemisDir = resolve("../../Artemis");
     console.log(`Running historic-analysis-helper in ${artemisDir}`);
-    // console.log(
-    //   `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix}`
-    // );
     execSync(
       `npx -y @heddendorp/historic-analysis-helper@${helperVersion} branch ${buildConfig.planKey} ${buildConfig.lastSuccess} ${buildConfig.target} -t ${process.env.BAMBOO_TOKEN} -p ${branchPrefix}`,
       { cwd: artemisDir }

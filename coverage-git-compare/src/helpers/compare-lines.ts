@@ -4,7 +4,7 @@ import chalk from 'chalk';
 
 export const compareLines = async (
   path: string,
-  changesLines: {file: string, lines: number[]}[],
+  changesLines: { file: string; lines: number[] }[],
   commitNumber: number,
   json: boolean = false
 ): Promise<boolean> => {
@@ -13,7 +13,14 @@ export const compareLines = async (
     matching: '*lines.json',
   });
   if (json) {
-    console.log(`"lineCheck":{"commitNumber": "${commitNumber}", "lineCheck":true, "changedFiles": ${JSON.stringify(changesLines)}, "coverageFiles": ${JSON.stringify(coverageFiles)},`);
+    console.log(
+      `"lineCheck":{"commitNumber": "${commitNumber}", "lineCheck":true, "changedFileNum": ${JSON.stringify(
+        changesLines.length
+      )}, "changedLineNum": ${changesLines.reduce(
+        (acc, val) => acc + val.lines.length,
+        0
+      )}, "coverageFiles": ${JSON.stringify(coverageFiles)},`
+    );
   } else {
     console.log(
       chalk.gray(
@@ -26,8 +33,8 @@ export const compareLines = async (
       )
     );
   }
-  if(coverageFiles.length === 0) {
-    if(json) {
+  if (coverageFiles.length === 0) {
+    if (json) {
       console.log(`"error": "No coverage files found"`);
     } else {
       console.log(chalk.red(`No coverage files found`));
@@ -41,13 +48,21 @@ export const compareLines = async (
   }
   for (const file of coverageFiles) {
     const testName = file.split('-')[0];
-    const rawLines = (await coverageFolder.readAsync(file, 'json')) as {file: string, lines: number[]}[];
-    const coveredFiles = rawLines.map((f) => ({...f, file: f.file.replace(/\\/g, '/')}));
-    const changedLinesForTest = changesLines
-      .filter((entry: {file: string, lines: number[]}) =>
-        coveredFiles.filter((cf) => minimatch(entry.file, cf.file))
-        .filter((cf) => cf.lines.some((l) => entry.lines.includes(l))).length > 0
-      );
+    const rawLines = (await coverageFolder.readAsync(file, 'json')) as {
+      file: string;
+      lines: number[];
+    }[];
+    const coveredFiles = rawLines.map((f) => ({
+      ...f,
+      file: f.file.replace(/\\/g, '/'),
+    }));
+    const changedLinesForTest = changesLines.filter(
+      (entry: { file: string; lines: number[] }) =>
+        coveredFiles
+          .filter((cf) => minimatch(entry.file, cf.file))
+          .filter((cf) => cf.lines.some((l) => entry.lines.includes(l)))
+          .length > 0
+    );
     if (changedLinesForTest.length > 0) {
       nonFlakyFail = true;
       if (!json) {
@@ -58,7 +73,11 @@ export const compareLines = async (
             )} changes that appeared in your commit range`
           )
         );
-        console.log(changedLinesForTest.map(entry => `${entry.file} lines ${entry.lines.join(',')}`).join(`\n`));
+        console.log(
+          changedLinesForTest
+            .map((entry) => `${entry.file} lines ${entry.lines.join(',')}`)
+            .join(`\n`)
+        );
       } else {
         if (!isFirst) {
           console.log(`,`);
@@ -67,7 +86,12 @@ export const compareLines = async (
         console.log(
           `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
             changedLinesForTest
-          )}, "coveredFiles": ${JSON.stringify(coveredFiles)}}`
+          )}, "coveredFileNum": ${JSON.stringify(
+            coveredFiles.length
+          )}, "coveredLineNum": ${coveredFiles.reduce(
+            (acc, val) => acc + val.lines.length,
+            0
+          )}}`
         );
       }
     } else {
@@ -85,7 +109,12 @@ export const compareLines = async (
         console.log(
           `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
             changedLinesForTest
-          )}, "coveredFiles": ${JSON.stringify(coveredFiles)}}`
+          )}, "coveredFileNum": ${JSON.stringify(
+            coveredFiles.length
+          )}, "coveredLineNum": ${coveredFiles.reduce(
+            (acc, val) => acc + val.lines.length,
+            0
+          )}}`
         );
       }
     }

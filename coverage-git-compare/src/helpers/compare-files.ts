@@ -21,7 +21,7 @@ export const compareFiles = async (
     return true;
   }
   if (json) {
-    console.log(`"commitNumber": "${commitNumber}", "changedFiles": ${JSON.stringify(changedFiles)}, "coverageFiles": ${JSON.stringify(coverageFiles)},`);
+    console.log(`"commitNumber": "${commitNumber}", "changedFileNum": ${JSON.stringify(changedFiles.length)}, "coverageFiles": ${JSON.stringify(coverageFiles)},`);
   } else {
     console.log(
       chalk.gray(
@@ -74,7 +74,7 @@ export const compareFiles = async (
         console.log(
           `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
             changedFilesForTest
-          )}, "coveredFiles": ${JSON.stringify(coveredFiles)}}`
+          )}, "coveredFileNum": ${JSON.stringify(coveredFiles.length)}}`
         );
       }
     } else {
@@ -92,7 +92,7 @@ export const compareFiles = async (
         console.log(
           `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
             changedFilesForTest
-          )}, "coveredFiles": ${JSON.stringify(coveredFiles)}}`
+          )}, "coveredFileNum": ${JSON.stringify(coveredFiles.length)}}`
         );
       }
     }

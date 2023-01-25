@@ -59,13 +59,13 @@ async function run() {
         {
           planKey: regularKey,
           isFlakeCheck: false,
-          runningGoal: 2,
+          runningGoal: 10,
           saveLogs: true,
         },
         {
           planKey: flakyKey,
           isFlakeCheck: true,
-          runningGoal: 5,
+          runningGoal: 10,
           saveLogs: true,
         },
       ];
