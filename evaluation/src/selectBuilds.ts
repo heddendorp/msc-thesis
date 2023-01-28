@@ -23,12 +23,13 @@ async function run() {
     return (
       580 <= result.buildNumber &&
       result.buildNumber <= 792 &&
-      result.buildState === "Successful"
+      result.buildState !== "Unknown"
     );
   });
   const analyzedBuilds = filteredResults.map((result) => ({
     planKey: masterPlanKeyRegular,
     target: result.buildNumber,
+    originalState: result.buildState,
     lastSuccess: results.find(
       (r) => r.buildNumber < result.buildNumber && r.buildState === "Successful"
     ).buildNumber,
