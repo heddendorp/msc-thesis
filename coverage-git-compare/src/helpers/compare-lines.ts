@@ -29,7 +29,10 @@ export const compareLines = async (
     );
     console.log(
       chalk.gray(
-        `Changed files: ${changesLines.length} files changed in ${commitNumber} commits`
+        `Changed files: ${changesLines.length} files and ${changesLines.reduce(
+          (acc, val) => acc + val.lines.length,
+          0
+        )} lines changed in ${commitNumber} commits`
       )
     );
   }
@@ -56,10 +59,15 @@ export const compareLines = async (
       ...f,
       file: f.file.replace(/\\/g, '/'),
     }));
+    const changedFilesForTest = changesLines.filter(
+      (entry: { file: string; lines: number[] }) =>
+      coveredFiles
+      .filter((cf) => minimatch(entry.file, cf.file))
+      .length > 0
+    );
     const changedLinesForTest = changesLines.filter(
       (entry: { file: string; lines: number[] }) =>
-        coveredFiles
-          .filter((cf) => minimatch(entry.file, cf.file))
+        changedFilesForTest
           .filter((cf) => cf.lines.some((l) => entry.lines.includes(l)))
           .length > 0
     );
@@ -86,7 +94,7 @@ export const compareLines = async (
         console.log(
           `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
             changedLinesForTest
-          )}, "coveredFileNum": ${JSON.stringify(
+          )}, "changedFileLevel": ${JSON.stringify(changedFilesForTest)}, "coveredFileNum": ${JSON.stringify(
             coveredFiles.length
           )}, "coveredLineNum": ${coveredFiles.reduce(
             (acc, val) => acc + val.lines.length,
@@ -109,7 +117,7 @@ export const compareLines = async (
         console.log(
           `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
             changedLinesForTest
-          )}, "coveredFileNum": ${JSON.stringify(
+          )}, "changedFileLevel": ${JSON.stringify(changedFilesForTest)}, "coveredFileNum": ${JSON.stringify(
             coveredFiles.length
           )}, "coveredLineNum": ${coveredFiles.reduce(
             (acc, val) => acc + val.lines.length,
