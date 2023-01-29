@@ -1,7 +1,57 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, shareReplay, tap } from 'rxjs';
+import { map } from 'rxjs';
 
+export interface LiveDataBranch {
+  name: string;
+  flakyKey: string;
+  regularKey: string;
+  results: Array<{
+    regularBuild: {
+      key: string;
+      label: string;
+      state: string;
+      startTime: string;
+      completeTime: string;
+      duration: number;
+      queuedDuration: number;
+      buildNumber: number;
+      successful: boolean;
+    };
+    flakyBuild: {
+      key: string;
+      label: string;
+      state: string;
+      startTime: string;
+      completeTime: string;
+      duration: number;
+      queuedDuration: number;
+      buildNumber: number;
+      successful: boolean;
+    };
+    flakyTests: Array<{
+      methodName: string;
+      status: 'successful' | 'failed';
+      successful: boolean;
+    }>;
+    regularTests: Array<{
+      methodName: string;
+      status: 'successful' | 'failed';
+      successful: boolean;
+    }>;
+    combinedTests: Array<{
+      methodName: string;
+      flakyStatus: 'successful' | 'failed';
+      regularStatus: 'successful' | 'failed';
+      flakySuccessful: boolean;
+      regularSuccessful: boolean;
+    }>;
+    flakyFailed: number[];
+    regularFailed: number[];
+    onlyRunInFlaky: number[];
+    onlyRunInRegular: number[];
+  }>;
+}
 export interface TestResult {
   testName: string;
   changedFiles: string[];
@@ -103,6 +153,9 @@ export class DataService {
     return this.httpClient.get<RunData>(file);
   }
 
+  public getLiveData() {
+    return this.httpClient.get<LiveDataBranch[]>('./data/live-data.json');
+  }
   public getCofigData() {
     return this.httpClient.get('./data/data.json');
   }
