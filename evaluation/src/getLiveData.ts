@@ -7,10 +7,10 @@ const masterPlanKeyRegular = "ARTEMIS-AETG";
 const masterPlanKeyFlaky = "ARTEMIS-AECF";
 
 async function run() {
-  const existingData = jetpack.read("evaluation/data.json", "json") || [];
+  const existingData = jetpack.read("evaluation/live-data.json", "json") || [];
 
   const regularBranchesResponse = await fetch(
-    `https://bamboobruegge.in.tum.de/rest/api/latest/plan/${masterPlanKeyRegular}.json?expand=branches`,
+    `https://bamboobruegge.in.tum.de/rest/api/latest/plan/${masterPlanKeyRegular}.json?expand=branches&max-results=900`,
     {
       headers: {
         Authorization: `Bearer ${process.env.BAMBOO_TOKEN}`,
@@ -20,7 +20,7 @@ async function run() {
   const regularBranchesData = await regularBranchesResponse.json();
 
   const flakyBranchesResponse = await fetch(
-    `https://bamboobruegge.in.tum.de/rest/api/latest/plan/${masterPlanKeyFlaky}.json?expand=branches`,
+    `https://bamboobruegge.in.tum.de/rest/api/latest/plan/${masterPlanKeyFlaky}.json?expand=branches&max-results=900`,
     {
       headers: {
         Authorization: `Bearer ${process.env.BAMBOO_TOKEN}`,
@@ -41,6 +41,10 @@ async function run() {
         (flakyBranch: { key: string; shortName: string }) =>
           flakyBranch.shortName === branch.shortName
       );
+      // Skip flaky evaluation branches
+      if(branch.shortName.includes('flaky-evaluation')){
+        return;
+      }
       if (flakyBranch) {
         branches.push({
           flakyKey: flakyBranch.key,
@@ -58,10 +62,28 @@ async function run() {
     flakyKey: string;
     regularKey: string;
     results: Array<{
-      regularBuildKey: string;
-      flakyBuildKey: string;
-      flakyLabel: string;
-      regularLabel: string;
+      regularBuild:{
+        key: string;
+        label: string;
+        state: string;
+        startTime: string;
+        completeTime: string;
+        duration: number;
+        queuedDuration: number;
+        buildNumber: number;
+        successful: boolean;
+      },
+      flakyBuild:{
+        key: string;
+        label: string;
+        state: string;
+        startTime: string;
+        completeTime: string;
+        duration: number;
+        queuedDuration: number;
+        buildNumber: number;
+        successful: boolean;
+      },
       flakyTests: Array<{
         methodName: string;
         status: "successful" | "failed";
@@ -88,7 +110,7 @@ async function run() {
 
   for (const branch of branches) {
     const regularBuildsResponse = await fetch(
-      `https://bamboobruegge.in.tum.de/rest/api/latest/result/${branch.regularKey}.json?expand=results.result.stages.stage.results.result.,results.result.labels`,
+      `https://bamboobruegge.in.tum.de/rest/api/latest/result/${branch.regularKey}.json?expand=results.result.stages.stage.results.result.,results.result.labels&max-results=900`,
       {
         headers: {
           Authorization: `Bearer ${process.env.BAMBOO_TOKEN}`,
@@ -97,7 +119,7 @@ async function run() {
     );
     const regularBuildsData = await regularBuildsResponse.json();
     const flakyBuildsResponse = await fetch(
-      `https://bamboobruegge.in.tum.de/rest/api/latest/result/${branch.flakyKey}.json?expand=results.result.stages.stage.results.result.,results.result.labels`,
+      `https://bamboobruegge.in.tum.de/rest/api/latest/result/${branch.flakyKey}.json?expand=results.result.stages.stage.results.result.,results.result.labels&max-results=900`,
       {
         headers: {
           Authorization: `Bearer ${process.env.BAMBOO_TOKEN}`,
@@ -114,33 +136,7 @@ async function run() {
       continue;
     }
 
-    const resultData: Array<{
-      regularBuildKey: string;
-      flakyBuildKey: string;
-      flakyLabel: string;
-      regularLabel: string;
-      flakyTests: Array<{
-        methodName: string;
-        status: "successful" | "failed";
-        successful: boolean;
-      }>;
-      regularTests: Array<{
-        methodName: string;
-        status: "successful" | "failed";
-        successful: boolean;
-      }>;
-      combinedTests: Array<{
-        methodName: string;
-        flakyStatus: "successful" | "failed";
-        regularStatus: "successful" | "failed";
-        flakySuccessful: boolean;
-        regularSuccessful: boolean;
-      }>;
-      flakyFailed: number[];
-      regularFailed: number[];
-      onlyRunInFlaky: number[];
-      onlyRunInRegular: number[];
-    }> = [];
+    const resultData: (typeof branchData)[0]['results'] = [];
 
     for (const result of regularBuildsData.results.result) {
       const flakyResult = flakyBuildsData.results.result.find(
@@ -149,6 +145,11 @@ async function run() {
       );
       if (!flakyResult) {
         console.log(`No flaky build for ${result.buildResultKey}`);
+        continue;
+      }
+
+      // Skip builds started before the flaky evaluation
+      if(new Date(result.buildStartedTime) < new Date('2023-01-25T00:00:00.000+0000')){
         continue;
       }
 
@@ -164,7 +165,7 @@ async function run() {
       }
 
       const regularTestResponse = await fetch(
-        `https://bamboobruegge.in.tum.de/rest/api/latest/result/${regularStageResult.key}.json?expand=testResults.allTests`,
+        `https://bamboobruegge.in.tum.de/rest/api/latest/result/${regularStageResult.key}.json?expand=testResults.allTests&max-results=900`,
         {
           headers: {
             Authorization: `Bearer ${process.env.BAMBOO_TOKEN}`,
@@ -174,7 +175,7 @@ async function run() {
       const regularTestData = await regularTestResponse.json();
 
       const flakyTestResponse = await fetch(
-        `https://bamboobruegge.in.tum.de/rest/api/latest/result/${flakyStageResult.key}.json?expand=testResults.allTests`,
+        `https://bamboobruegge.in.tum.de/rest/api/latest/result/${flakyStageResult.key}.json?expand=testResults.allTests&max-results=900`,
         {
           headers: {
             Authorization: `Bearer ${process.env.BAMBOO_TOKEN}`,
@@ -235,10 +236,28 @@ async function run() {
         .map((test) => test.testCaseId);
 
       resultData.push({
-        regularBuildKey: result.buildResultKey,
-        flakyBuildKey: flakyResult.buildResultKey,
-        flakyLabel,
-        regularLabel,
+        regularBuild: {
+          key: result.buildResultKey,
+          label: regularLabel,
+          state: result.buildState,
+          startTime: result.buildStartedTime,
+          completeTime: result.buildCompletedTime,
+          duration: result.buildDuration,
+          queuedDuration: result.queuedDuration,
+          buildNumber: result.buildNumber,
+          successful: result.successful,
+        },
+        flakyBuild: {
+          key: flakyResult.buildResultKey,
+          label: flakyLabel,
+          state: flakyResult.buildState,
+          startTime: flakyResult.buildStartedTime,
+          completeTime: flakyResult.buildCompletedTime,
+          duration: flakyResult.buildDuration,
+          queuedDuration: flakyResult.queuedDuration,
+          buildNumber: flakyResult.buildNumber,
+          successful: flakyResult.successful,
+        },
         flakyTests: flakyTests.map((test) => ({
           methodName: test.methodName,
           status: test.status,
@@ -268,7 +287,7 @@ async function run() {
     ];
   }
 
-  jetpack.write("data/json/live-data.json", branchData);
+  jetpack.write("data/live-data.json", branchData);
 }
 
 run();

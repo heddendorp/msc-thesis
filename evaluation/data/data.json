@@ -1,10 +1,38 @@
 {
   "branches": [
     {
-      "branchName": "flaky-evaluation-2/build-580"
+      "branchName": "flaky-evaluation-2/build-580",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1436",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF323",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-581"
+      "branchName": "flaky-evaluation-2/build-581",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1435",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF322",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "flaky-evaluation-2/build-582",
@@ -75,7 +103,21 @@
       ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-586"
+      "branchName": "flaky-evaluation-2/build-586",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1434",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF321",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "flaky-evaluation-2/build-587",
@@ -95,7 +137,21 @@
       ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-588"
+      "branchName": "flaky-evaluation-2/build-588",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1438",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF325",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "flaky-evaluation-2/build-589",
@@ -149,7 +205,21 @@
       ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-592"
+      "branchName": "flaky-evaluation-2/build-592",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1437",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF324",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "flaky-evaluation-2/build-593",
@@ -169,7 +239,21 @@
       ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-594"
+      "branchName": "flaky-evaluation-2/build-594",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1440",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF327",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "flaky-evaluation-2/build-595",
@@ -189,31 +273,242 @@
       ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-596"
+      "branchName": "flaky-evaluation-2/build-596",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1439",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF326",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-597"
+      "branchName": "flaky-evaluation-2/build-597",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1443",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF330",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-598"
+      "branchName": "flaky-evaluation-2/build-598",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1442",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF329",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-599"
+      "branchName": "flaky-evaluation-2/build-599",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1441",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF328",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-778"
+      "branchName": "flaky-evaluation-2/build-600",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1447",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF334",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-779"
+      "branchName": "flaky-evaluation-2/build-601",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1446",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF333",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-780"
+      "branchName": "flaky-evaluation-2/build-602",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1445",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF332",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-781"
+      "branchName": "flaky-evaluation-2/build-603",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1444",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF331",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-782"
+      "branchName": "flaky-evaluation-2/build-604",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1448",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF335",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "flaky-evaluation-2/build-778",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1418",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF305",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "flaky-evaluation-2/build-779",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1417",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF304",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "flaky-evaluation-2/build-780",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1416",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF303",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "flaky-evaluation-2/build-781",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1415",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF302",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
+      "branchName": "flaky-evaluation-2/build-782",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1414",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF301",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "flaky-evaluation-2/build-783",
