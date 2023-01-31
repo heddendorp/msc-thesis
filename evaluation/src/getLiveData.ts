@@ -42,7 +42,7 @@ async function run() {
           flakyBranch.shortName === branch.shortName
       );
       // Skip flaky evaluation branches
-      if(branch.shortName.includes('flaky-evaluation')){
+      if (branch.shortName.includes("flaky-evaluation")) {
         return;
       }
       if (flakyBranch) {
@@ -62,7 +62,7 @@ async function run() {
     flakyKey: string;
     regularKey: string;
     results: Array<{
-      regularBuild:{
+      regularBuild: {
         key: string;
         label: string;
         state: string;
@@ -72,8 +72,8 @@ async function run() {
         queuedDuration: number;
         buildNumber: number;
         successful: boolean;
-      },
-      flakyBuild:{
+      };
+      flakyBuild: {
         key: string;
         label: string;
         state: string;
@@ -83,7 +83,7 @@ async function run() {
         queuedDuration: number;
         buildNumber: number;
         successful: boolean;
-      },
+      };
       flakyTests: Array<{
         methodName: string;
         status: "successful" | "failed";
@@ -136,7 +136,7 @@ async function run() {
       continue;
     }
 
-    const resultData: (typeof branchData)[0]['results'] = [];
+    const resultData: (typeof branchData)[0]["results"] = [];
 
     for (const result of regularBuildsData.results.result) {
       const flakyResult = flakyBuildsData.results.result.find(
@@ -149,7 +149,10 @@ async function run() {
       }
 
       // Skip builds started before the flaky evaluation
-      if(new Date(result.buildStartedTime) < new Date('2023-01-25T00:00:00.000+0000')){
+      if (
+        new Date(result.buildStartedTime) <
+        new Date("2023-01-25T00:00:00.000+0000")
+      ) {
         continue;
       }
 
@@ -235,6 +238,8 @@ async function run() {
         )
         .map((test) => test.testCaseId);
 
+      const bothSuccessful = result.successful && flakyResult.successful;
+
       resultData.push({
         regularBuild: {
           key: result.buildResultKey,
@@ -258,17 +263,21 @@ async function run() {
           buildNumber: flakyResult.buildNumber,
           successful: flakyResult.successful,
         },
-        flakyTests: flakyTests.map((test) => ({
-          methodName: test.methodName,
-          status: test.status,
-          successful: test.status === "successful",
-        })),
-        regularTests: regularTests.map((test) => ({
-          methodName: test.methodName,
-          status: test.status,
-          successful: test.status === "successful",
-        })),
-        combinedTests,
+        flakyTests: bothSuccessful
+          ? []
+          : flakyTests.map((test) => ({
+              methodName: test.methodName,
+              status: test.status,
+              successful: test.status === "successful",
+            })),
+        regularTests: bothSuccessful
+          ? []
+          : regularTests.map((test) => ({
+              methodName: test.methodName,
+              status: test.status,
+              successful: test.status === "successful",
+            })),
+        combinedTests: bothSuccessful ? [] : combinedTests,
         flakyFailed,
         regularFailed,
         onlyRunInFlaky,
@@ -277,13 +286,11 @@ async function run() {
     }
 
     branchData = [
-      ...branchData.filter(
-        (branchData) => branchData.name !== branch.name
-      ),
+      ...branchData.filter((branchData) => branchData.name !== branch.name),
       {
         ...branch,
         results: resultData,
-      }
+      },
     ];
   }
 
