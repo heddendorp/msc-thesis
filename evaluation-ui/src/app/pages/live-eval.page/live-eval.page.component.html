@@ -22,6 +22,12 @@
           {{ flakyFailRate$ | async | number : "1.2-2" }}%
         </div>
       </div>
+      <div class="stat">
+        <div class="stat-title">Cypress rerun rate</div>
+        <div class="stat-value">
+          {{ cypressRerunRate$ | async | number : "1.2-2" }}%
+        </div>
+      </div>
     </div>
   </div>
   <h2>Branches</h2>
@@ -77,6 +83,12 @@
             class="badge-info badge-outline badge"
           >
             {{ result.flakyBuild.label }}
+          </span>
+          <span
+            *ngIf="result.regularBuild.label && result.regularBuild.successful"
+            class="badge-info badge-outline badge"
+          >
+            {{ result.regularBuild.label }}
           </span>
           <div class="grow"></div>
           <a

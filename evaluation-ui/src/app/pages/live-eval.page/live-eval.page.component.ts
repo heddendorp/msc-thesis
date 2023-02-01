@@ -49,6 +49,23 @@ export class LiveEvalPageComponent {
         100
     )
   );
+  protected cypressRerunRate$ = this.branches$.pipe(
+    map(
+      (branches) =>
+        (branches.reduce(
+          (acc, branch) =>
+            acc +
+            branch.results.filter((result) => {
+              return (
+                result.regularBuild.successful && result.regularBuild.label
+              );
+            }).length,
+          0
+        ) /
+          branches.reduce((acc, branch) => acc + branch.results.length, 0)) *
+        100
+    )
+  );
 
   getFailMatch(result: {
     flakyTests: Array<{

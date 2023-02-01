@@ -39,7 +39,8 @@ const defaultConfig: Config = {
   workingDirectory: __dirname,
   javaClassesLocation: '../../../build/libs/extracted/WEB-INF/classes',
   javaSourceLocation: '../../../src/main/java',
-  distributionFile: '../../../build/libs/Artemis-6.0.0.war',
+  distributionFileDir: '../../../build/libs/',
+  distributionFilePattern: 'Artemis*.war',
   saveRawCoverage: false,
   onlySaveOnFailure: true,
   cleanCoverageFolder: true,
@@ -104,7 +105,13 @@ export interface Config {
   /**
    * The path to the Artemis distribution file.
    * If this is set, the plugin will extract it in place and use the extracted files for coverage.
-   * @default '../../../build/libs/Artemis-6.0.0.war'
+   * @default '../../../build/libs/'
    */
-  distributionFile: string;
+  distributionFileDir: string;
+  /**
+   * The path to the Artemis distribution file.
+   * If this is set, the plugin will extract it in place and use the extracted files for coverage.
+   * @default 'Artemis*.war'
+   */
+  distributionFilePattern: string;
 }

@@ -171,7 +171,7 @@ export function handleAfterSpec(
             entry.lines.hit || entry.branches.hit || entry.functions.hit
         )
         .map((entry: any) => {
-          if (!config.distributionFile) {
+          if (!config.distributionFileDir) {
             return entry.file.replace(
               'de/tum/in/www1/artemis/',
               'src/main/java/de/tum/in/www1/artemis/'
@@ -182,7 +182,7 @@ export function handleAfterSpec(
       const javaLines = javaCoverage
         .filter((entry: any) => entry.lines.hit)
         .map((entry: any) => ({
-          file: config.distributionFile
+          file: config.distributionFileDir
             ? entry.file
             : entry.file.replace(
                 'de/tum/in/www1/artemis/',

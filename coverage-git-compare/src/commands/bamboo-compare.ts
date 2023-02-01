@@ -17,14 +17,15 @@ export function registerBambooCompareCommand(program: Command) {
   program
     .command('bamboo')
     .argument('<planKey>', 'Bamboo plan key')
+    .argument('<buildNumber>', 'Bamboo build number')
     .argument('<bambooToken>', 'Bamboo access token')
     .option('-p, --path <path>', 'Path to coverage report', './coverage')
     .option(
       '-b, --branch [branch]',
       'Branch to compare against if no build is found',
-      'develop'
+      'origin/develop'
     )
-    .action(async (planKey, token, { path, branch }) => {
+    .action(async (planKey, buildNumber, token, { path, branch }) => {
       console.log(`COVERAGE_GIT_COMPARE-VERSION: ${version}`);
       let lastSuccessfulCommit = 'HEAD^';
       const planResponse = await fetch(
@@ -42,7 +43,9 @@ export function registerBambooCompareCommand(program: Command) {
         const result = planData.results.results.result;
         if (Array.isArray(result)) {
           lastSuccessfulBuild = result.find(
-            (result: any) => result.buildState === 'Successful'
+            (result: any) => {
+              return result.buildState === 'Successful' && Number(result.buildNumber) < Number(buildNumber);
+            }
           )?.buildResultKey;
         } else {
           lastSuccessfulBuild =

@@ -14,45 +14,52 @@ export function handleBeforeRun(config: Config) {
         empty: true,
       });
     }
-    if (config.distributionFile) {
+    if (config.distributionFileDir && config.distributionFilePattern) {
       console.log('Extracting distribution file');
-      console.log(
-        'Distribution File',
-        path.join(config.workingDirectory, config.distributionFile)
+      const filesInDistributionDir = jetpack.find(
+        path.join(config.workingDirectory, config.distributionFileDir),
+        {
+          matching: config.distributionFilePattern,
+        }
       );
+      if (filesInDistributionDir.length === 0) {
+        throw new Error(
+          `No distribution file found in ${path.join(
+            config.workingDirectory,
+            config.distributionFileDir
+          )} matching ${config.distributionFilePattern}`
+        );
+      }
+      const distributionFile = filesInDistributionDir[0];
+      console.log('Distribution File', distributionFile);
       console.log(
         'Distribution file dir',
-        path.join(config.workingDirectory, config.distributionFile, '..')
+        path.join(config.workingDirectory, config.distributionFileDir)
       );
       console.log(
         'Distribution file extraction dir',
         path.join(
           config.workingDirectory,
-          config.distributionFile,
-          '..',
+          config.distributionFileDir,
           'extracted'
         )
       );
       jetpack.dir(
         path.join(
           config.workingDirectory,
-          config.distributionFile,
-          '..',
+          config.distributionFileDir,
           'extracted'
         ),
         {
           empty: true,
         }
       );
-      console.log('Extracting distribution file');
-      const zip = new AdmZip(
-        path.join(config.workingDirectory, config.distributionFile)
-      );
+      console.log('Running extraction');
+      const zip = new AdmZip(distributionFile);
       zip.extractAllTo(
         path.join(
           config.workingDirectory,
-          config.distributionFile,
-          '..',
+          config.distributionFileDir,
           'extracted'
         )
       );
