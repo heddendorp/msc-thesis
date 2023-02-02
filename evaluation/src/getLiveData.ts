@@ -151,7 +151,7 @@ async function run() {
       // Skip builds started before the flaky evaluation
       if (
         new Date(result.buildStartedTime) <
-        new Date("2023-01-25T00:00:00.000+0000")
+        new Date("2023-02-02T00:00:00.000+0000")
       ) {
         continue;
       }
