@@ -681,19 +681,89 @@
       ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-620"
+      "branchName": "flaky-evaluation-2/build-620",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1472",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF359",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-621"
+      "branchName": "flaky-evaluation-2/build-621",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1476",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF363",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-622"
+      "branchName": "flaky-evaluation-2/build-622",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1475",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF362",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-623"
+      "branchName": "flaky-evaluation-2/build-623",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1474",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF361",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
-      "branchName": "flaky-evaluation-2/build-624"
+      "branchName": "flaky-evaluation-2/build-624",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1473",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF360",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
     },
     {
       "branchName": "flaky-evaluation-2/build-778",

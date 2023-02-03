@@ -38,7 +38,10 @@
       class="card flex flex-col border bg-base-100 p-0"
     >
       <div class="p-4">
-        <h3>{{ branch.name }}</h3>
+        <h3>
+          {{ branch.name }}
+          <em>({{ branch.plans[0].buildConfig.originalState }})</em>
+        </h3>
       </div>
       <div class="flex flex-col divide-y lg:flex-row lg:divide-x">
         <div
@@ -64,6 +67,16 @@
             <div class="stat">
               <div class="stat-title">Fails</div>
               <div class="stat-value">{{ plan.fails }}</div>
+            </div>
+
+            <div class="stat" *ngIf="plan.isFlakeCheck">
+              <div class="stat-title">Suspected Flakes</div>
+              <div class="stat-value">{{ plan.suspectedFlakes }}</div>
+            </div>
+
+            <div class="stat" *ngIf="!plan.isFlakeCheck">
+              <div class="stat-title">Reruns</div>
+              <div class="stat-value">{{ plan.reruns }}</div>
             </div>
 
             <div class="stat">
@@ -176,7 +189,7 @@
                     >
                       flake check issue
                     </span>
-                    <span *ngIf="run.confirmedFlaky" class="badge-info badge">
+                    <span *ngIf="run.hasRerun" class="badge-info badge">
                       has rerun
                     </span>
                   </div>

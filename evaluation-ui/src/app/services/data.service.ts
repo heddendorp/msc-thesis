@@ -116,8 +116,16 @@ export interface PlanData {
   branch: string;
   averageTime: number;
   confirmedFlakes: number;
+  suspectedFlakes: number;
+  reruns: number;
   fails: number;
   informationFiles: string[];
+  buildConfig: {
+    planKey: string;
+    target: number;
+    originalState: 'Failed' | 'Successful';
+    lastSuccess: number;
+  };
 }
 
 export interface IndexData {

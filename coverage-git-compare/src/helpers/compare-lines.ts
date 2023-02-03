@@ -61,15 +61,13 @@ export const compareLines = async (
     }));
     const changedFilesForTest = changesLines.filter(
       (entry: { file: string; lines: number[] }) =>
-      coveredFiles
-      .filter((cf) => minimatch(entry.file, cf.file))
-      .length > 0
+        coveredFiles.filter((cf) => minimatch(entry.file, cf.file)).length > 0
     );
     const changedLinesForTest = changesLines.filter(
       (entry: { file: string; lines: number[] }) =>
-        changedFilesForTest
-          .filter((cf) => cf.lines.some((l) => entry.lines.includes(l)))
-          .length > 0
+        changedFilesForTest.filter((cf) =>
+          cf.lines.some((l) => entry.lines.includes(l))
+        ).length > 0
     );
     if (changedLinesForTest.length > 0) {
       nonFlakyFail = true;
@@ -94,7 +92,9 @@ export const compareLines = async (
         console.log(
           `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
             changedLinesForTest
-          )}, "changedFileLevel": ${JSON.stringify(changedFilesForTest)}, "coveredFileNum": ${JSON.stringify(
+          )}, "changedFileLevel": ${JSON.stringify(
+            changedFilesForTest.map((file) => file.file)
+          )}, "coveredFileNum": ${JSON.stringify(
             coveredFiles.length
           )}, "coveredLineNum": ${coveredFiles.reduce(
             (acc, val) => acc + val.lines.length,
@@ -117,7 +117,9 @@ export const compareLines = async (
         console.log(
           `{"testName": "${testName}", "changedFiles": ${JSON.stringify(
             changedLinesForTest
-          )}, "changedFileLevel": ${JSON.stringify(changedFilesForTest)}, "coveredFileNum": ${JSON.stringify(
+          )}, "changedFileLevel": ${JSON.stringify(
+            changedFilesForTest.map((file) => file.file)
+          )}, "coveredFileNum": ${JSON.stringify(
             coveredFiles.length
           )}, "coveredLineNum": ${coveredFiles.reduce(
             (acc, val) => acc + val.lines.length,

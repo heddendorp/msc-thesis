@@ -30,6 +30,10 @@ async function run() {
   let cypressRuns = 0;
   for (const branch of data.branches) {
     console.log(`Branch: ${branch.branchName}`);
+    const originalBuildNumber = Number(branch.branchName.split("-").pop());
+    const buildConfig = data.analyzedBuilds.find(
+      (build) => build.target === originalBuildNumber
+    );
     if (!branch.plans) {
       console.log(`No plans for ${branch.branchName}`);
       continue;
@@ -48,6 +52,8 @@ async function run() {
       );
       const informationFiles: string[] = [];
       let confirmedFlakes = 0;
+      let suspectedFlakes = 0;
+      let reruns = 0;
       let fails = 0;
       const times: number[] = [];
       for (const logFile of logFiles) {
@@ -168,8 +174,14 @@ async function run() {
         if (confirmedFlaky) {
           confirmedFlakes++;
         }
+        if (suspectedFlaky) {
+          suspectedFlakes++;
+        }
         if (failedBuild) {
           fails++;
+        }
+        if (hasRerun) {
+          reruns++;
         }
         jetpack.write(jsonFile, {
           analyzedTests: testsuites.length,
@@ -205,8 +217,11 @@ async function run() {
       plans.push({
         ...plan,
         branch: branch.branchName,
+        buildConfig,
         averageTime,
         confirmedFlakes,
+        suspectedFlakes,
+        reruns,
         fails,
         informationFiles,
       });
