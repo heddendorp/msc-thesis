@@ -44,6 +44,7 @@ const defaultConfig: Config = {
   saveRawCoverage: false,
   onlySaveOnFailure: true,
   cleanCoverageFolder: true,
+  appHost: 'artemis-app',
 };
 
 export interface Config {
@@ -114,4 +115,9 @@ export interface Config {
    * @default 'Artemis*.war'
    */
   distributionFilePattern: string;
+  /**
+   * Where to reach the Artemis app.
+   * @default 'artemis-app
+   */
+  appHost: string;
 }

@@ -1,0 +1,75 @@
+<div class="card mt-6 bg-base-300 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title">2x2 Chi squared test</h2>
+    <p>Do the instrumented tests fail more frequently?</p>
+    <p>
+      <strong>Null hypothesis:</strong> The instrumented tests fail with the
+      same frequency as the regular tests.
+    </p>
+    <table class="table w-full">
+      <tbody>
+        <tr>
+          <td class="bg-base-300"></td>
+          <td class="bg-base-200">Regular</td>
+          <td class="bg-base-200">Instrumented</td>
+          <td class="bg-base-200">Row Total</td>
+        </tr>
+        <tr>
+          <td class="bg-base-200">Pass</td>
+          <td>
+            {{ a }}
+          </td>
+          <td>
+            {{ b }}
+          </td>
+          <td>
+            {{ (a ?? 0) + (b ?? 0) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="bg-base-200">Fail</td>
+          <td>
+            {{ c }}
+          </td>
+          <td>
+            {{ d }}
+          </td>
+          <td>
+            {{ (c ?? 0) + (d ?? 0) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="bg-base-200">Column Total</td>
+          <td>
+            {{ (a ?? 0) + (c ?? 0) }}
+          </td>
+          <td>
+            {{ (b ?? 0) + (d ?? 0) }}
+          </td>
+          <td>
+            {{ n }}
+          </td>
+        </tr>
+        <tr>
+          <td class="bg-base-200">Result</td>
+          <td class="font-mono" colspan="3">
+            chi-squared={{ chiSquared | number : "1.2-4" }} <br />
+            critical-value={{ criticalValue | number : "1.2-4" }} <br />
+          </td>
+        </tr>
+        <tr>
+          <td class="bg-base-200">Conclusion</td>
+          <td
+            [ngClass]="{
+              'text-success': reject,
+              'text-error': !reject
+            }"
+            colspan="3"
+          >
+            {{ reject ? "Reject" : "Accept" }} null hypothesis
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

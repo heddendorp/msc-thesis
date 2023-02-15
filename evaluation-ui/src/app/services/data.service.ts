@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { map, shareReplay } from 'rxjs';
 
 export interface LiveDataBranch {
   name: string;
@@ -51,6 +51,17 @@ export interface LiveDataBranch {
     onlyRunInFlaky: number[];
     onlyRunInRegular: number[];
   }>;
+}
+export interface TestStat {
+  test: string;
+  total: number;
+  successful: number;
+  failed: number;
+  flaky: number;
+}
+export interface LiveData {
+  branchData: LiveDataBranch[];
+  flakyTestStats: TestStat[];
 }
 export interface TestResult {
   testName: string;
@@ -133,6 +144,9 @@ export interface IndexData {
   branchConfig: any[];
   flakeCheckRuns: number;
   cypressRuns: number;
+  flakyFails: number;
+  regularFails: number;
+  regularRerunsOrFails: number;
 }
 
 @Injectable({
@@ -162,7 +176,9 @@ export class DataService {
   }
 
   public getLiveData() {
-    return this.httpClient.get<LiveDataBranch[]>('./data/live-data.json');
+    return this.httpClient
+      .get<LiveData>('./data/live-data.json')
+      .pipe(shareReplay(1));
   }
   public getCofigData() {
     return this.httpClient.get('./data/data.json');

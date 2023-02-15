@@ -12,8 +12,7 @@ export function handleBeforeSpec(
   pluginConfig: PluginConfigOptions
 ) {
   // Extract host from baseUrl
-  const host =
-    pluginConfig.baseUrl?.split('//')[1].split(':')[0] ?? 'localhost';
+  const host = config.appHost;
   return async (spec: Cypress.Cypress['spec']) => {
     const startTime = Date.now();
     console.log('Starting code coverage for spec: ' + spec.name);

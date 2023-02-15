@@ -16,8 +16,7 @@ export function handleAfterSpec(
   pluginConfig: PluginConfigOptions
 ) {
   // Extract host from baseUrl
-  const host =
-    pluginConfig.baseUrl?.split('//')[1].split(':')[0] ?? 'localhost';
+  const host = config.appHost;
   return async (
     spec: Spec,
     results: CypressCommandLine.RunResult

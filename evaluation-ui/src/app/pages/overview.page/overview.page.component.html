@@ -24,6 +24,12 @@
         </div>
       </div>
     </div>
+    <app-chi-squared
+      [a]="data.cypressRuns - data.regularRerunsOrFails"
+      [b]="data.flakeCheckRuns - data.flakyFails"
+      [c]="data.regularRerunsOrFails"
+      [d]="data.flakyFails"
+    ></app-chi-squared>
   </div>
   <h2>Branches</h2>
   <input

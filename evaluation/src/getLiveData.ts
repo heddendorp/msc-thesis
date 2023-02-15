@@ -35,6 +35,11 @@ async function run() {
     name: string;
   }> = [];
 
+  const flakyTestStats = new Map<
+    string,
+    { total: number; successful: number; failed: number; flaky: number }
+  >();
+
   regularBranchesData.branches.branch.forEach(
     (branch: { key: string; shortName: string }) => {
       const flakyBranch = flakyBranchesData.branches.branch.find(
@@ -151,7 +156,7 @@ async function run() {
       // Skip builds started before the flaky evaluation
       if (
         new Date(result.buildStartedTime) <
-        new Date("2023-02-04T00:00:00.000+0000")
+        new Date("2023-02-11T00:00:00.000+0000")
       ) {
         continue;
       }
@@ -212,6 +217,27 @@ async function run() {
             regularSuccessful: test.status === "successful",
           });
         }
+      }
+      for (const test of flakyTests) {
+        if (!flakyTestStats.has(test.methodName)) {
+          flakyTestStats.set(test.methodName, {
+            successful: 0,
+            failed: 0,
+            total: 0,
+            flaky: 0,
+          });
+        }
+        const testStats = flakyTestStats.get(test.methodName);
+        testStats.total++;
+        if (test.status === "failed") {
+          testStats.failed++;
+          if (flakyLabel) {
+            testStats.flaky++;
+          }
+        } else {
+          testStats.successful++;
+        }
+        flakyTestStats.set(test.methodName, testStats);
       }
 
       const flakyFailed = flakyTests
@@ -293,8 +319,13 @@ async function run() {
       },
     ];
   }
-
-  jetpack.write("data/live-data.json", branchData);
+  jetpack.write("data/live-data.json", {
+    branchData,
+    flakyTestStats: Array.from(flakyTestStats.entries()).map(([test, stats]) => ({
+      test,
+      ...stats,
+    })),
+  });
 }
 
 run();

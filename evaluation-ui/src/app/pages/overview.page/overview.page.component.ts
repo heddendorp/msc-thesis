@@ -23,7 +23,7 @@ import {
 } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-
+import { ChiSquaredComponent } from '../../components/chi-squared/chi-squared.component';
 @Component({
   selector: 'app-overview.page',
   standalone: true,
@@ -33,6 +33,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     RouterLink,
     ReactiveFormsModule,
+    ChiSquaredComponent,
   ],
   templateUrl: './overview.page.component.html',
   styleUrls: ['./overview.page.component.scss'],

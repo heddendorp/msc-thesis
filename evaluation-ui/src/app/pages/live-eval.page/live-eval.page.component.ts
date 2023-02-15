@@ -4,18 +4,51 @@ import { DataService } from '../../services/data.service';
 import { map } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ChiSquaredComponent } from '../../components/chi-squared/chi-squared.component';
 
 @Component({
   selector: 'app-live-eval.page',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, ChiSquaredComponent],
   templateUrl: './live-eval.page.component.html',
   styleUrls: ['./live-eval.page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LiveEvalPageComponent {
   private dataService: DataService = inject(DataService);
-  protected branches$ = this.dataService.getLiveData();
+  protected branches$ = this.dataService
+    .getLiveData()
+    .pipe(map((data) => data.branchData));
+  protected testStats$ = this.dataService
+    .getLiveData()
+    .pipe(map((data) => data.flakyTestStats));
+
+  protected regularRerunsOrFails$ = this.branches$.pipe(
+    map((branches) =>
+      branches.reduce(
+        (acc, branch) =>
+          acc +
+          branch.results.filter((result) => {
+            return !result.regularBuild.successful || result.regularBuild.label;
+          }).length,
+        0
+      )
+    )
+  );
+
+  protected flakyFails$ = this.branches$.pipe(
+    map((branches) =>
+      branches.reduce(
+        (acc, branch) =>
+          acc +
+          branch.results.filter((result) => {
+            return !result.flakyBuild.successful;
+          }).length,
+        0
+      )
+    )
+  );
+
   protected totalBuilds$ = this.branches$.pipe(
     map((branches) =>
       branches.reduce((acc, branch) => acc + branch.results.length, 0)

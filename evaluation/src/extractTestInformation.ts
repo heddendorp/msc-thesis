@@ -28,6 +28,9 @@ async function run() {
   const plans: any[] = [];
   let flakeCheckRuns = 0;
   let cypressRuns = 0;
+  let flakyFails = 0;
+  let regularFails = 0;
+  let regularRerunsOrFails = 0;
   for (const branch of data.branches) {
     console.log(`Branch: ${branch.branchName}`);
     const originalBuildNumber = Number(branch.branchName.split("-").pop());
@@ -157,6 +160,19 @@ async function run() {
         const confirmedFlaky = !failedBuild && hasRerun;
         const flakeCheckIssue = failedBuild && suspectedNotFlaky;
 
+        if(plan.isFlakeCheck){
+          if(failedBuild){
+            flakyFails++;
+          }
+        } else {
+          if(failedBuild){
+            regularFails++;
+          }
+          if(hasRerun || failedBuild){
+            regularRerunsOrFails++;
+          }
+        }
+
         const runNumber = logFile
           .replaceAll("\\", "/")
           .split("/")
@@ -231,6 +247,9 @@ async function run() {
       branchConfig: data.branches,
       flakeCheckRuns,
       cypressRuns,
+      flakyFails,
+      regularFails,
+      regularRerunsOrFails,
     });
     console.log();
   }

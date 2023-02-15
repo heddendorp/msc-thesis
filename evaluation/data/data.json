@@ -1,40 +1,6 @@
 {
   "branches": [
     {
-      "branchName": "flaky-evaluation-2/build-580",
-      "plans": [
-        {
-          "planKey": "ARTEMIS-AETG1436",
-          "isFlakeCheck": false,
-          "runningGoal": 10,
-          "saveLogs": true
-        },
-        {
-          "planKey": "ARTEMIS-AECF323",
-          "isFlakeCheck": true,
-          "runningGoal": 10,
-          "saveLogs": true
-        }
-      ]
-    },
-    {
-      "branchName": "flaky-evaluation-2/build-581",
-      "plans": [
-        {
-          "planKey": "ARTEMIS-AETG1435",
-          "isFlakeCheck": false,
-          "runningGoal": 10,
-          "saveLogs": true
-        },
-        {
-          "planKey": "ARTEMIS-AECF322",
-          "isFlakeCheck": true,
-          "runningGoal": 10,
-          "saveLogs": true
-        }
-      ]
-    },
-    {
       "branchName": "flaky-evaluation-2/build-582",
       "plans": [
         {
