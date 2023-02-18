@@ -11,8 +11,8 @@ const xmlParser = new XMLParser();
 async function run() {
   const data = jetpack.read("./data/data.json", "json");
   const branches = data.branches;
-  const newBranches = await Promise.all(
-    branches.map(async (branch) => {
+  const newBranches = [];
+  for (const branch of branches) {
       const regularPlanResponse = await fetch(
         `https://bamboobruegge.in.tum.de/rest/api/latest/search/branches?masterPlanKey=${masterPlanKeyRegular}&searchTerm=${branch.branchName.replace(
           "/",
@@ -70,14 +70,14 @@ async function run() {
         },
       ];
       if(!regularKey || !flakyKey){
-        return branch;
+         newBranches.push(branch)
+      } else {
+        newBranches.push({
+          ...branch,
+          plans,
+        });
       }
-      return {
-        ...branch,
-        plans,
-      };
-    })
-  );
+  }
   jetpack.write("./data/data.json", { ...data, branches: newBranches });
 }
 
