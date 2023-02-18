@@ -12,8 +12,9 @@ import {
 } from '../file-updates/cypress-config.js';
 import { updateComposeFile } from '../file-updates/compose-update';
 import jetpack from 'fs-jetpack';
-import {version} from '../../package.json';
+import { version } from '../../package.json';
 import { parse } from 'yaml';
+import { addBambooScripts } from '../file-updates/bamboo-scripts.js';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -25,9 +26,7 @@ export async function createBranch(
   analyzedRun,
   { token, prefix, skipGit, local }
 ) {
-  console.log(
-    `HISTORIC_ANALYSIS_HELPER-VERSION: ${version}`
-  );
+  console.log(`HISTORIC_ANALYSIS_HELPER-VERSION: ${version}`);
   console.log(
     chalk.green(
       `Setting up analysis for Build ${analyzedRun} of Plan ${planKey}`
@@ -56,9 +55,8 @@ export async function createBranch(
   const analyzedBuildData = xmlParser.parse(analyzedBuildXml);
   const analyzedCommit = analyzedBuildData.result.vcsRevisionKey;
   // Save current branch name
-  const { stdout: currentBranchStdout, stderr: currentBranchStderr } = await exec(
-    `git rev-parse --abbrev-ref HEAD`
-  );
+  const { stdout: currentBranchStdout, stderr: currentBranchStderr } =
+    await exec(`git rev-parse --abbrev-ref HEAD`);
   if (currentBranchStderr) {
     console.log(chalk.red(currentBranchStderr));
   }
@@ -86,13 +84,19 @@ export async function createBranch(
   updatePackageScripts(lastSuccessfulCommit);
   console.log(chalk.green(`Done!`));
   console.log(chalk.gray(`Determining cypress docker image`));
-  const dockerComposeContent = jetpack.read('src/main/docker/cypress/docker-compose.yml',
-  'utf8');
+  const dockerComposeContent = jetpack.read(
+    'src/main/docker/cypress/docker-compose.yml',
+    'utf8'
+  );
   const dockerComposeData = parse(dockerComposeContent);
-  const cypressImage = dockerComposeData.services['artemis-cypress'].image.split(':')[1];
+  const cypressImage =
+    dockerComposeData.services['artemis-cypress'].image.split(':')[1];
   console.log(chalk.gray(`Using cypress docker image ${cypressImage}`));
   console.log(chalk.gray(`Adding Docker override files`));
   addDockerOverrides(cypressImage);
+  console.log(chalk.green(`Done!`));
+  console.log(chalk.gray(`Adding bamboo execution scripts`));
+  addBambooScripts();
   console.log(chalk.green(`Done!`));
   console.log(chalk.gray(`Adding gradle dependencies`));
   updateGradleDependencies();
@@ -110,6 +114,10 @@ export async function createBranch(
   updateComposeFile();
   addRerunLogger();
   console.log(chalk.green(`Done!`));
+  console.log(chalk.gray(`Making bamboo scripts executable`));
+  await exec('git add --chmod=+x .bamboo/*');
+  console.log(chalk.green(`Done!`));
+  updateComposeFile();
   if (skipGit) {
     console.log(chalk.green(`Skipping git commit`));
     return;

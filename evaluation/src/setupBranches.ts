@@ -6,7 +6,7 @@ import jetpack from "fs-jetpack";
 
 const branchPrefix = "flaky-evaluation-2";
 const helperVersion = "latest";
-const batchSize = 5;
+const batchSize = 1;
 
 async function branchExists(branchName: string): Promise<boolean> {
   try {
