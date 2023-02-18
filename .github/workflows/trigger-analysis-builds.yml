@@ -28,4 +28,4 @@ jobs:
         env:
           BAMBOO_USERNAME: ${{ secrets.BAMBOO_USERNAME }}
           BAMBOO_PASSWORD: ${{ secrets.BAMBOO_PASSWORD }}
-          MAX_RUNS: ${{ github.event.inputs.maxRuns || 20 }}
+          MAX_RUNS: ${{ github.event.inputs.maxRuns || 6 }}
