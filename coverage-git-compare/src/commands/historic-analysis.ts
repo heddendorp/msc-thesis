@@ -23,6 +23,7 @@ export function registerHistoricAnalysisCommand(program: Command) {
           path,
           limit: 10,
           json: true,
+          saveDiff: false,
         });
         console.log(
           `"suspectedFlaky": ${

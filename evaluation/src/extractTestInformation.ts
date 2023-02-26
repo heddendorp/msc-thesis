@@ -91,7 +91,7 @@ async function run() {
             .slice(xmlStartLines[i] + 1, xmlEndLines[i])
             .map((line) => line.slice(line.indexOf("|") + 6))
             .join("\n");
-          const json = parser.parse(xml).testsuites.testsuite;
+          const json = parser.parse(xml).testsuites?.testsuite;
           if (json.length === 1) {
             testsuites.push({ ...json[0], testsuites: [json[0]] });
             continue;

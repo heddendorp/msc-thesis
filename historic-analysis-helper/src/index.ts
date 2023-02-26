@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 
-import {clear} from 'node:console';
+import { clear } from 'node:console';
 import chalk from 'chalk';
-import {Command} from 'commander';
+import { Command } from 'commander';
 import packageJson from '../package.json';
-import {registerCreateBranchCommand} from './commands/create-branch.js';
-
+import { registerCreateBranchCommand } from './commands/create-branch.js';
+import { registerCreateBranchForCommitCommand } from './commands/create-for-commit';
 
 clear();
-console.log(
-  chalk.red('Artemis analysis tool'),
-);
+console.log(chalk.red('Artemis analysis tool'));
 const program = new Command();
 program
   .name('artemis-history')
@@ -18,5 +16,6 @@ program
   .description('A CLI for setting up Artemis history analysis');
 
 registerCreateBranchCommand(program);
+registerCreateBranchForCommitCommand(program);
 
 program.parse();

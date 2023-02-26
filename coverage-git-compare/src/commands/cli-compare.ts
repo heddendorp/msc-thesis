@@ -10,7 +10,7 @@ import { compareLines } from '../helpers/compare-lines';
 
 const exec = util.promisify(require('child_process').exec);
 
-export async function runAnalysis({ commit, path, limit, json }) {
+export async function runAnalysis({ commit, path, limit, json, saveDiff }) {
   const { stdout } = await exec(
     `git log ${
       commit ? `${commit}...HEAD` : `HEAD~${limit}...HEAD`
@@ -44,6 +44,15 @@ export async function runAnalysis({ commit, path, limit, json }) {
       )
     ),
   }));
+  
+  if (saveDiff) {
+    jetpack.write('diff.json', diff);
+    console.log('Saved diff to diff.json');
+    jetpack.write('changedFiles.json', changedFiles);
+    console.log('Saved changedFiles to changedFiles.json');
+    jetpack.write('changedLines.json', changedLines);
+    console.log('Saved changedLines to changedLines.json');
+  }
   if (changedFiles.some((file: string) => file === 'package-lock.json')) {
     if (!json) {
       console.log(
@@ -112,6 +121,7 @@ export function registerCliCompareCommand(program: Command) {
     .option('-p, --path <path>', 'Path to coverage report', './coverage')
     .option('-l, --limit <limit>', 'Maximum commits to inspect', '10')
     .option('-json', 'Output in JSON format')
+    .option('--save-diff', 'Save diff to file')
     .action(async (options) => {
       console.log(`COVERAGE_GIT_COMPARE-VERSION: ${version}`);
       const exitCode = await runAnalysis(options);

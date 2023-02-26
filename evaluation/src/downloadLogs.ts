@@ -41,7 +41,7 @@ async function run() {
         }
       );
       const xml = await planResponse.text();
-      const data = xmlParser.parse(xml).results.results.result;
+      const data = xmlParser.parse(xml).results?.results?.result;
       const results = (Array.isArray(data)?data:data?[data]:[]).filter((result) => result.buildState !== "Unknown");
       for (const result of results) {
         const buildNumber = result.buildNumber;

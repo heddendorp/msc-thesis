@@ -46,7 +46,7 @@
       <div class="p-4">
         <h3>
           {{ branch.name }}
-          <em>({{ branch.plans[0].buildConfig.originalState }})</em>
+          <em>({{ branch.plans[0].buildConfig?.originalState }})</em>
         </h3>
       </div>
       <div class="flex flex-col divide-y lg:flex-row lg:divide-x">

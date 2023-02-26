@@ -970,6 +970,23 @@
       ]
     },
     {
+      "branchName": "live-eval-check/ARTEMIS-AECF352-7",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1602",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true
+        },
+        {
+          "planKey": "ARTEMIS-AECF477",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true
+        }
+      ]
+    },
+    {
       "branchName": "flaky-evaluation-2/build-639",
       "plans": [
         {
