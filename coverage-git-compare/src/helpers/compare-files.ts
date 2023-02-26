@@ -12,8 +12,8 @@ export const compareFiles = async (
   const coverageFiles = await coverageFolder.findAsync({
     matching: '*files.json',
   });
-  if(coverageFiles.length === 0) {
-    if(json) {
+  if (coverageFiles.length === 0) {
+    if (json) {
       console.log(`"error": "No coverage files found"`);
     } else {
       console.log(chalk.red(`No coverage files found`));
@@ -21,7 +21,11 @@ export const compareFiles = async (
     return true;
   }
   if (json) {
-    console.log(`"commitNumber": "${commitNumber}", "changedFileNum": ${JSON.stringify(changedFiles.length)}, "coverageFiles": ${JSON.stringify(coverageFiles)},`);
+    console.log(
+      `"commitNumber": "${commitNumber}", "changedFileNum": ${JSON.stringify(
+        changedFiles.length
+      )}, "coverageFiles": ${JSON.stringify(coverageFiles)},`
+    );
   } else {
     console.log(
       chalk.gray(
@@ -45,7 +49,16 @@ export const compareFiles = async (
     const coveredFiles = rawFiles.map((f) => f.replaceAll('\\', '/'));
     const changedFilesForTest = changedFiles
       .filter((f: string) =>
-        coveredFiles.some((cf: string) => minimatch(cf, f))
+        coveredFiles
+          .map((path) =>
+            path.includes('src/main/java')
+              ? path
+              : path.replace(
+                  'de/tum/in/www1/artemis/',
+                  'src/main/java/de/tum/in/www1/artemis/'
+                )
+          )
+          .some((cf: string) => minimatch(`${cf}`, `${f}`))
       )
       .map((path) => {
         if (path.includes('node_modules')) {

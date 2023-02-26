@@ -61,14 +61,44 @@ export const compareLines = async (
     }));
     const changedFilesForTest = changesLines.filter(
       (entry: { file: string; lines: number[] }) =>
-        coveredFiles.filter((cf) => minimatch(entry.file, cf.file)).length > 0
+        coveredFiles
+          .map((entry) =>
+            entry.file.includes('src/main/java')
+              ? entry
+              : {
+                  ...entry,
+                  file: entry.file.replace(
+                    'de/tum/in/www1/artemis/',
+                    'src/main/java/de/tum/in/www1/artemis/'
+                  ),
+                }
+          )
+          .some((cf) => minimatch(`${entry.file}`, `${cf.file}`))
     );
-    const changedLinesForTest = changesLines.filter(
+    const changedLinesForTest = changedFilesForTest.filter(
       (entry: { file: string; lines: number[] }) =>
-        changedFilesForTest.filter((cf) =>
-          cf.lines.some((l) => entry.lines.includes(l))
-        ).length > 0
-    );
+        coveredFiles
+          .map((entry) =>
+            entry.file.includes('src/main/java')
+              ? entry
+              : {
+                  ...entry,
+                  file: entry.file.replace(
+                    'de/tum/in/www1/artemis/',
+                    'src/main/java/de/tum/in/www1/artemis/'
+                  ),
+                }
+          ).filter((cf) => minimatch(`${entry.file}`, `${cf.file}`))
+          .some((cf) =>
+            cf.lines.some((l) => entry.lines.includes(l))
+          )
+    ); 
+    // const changedLinesForTest = changesLines.filter(
+    //   (entry: { file: string; lines: number[] }) =>
+    //     changedFilesForTest.filter((cf) =>
+    //       cf.lines.some((l) => entry.lines.includes(l))
+    //     ).length > 0
+    // );
     if (changedLinesForTest.length > 0) {
       nonFlakyFail = true;
       if (!json) {

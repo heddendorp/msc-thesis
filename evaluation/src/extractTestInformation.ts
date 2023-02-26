@@ -87,9 +87,11 @@ async function run() {
         }
         const testsuites: any[] = [];
         for (let i = 0; i < xmlStartLines.length; i++) {
+          const offsetLine = lines[xmlStartLines[i] + 1];
+          const offset = offsetLine.slice(offsetLine.indexOf("|")+1).indexOf("<");
           const xml = lines
             .slice(xmlStartLines[i] + 1, xmlEndLines[i])
-            .map((line) => line.slice(line.indexOf("|") + 6))
+            .map((line) => line.slice(line.indexOf("|") + offset))
             .join("\n");
           const json = parser.parse(xml).testsuites?.testsuite;
           if (json.length === 1) {

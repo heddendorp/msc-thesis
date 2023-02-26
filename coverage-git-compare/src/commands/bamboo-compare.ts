@@ -85,7 +85,7 @@ export function registerBambooCompareCommand(program: Command) {
       const { stdout: diff } = await exec(`git diff ${lastSuccessfulCommit}`, {
         maxBuffer: 1024 * 2000,
       });
-      const changedFiles = parseDiff(diff).map((change) => change.to);
+      const changedFiles = parseDiff(diff).map((change) => change.to) as string[];
       const changedLines = parseDiff(diff).map((change) => ({
         file: change.to,
         lines: change.chunks.flatMap((chunk) =>
@@ -106,8 +106,8 @@ export function registerBambooCompareCommand(program: Command) {
             )
           )
         ),
-      }));
-      if (changedFiles.some((file: string) => file === 'package-lock.json')) {
+      })) as { file: string; lines: number[] }[]
+      if (changedFiles.some((file?: string) => file === 'package-lock.json')) {
         console.log(
           chalk.gray(
             'package-lock.json changes detected, adding changed dependencies to list of changed files'

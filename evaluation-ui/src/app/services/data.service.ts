@@ -122,6 +122,7 @@ export interface RunData {
 export interface PlanData {
   planKey: string;
   isFlakeCheck: boolean;
+  archived: boolean;
   runningGoal: number;
   saveLogs: boolean;
   branch: string;
@@ -131,7 +132,7 @@ export interface PlanData {
   reruns: number;
   fails: number;
   informationFiles: string[];
-  buildConfig: {
+  buildConfig?: {
     planKey: string;
     target: number;
     originalState: 'Failed' | 'Successful';

@@ -10,7 +10,13 @@ import { compareLines } from '../helpers/compare-lines';
 
 const exec = util.promisify(require('child_process').exec);
 
-export async function runAnalysis({ commit, path, limit, json, saveDiff }) {
+export async function runAnalysis({ commit, path, limit, json, saveDiff }: {
+  commit?: string;
+  path: string;
+  limit: number;
+  json: boolean;
+  saveDiff: boolean;
+}) {
   const { stdout } = await exec(
     `git log ${
       commit ? `${commit}...HEAD` : `HEAD~${limit}...HEAD`
@@ -22,7 +28,7 @@ export async function runAnalysis({ commit, path, limit, json, saveDiff }) {
     `git diff ${commit ? `${commit}` : `HEAD~${limit}`}`,
     { maxBuffer: 1024 * 2000 }
   );
-  const changedFiles = parseDiff(diff).map((change) => change.to);
+  const changedFiles = parseDiff(diff).map((change) => change.to) as string[];
   const changedLines = parseDiff(diff).map((change) => ({
     file: change.to,
     lines: change.chunks.flatMap((chunk) =>
@@ -43,17 +49,8 @@ export async function runAnalysis({ commit, path, limit, json, saveDiff }) {
         )
       )
     ),
-  }));
-  
-  if (saveDiff) {
-    jetpack.write('diff.json', diff);
-    console.log('Saved diff to diff.json');
-    jetpack.write('changedFiles.json', changedFiles);
-    console.log('Saved changedFiles to changedFiles.json');
-    jetpack.write('changedLines.json', changedLines);
-    console.log('Saved changedLines to changedLines.json');
-  }
-  if (changedFiles.some((file: string) => file === 'package-lock.json')) {
+  })) as { file: string; lines: number[] }[];
+  if (changedFiles.some((file?: string) => file === 'package-lock.json')) {
     if (!json) {
       console.log(
         chalk.gray(
@@ -78,6 +75,14 @@ export async function runAnalysis({ commit, path, limit, json, saveDiff }) {
     );
     jetpack.remove('old-package-lock.json');
     changedFiles.push(...additionalFiles);
+  }
+  if (saveDiff) {
+    jetpack.write('diff.json', diff);
+    console.log('Saved diff to diff.json');
+    jetpack.write('changedFiles.json', changedFiles);
+    console.log('Saved changedFiles to changedFiles.json');
+    jetpack.write('changedLines.json', changedLines);
+    console.log('Saved changedLines to changedLines.json');
   }
   const nonFlakyFail = await compareFiles(
     path,

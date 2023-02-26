@@ -112,6 +112,7 @@
                       <mat-icon svgIcon="icon-info"></mat-icon>
                     </a>
                     <a
+                      [disabled]="plan.archived"
                       href="https://bamboobruegge.in.tum.de/browse/{{
                         plan.planKey
                       }}-{{ run.runNumber }}"
@@ -130,6 +131,7 @@
                       <mat-icon svgIcon="icon-info"></mat-icon>Details
                     </a>
                     <a
+                      [disabled]="plan.archived"
                       href="https://bamboobruegge.in.tum.de/browse/{{
                         plan.planKey
                       }}-{{ run.runNumber }}"

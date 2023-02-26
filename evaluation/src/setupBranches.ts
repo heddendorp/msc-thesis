@@ -4,7 +4,8 @@ import { execSync } from "child_process";
 import { resolve } from "path";
 import jetpack from "fs-jetpack";
 
-const branchPrefix = "flaky-evaluation-2";
+// const branchPrefix = "flaky-evaluation-2";
+const branchPrefix = "evaluation-check";
 const helperVersion = "latest";
 const batchSize = 3;
 
@@ -23,7 +24,7 @@ async function run() {
   let branchesCreated = 0;
   const data = jetpack.read("./data/data.json", "json");
   const branches = data.branches;
-  for (const buildConfig of data.analyzedBuilds) {
+  for (const buildConfig of data.analyzedBuilds.sort(() => 0.5 - Math.random())) {
     if (branchesCreated >= batchSize) {
       break;
     }

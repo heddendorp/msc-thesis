@@ -21,19 +21,31 @@ async function run() {
   await page.getByLabel("Remember my login on this computer").check();
   await page.locator("#loginForm_save").click();
   for (const branch of data.branches) {
-    if(!branch.plans){
+    if (!branch.plans) {
       continue;
     }
     for (const plan of branch.plans) {
+      if (plan.archived) {  
+        continue;
+      }
       if (startedRuns >= maxRuns) {
         console.log("Reached max runs");
         break;
       }
       console.log(`Checking runs for ${plan.planKey}`);
       await page.goto(`https://bamboobruegge.in.tum.de/browse/${plan.planKey}`);
-      await page.locator(`[id="history\\:${plan.planKey}"]`).click();
+      try {
+        await page
+          .locator(`[id="history\\:${plan.planKey}"]`)
+          .click({ timeout: 200 });
+      } catch (error) {
+        console.log("No history found");
+        continue;
+      }
       const firstRowInnerText = await page.getByRole("row").nth(1).innerText();
-      const firstBuildNumber = Number(firstRowInnerText.match(/#(\d+)/)?.[1] ?? "");
+      const firstBuildNumber = Number(
+        firstRowInnerText.match(/#(\d+)/)?.[1] ?? ""
+      );
       if (firstBuildNumber <= plan.runningGoal) {
         const runButton = await page.getByRole("button", { name: "Run " });
         const buttonIsDisabled = await runButton.getAttribute("aria-disabled");
@@ -43,12 +55,16 @@ async function run() {
           await page.getByRole("link", { name: "Run branch" }).click();
           startedRuns++;
           // wait for 10 to 30 secs
-          await new Promise((resolve) => setTimeout(resolve, Math.random() * 20000 + 10000));
+          await new Promise((resolve) =>
+            setTimeout(resolve, Math.random() * 20000 + 10000)
+          );
         } else {
           console.log("Run button is disabled");
         }
       } else {
-        console.log(`Already reached running goal: ${firstBuildNumber} / ${plan.runningGoal} for ${plan.planKey}`);
+        console.log(
+          `Already reached running goal: ${firstBuildNumber} / ${plan.runningGoal} for ${plan.planKey}`
+        );
       }
       console.log();
     }

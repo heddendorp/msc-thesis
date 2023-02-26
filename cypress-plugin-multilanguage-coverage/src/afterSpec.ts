@@ -49,8 +49,8 @@ export function handleAfterSpec(
       const client = await ChromeClient.get();
       const profilerCoverage = await client.Profiler.takePreciseCoverage();
       await client.Profiler.stopPreciseCoverage();
-      const jsCoverage = profilerCoverage.result.filter(
-        res => res.url.includes('.js') && !res.url.includes('__')
+      const jsCoverage = profilerCoverage.result.filter(res =>
+        res.url.includes('.js')
       );
       const coverageResultMap = {};
       await Promise.all(
@@ -170,7 +170,7 @@ export function handleAfterSpec(
             entry.lines.hit || entry.branches.hit || entry.functions.hit
         )
         .map((entry: any) => {
-          if (!config.distributionFileDir) {
+          if (!entry.file.includes('src/main/java')) {
             return entry.file.replace(
               'de/tum/in/www1/artemis/',
               'src/main/java/de/tum/in/www1/artemis/'
@@ -181,7 +181,7 @@ export function handleAfterSpec(
       const javaLines = javaCoverage
         .filter((entry: any) => entry.lines.hit)
         .map((entry: any) => ({
-          file: config.distributionFileDir
+          file: entry.file.includes('src/main/java')
             ? entry.file
             : entry.file.replace(
                 'de/tum/in/www1/artemis/',

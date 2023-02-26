@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/cypress-plugin-multilanguage-coverage",
-  "version": "1.7.4",
+  "version": "1.7.6",
   "description": "",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
