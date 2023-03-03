@@ -17,6 +17,7 @@ export async function runAnalysis({ commit, path, limit, json, saveDiff }: {
   json: boolean;
   saveDiff: boolean;
 }) {
+  const execa = await import('execa').then((module) => module.execa);
   const { stdout } = await exec(
     `git log ${
       commit ? `${commit}...HEAD` : `HEAD~${limit}...HEAD`
@@ -24,9 +25,8 @@ export async function runAnalysis({ commit, path, limit, json, saveDiff }: {
     { maxBuffer: 1024 * 500 }
   );
   const commitNumber = stdout.split('@begin@').length - 1;
-  const { stdout: diff } = await exec(
-    `git diff ${commit ? `${commit}` : `HEAD~${limit}`}`,
-    { maxBuffer: 1024 * 2000 }
+  const { stdout: diff } = await execa(
+    `git `,[`diff`,(commit ? `${commit}` : `HEAD~${limit}`)]
   );
   const changedFiles = parseDiff(diff).map((change) => change.to) as string[];
   const changedLines = parseDiff(diff).map((change) => ({

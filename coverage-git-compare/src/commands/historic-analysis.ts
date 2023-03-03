@@ -16,10 +16,10 @@ export function registerHistoricAnalysisCommand(program: Command) {
         `{ "commit": "${commit}", "path": "${path}", "limit": "${limit}", "runs": [`
       );
       for (let i = 0; i < parseInt(limit); i++) {
-        const commit = execSync(`git rev-parse HEAD~${i}`).toString().trim();
-        console.log(`{ "commit": "${commit}", `);
+        const comparisonCommit = execSync(`git rev-parse ${commit}~${i}`).toString().trim();
+        console.log(`{ "commit": "${comparisonCommit}", `);
         const exitCode = await runAnalysis({
-          commit,
+          commit: comparisonCommit,
           path,
           limit: 10,
           json: true,

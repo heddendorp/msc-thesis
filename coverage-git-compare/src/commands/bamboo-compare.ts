@@ -27,6 +27,7 @@ export function registerBambooCompareCommand(program: Command) {
     )
     .action(async (planKey, buildNumber, token, { path, branch }) => {
       console.log(`COVERAGE_GIT_COMPARE-VERSION: ${version}`);
+      const execa = await import('execa').then((module) => module.execa);
       let lastSuccessfulCommit = 'HEAD^';
       const planResponse = await fetch(
         `https://bamboobruegge.in.tum.de/rest/api/latest/result/${planKey}`,
@@ -82,9 +83,9 @@ export function registerBambooCompareCommand(program: Command) {
         { maxBuffer: 1024 * 500 }
       );
       const commitNumber = stdout.split('@begin@').length - 1;
-      const { stdout: diff } = await exec(`git diff ${lastSuccessfulCommit}`, {
-        maxBuffer: 1024 * 2000,
-      });
+      const { stdout: diff } = await execa(
+        `git `,[`diff`,lastSuccessfulCommit]
+      );
       const changedFiles = parseDiff(diff).map((change) => change.to) as string[];
       const changedLines = parseDiff(diff).map((change) => ({
         file: change.to,

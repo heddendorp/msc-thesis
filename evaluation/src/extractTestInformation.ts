@@ -109,10 +109,12 @@ async function run() {
         );
         let flakeData: any = null;
         if (flakeOutputStartLine !== -1 && flakeOutputEndLine !== -1) {
+          const offsetLine = lines[flakeOutputStartLine + 1];
+          const offset = offsetLine.slice(offsetLine.indexOf("|")+1).indexOf("{");
           const flakeOutput = lines
             .slice(flakeOutputStartLine + 1, flakeOutputEndLine)
-            .filter((line) => line.includes("artemis-cypress_1"))
-            .map((line) => line.slice(line.indexOf("|") + 6))
+            .filter((line) => line.includes("artemis-cypress_1") || line.includes("artemis-cypress-1"))
+            .map((line) => line.slice(line.indexOf("|") + offset))
             .join("\n");
           try {
             flakeData = JSON.parse(flakeOutput);
