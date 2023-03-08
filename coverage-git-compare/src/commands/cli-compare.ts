@@ -26,7 +26,7 @@ export async function runAnalysis({ commit, path, limit, json, saveDiff }: {
   );
   const commitNumber = stdout.split('@begin@').length - 1;
   const { stdout: diff } = await execa(
-    `git `,[`diff`,(commit ? `${commit}` : `HEAD~${limit}`)]
+    `git`,[`diff`,(commit ? `${commit}` : `HEAD~${limit}`)]
   );
   const changedFiles = parseDiff(diff).map((change) => change.to) as string[];
   const changedLines = parseDiff(diff).map((change) => ({

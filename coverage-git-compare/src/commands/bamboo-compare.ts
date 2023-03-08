@@ -84,7 +84,7 @@ export function registerBambooCompareCommand(program: Command) {
       );
       const commitNumber = stdout.split('@begin@').length - 1;
       const { stdout: diff } = await execa(
-        `git `,[`diff`,lastSuccessfulCommit]
+        `git`,[`diff`,lastSuccessfulCommit]
       );
       const changedFiles = parseDiff(diff).map((change) => change.to) as string[];
       const changedLines = parseDiff(diff).map((change) => ({

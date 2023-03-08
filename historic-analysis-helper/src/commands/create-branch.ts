@@ -15,6 +15,7 @@ import jetpack from 'fs-jetpack';
 import { version } from '../../package.json';
 import { parse } from 'yaml';
 import { addBambooScripts } from '../file-updates/bamboo-scripts.js';
+import { updateJavaFile } from '../file-updates/java-update.js';
 
 const exec = util.promisify(require('child_process').exec);
 
@@ -94,6 +95,9 @@ export async function createBranch(
   console.log(chalk.gray(`Using cypress docker image ${cypressImage}`));
   console.log(chalk.gray(`Adding Docker override files`));
   addDockerOverrides(cypressImage);
+  console.log(chalk.green(`Done!`));
+  console.log(chalk.gray(`Updating build log java`));
+  updateJavaFile();
   console.log(chalk.green(`Done!`));
   console.log(chalk.gray(`Adding bamboo execution scripts`));
   addBambooScripts();
