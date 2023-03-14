@@ -21,7 +21,7 @@ async function run() {
     await page.getByLabel("Username").fill(process.env.BAMBOO_USERNAME ?? "");
     await page.getByLabel("Password").click();
     await page.getByLabel("Password").fill(process.env.BAMBOO_PASSWORD ?? "");
-    await page.getByLabel("Remember my login on this computer").check();
+    // await page.getByLabel("Remember my login on this computer").check();
     await page.locator("#loginForm_save").click();
     return page;
   };

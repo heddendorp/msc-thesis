@@ -20,6 +20,9 @@
       ]
     },
     {
+      "branchName": "evaluation-assess-8/build-604"
+    },
+    {
       "branchName": "evaluation-assess-8/build-608",
       "plans": [
         {
@@ -56,6 +59,12 @@
           "archived": false
         }
       ]
+    },
+    {
+      "branchName": "evaluation-assess-8/build-611"
+    },
+    {
+      "branchName": "evaluation-assess-8/build-772"
     }
   ],
   "analyzedBuilds": [
