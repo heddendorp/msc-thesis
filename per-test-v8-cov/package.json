@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/per-test-v8-cov",
-  "version": "0.0.2",
+  "version": "0.0.32",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "debug": "^4.3.4",
     "fs-jetpack": "^5.1.0",
     "istanbul-lib-coverage": "^3.2.0",
+    "istanbul-lib-source-maps": "^4.0.1",
     "v8-to-istanbul": "^9.1.0"
   }
 }

@@ -46,7 +46,7 @@ export HOST_HOSTNAME=$(hostname)
 
 ${envSetup}
 
-docker-compose -f docker-compose.yml down -v`
+docker compose -f docker-compose.yml down -v`
 const flakyCleanupFile = `#!/bin/sh
 
 cd src/main/docker/cypress
@@ -56,7 +56,7 @@ export HOST_HOSTNAME=$(hostname)
 
 ${envSetup}
 
-docker-compose -f docker-compose.yml -f docker-compose.coverage.yml down -v`
+docker compose -f docker-compose.yml -f docker-compose.coverage.yml down -v`
 
 const e2eExecuteFile = `#!/bin/sh
 
@@ -72,9 +72,9 @@ export HOST_HOSTNAME=$(hostname)
 
 ${envSetup}
 
-docker-compose -f docker-compose.yml pull
-docker-compose -f docker-compose.yml build --no-cache --pull
-docker-compose -f docker-compose.yml up --exit-code-from artemis-cypress
+docker compose -f docker-compose.yml pull
+docker compose -f docker-compose.yml build --no-cache --pull
+docker compose -f docker-compose.yml up --exit-code-from artemis-cypress
 exitCode=$?
 echo "Cypress container exit code: $exitCode"
 if [ $exitCode -eq 0 ]
@@ -108,11 +108,11 @@ export HOST_HOSTNAME=$(hostname)
 
 export GH_REGISTRY_TOKEN=$bamboo_GH_REGISTRY_TOKEN
 
-docker-compose -f docker-compose.yml -f docker-compose.coverage.yml pull
-docker-compose -f docker-compose.yml -f docker-compose.coverage.yml build --no-cache --pull artemis-cypress
+docker compose -f docker-compose.yml -f docker-compose.coverage.yml pull
+docker compose -f docker-compose.yml -f docker-compose.coverage.yml build --no-cache --pull artemis-cypress
 #do not pull the base image artemis:coverage-latest for artemis-app as it's stored locally and built above
-docker-compose -f docker-compose.yml -f docker-compose.coverage.yml build --no-cache artemis-app
-docker-compose -f docker-compose.yml -f docker-compose.coverage.yml up --exit-code-from artemis-cypress
+docker compose -f docker-compose.yml -f docker-compose.coverage.yml build --no-cache artemis-app
+docker compose -f docker-compose.yml -f docker-compose.coverage.yml up --exit-code-from artemis-cypress
 exitCode=$?
 echo "Cypress container exit code: $exitCode"
 if [ $exitCode -eq 0 ]

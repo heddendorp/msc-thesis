@@ -1,6 +1,15 @@
 {
   "branches": [
     {
+      "branchName": "evaluation-assess-8/build-600"
+    },
+    {
+      "branchName": "evaluation-assess-8/build-608"
+    },
+    {
+      "branchName": "evaluation-assess-8/build-610"
+    },
+    {
       "branchName": "evaluation-assess-9/build-596",
       "plans": [
         {

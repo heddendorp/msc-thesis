@@ -11,6 +11,10 @@ export function registerHistoricAnalysisCommand(program: Command) {
     .option('-l, --limit <limit>', 'Maximum commits to inspect', '30')
     .action(async ({ commit, path, limit }) => {
       console.log(`COVERAGE_GIT_COMPARE-VERSION: ${version}`);
+      const currentCommit = execSync('git rev-parse HEAD').toString().trim();
+      console.log(`CURRENT_COMMIT: ${currentCommit}`);
+      const currentTags = execSync('git describe --tags').toString().trim();
+      console.log(`CURRENT_TAGS: ${currentTags}`);
       console.log('==FLAKECHECK:START==');
       console.log(
         `{ "commit": "${commit}", "path": "${path}", "limit": "${limit}", "runs": [`
