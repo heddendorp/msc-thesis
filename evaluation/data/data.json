@@ -20,7 +20,23 @@
       ]
     },
     {
-      "branchName": "evaluation-assess-8/build-604"
+      "branchName": "evaluation-assess-8/build-604",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1708",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF583",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
     },
     {
       "branchName": "evaluation-assess-8/build-608",
@@ -61,10 +77,42 @@
       ]
     },
     {
-      "branchName": "evaluation-assess-8/build-611"
+      "branchName": "evaluation-assess-8/build-611",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1706",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF581",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
     },
     {
-      "branchName": "evaluation-assess-8/build-772"
+      "branchName": "evaluation-assess-8/build-772",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1707",
+          "isFlakeCheck": false,
+          "runningGoal": 10,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF582",
+          "isFlakeCheck": true,
+          "runningGoal": 10,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
     }
   ],
   "analyzedBuilds": [
