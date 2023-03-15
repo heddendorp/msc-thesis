@@ -57,14 +57,14 @@ async function run() {
       {
         planKey: regularKey ?? branch.plans[0].planKey,
         isFlakeCheck: false,
-        runningGoal: 10,
+        runningGoal: 6,
         saveLogs: true,
         archived: !regularKey,
       },
       {
         planKey: flakyKey ?? branch.plans[1].planKey,
         isFlakeCheck: true,
-        runningGoal: 10,
+        runningGoal: 6,
         saveLogs: true,
         archived: !flakyKey,
       },
