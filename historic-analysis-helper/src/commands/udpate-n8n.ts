@@ -16,17 +16,19 @@ export async function runUpdate({ coverage }) {
   });
 
   const cypressConfigContent = jetpack.read('cypress.config.js');
-  let newCypressConfigContent = cypressConfigContent.replace(
-    `video: true,`,
-    `video: false,`
-  ).replace(
-    `defineConfig({`,
-    `defineConfig({
+  let newCypressConfigContent = cypressConfigContent
+    .replace(`video: true,`, `video: false,`)
+    .replace(
+      `defineConfig({`,
+      `defineConfig({
       reporter: 'mochawesome',
       reporterOptions: {
         reportFilename: 'results/output',
       },`
-  );
+    )
+    .replace(`runMode: 2,`, `runMode: 0,`)
+    .replace(`defaultCommandTimeout: 10000,`, `defaultCommandTimeout: 100000,`)
+    .replace(`requestTimeout: 12000,`, `requestTimeout: 120000,`);
   if (coverage) {
     newCypressConfigContent = newCypressConfigContent.replace(
       `			});`,
