@@ -47,7 +47,7 @@ async function run() {
         firstRowInnerText.match(/#(\d+)/)?.[1] ?? ""
       );
       if (firstBuildNumber <= plan.runningGoal) {
-        const runButton = await page.getByRole("button", { name: "Run " });
+        const runButton = await page.getByRole("button", { name: "Run" });
         const buttonIsDisabled = await runButton.getAttribute("aria-disabled");
         if (buttonIsDisabled === null) {
           console.log(`Running ${plan.planKey}`);
