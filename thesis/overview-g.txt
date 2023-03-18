@@ -1,0 +1,25 @@
+Title: Detecting Flaky Failures of End-to-End Tests in Multi-Language Systems Using Code Coverage
+
+Abstract:
+This thesis aims to detect flaky failures of end-to-end tests in multi-language systems, specifically focusing on projects with Java and JavaScript. The primary objectives are to develop a tool for collecting code coverage data for end-to-end tests and determine if failing tests are flaky based on the collected coverage information and code changes. The open-source projects Artemis and n8n are used as case studies. Although issues with Artemis limited the data collection, the evaluation was conducted using the n8n project.
+
+Introduction:
+Flaky tests are those that fail inconsistently without any changes to the code under test or the test itself. This phenomenon is particularly significant in User Interface (UI) tests due to their size and the highly asynchronous actions involved. Almost 16% of tests at Google are flaky, and between 2% and 16% of their compute resources are spent on re-running them. The goal of this thesis is to build a tool that collects coverage information for end-to-end tests and decides if failing tests could be flaky based on the new information and changes.
+
+Methodology:
+
+Literature review on flaky tests and learning about Cypress.
+Attempted local setup of Artemis and integration with Cypress tests (unsuccessful due to complexity).
+Developed a solution for collecting coverage information for end-to-end tests.
+Integrated the solution with the existing CI pipeline.
+Compared coverage information with the latest git changes.
+Evaluated the tool on relevant commits in Artemis and n8n.
+Identified limitations of the approach and documented them.
+Findings:
+Initially, the approach was to collect file-level coverage and compare it to file-level changes. However, this approach was not effective, and the decision was made to switch to line-level coverage. Due to two errors, large parts of the evaluation had to be discarded, and the focus shifted from Artemis to the n8n project. After properly instrumenting the n8n project and resolving test execution issues, the evaluation was conducted using the latest commits from open pull requests.
+
+Evaluation:
+To assess the effectiveness of flaky failure detection, a ground truth of test results for n8n is being established. This involves running the latest five commits of the latest 30 open pull requests up to five times and collecting the results. The tests are executed with and without instrumentation on a dedicated runner to determine if instrumentation has a significant impact on the failure rate of tests and their execution time. Additionally, insights into the behavior of the Artemis project will be gained from running the instrumented version of the tests in regular development.
+
+Conclusion:
+This thesis presents an approach to detecting flaky failures of end-to-end tests in multi-language systems using code coverage. While challenges were encountered during the evaluation, particularly with the Artemis project, the focus on the n8n project provided valuable insights. The ongoing evaluation aims to establish a ground truth for n8n test results and understand the impact of instrumentation on test failure rates and execution times.

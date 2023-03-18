@@ -24,7 +24,9 @@ async function run() {
   let branchesCreated = 0;
   const data = jetpack.read("./data/data.json", "json");
   const branches = data.branches;
-  for (const buildConfig of data.analyzedBuilds.sort(() => 0.5 - Math.random())) {
+  for (const buildConfig of data.analyzedBuilds.sort(
+    () => 0.5 - Math.random()
+  )) {
     if (branchesCreated >= batchSize) {
       break;
     }
@@ -50,11 +52,11 @@ async function run() {
   }
   // sort analyzedBuilds by target
   const analyzedBuilds = data.analyzedBuilds;
-  analyzedBuilds.sort((a, b) => {
+  analyzedBuilds.sort((a: any, b: any) => {
     return Number(a.target) - Number(b.target);
   });
   // sort branches by branchName
-  branches.sort((a, b) => {
+  branches.sort((a: any, b: any) => {
     return a.branchName.localeCompare(b.branchName);
   });
   jetpack.write("./data/data.json", { ...data, branches, analyzedBuilds });

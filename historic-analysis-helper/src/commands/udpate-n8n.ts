@@ -23,7 +23,7 @@ export async function runUpdate({ coverage }) {
       `defineConfig({
       reporter: 'mochawesome',
       reporterOptions: {
-        reportFilename: 'results/output',
+        reportFilename: '[name]-report',
       },`
     )
     .replace(`runMode: 2,`, `runMode: 0,`)

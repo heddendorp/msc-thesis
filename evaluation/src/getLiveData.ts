@@ -231,7 +231,8 @@ async function run() {
           });
         }
         const testStats = flakyTestStats.get(test.methodName);
-        testStats.total++;
+        if(testStats){
+          testStats.total++;
         if (test.status === "failed") {
           testStats.failed++;
           if (flakyLabel) {
@@ -241,31 +242,32 @@ async function run() {
           testStats.successful++;
         }
         flakyTestStats.set(test.methodName, testStats);
+        }
       }
 
       const flakyFailed = flakyTests
-        .filter((test) => test.status === "failed")
-        .map((test) => test.testCaseId);
+        .filter((test:any) => test.status === "failed")
+        .map((test:any) => test.testCaseId);
       const regularFailed = regularTests
-        .filter((test) => test.status === "failed")
-        .map((test) => test.testCaseId);
+        .filter((test:any) => test.status === "failed")
+        .map((test:any) => test.testCaseId);
 
       const onlyRunInFlaky = flakyTests
         .filter(
-          (test) =>
+          (test:any) =>
             !regularTests.find(
-              (regularTest) => regularTest.methodName === test.methodName
+              (regularTest:any) => regularTest.methodName === test.methodName
             )
         )
-        .map((test) => test.testCaseId);
+        .map((test:any) => test.testCaseId);
       const onlyRunInRegular = regularTests
         .filter(
-          (test) =>
+          (test:any) =>
             !flakyTests.find(
-              (flakyTest) => flakyTest.methodName === test.methodName
+              (flakyTest:any) => flakyTest.methodName === test.methodName
             )
         )
-        .map((test) => test.testCaseId);
+        .map((test:any) => test.testCaseId);
 
       const bothSuccessful = result.successful && flakyResult.successful;
 
@@ -294,14 +296,14 @@ async function run() {
         },
         flakyTests: bothSuccessful
           ? []
-          : flakyTests.map((test) => ({
+          : flakyTests.map((test:any) => ({
               methodName: test.methodName,
               status: test.status,
               successful: test.status === "successful",
             })),
         regularTests: bothSuccessful
           ? []
-          : regularTests.map((test) => ({
+          : regularTests.map((test:any) => ({
               methodName: test.methodName,
               status: test.status,
               successful: test.status === "successful",

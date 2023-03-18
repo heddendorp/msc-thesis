@@ -5,6 +5,7 @@
 \def\titleGer{Automatische Erkennung von flaky End-to-End-Tests in mehrsprachigen Systemen unter Verwendung von Code Coverage}	            %TODO add title in German
 \def\supervisor{Prof. Dr. Alexander Pretschner}
 \def\advisor{Fabian Leinen, M.Sc.}  %TODO add advisor name
+\def\advisorTwo{Roland W\"ursching, M.Sc.}  %TODO add advisor name
 \def\author{Lukas Heddendorp, B.Sc.}			    %TODO add author name
 \def\date{15.05.2023}		    %TODO add submission / handover date
 \def\startdate{15.11.2022}		    %TODO add startdate

@@ -1,0 +1,1334 @@
+{
+  "baseLine": {
+    "commits": [
+      {
+        "sha": "413f942b66de0a73bfad80cf25aefc8d1229be7c",
+        "branch": "node-244-postgres-trigger-node",
+        "parent": "4b06a2c6f9e77415868bfc66068c804c1d0e9be2",
+        "runs": [
+          {
+            "id": 4456250421,
+            "conclusion": "failure",
+            "installDuration": 135000,
+            "testDuration": 2372000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "f0f6e5dc5b7c16430ea14286e1c59a7b37c86c7e",
+        "branch": "node-244-postgres-trigger-node",
+        "parent": "413f942b66de0a73bfad80cf25aefc8d1229be7c",
+        "runs": [
+          {
+            "id": 4456250456,
+            "conclusion": "failure",
+            "installDuration": 156000,
+            "testDuration": 2290000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "80c7ac839fb698ff5eb613071ad2e97fa5560aa5",
+        "branch": "pay-149-execution-filter",
+        "parent": "24f6ac2938fb0f21b2fe5627f1dc0316a30b080f",
+        "runs": [
+          {
+            "id": 4456250185,
+            "conclusion": "failure",
+            "installDuration": 181000,
+            "testDuration": 1950000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "5c980fa8fc473e617141fa09d042f92f0cc63369",
+        "branch": "node-244-postgres-trigger-node",
+        "parent": "4dc458eca5587cf7765bed6fd384d47a31e66e2c",
+        "runs": [
+          {
+            "id": 4456250294,
+            "conclusion": "failure",
+            "installDuration": 189000,
+            "testDuration": 1589000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "4729b5cb2067040012e4ba0e09b2a134051bd1be",
+        "branch": "pay-149-execution-filter",
+        "parent": "0cf45bc4c862c7544e69af4981d4607bf0b530e3",
+        "runs": [
+          {
+            "id": 4456250250,
+            "conclusion": "failure",
+            "installDuration": 176000,
+            "testDuration": 2868000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "da5551fe4a9217750de41b7b80727db31ae73483",
+        "branch": "node-244-postgres-trigger-node",
+        "parent": "5c980fa8fc473e617141fa09d042f92f0cc63369",
+        "runs": [
+          {
+            "id": 4456250327,
+            "conclusion": "failure",
+            "installDuration": 253000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "677126b697aae92752bb662042a75ccd418719af",
+        "branch": "pay-149-execution-filter",
+        "parent": "80c7ac839fb698ff5eb613071ad2e97fa5560aa5",
+        "runs": [
+          {
+            "id": 4456250220,
+            "conclusion": "failure",
+            "installDuration": 145000,
+            "testDuration": 2108000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "4b06a2c6f9e77415868bfc66068c804c1d0e9be2",
+        "branch": "node-244-postgres-trigger-node",
+        "parent": "da5551fe4a9217750de41b7b80727db31ae73483",
+        "runs": [
+          {
+            "id": 4456250372,
+            "conclusion": "failure",
+            "installDuration": 129000,
+            "testDuration": 1562000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "80cf38e2037470838d0e45b986ca779af338a30b",
+        "branch": "pay-149-execution-filter",
+        "parent": "4dc458eca5587cf7765bed6fd384d47a31e66e2c",
+        "runs": [
+          {
+            "id": 4456250130,
+            "conclusion": "failure",
+            "installDuration": 135000,
+            "testDuration": 2471000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "24f6ac2938fb0f21b2fe5627f1dc0316a30b080f",
+        "branch": "pay-149-execution-filter",
+        "parent": "80cf38e2037470838d0e45b986ca779af338a30b",
+        "runs": [
+          {
+            "id": 4456250159,
+            "conclusion": "failure",
+            "installDuration": 194000,
+            "testDuration": 1958000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "2e68a2c63230112bbeaf907ae3b00b757b2dde9c",
+        "branch": "",
+        "parent": "79fda50491ee2586d815a31a0fab3c3c7649cbde",
+        "runs": [
+          {
+            "id": 4456249690,
+            "conclusion": "failure",
+            "installDuration": 174000,
+            "testDuration": 2151000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "799fe0d5f0d1f217702cfd8ea8d7e042883814cb",
+        "branch": "",
+        "parent": "7ecf20a05039cfd6aa5af485cb3db35ad2f9d704",
+        "runs": [
+          {
+            "id": 4456249818,
+            "conclusion": "failure",
+            "installDuration": 135000,
+            "testDuration": 2043000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "79fda50491ee2586d815a31a0fab3c3c7649cbde",
+        "branch": "",
+        "parent": "894f9d7980f3eaa2be8a9c9e6c7e9644b2063e56",
+        "runs": [
+          {
+            "id": 4456249635,
+            "conclusion": "failure",
+            "installDuration": 137000,
+            "testDuration": 1955000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "7ecf20a05039cfd6aa5af485cb3db35ad2f9d704",
+        "branch": "",
+        "parent": "2e68a2c63230112bbeaf907ae3b00b757b2dde9c",
+        "runs": [
+          {
+            "id": 4456249763,
+            "conclusion": "failure",
+            "installDuration": 166000,
+            "testDuration": 1581000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "76e740581fbe71167aa2a29fa5d4a81bdd0337f3",
+        "branch": "add-sql-editor",
+        "parent": "f84fac794a5594c7d8d72c23c73448a64777f9df",
+        "runs": [
+          {
+            "id": 4456249869,
+            "conclusion": "failure",
+            "installDuration": 134000,
+            "testDuration": 850000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "f79f36199150ebaaba14e10cd8bc28e8350e6308",
+        "branch": "add-sql-editor",
+        "parent": "997aeb699ccdb9026957e133fecaf4c7e810ff77",
+        "runs": [
+          {
+            "id": 4456250103,
+            "conclusion": "failure",
+            "installDuration": 132000,
+            "testDuration": 2812000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "d6b7d18a4787eda72e45905c73be4eda6814dbb1",
+        "branch": "add-sql-editor",
+        "parent": "c2499e6152758164bfe92968fbdb211d7ba55ea0",
+        "runs": [
+          {
+            "id": 4456249992,
+            "conclusion": "failure",
+            "installDuration": 134000,
+            "testDuration": 2052000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "997aeb699ccdb9026957e133fecaf4c7e810ff77",
+        "branch": "add-sql-editor",
+        "parent": "d6b7d18a4787eda72e45905c73be4eda6814dbb1",
+        "runs": [
+          {
+            "id": 4456250058,
+            "conclusion": "failure",
+            "installDuration": 136000,
+            "testDuration": 1227000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "894f9d7980f3eaa2be8a9c9e6c7e9644b2063e56",
+        "branch": "",
+        "parent": "fcac1ddd9f12fdf39b2ad536b8854a40fafc3f99",
+        "runs": [
+          {
+            "id": 4456249577,
+            "conclusion": "failure",
+            "installDuration": 131000,
+            "testDuration": 1816000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "7db839b167ba9251797fa5fdf9d2bc7967700281",
+        "branch": "",
+        "parent": "f40629d0ed1974ea3795f798ba67cb89de491032",
+        "runs": [
+          {
+            "id": 4456249119,
+            "conclusion": "success",
+            "installDuration": 142000,
+            "testDuration": 1389000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "f40629d0ed1974ea3795f798ba67cb89de491032",
+        "branch": "",
+        "parent": "57cb4b2a3a50eaf78f3510157352f4c07cb49051",
+        "runs": [
+          {
+            "id": 4456249017,
+            "conclusion": "success",
+            "installDuration": 135000,
+            "testDuration": 1769000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "89fbdc23f74823cd295a4f9b34c98c6d7fc13dff",
+        "branch": "node-319-postgres-node-overhaul",
+        "parent": "5b6da00d0b99d99ec74e53768b501875c5e1cadc",
+        "runs": [
+          {
+            "id": 4456249426,
+            "conclusion": "failure",
+            "installDuration": 142000,
+            "testDuration": 987000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "c72566ac64e5e8f90535d8678de16c20f893d30b",
+        "branch": "node-319-postgres-node-overhaul",
+        "parent": "e2514393335e555af47c9aca4f81b31608df9cb5",
+        "runs": [
+          {
+            "id": 4456249192,
+            "conclusion": "failure",
+            "installDuration": 138000,
+            "testDuration": 767000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "6446655ebd0e7e7394a5e9c7be12b1aff9f6d220",
+        "branch": "node-319-postgres-node-overhaul",
+        "parent": "c72566ac64e5e8f90535d8678de16c20f893d30b",
+        "runs": [
+          {
+            "id": 4456249255,
+            "conclusion": "failure",
+            "installDuration": 129000,
+            "testDuration": 1150000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "f984fd5325e99a7d0480c88b5e6c8d6eb71dea59",
+        "branch": "node-319-postgres-node-overhaul",
+        "parent": "89fbdc23f74823cd295a4f9b34c98c6d7fc13dff",
+        "runs": [
+          {
+            "id": 4456249510,
+            "conclusion": "failure",
+            "installDuration": 129000,
+            "testDuration": 839000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "5b6da00d0b99d99ec74e53768b501875c5e1cadc",
+        "branch": "node-319-postgres-node-overhaul",
+        "parent": "6446655ebd0e7e7394a5e9c7be12b1aff9f6d220",
+        "runs": [
+          {
+            "id": 4456249352,
+            "conclusion": "failure",
+            "installDuration": 142000,
+            "testDuration": 1009000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "4fe697ac6b035ea3b1eae5e0a0bf2ac3f49903f7",
+        "branch": "",
+        "parent": "89399b076ed73c78bbd14e13e6b0a9e1da3ffb02",
+        "runs": [
+          {
+            "id": 4456248869,
+            "conclusion": "success",
+            "installDuration": 177000,
+            "testDuration": 1408000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "33ad2b9d86804aa857f622a982b573030801454d",
+        "branch": "",
+        "parent": "5f40d86072eadc4e4f3b693e304bae7e7a563db9",
+        "runs": [
+          {
+            "id": 4456248620,
+            "conclusion": "failure",
+            "installDuration": 187000,
+            "testDuration": 1008000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "7e61aac8610f9d45d22910b085f0e4ee3e0e533f",
+        "branch": "",
+        "parent": "05d0b79ab72d125586619bd6edf2aa753560ea68",
+        "runs": [
+          {
+            "id": 4456248875,
+            "conclusion": "failure",
+            "installDuration": 134000,
+            "testDuration": 933000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "89399b076ed73c78bbd14e13e6b0a9e1da3ffb02",
+        "branch": "",
+        "parent": "e56fbfef3ebb50706f24ab07505a0031f361d9b1",
+        "runs": [
+          {
+            "id": 4456248805,
+            "conclusion": "failure",
+            "installDuration": 483000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "9b38fd80c9be6ee60d5c44df8e0d013d0bc9195e",
+        "branch": "",
+        "parent": "46d9ac6c6f55a505716c8951f93b149713bcbe35",
+        "runs": [
+          {
+            "id": 4456248337,
+            "conclusion": "failure",
+            "installDuration": 188000,
+            "testDuration": 765000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "1e70eed1153a10d7b8822e310ba32e227c36a6b5",
+        "branch": "node-165-rlc-extract-value-recursively-if-get",
+        "parent": "f0695827f5bc3a1076184ce8d539cecd4449cec6",
+        "runs": [
+          {
+            "id": 4456248708,
+            "conclusion": "failure",
+            "installDuration": 132000,
+            "testDuration": 1027000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "5f40d86072eadc4e4f3b693e304bae7e7a563db9",
+        "branch": "",
+        "parent": "7e61aac8610f9d45d22910b085f0e4ee3e0e533f",
+        "runs": [
+          {
+            "id": 4456248560,
+            "conclusion": "failure",
+            "installDuration": 133000,
+            "testDuration": 1039000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "57cb4b2a3a50eaf78f3510157352f4c07cb49051",
+        "branch": "",
+        "parent": "4fe697ac6b035ea3b1eae5e0a0bf2ac3f49903f7",
+        "runs": [
+          {
+            "id": 4456248942,
+            "conclusion": "success",
+            "installDuration": 135000,
+            "testDuration": 1726000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "1eb521a85383ab18e7655acb051d231b5af1cad5",
+        "branch": "pay-230-p0-variables",
+        "parent": "c81c1ae8fbc7e97a7439cc8d7dea415dfe1a9b33",
+        "runs": [
+          {
+            "id": 4456248140,
+            "conclusion": "failure",
+            "installDuration": 183000,
+            "testDuration": 1405000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "c81c1ae8fbc7e97a7439cc8d7dea415dfe1a9b33",
+        "branch": "pay-230-p0-variables",
+        "parent": "80a02506aa8590c7d64a7d9e77549d2d57a42d20",
+        "runs": [
+          {
+            "id": 4456248098,
+            "conclusion": "failure",
+            "installDuration": 186000,
+            "testDuration": 1809000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "05d0b79ab72d125586619bd6edf2aa753560ea68",
+        "branch": "",
+        "parent": "9b38fd80c9be6ee60d5c44df8e0d013d0bc9195e",
+        "runs": [
+          {
+            "id": 4456248422,
+            "conclusion": "failure",
+            "installDuration": 161000,
+            "testDuration": 1064000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "af4ffcb5fb7b302181e9477badda4af7fd2646c1",
+        "branch": "pay-230-p0-variables",
+        "parent": "1eb521a85383ab18e7655acb051d231b5af1cad5",
+        "runs": [
+          {
+            "id": 4456248179,
+            "conclusion": "success",
+            "installDuration": 136000,
+            "testDuration": 1381000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "4f21c17143b297957e0c71545242ec437a2e4eb5",
+        "branch": "node-339",
+        "parent": "3172ea376e9d312ce406b3a2cc67b51a091414b5",
+        "runs": [
+          {
+            "id": 4456248230,
+            "conclusion": "failure",
+            "installDuration": 130000,
+            "testDuration": 4337000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "48ef2a41c0fde6037d3ada875cedd28e7df8baf9",
+        "branch": "pay-230-p0-variables",
+        "parent": "3172ea376e9d312ce406b3a2cc67b51a091414b5",
+        "runs": [
+          {
+            "id": 4456248018,
+            "conclusion": "failure",
+            "installDuration": 136000,
+            "testDuration": 4332000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "c2499e6152758164bfe92968fbdb211d7ba55ea0",
+        "branch": "add-sql-editor",
+        "parent": "76e740581fbe71167aa2a29fa5d4a81bdd0337f3",
+        "runs": [
+          {
+            "id": 4456249936,
+            "conclusion": "failure",
+            "installDuration": 134000,
+            "testDuration": 1777000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "7c5c655e52b9fadb887439f117eaba6e92342df3",
+        "branch": "node-240-mysql-node-overhaul",
+        "parent": "e0fe2111d512ed105b470bba8ecdfa5b89979ceb",
+        "runs": [
+          {
+            "id": 4456247826,
+            "conclusion": "success",
+            "installDuration": 136000,
+            "testDuration": 1305000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "2a2e82dce314e74ddcfac46f05cfa3db40a273f2",
+        "branch": "node-240-mysql-node-overhaul",
+        "parent": "a4799756dc3c31430ccf4b26420e027eea9f7f1c",
+        "runs": [
+          {
+            "id": 4456247924,
+            "conclusion": "success",
+            "installDuration": 176000,
+            "testDuration": 1719000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "facb29712b3397ccfe31491482f70295923c2903",
+        "branch": "node-240-mysql-node-overhaul",
+        "parent": "2a2e82dce314e74ddcfac46f05cfa3db40a273f2",
+        "runs": [
+          {
+            "id": 4456247965,
+            "conclusion": "failure",
+            "installDuration": 133000,
+            "testDuration": 1480000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "a4799756dc3c31430ccf4b26420e027eea9f7f1c",
+        "branch": "node-240-mysql-node-overhaul",
+        "parent": "7c5c655e52b9fadb887439f117eaba6e92342df3",
+        "runs": [
+          {
+            "id": 4456247865,
+            "conclusion": "failure",
+            "installDuration": 183000,
+            "testDuration": 1309000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "0f1739655bcad9633ebb2a4d3d565d5d6a0ca108",
+        "branch": "node-339",
+        "parent": "4f21c17143b297957e0c71545242ec437a2e4eb5",
+        "runs": [
+          {
+            "id": 4456248290,
+            "conclusion": "failure",
+            "installDuration": 137000,
+            "testDuration": 4337000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "e0fe2111d512ed105b470bba8ecdfa5b89979ceb",
+        "branch": "node-240-mysql-node-overhaul",
+        "parent": "5040fea93ecc36017d25f237fe9b3e23bc9d623d",
+        "runs": [
+          {
+            "id": 4456247774,
+            "conclusion": "failure",
+            "installDuration": 134000,
+            "testDuration": 4336000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "80a02506aa8590c7d64a7d9e77549d2d57a42d20",
+        "branch": "pay-230-p0-variables",
+        "parent": "48ef2a41c0fde6037d3ada875cedd28e7df8baf9",
+        "runs": [
+          {
+            "id": 4456248050,
+            "conclusion": "failure",
+            "installDuration": 138000,
+            "testDuration": 4362000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "601ed6a2c3f30ea20b1033247e9c8aae0dea6da1",
+        "branch": "improve-node-loading",
+        "parent": "7b59b863ea16cccfabf5b9cdb41a9b33b2797485",
+        "runs": [
+          {
+            "id": 4456247742,
+            "conclusion": "success",
+            "installDuration": 144000,
+            "testDuration": 1131000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "7b59b863ea16cccfabf5b9cdb41a9b33b2797485",
+        "branch": "improve-node-loading",
+        "parent": "6e715949ce425ea476ad54edd19a03e6701b17f7",
+        "runs": [
+          {
+            "id": 4456247700,
+            "conclusion": "success",
+            "installDuration": 192000,
+            "testDuration": 1166000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "19981539911903fd180c8796c62f23a8015fc1eb",
+        "branch": "node-354-support-binary-streaming-for-the-respond",
+        "parent": "65148a32f92b55bc68f5e91ec331758e4a887394",
+        "runs": [
+          {
+            "id": 4456247579,
+            "conclusion": "failure",
+            "installDuration": 234000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "65148a32f92b55bc68f5e91ec331758e4a887394",
+        "branch": "node-354-support-binary-streaming-for-the-respond",
+        "parent": "2eba05046141bd13145f95c6a1ec1e6fb95b37c2",
+        "runs": [
+          {
+            "id": 4456247522,
+            "conclusion": "failure",
+            "installDuration": 183000,
+            "testDuration": 1614000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "fc1006272b8826171560e375151b4a004e620c72",
+        "branch": "",
+        "parent": "0c82c67fa7fc9ee00747789f8974b256d150ea48",
+        "runs": [
+          {
+            "id": 4456247459,
+            "conclusion": "success",
+            "installDuration": 195000,
+            "testDuration": 1418000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "0c82c67fa7fc9ee00747789f8974b256d150ea48",
+        "branch": "",
+        "parent": "3c57062571161400221ffa85f1571278d39afcee",
+        "runs": [
+          {
+            "id": 4456247413,
+            "conclusion": "failure",
+            "installDuration": 133000,
+            "testDuration": 1388000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "77a3c7eefa3b501a97e8788935973fa99082a3b4",
+        "branch": "",
+        "parent": "5eb0d524591ef699ebd2631b042982170b5055a8",
+        "runs": [
+          {
+            "id": 4456247356,
+            "conclusion": "success",
+            "installDuration": 148000,
+            "testDuration": 1388000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "6e715949ce425ea476ad54edd19a03e6701b17f7",
+        "branch": "improve-node-loading",
+        "parent": "1bdeb6684a68f985a71ddeb11eea75dce19dde78",
+        "runs": [
+          {
+            "id": 4456247663,
+            "conclusion": "success",
+            "installDuration": 131000,
+            "testDuration": 1498000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "a7052ca6b33ae59b24bf40f65d3c24317a380381",
+        "branch": "override",
+        "parent": "8b7d9671e39cd73c1758f7ae78a988cd260a5f30",
+        "runs": [
+          {
+            "id": 4456247295,
+            "conclusion": "failure",
+            "installDuration": 132000,
+            "testDuration": 1719000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "acc43c4ea15aef8aa15433197a819671bca77813",
+        "branch": "node-374-openai-node-change-max_tokens-default",
+        "parent": "6500e985ee026274c537fc9e02c68857c9bb2c1a",
+        "runs": [
+          {
+            "id": 4456247148,
+            "conclusion": "success",
+            "installDuration": 183000,
+            "testDuration": 1525000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "8b7d9671e39cd73c1758f7ae78a988cd260a5f30",
+        "branch": "override",
+        "parent": "0b5ef09e7cbd0c80a4b79311976b5c06c2be8747",
+        "runs": [
+          {
+            "id": 4456247212,
+            "conclusion": "success",
+            "installDuration": 172000,
+            "testDuration": 1281000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "897528fe34a71431725fdfe3ac13ba284537848c",
+        "branch": "node-354-support-binary-streaming-for-the-respond",
+        "parent": "19981539911903fd180c8796c62f23a8015fc1eb",
+        "runs": [
+          {
+            "id": 4456247618,
+            "conclusion": "failure",
+            "installDuration": 135000,
+            "testDuration": 1767000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "166b8865810275aa581b9389773909e309ca1d6e",
+        "branch": "node-378-node-unit-test-improve-error-messages",
+        "parent": "8a21fefbc67598452872e6944313d5e3fa6567c1",
+        "runs": [
+          {
+            "id": 4456246959,
+            "conclusion": "success",
+            "installDuration": 157000,
+            "testDuration": 1416000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "54ec51b147e2905794c93f3127a958bb29b26903",
+        "branch": "node-378-node-unit-test-improve-error-messages",
+        "parent": "166b8865810275aa581b9389773909e309ca1d6e",
+        "runs": [
+          {
+            "id": 4456247050,
+            "conclusion": "success",
+            "installDuration": 139000,
+            "testDuration": 1937000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "19ca210c83a5a21086feedadadd9a6ca546b5f41",
+        "branch": "",
+        "parent": "dd93c0890b2b651686ad5ed59ae903bf2f8f9714",
+        "runs": [
+          {
+            "id": 4456246865,
+            "conclusion": "success",
+            "installDuration": 134000,
+            "testDuration": 1391000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "44e027bb0ae7bb393b967aafad1e8621bd9d009b",
+        "branch": "",
+        "parent": "c6ba0bd8de5f3cf2c73e042002d7b233cb567aa6",
+        "runs": [
+          {
+            "id": 4456246794,
+            "conclusion": "success",
+            "installDuration": 136000,
+            "testDuration": 1435000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "15f53094e2182aa5a46eb28f7b2777d532f5ee19",
+        "branch": "digest-auth-declarative",
+        "parent": "c6ba0bd8de5f3cf2c73e042002d7b233cb567aa6",
+        "runs": [
+          {
+            "id": 4456246715,
+            "conclusion": "success",
+            "installDuration": 160000,
+            "testDuration": 1359000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "7f4d635e15976a7071fa382aef19578a76ecb365",
+        "branch": "ado-415-p0-ask-activated-users-for-their-biggest",
+        "parent": "97c598db4dc1506df709c63c12e3b561d8b8c172",
+        "runs": [
+          {
+            "id": 4456246626,
+            "conclusion": "failure",
+            "installDuration": 562000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "7319cdd5d72be3137c2332109d17670f10863455",
+        "branch": "ado-415-p0-ask-activated-users-for-their-biggest",
+        "parent": "fa78c095f9d7aa2dbd4e9a31e175ee0c4b055496",
+        "runs": [
+          {
+            "id": 4456246376,
+            "conclusion": "success",
+            "installDuration": 140000,
+            "testDuration": 1260000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "64a740bb263ec26940e46aa1a557890c730e7001",
+        "branch": "ado-415-p0-ask-activated-users-for-their-biggest",
+        "parent": "7319cdd5d72be3137c2332109d17670f10863455",
+        "runs": [
+          {
+            "id": 4456246455,
+            "conclusion": "success",
+            "installDuration": 173000,
+            "testDuration": 1501000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "97c598db4dc1506df709c63c12e3b561d8b8c172",
+        "branch": "ado-415-p0-ask-activated-users-for-their-biggest",
+        "parent": "64a740bb263ec26940e46aa1a557890c730e7001",
+        "runs": [
+          {
+            "id": 4456246535,
+            "conclusion": "success",
+            "installDuration": 136000,
+            "testDuration": 1378000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "c7e850477fc5b8c3c53e30bbed54be1d55b806cf",
+        "branch": "ado-227",
+        "parent": "332d50c5f1f8ba63b87325799360adecdbaa06bf",
+        "runs": [
+          {
+            "id": 4456246035,
+            "conclusion": "success",
+            "installDuration": 138000,
+            "testDuration": 1194000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "4328e30ebe1a32b51d3edc5782263aca85adf2e8",
+        "branch": "ado-227",
+        "parent": "3c88a98a46e6ee3a4b1eb5300acc344baf3f5917",
+        "runs": [
+          {
+            "id": 4456246229,
+            "conclusion": "success",
+            "installDuration": 136000,
+            "testDuration": 1171000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "fa78c095f9d7aa2dbd4e9a31e175ee0c4b055496",
+        "branch": "ado-415-p0-ask-activated-users-for-their-biggest",
+        "parent": "c6ba0bd8de5f3cf2c73e042002d7b233cb567aa6",
+        "runs": [
+          {
+            "id": 4456246301,
+            "conclusion": "success",
+            "installDuration": 185000,
+            "testDuration": 1509000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "cb50f487fb7d79c534dc2d8d8fa520c3d1fd34b2",
+        "branch": "ado-227",
+        "parent": "c7e850477fc5b8c3c53e30bbed54be1d55b806cf",
+        "runs": [
+          {
+            "id": 4456246115,
+            "conclusion": "success",
+            "installDuration": 139000,
+            "testDuration": 1143000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "8b8fcb41cbe45f3350f5574406c4fdaff169c534",
+        "branch": "node-385-add-binary-streaming-when-downloading",
+        "parent": "29f2629716e3693372ec9a4572113a3f3721ff5e",
+        "runs": [
+          {
+            "id": 4456245852,
+            "conclusion": "success",
+            "installDuration": 132000,
+            "testDuration": 1173000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "3c88a98a46e6ee3a4b1eb5300acc344baf3f5917",
+        "branch": "ado-227",
+        "parent": "cb50f487fb7d79c534dc2d8d8fa520c3d1fd34b2",
+        "runs": [
+          {
+            "id": 4456246159,
+            "conclusion": "success",
+            "installDuration": 142000,
+            "testDuration": 1205000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "51a9aebfe116ebbd0b30469ecdba6bf4bb63667c",
+        "branch": "",
+        "parent": "29f2629716e3693372ec9a4572113a3f3721ff5e",
+        "runs": [
+          {
+            "id": 4456245791,
+            "conclusion": "success",
+            "installDuration": 186000,
+            "testDuration": 1235000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "8509d38512cca5b2cd780060debeb894124c608e",
+        "branch": "n8n-6238-fix-error-handling-in-axios-when-dealing",
+        "parent": "3ad9d3d31925adbdfa6f654101b1c93335874c07",
+        "runs": [
+          {
+            "id": 4456245992,
+            "conclusion": "success",
+            "installDuration": 182000,
+            "testDuration": 1245000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "3ad9d3d31925adbdfa6f654101b1c93335874c07",
+        "branch": "n8n-6238-fix-error-handling-in-axios-when-dealing",
+        "parent": "e0ea97af8d7aaa014680f5f9d5702d1cafd49757",
+        "runs": [
+          {
+            "id": 4456245931,
+            "conclusion": "success",
+            "installDuration": 134000,
+            "testDuration": 1159000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "8ee30051c710e528b9e7c40503fdac926b5fa62a",
+        "branch": "n8n-2036-check-if-the-webhook-url-is-localhost",
+        "parent": "6a8c9b7ccc0b4ff0801a39b44884cca3a3148e09",
+        "runs": [
+          {
+            "id": 4456245717,
+            "conclusion": "success",
+            "installDuration": 137000,
+            "testDuration": 1285000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "ef72a2a79be038c7aa2f34cab58f28afdfbc372c",
+        "branch": "ado-378-rlc-ui-is-messed-up",
+        "parent": "43ef9b825fdecdfb5421e3f69b71212cddaac7f8",
+        "runs": [
+          {
+            "id": 4456245658,
+            "conclusion": "success",
+            "installDuration": 140000,
+            "testDuration": 1442000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "43ef9b825fdecdfb5421e3f69b71212cddaac7f8",
+        "branch": "ado-378-rlc-ui-is-messed-up",
+        "parent": "3718612bd7575a1b5eb149132f1bb6c5f60ba543",
+        "runs": [
+          {
+            "id": 4456245620,
+            "conclusion": "success",
+            "installDuration": 180000,
+            "testDuration": 1201000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      },
+      {
+        "sha": "91654f7499d05823274405d7c8edd130fcbea75b",
+        "branch": "node-322-linkedin-api-changes",
+        "parent": "be172cb720c8a44ebd1f0b86dddab321e1e3c9fd",
+        "runs": [
+          {
+            "id": 4456245474,
+            "conclusion": "failure",
+            "installDuration": 175000,
+            "testDuration": 1332000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          }
+        ],
+        "successful": false
+      },
+      {
+        "sha": "e0197a329fbafca556c83f8593a6bd205858f345",
+        "branch": "fix_auto_inject_distance_manual_trigger",
+        "parent": "a28396ee91bfbccc6596812606c237a8e2c34088",
+        "runs": [
+          {
+            "id": 4456245511,
+            "conclusion": "success",
+            "installDuration": 137000,
+            "testDuration": 1194000,
+            "installConclusion": "success",
+            "testConclusion": "success"
+          }
+        ],
+        "successful": true
+      }
+    ]
+  }
+}

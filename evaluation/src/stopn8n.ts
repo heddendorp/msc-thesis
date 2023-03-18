@@ -19,18 +19,24 @@ async function run() {
 
   for (const run of res.data.workflow_runs) {
     console.log(run.id);
-    if(run.status === "in_progress"){
+    if(["in_progress","queued"].includes(run.status??'')){
       await octokit.rest.actions.cancelWorkflowRun({
         owner: "heddendorp",
         repo: "n8n",
         run_id: run.id,
       });
     } else if(deleteAll){
-      await octokit.rest.actions.deleteWorkflowRun({
-        owner: "heddendorp",
-        repo: "n8n",
-        run_id: run.id,
-      });
+      try{
+        await octokit.rest.actions.deleteWorkflowRun({
+          owner: "heddendorp",
+          repo: "n8n",
+          run_id: run.id,
+        });
+      }
+      catch(e){
+        console.log(e);
+        console.log(run);
+      }
     }
   }
 }
