@@ -32,7 +32,7 @@ jobs:
         run: yarn --frozen-lockfile
         working-directory: evaluation
       - name: Extract information from logs
-        run: node -r @swc-node/register ./src/extractTestInformation.ts
+        run: npx ts-node-esm ./src/extractTestInformation.ts
         working-directory: evaluation
 
       - name: Install dependencies for angular

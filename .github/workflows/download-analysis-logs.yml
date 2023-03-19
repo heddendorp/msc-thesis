@@ -19,7 +19,7 @@ jobs:
             cache: 'yarn'
             cache-dependency-path: evaluation/yarn.lock
       - run: yarn --frozen-lockfile
-      - run: node -r @swc-node/register ./src/downloadLogs.ts
+      - run: npx ts-node-esm ./src/downloadLogs.ts
         env:
             BAMBOO_USERNAME: ${{ secrets.BAMBOO_USERNAME }}
             BAMBOO_PASSWORD: ${{ secrets.BAMBOO_PASSWORD }}

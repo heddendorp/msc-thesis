@@ -24,7 +24,7 @@ jobs:
             cache: yarn
             cache-dependency-path: evaluation/yarn.lock
       - run: yarn
-      - run: node -r @swc-node/register ./src/triggerRuns.ts
+      - run: npx ts-node-esm ./src/triggerRuns.ts
         env:
           BAMBOO_USERNAME: ${{ secrets.BAMBOO_USERNAME }}
           BAMBOO_PASSWORD: ${{ secrets.BAMBOO_PASSWORD }}
