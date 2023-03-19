@@ -218,62 +218,76 @@ const updateDB = runs
 await Promise.all(updateDB);
 
 // update commit to success if any run was successful
-db.data?.baseLine.commits.map(async (commit) => {
+db.data?.baseLine.commits.forEach((commit) => {
   if (commit.runs.some((run) => run.conclusion === "success")) {
     commit.successful = true;
+  } else {
+    commit.successful = false;
   }
   if (
     commit.runs.some((run) => run.conclusion === "success") &&
     commit.runs.some((run) => run.conclusion === "failure")
   ) {
     commit.flaky = true;
+  } else {
+    commit.flaky = false;
   }
 });
 
 // Check every commit for success and trigger new action if below five runs have been recorded
-const checkCommits = db.data?.baseLine.commits.map(async (commit) => {
+const commitsToRun:string[] = [];
+db.data?.baseLine.commits.forEach((commit) => {
   if (commit.runs.length < 5) {
-    if (!commit.runs.some((run) => run.conclusion === "success")) {
+    if (!commit.successful) {
       console.log("not enough runs - extending");
-      const triggerResponse = await octokit.rest.actions.createWorkflowDispatch(
-        {
-          owner: "heddendorp",
-          repo: "n8n",
-          workflow_id: "e2e-historic.yml",
-          ref: "master",
-          inputs: {
-            ref: commit.sha,
-            compare: `${commit.sha}~1`,
-            coverage: "[false]",
-            containers: "[1]",
-            run: "establishBaselineRerun",
-          },
-        }
-      );
+      commitsToRun.push(commit.sha);
     }
   } else {
-    if (!commit.runs.some((run) => run.conclusion === "success")) {
+    if (!commit.successful) {
       const parent = getFirstSuccessfulParent(commit.sha);
       if (!parent) {
         console.log("no parent found - extending");
-        const triggerResponse =
-          await octokit.rest.actions.createWorkflowDispatch({
-            owner: "heddendorp",
-            repo: "n8n",
-            workflow_id: "e2e-historic.yml",
-            ref: "master",
-            inputs: {
-              ref: getOldestParent(commit.sha),
-              compare: `${getOldestParent(commit.sha)}~1`,
-              coverage: "[false]",
-              containers: "[1]",
-              run: "establishBaselineExtension",
-            },
-          });
+        commitsToRun.push(getOldestParent(commit.sha));
       }
     }
   }
+
+  // Check if this commit is parent to any other commit
+  const child = db.chain
+    .get("baseLine.commits")
+    .find({ parent: commit.sha })
+    .value();
+  if (!child) {
+    // Check if parent of this commit is in the list of commits
+    const parent = db.chain
+      .get("baseLine.commits")
+      .find({ sha: commit.parent })
+      .value();
+    if (!parent) {
+      console.log("single commit found - extending");
+      commitsToRun.push(commit.parent);
+    }
+  }
 });
-await Promise.all(checkCommits);
+
+console.log(`Starting ${lodash.uniq(commitsToRun).length} runs`);
+
+for(const commit of lodash.uniq(commitsToRun)) {
+  await octokit.rest.actions.createWorkflowDispatch(
+    {
+      owner: "heddendorp",
+      repo: "n8n",
+      workflow_id: "e2e-historic.yml",
+      ref: "master",
+      inputs: {
+        ref: commit,
+        compare: `${commit}~1`,
+        coverage: "[false]",
+        containers: "[1]",
+        run: "establishBaselineRerun",
+      },
+    }
+  );
+};
 
 await db.write();

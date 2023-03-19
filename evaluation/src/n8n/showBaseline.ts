@@ -15,6 +15,7 @@ type Data = {
       parent: string;
       branch: string;
       successful: boolean;
+      flaky: boolean;
       runs: {
         id: number;
         conclusion: string;
@@ -54,11 +55,14 @@ if (!db.data) {
 const diagramLines: string[] = [`flowchart TD`];
 
 db.chain.get("baseLine.commits").value().forEach((commit) => {
-  if(commit.successful){
+  if(!commit.flaky){
     diagramLines.push(` ${commit.sha}("${commit.branch || 'unknown'}(${commit.runs.length})")`)
-    diagramLines.push(` style ${commit.sha} stroke:green,stroke-width:2px`)
   } else {
     diagramLines.push(` ${commit.sha}(["${commit.branch || 'unknown'}(${commit.runs.length})"])`)
+  }
+  if(commit.successful){
+    diagramLines.push(` style ${commit.sha} stroke:green,stroke-width:2px`)
+  } else {
     diagramLines.push(` style ${commit.sha} stroke:red,stroke-width:2px`)
   }
 });
@@ -67,4 +71,4 @@ db.chain.get("baseLine.commits").value().forEach((commit) => {
   diagramLines.push(` ${commit.sha} --> ${commit.parent}`)
 });
 
-console.log(diagramLines.join('\n'));
+console.log(lodash.uniq(diagramLines).join('\n'));

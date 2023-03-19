@@ -25,6 +25,34 @@ type Data = {
       }[];
     }[];
   };
+  timings: {
+    runs: {
+      id: number;
+      conclusion: string;
+      installDuration: number;
+      testDuration: number;
+      installConclusion: string;
+      testConclusion: string;
+      sha: string;
+      passed: boolean;
+      passedInstrumented: boolean;
+    }[];
+    testcases: {
+      name: string;
+      averageDuration: number;
+      averageDurationInstrumented: number;
+      results: {
+        passed: number;
+        failed: number;
+        skipped: number;
+      };
+      resultsInstrumented: {
+        passed: number;
+        failed: number;
+        skipped: number;
+      };
+    }[];
+  };
 };
 
 class LowWithLodash<T> extends Low<T> {
@@ -44,8 +72,9 @@ await db.read();
 
 // If file.json doesn't exist, db.data will be null
 // Set default data
-db.data ||= { baseLine: { commits: [] } };
+db.data ||= { baseLine: { commits: [] }, timings: { runs: [], testcases: [] } };
 db.data.baseLine ||= { commits: [] };
+db.data.timings ||= { runs: [], testcases: [] };
 
 if (!db.data) {
   throw new Error("no data");
@@ -59,8 +88,8 @@ const longestTestDuration = db.chain
   .get("testDuration")
   .value();
 
-  // find longest duration of a successful run
-  const longestSuccessfulTestDuration = db.chain
+// find longest duration of a successful run
+const longestSuccessfulTestDuration = db.chain
   .get("baseLine.commits")
   .flatMap((commit) => commit.runs)
   .filter((run) => run.conclusion === "success")
@@ -68,12 +97,256 @@ const longestTestDuration = db.chain
   .get("testDuration")
   .value();
 
-  console.log(longestTestDuration)
+// transform to minutes
+const longestTestDurationMinutes = Math.round(longestTestDuration / 1000 / 60);
+console.log(
+  `The longest test execution took ${longestTestDurationMinutes} minutes`
+);
 
-  // transform to minutes
-  const longestTestDurationMinutes = Math.round(longestTestDuration / 1000 / 60);
-  console.log(longestTestDurationMinutes)
+// transform to minutes
+const longestSuccessfulTestDurationMinutes = Math.round(
+  longestSuccessfulTestDuration / 1000 / 60
+);
+console.log(
+  `The longest successful test execution took ${longestSuccessfulTestDurationMinutes} minutes`
+);
+console.log();
 
-  // transform to minutes
-  const longestSuccessfulTestDurationMinutes = Math.round(longestSuccessfulTestDuration / 1000 / 60);
-  console.log(longestSuccessfulTestDurationMinutes)
+// check if there are duplicate commits in the db
+const duplicateCommits = db.chain
+  .get("baseLine.commits")
+  .groupBy("sha")
+  .pickBy((commits) => commits.length > 1)
+  .value();
+
+if (Object.keys(duplicateCommits).length > 0) {
+  console.log(
+    `${Object.keys(duplicateCommits).length} duplicate commits found`
+  );
+
+  // merge duplicate commits while preventing duplicate runs
+  const mergedCommits = Object.values(duplicateCommits).map((commits) => {
+    const mergedCommit = commits[0];
+    const runs = commits.flatMap((commit) => commit.runs);
+    mergedCommit.runs = lodash.uniqBy(runs, "id");
+    return mergedCommit;
+  });
+
+  // replace duplicate commits with merged commits
+
+  db.chain
+    .get("baseLine.commits")
+    .remove((commit) => duplicateCommits[commit.sha])
+    .value();
+
+  db.chain
+    .get("baseLine.commits")
+    .push(...mergedCommits)
+    .value();
+}
+
+// Analyze testcases with regards to their duration and results
+
+// check for how many testcases the instrumented duration is longer than the non-instrumented duration
+
+const testcasesWithLongerInstrumentedDuration = db.chain
+  .get("timings.testcases")
+  .filter(
+    (testcase) =>
+      testcase.averageDurationInstrumented > testcase.averageDuration
+  )
+  .value();
+
+// Calculate a percentage
+
+const percentage = (value: number, total: number) =>
+  Math.round((value / total) * 100);
+
+const median = (array: Array<number>) => {
+  array.sort((a, b) => b - a);
+  const length = array.length;
+  if (length % 2 == 0) {
+    return (array[length / 2] + array[length / 2 - 1]) / 2;
+  } else {
+    return array[Math.floor(length / 2)];
+  }
+};
+
+// Calculate the percentage of testcases with longer instrumented duration
+
+const percentageOfTestcasesWithLongerInstrumentedDuration = percentage(
+  testcasesWithLongerInstrumentedDuration.length,
+  db.data.timings.testcases.length
+);
+
+console.log(
+  `${percentageOfTestcasesWithLongerInstrumentedDuration}% of testcases have a longer instrumented duration`
+);
+
+// calculte how much longer the instrumented duration is on average
+
+const averageDurationDifference = db.chain
+  .get("timings.testcases")
+  .map((testcase) => {
+    return testcase.averageDurationInstrumented - testcase.averageDuration;
+  })
+  .mean()
+  .value();
+
+const averageDurationIncrease = db.chain
+  .get("timings.testcases")
+  .map((testcase) => {
+    return (
+      (testcase.averageDurationInstrumented - testcase.averageDuration) /
+      testcase.averageDuration
+    );
+  })
+  .mean()
+  .value();
+
+const medianDurationDifference = median(
+  db.chain
+    .get("timings.testcases")
+    .map((testcase) => {
+      return testcase.averageDurationInstrumented - testcase.averageDuration;
+    })
+    .value()
+);
+
+console.log(
+  `The average duration difference is ${Math.round(
+    averageDurationDifference
+  )}ms`
+);
+
+console.log(
+  `The average duration increase is ${Math.round(
+    averageDurationIncrease * 100
+  )}%`
+);
+
+console.log(
+  `The median duration difference is ${Math.round(medianDurationDifference)}ms`
+);
+
+const numberOfFailedTestcases = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.results.failed > 0)
+  .value().length;
+
+const percentageOfFailedTestcases = percentage(
+  numberOfFailedTestcases,
+  db.data.timings.testcases.length
+);
+
+console.log(
+  `${percentageOfFailedTestcases}% of testcases have failed at least once`
+);
+
+const numberOfFailedTestcasesInstrumented = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.resultsInstrumented.failed > 0)
+  .value().length;
+
+const percentageOfFailedTestcasesInstrumented = percentage(
+  numberOfFailedTestcasesInstrumented,
+  db.data.timings.testcases.length
+);
+
+console.log(
+  `${percentageOfFailedTestcasesInstrumented}% of testcases have failed at least once when instrumented`
+);
+
+// Build a table with counts of successful, failed and skipped testcases instrumented and non-instrumented
+
+const table: {
+  passed: { instrumented: number; nonInstrumented: number };
+  failed: { instrumented: number; nonInstrumented: number };
+  skipped: { instrumented: number; nonInstrumented: number };
+} = {
+  passed: { instrumented: 0, nonInstrumented: 0 },
+  failed: { instrumented: 0, nonInstrumented: 0 },
+  skipped: { instrumented: 0, nonInstrumented: 0 },
+};
+
+db.data.timings.testcases.forEach((testcase) => {
+  table.passed.instrumented += testcase.resultsInstrumented.passed;
+  table.passed.nonInstrumented += testcase.results.passed;
+  table.failed.instrumented += testcase.resultsInstrumented.failed;
+  table.failed.nonInstrumented += testcase.results.failed;
+  table.skipped.instrumented += testcase.resultsInstrumented.skipped;
+  table.skipped.nonInstrumented += testcase.results.skipped;
+});
+
+console.table(table);
+
+// Build a table with the successful runs vs failed runs for instrumented and non-instrumented
+
+const table2: {
+  successful: { instrumented: number; nonInstrumented: number };
+  failed: { instrumented: number; nonInstrumented: number };
+} = {
+  successful: { instrumented: 0, nonInstrumented: 0 },
+  failed: { instrumented: 0, nonInstrumented: 0 },
+};
+
+db.chain
+  .get("timings.runs")
+  .forEach((run) => {
+    if (run.passed) {
+      table2.successful.nonInstrumented++;
+    } else {
+      table2.failed.nonInstrumented++;
+    }
+    if (run.passedInstrumented) {
+      table2.successful.instrumented++;
+    } else {
+      table2.failed.instrumented++;
+    }
+  })
+  .value();
+
+console.table(table2);
+
+// Build a table with testcases that have failed at least once and their stats
+
+const table3 = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.results.failed > 0 || testcase.resultsInstrumented.failed > 0)
+  .map((testcase) => {
+    return {
+      name: testcase.name,
+      // averageDuration: testcase.averageDuration,
+      // averageDurationInstrumented: testcase.averageDurationInstrumented,
+      // averageDurationDifference:
+      //   testcase.averageDurationInstrumented - testcase.averageDuration,
+      durationIncrease:
+        percentage(
+          testcase.averageDurationInstrumented - testcase.averageDuration,
+          testcase.averageDuration
+        )+'%',
+      // numberOfRuns: testcase.results.passed + testcase.results.failed,
+      // numberOfRunsInstrumented:
+      //   testcase.resultsInstrumented.passed +
+      //   testcase.resultsInstrumented.failed,
+      failed: testcase.results.failed,
+      failedInstrumented: testcase.resultsInstrumented.failed,
+      passed: testcase.results.passed,
+      passedInstrumented: testcase.resultsInstrumented.passed,
+      // percentageOfFailedRuns: percentage(
+      //   testcase.results.failed,
+      //   testcase.results.passed + testcase.results.failed
+      // ),
+      // percentageOfFailedRunsInstrumented: percentage(
+      //   testcase.resultsInstrumented.failed,
+      //   testcase.resultsInstrumented.passed +
+      //     testcase.resultsInstrumented.failed
+      // ),
+    };
+  })
+  .sortBy("failedInstrumented")
+  .value();
+
+console.table(table3);
+
+await db.write();

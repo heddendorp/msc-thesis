@@ -33,10 +33,10 @@
 \include{thesis_tex/disclaimer}
 
 %------- Acknowledgements -------
-\newpage
-\thispagestyle{empty}
-\mbox{}
-\include{thesis_tex/acknowledgement}
+% \newpage
+% \thispagestyle{empty}
+% \mbox{}
+% \include{thesis_tex/acknowledgement}
 
 \pagenumbering{roman}
 
@@ -44,10 +44,10 @@
 \selectlanguage{english}
 \include{thesis_tex/abstract_en}
 \clearpage
-\selectlanguage{german}
-\include{thesis_tex/abstract_de}
-\clearpage
-\selectlanguage{english}
+% \selectlanguage{german}
+% \include{thesis_tex/abstract_de}
+% \clearpage
+% \selectlanguage{english}
 
 %------- Table of contents -------
 \tableofcontents
@@ -70,7 +70,25 @@
 
 %------- chapter 1 -------
 
-\chapter{Introduction}\label{chapter:introduction}
+\chapter{Introduction}\label[chapter]{introduction}
+Software testing is an integral part of the software development process that ensures a system's quality and dependability. With the execution of test cases, one of the primary goals of software testing is to detect software bugs or errors. In a perfect world, test cases would be deterministic, meaning that given the same input, they would always yield the same output. In practice, however, test cases can be non-deterministic or "flaky" \cite{luo_empirical_2014} meaning they can fail intermittently without any modification to the code being tested or the test itself. \Ac{UI} tests, which frequently require asynchronous activities and limited computer resources, might be especially susceptible to unstable testing \cite{romano_empirical_2021}.
+
+This thesis focuses on identifying flaky \Ac{E2E} testing failures by applying a technique for detecting flaky unit test failures proposed by Bell et al in their DeFlaker paper \cite{bell_d_2018} to \ac{E2E} tests. By building on the DeFlaker approach, this thesis will develop a tool to collect code coverage information acrosss both server and client for \ac{E2E} tests. To evaluate our approach we selected two open source projects as case studies. Artemis \cite{krusche_artemis_2018} is a web-based learning platform for programming exercises. It uses Java for server code and JavaScript for the clientside code. n8n \cite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client. Both projects use Cypress \cite{noauthor_cypress-iocypress_2023} for \ac{E2E} testing.
+
+Using code coverage information, this thesis will address the detection and analysis of failed \ac{E2E} tests in multi-language systems. Flaky tests can waste computational resources, increase development time, and erode confidence in the testing procedure. In the context of Artemis, the restricted resources available for CI and the incidence of UI test flickering make the detection of flaky testfailures essential for preserving the quality and dependability of the platform.
+
+The primary objectives of this thesis are as follows:
+\begin{itemize}
+	\item Develop a tool to collect code coverage information for end-to-end tests in both client and server parts of Artemis.
+	\item Determine if failing tests could be flaky based on the collected code coverage information and changes in the codebase.
+\end{itemize}
+To achieve these objectives, the thesis will involve reviewing the literature on flaky tests, learning about Cypress, setting up Artemis locally, building a solution to collect coverage information, and comparing the coverage information with the latest git changes. The approach will then be evaluated using relevant commits in Artemis, comparing the results with existing literature, and identifying any limitations.
+
+The remainder of this thesis is organized as follows:
+In \cref{background} we will give some background information on the topic of flaky tests and the challenges faced in Artemis. 
+In \cref{methodology} we will describe the methodology used in the project, including the instrumentation of the n8n project, data collection, and evaluation process. 
+In \cref{evaluation} we will present the results of the project, including the collected code coverage information and the analysis of the collected data. 
+In \cref{threats} we will discuss the limitations of the project, and in \cref{conclusion} we will summarize results of the evaluation and discuss future work.
 
 \begin{itemize}
 	\item \textbf{Motivation}: Discuss the importance of testing in software development and the challenges faced due to flaky tests, particularly in end-to-end tests and UI tests.
@@ -109,7 +127,7 @@
 
 %------- chapter 2 -------
 
-\chapter{Background}
+\chapter{Background}\label[chapter]{background}
 
 \section{E2E Testing}
 
@@ -121,7 +139,7 @@
 
 %------- chapter 3 -------
 
-\chapter{Related Work}
+\chapter{Related Work}\label[chapter]{relatedWork}
 
 \textit{Note: Describe related work regarding your topic and emphasize your (scientific) contribution in \textbf{contrast} to existing approaches / concepts / workflows. Related work is usually current research by others and you defend yourself against the statement: ``Why is your thesis relevant? The problem was already solved by XYZ.'' If you have multiple related works, use subsections to separate them.}
 
@@ -130,162 +148,21 @@
 
 %------- chapter 4 -------
 
-\chapter{Requirements Analysis}
-
-\textit{Note: This chapter follows the Requirements Analysis Document Template in \cite{bruegge2004object}.
-	\textbf{Important:} Make sure that the whole chapter is independent of the chosen technology and development platform. The idea is that you illustrate concepts, taxonomies and relationships of the application domain independent of the solution domain!
-	Cite \cite{bruegge2004object} several times in this chapter.}
-
-\section{Overview}
-
-\textit{Note: Provide a short overview about the purpose, scope, objectives and success criteria of the system that you like to develop.}
-
-\section{Current System}
-
-\textit{Note: This section is only required if the proposed system (i.e. the system that you develop in the thesis) should replace an existing system.}
-
-\section{Proposed System}
-
-\textit{Note: If you leave out the section ``Current system'', you can rename this section into ``Requirements''.}
-
-\subsection{Functional Requirements}
-
-\textit{Note: List and describe all functional requirements of your system. Also mention requirements that you were not able to realize. The short title should be in the form ``verb objective''}
-
-\begin{itemize}
-	\item [FR1] \textbf{Short Title}: Short Description.
-	\item [FR2] \textbf{Short Title}: Short Description.
-	\item [FR3] \textbf{Short Title}: Short Description.
-\end{itemize}
-
-\subsection{Nonfunctional Requirements}
-
-\textit{Note: List and describe all nonfunctional requirements of your system. Also mention requirements that you were not able to realize. Categorize them using the FURPS+ model described in \cite{bruegge2004object} without the category \textbf{functionality} that was already covered with the functional requirements.}
-
-\begin{itemize}
-	\item [NFR1] \textbf{Category}: Short Description.
-	\item [NFR2] \textbf{Category}: Short Description.
-	\item [NFR3] \textbf{Category}: Short Description.
-\end{itemize}
-
-\section{System Models}
-
-\textit{Note: This section includes important system models for the requirements analysis.}
-
-\subsection{Scenarios}
-
-\textit{Note: If you do not distinguish between visionary and demo scenarios, you can remove the two subsubsections below and list all scenarios here.}
-
-\subsubsection{Visionary Scenarios}
-
-\textit{Note: Describe 1-2 visionary scenario here, i.e. a scenario that would perfectly solve your problem, even if it might not be realizable. Use free text description.}
-
-\subsubsection{Demo Scenarios}
-
-\textit{Note: Describe 1-2 demo scenario here, i.e. a scenario that you can implement and demonstrate until the end of your thesis. Use free text description.}
-
-\subsection{Use Case Model}
-
-\textit{Note: This subsection should contain a UML Use Case Diagram including roles and their use cases. You can use colors to indicate priorities. Think about splitting the diagram into multiple ones if you have more than 10 use cases.
-	\textbf{Important:} Make sure to describe the most important use cases using the use case table template (./tex/use-case-table.tex). Also describe the rationale of the use case model, i.e. why you modeled it like you show it in the diagram.}
-
-\subsection{Analysis Object Model}
-
-\textit{Note: This subsection should contain a UML Class Diagram showing the most important objects, attributes, methods and relations of your application domain including taxonomies using specification inheritance (see \cite{bruegge2004object}). Do not insert objects, attributes or methods of the solution domain.
-	\textbf{Important:} Make sure to describe the analysis object model thoroughly in the text so that readers are able to understand the diagram. Also write about the rationale how and why you modeled the concepts like this.}
-
-\subsection{Dynamic Model}
-
-\textit{Note: This subsection should contain dynamic UML diagrams. These can be a UML state diagrams, UML communication diagrams or UML activity diagrams.\textbf{Important:} Make sure to describe the diagram and its rationale in the text. \textbf{Do not use UML sequence diagrams.}}
-
-\subsection{User Interface}
-
-\textit{Note: Show mockups of the user interface of the software you develop and their connections / transitions. You can also create a storyboard. \textbf{Important:} Describe the mockups and their rationale in the text.}
-
+\chapter{Methodology}\label[chapter]{methodology}
 
 
 %------- chapter 5 -------
 
-\chapter{System Design}
-
-\textit{Note: This chapter follows the System Design Document Template in \cite{bruegge2004object}.
-	You describe in this chapter how you map the concepts of the application domain to the solution domain. Some sections are optional, if they do not apply to your problem.
-	Cite \cite{bruegge2004object} several times in this chapter.}
-
-\section{Overview}
-
-\textit{Note: Provide a brief overview of the software architecture and references to other chapters (e.g. requirements analysis), references to existing systems, constraints impacting the software architecture.}
-
-\section{Design Goals}
-
-\textit{Note: Derive design goals from your nonfunctional requirements, prioritize them (as they might conflict with each other) and describe the rationale of your prioritization. Any trade-offs between design goals (e.g., build vs. buy, memory space vs. response time),
-	and the rationale behind the specific solution should be described in this section}
-
-\section{Subsystem Decomposition}
-
-\textit{Note: Describe the architecture of your system by decomposing it into subsystems and the services provided by each subsystem. Use UML class diagrams including packages / components for each subsystem.}
-
-\section{Hardware Software Mapping}
-
-\textit{Note: This section describes how the subsystems are mapped onto existing hardware and software components. The description is accompanied by a UML deployment diagram. The existing components are often off-the-shelf components. If the components are distributed on different nodes, the network infrastructure and the protocols are also described.}
-
-\section{Persistent Data Management}
-
-\textit{Note: Optional section that describes how data is saved over the lifetime of the system and which data. Usually this is either done by saving data in structured files or in databases. If this is applicable for the thesis, describe the approach for persisting data here and show a UML class diagram how the entity objects are mapped to persistent storage.
-	It contains a rationale of the selected storage scheme, file system or database, a description of the selected database and database administration issues.}
-
-\section{Access Control}
-
-\textit{Note: Optional section describing the access control and security issues based on the nonfunctional requirements in the requirements analysis. It also describes the implementation of the access matrix based on capabilities or access control lists, the selection of  authentication mechanisms and the use of encryption algorithms.}
-
-\section{Global Software Control}
-
-\textit{Note: Optional section describing the control flow of the system, in particular, whether a monolithic, event-driven control flow or concurrent processes have been selected, how requests are initiated and specific synchronization issues}
-
-
-\section{Boundary Conditions}
-
-\textit{Note: Optional section describing the use cases how to start up the separate components of the system, how to shut them down, and what to do if a component or the system fails.}
-
-
-
-
+\chapter{Evaluation}\label[chapter]{evaluation}
 
 %------- chapter 6 -------
 
-\chapter{Case Study / Evaluation}
-
-\textit{Note: If you did an evaluation / case study, describe it here.}
-
-\section{Design}
-
-\textit{Note: Describe the design / methodology of the evaluation and why you did it like that. E.g. what kind of evaluation have you done (e.g. questionnaire, personal interviews, simulation, quantitative analysis of metrics, what kind of participants, what kind of questions, what was the procedure?}
-
-\section{Objectives}
-
-\textit{Note: Derive concrete objectives / hypotheses for this evaluation from the general ones in the introduction.}
-
-\section{Results}
-
-\textit{Note: Summarize the most interesting results of your evaluation (without interpretation). Additional results can be put into the appendix.}
-
-\section{Findings}
-
-\textit{Note: Interpret the results and conclude interesting findings}
-
-\section{Discussion}
-
-\textit{Note: Discuss the findings in more detail and also review possible disadvantages that you found}
-
-\section{Limitations}
-
-\textit{Note: Describe limitations and threats to validity of your evaluation, e.g. reliability, generalizability, selection bias, researcher bias}
-
+\chapter{Threats to Validity}\label[chapter]{threats}
 
 
 %------- chapter 7 -------
 
-\chapter{Summary}
+\chapter{Conclusion}\label[chapter]{conclusion}
 
 \textit{Note: This chapter includes the status of your thesis, a conclusion and an outlook about future work.}
 

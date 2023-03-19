@@ -25,6 +25,8 @@ type Data = {
       installConclusion: string;
       testConclusion: string;
       sha: string;
+      passed: boolean;
+      passedInstrumented: boolean;
     }[];
     testcases: {
       name: string;
@@ -62,7 +64,7 @@ await db.read();
 // If file.json doesn't exist, db.data will be null
 // Set default data
 db.data ||= { timings: { runs: [], testcases: [] } };
-db.data.timings ||= { runs: [], testcases: [] };
+db.data.timings = { runs: [], testcases: [] };
 
 if (!db.data) {
   throw new Error("no data");
@@ -180,6 +182,8 @@ const updateDB = runs
             installConclusion: runData.installConclusion,
             testConclusion: runData.testConclusion,
             sha: commit,
+            passed: run.conclusion === "success",
+            passedInstrumented: run.conclusion === "success",
           })
           .value();
       } else {
@@ -331,6 +335,15 @@ const readReports = db.chain
         coverageTestcaseDurations[test.fullTitle] = [test.duration];
       }
     });
+
+    // update passed flags for run
+    const passed = allTests.every((test) => test.state === "passed");
+    const passedInstrumented = coverageTests.every(
+      (test) => test.state === "passed"
+    );
+
+    run.passed = passed;
+    run.passedInstrumented = passedInstrumented;
   })
   .value();
 await Promise.all(readReports);
