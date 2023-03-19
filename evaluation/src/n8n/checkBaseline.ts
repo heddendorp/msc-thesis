@@ -174,13 +174,10 @@ const updateDB = runs
         return;
       }
 
-      const commitIndex = db.data?.baseLine.commits.findIndex(
-        (c) => c.sha === commit
-      );
-      if (!commitIndex) {
-        console.log("no commit found");
-        return;
-      }
+      const commitIndex = db.chain
+        .get("baseLine.commits")
+        .findIndex({ sha: commit })
+        .value();
       if (commitIndex === -1) {
         const commitResponse = await octokit.rest.repos.getCommit({
           owner: "n8n-io",
@@ -205,13 +202,12 @@ const updateDB = runs
           flaky: false,
         });
       } else {
-        const runIndex = db.data?.baseLine.commits[commitIndex].runs.findIndex(
-          (r) => r.id === run.id
-        );
-        if (!runIndex) {
-          console.log("no run found");
-          return;
-        }
+        const runIndex = db.chain
+          .get("baseLine.commits")
+          .find({ sha: commit })
+          .get("runs")
+          .findIndex({ id: run.id })
+          .value();
         if (runIndex === -1) {
           const runData = await getRunData(run);
           db.data?.baseLine.commits[commitIndex].runs.push(runData);
@@ -226,7 +222,10 @@ db.data?.baseLine.commits.map(async (commit) => {
   if (commit.runs.some((run) => run.conclusion === "success")) {
     commit.successful = true;
   }
-  if (commit.runs.some((run) => run.conclusion === "success") && commit.runs.some((run) => run.conclusion === "failure")) {
+  if (
+    commit.runs.some((run) => run.conclusion === "success") &&
+    commit.runs.some((run) => run.conclusion === "failure")
+  ) {
     commit.flaky = true;
   }
 });

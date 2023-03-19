@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "sourceMap": true,
-    "lib": ["ESNext"],
+    "lib": ["ESNext","DOM"],
     "outDir": "dist"
   },
   "include": ["src/**/*"]

@@ -13,6 +13,22 @@
             "testDuration": 2372000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4460088429,
+            "conclusion": "failure",
+            "installDuration": 379000,
+            "testDuration": 1573000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456927549,
+            "conclusion": "failure",
+            "installDuration": 137000,
+            "testDuration": 1606000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -27,6 +43,22 @@
             "conclusion": "failure",
             "installDuration": 156000,
             "testDuration": 2290000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456927580,
+            "conclusion": "failure",
+            "installDuration": 186000,
+            "testDuration": 1760000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460088520,
+            "conclusion": "failure",
+            "installDuration": 133000,
+            "testDuration": 1444000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -45,6 +77,22 @@
             "testDuration": 1950000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456927613,
+            "conclusion": "failure",
+            "installDuration": 138000,
+            "testDuration": 1658000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460088604,
+            "conclusion": "failure",
+            "installDuration": 374000,
+            "testDuration": 1498000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -59,6 +107,22 @@
             "conclusion": "failure",
             "installDuration": 189000,
             "testDuration": 1589000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456927649,
+            "conclusion": "failure",
+            "installDuration": 134000,
+            "testDuration": 2377000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460088723,
+            "conclusion": "failure",
+            "installDuration": 275000,
+            "testDuration": 1675000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -77,6 +141,22 @@
             "testDuration": 2868000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456927682,
+            "conclusion": "failure",
+            "installDuration": 191000,
+            "testDuration": 2611000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460088829,
+            "conclusion": "failure",
+            "installDuration": 174000,
+            "testDuration": 2314000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -90,6 +170,22 @@
             "id": 4456250327,
             "conclusion": "failure",
             "installDuration": 253000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          },
+          {
+            "id": 4456927744,
+            "conclusion": "failure",
+            "installDuration": 180000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          },
+          {
+            "id": 4460088947,
+            "conclusion": "failure",
+            "installDuration": 193000,
             "testDuration": 0,
             "installConclusion": "failure",
             "testConclusion": "skipped"
@@ -109,6 +205,22 @@
             "testDuration": 2108000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456927795,
+            "conclusion": "failure",
+            "installDuration": 139000,
+            "testDuration": 1637000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089029,
+            "conclusion": "failure",
+            "installDuration": 279000,
+            "testDuration": 1593000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -123,6 +235,22 @@
             "conclusion": "failure",
             "installDuration": 129000,
             "testDuration": 1562000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456927831,
+            "conclusion": "failure",
+            "installDuration": 155000,
+            "testDuration": 1905000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089145,
+            "conclusion": "failure",
+            "installDuration": 282000,
+            "testDuration": 2257000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -141,6 +269,22 @@
             "testDuration": 2471000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456927910,
+            "conclusion": "failure",
+            "installDuration": 182000,
+            "testDuration": 1560000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089239,
+            "conclusion": "failure",
+            "installDuration": 158000,
+            "testDuration": 1565000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -155,6 +299,22 @@
             "conclusion": "failure",
             "installDuration": 194000,
             "testDuration": 1958000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456927941,
+            "conclusion": "failure",
+            "installDuration": 137000,
+            "testDuration": 1919000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089364,
+            "conclusion": "failure",
+            "installDuration": 294000,
+            "testDuration": 1878000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -173,6 +333,22 @@
             "testDuration": 2151000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456927988,
+            "conclusion": "failure",
+            "installDuration": 132000,
+            "testDuration": 1883000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089504,
+            "conclusion": "failure",
+            "installDuration": 292000,
+            "testDuration": 2261000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -187,6 +363,22 @@
             "conclusion": "failure",
             "installDuration": 135000,
             "testDuration": 2043000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928036,
+            "conclusion": "failure",
+            "installDuration": 139000,
+            "testDuration": 1735000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089578,
+            "conclusion": "failure",
+            "installDuration": 270000,
+            "testDuration": 2144000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -205,6 +397,22 @@
             "testDuration": 1955000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928080,
+            "conclusion": "failure",
+            "installDuration": 133000,
+            "testDuration": 2350000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089715,
+            "conclusion": "failure",
+            "installDuration": 414000,
+            "testDuration": 2785000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -219,6 +427,22 @@
             "conclusion": "failure",
             "installDuration": 166000,
             "testDuration": 1581000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928139,
+            "conclusion": "failure",
+            "installDuration": 186000,
+            "testDuration": 1847000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089793,
+            "conclusion": "failure",
+            "installDuration": 128000,
+            "testDuration": 2052000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -237,6 +461,22 @@
             "testDuration": 850000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928167,
+            "conclusion": "failure",
+            "installDuration": 136000,
+            "testDuration": 883000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089900,
+            "conclusion": "failure",
+            "installDuration": 516000,
+            "testDuration": 954000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -251,6 +491,22 @@
             "conclusion": "failure",
             "installDuration": 132000,
             "testDuration": 2812000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928226,
+            "conclusion": "failure",
+            "installDuration": 155000,
+            "testDuration": 1650000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460089972,
+            "conclusion": "failure",
+            "installDuration": 158000,
+            "testDuration": 2587000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -269,6 +525,22 @@
             "testDuration": 2052000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928286,
+            "conclusion": "failure",
+            "installDuration": 166000,
+            "testDuration": 2118000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090050,
+            "conclusion": "failure",
+            "installDuration": 141000,
+            "testDuration": 2218000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -285,6 +557,22 @@
             "testDuration": 1227000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928341,
+            "conclusion": "failure",
+            "installDuration": 125000,
+            "testDuration": 2033000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090111,
+            "conclusion": "failure",
+            "installDuration": 258000,
+            "testDuration": 1694000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -299,6 +587,22 @@
             "conclusion": "failure",
             "installDuration": 131000,
             "testDuration": 1816000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928378,
+            "conclusion": "failure",
+            "installDuration": 130000,
+            "testDuration": 1880000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090193,
+            "conclusion": "failure",
+            "installDuration": 280000,
+            "testDuration": 1701000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -349,6 +653,22 @@
             "testDuration": 987000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928417,
+            "conclusion": "failure",
+            "installDuration": 137000,
+            "testDuration": 929000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090305,
+            "conclusion": "failure",
+            "installDuration": 529000,
+            "testDuration": 909000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -363,6 +683,22 @@
             "conclusion": "failure",
             "installDuration": 138000,
             "testDuration": 767000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928446,
+            "conclusion": "failure",
+            "installDuration": 144000,
+            "testDuration": 950000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090348,
+            "conclusion": "failure",
+            "installDuration": 545000,
+            "testDuration": 1073000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -381,6 +717,22 @@
             "testDuration": 1150000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928469,
+            "conclusion": "failure",
+            "installDuration": 136000,
+            "testDuration": 765000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090434,
+            "conclusion": "failure",
+            "installDuration": 599000,
+            "testDuration": 768000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -397,6 +749,22 @@
             "testDuration": 839000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928506,
+            "conclusion": "failure",
+            "installDuration": 128000,
+            "testDuration": 770000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090503,
+            "conclusion": "failure",
+            "installDuration": 826000,
+            "testDuration": 763000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -411,6 +779,22 @@
             "conclusion": "failure",
             "installDuration": 142000,
             "testDuration": 1009000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928541,
+            "conclusion": "failure",
+            "installDuration": 136000,
+            "testDuration": 1178000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090578,
+            "conclusion": "failure",
+            "installDuration": 517000,
+            "testDuration": 763000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -445,6 +829,22 @@
             "testDuration": 1008000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928575,
+            "conclusion": "failure",
+            "installDuration": 134000,
+            "testDuration": 1004000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090646,
+            "conclusion": "failure",
+            "installDuration": 725000,
+            "testDuration": 1172000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -461,6 +861,22 @@
             "testDuration": 933000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928612,
+            "conclusion": "failure",
+            "installDuration": 180000,
+            "testDuration": 1071000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090707,
+            "conclusion": "failure",
+            "installDuration": 133000,
+            "testDuration": 958000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -474,6 +890,22 @@
             "id": 4456248805,
             "conclusion": "failure",
             "installDuration": 483000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          },
+          {
+            "id": 4456928657,
+            "conclusion": "failure",
+            "installDuration": 483000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          },
+          {
+            "id": 4460090774,
+            "conclusion": "failure",
+            "installDuration": 545000,
             "testDuration": 0,
             "installConclusion": "failure",
             "testConclusion": "skipped"
@@ -493,6 +925,22 @@
             "testDuration": 765000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928693,
+            "conclusion": "failure",
+            "installDuration": 134000,
+            "testDuration": 1067000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090838,
+            "conclusion": "failure",
+            "installDuration": 142000,
+            "testDuration": 1080000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -509,6 +957,22 @@
             "testDuration": 1027000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928735,
+            "conclusion": "failure",
+            "installDuration": 192000,
+            "testDuration": 823000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090902,
+            "conclusion": "failure",
+            "installDuration": 191000,
+            "testDuration": 762000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -523,6 +987,22 @@
             "conclusion": "failure",
             "installDuration": 133000,
             "testDuration": 1039000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928772,
+            "conclusion": "failure",
+            "installDuration": 133000,
+            "testDuration": 783000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460090952,
+            "conclusion": "failure",
+            "installDuration": 147000,
+            "testDuration": 1025000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -557,9 +1037,18 @@
             "testDuration": 1405000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928800,
+            "conclusion": "success",
+            "installDuration": 134000,
+            "testDuration": 1304000,
+            "installConclusion": "success",
+            "testConclusion": "success"
           }
         ],
-        "successful": false
+        "successful": true,
+        "flaky": true
       },
       {
         "sha": "c81c1ae8fbc7e97a7439cc8d7dea415dfe1a9b33",
@@ -571,6 +1060,22 @@
             "conclusion": "failure",
             "installDuration": 186000,
             "testDuration": 1809000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928840,
+            "conclusion": "failure",
+            "installDuration": 144000,
+            "testDuration": 1905000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091068,
+            "conclusion": "failure",
+            "installDuration": 132000,
+            "testDuration": 1478000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -587,6 +1092,22 @@
             "conclusion": "failure",
             "installDuration": 161000,
             "testDuration": 1064000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928886,
+            "conclusion": "failure",
+            "installDuration": 135000,
+            "testDuration": 1061000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091174,
+            "conclusion": "failure",
+            "installDuration": 185000,
+            "testDuration": 772000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -621,6 +1142,22 @@
             "testDuration": 4337000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928917,
+            "conclusion": "failure",
+            "installDuration": 193000,
+            "testDuration": 4333000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091280,
+            "conclusion": "failure",
+            "installDuration": 171000,
+            "testDuration": 4341000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -637,6 +1174,22 @@
             "testDuration": 4332000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456928955,
+            "conclusion": "failure",
+            "installDuration": 160000,
+            "testDuration": 4338000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091359,
+            "conclusion": "failure",
+            "installDuration": 175000,
+            "testDuration": 4338000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -651,6 +1204,22 @@
             "conclusion": "failure",
             "installDuration": 134000,
             "testDuration": 1777000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456928992,
+            "conclusion": "failure",
+            "installDuration": 133000,
+            "testDuration": 1937000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091425,
+            "conclusion": "failure",
+            "installDuration": 186000,
+            "testDuration": 1790000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -701,9 +1270,26 @@
             "testDuration": 1480000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456929039,
+            "conclusion": "failure",
+            "installDuration": 136000,
+            "testDuration": 1314000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091512,
+            "conclusion": "success",
+            "installDuration": 133000,
+            "testDuration": 1364000,
+            "installConclusion": "success",
+            "testConclusion": "success"
           }
         ],
-        "successful": false
+        "successful": true,
+        "flaky": true
       },
       {
         "sha": "a4799756dc3c31430ccf4b26420e027eea9f7f1c",
@@ -717,9 +1303,18 @@
             "testDuration": 1309000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456929055,
+            "conclusion": "success",
+            "installDuration": 139000,
+            "testDuration": 1608000,
+            "installConclusion": "success",
+            "testConclusion": "success"
           }
         ],
-        "successful": false
+        "successful": true,
+        "flaky": true
       },
       {
         "sha": "0f1739655bcad9633ebb2a4d3d565d5d6a0ca108",
@@ -731,6 +1326,22 @@
             "conclusion": "failure",
             "installDuration": 137000,
             "testDuration": 4337000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456929081,
+            "conclusion": "failure",
+            "installDuration": 132000,
+            "testDuration": 4383000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091563,
+            "conclusion": "failure",
+            "installDuration": 136000,
+            "testDuration": 4362000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -749,6 +1360,22 @@
             "testDuration": 4336000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456929104,
+            "conclusion": "failure",
+            "installDuration": 139000,
+            "testDuration": 4341000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091646,
+            "conclusion": "failure",
+            "installDuration": 140000,
+            "testDuration": 4340000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
           }
         ],
         "successful": false
@@ -763,6 +1390,22 @@
             "conclusion": "failure",
             "installDuration": 138000,
             "testDuration": 4362000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4456929143,
+            "conclusion": "failure",
+            "installDuration": 135000,
+            "testDuration": 4356000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091750,
+            "conclusion": "failure",
+            "installDuration": 170000,
+            "testDuration": 4401000,
             "installConclusion": "success",
             "testConclusion": "failure"
           }
@@ -813,6 +1456,22 @@
             "testDuration": 0,
             "installConclusion": "failure",
             "testConclusion": "skipped"
+          },
+          {
+            "id": 4456929179,
+            "conclusion": "failure",
+            "installDuration": 181000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          },
+          {
+            "id": 4460091883,
+            "conclusion": "failure",
+            "installDuration": 230000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
           }
         ],
         "successful": false
@@ -829,9 +1488,18 @@
             "testDuration": 1614000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456929210,
+            "conclusion": "success",
+            "installDuration": 156000,
+            "testDuration": 1425000,
+            "installConclusion": "success",
+            "testConclusion": "success"
           }
         ],
-        "successful": false
+        "successful": true,
+        "flaky": true
       },
       {
         "sha": "fc1006272b8826171560e375151b4a004e620c72",
@@ -861,9 +1529,26 @@
             "testDuration": 1388000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456929257,
+            "conclusion": "failure",
+            "installDuration": 184000,
+            "testDuration": 1697000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460091974,
+            "conclusion": "success",
+            "installDuration": 134000,
+            "testDuration": 1314000,
+            "installConclusion": "success",
+            "testConclusion": "success"
           }
         ],
-        "successful": false
+        "successful": true,
+        "flaky": true
       },
       {
         "sha": "77a3c7eefa3b501a97e8788935973fa99082a3b4",
@@ -909,9 +1594,26 @@
             "testDuration": 1719000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456929309,
+            "conclusion": "failure",
+            "installDuration": 131000,
+            "testDuration": 1470000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460092046,
+            "conclusion": "success",
+            "installDuration": 136000,
+            "testDuration": 1316000,
+            "installConclusion": "success",
+            "testConclusion": "success"
           }
         ],
-        "successful": false
+        "successful": true,
+        "flaky": true
       },
       {
         "sha": "acc43c4ea15aef8aa15433197a819671bca77813",
@@ -957,9 +1659,26 @@
             "testDuration": 1767000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456929357,
+            "conclusion": "failure",
+            "installDuration": 167000,
+            "testDuration": 1694000,
+            "installConclusion": "success",
+            "testConclusion": "failure"
+          },
+          {
+            "id": 4460092158,
+            "conclusion": "success",
+            "installDuration": 137000,
+            "testDuration": 1667000,
+            "installConclusion": "success",
+            "testConclusion": "success"
           }
         ],
-        "successful": false
+        "successful": true,
+        "flaky": true
       },
       {
         "sha": "166b8865810275aa581b9389773909e309ca1d6e",
@@ -1050,6 +1769,22 @@
             "id": 4456246626,
             "conclusion": "failure",
             "installDuration": 562000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          },
+          {
+            "id": 4456929398,
+            "conclusion": "failure",
+            "installDuration": 462000,
+            "testDuration": 0,
+            "installConclusion": "failure",
+            "testConclusion": "skipped"
+          },
+          {
+            "id": 4460092269,
+            "conclusion": "failure",
+            "installDuration": 501000,
             "testDuration": 0,
             "installConclusion": "failure",
             "testConclusion": "skipped"
@@ -1309,9 +2044,18 @@
             "testDuration": 1332000,
             "installConclusion": "success",
             "testConclusion": "failure"
+          },
+          {
+            "id": 4456929440,
+            "conclusion": "success",
+            "installDuration": 161000,
+            "testDuration": 1482000,
+            "installConclusion": "success",
+            "testConclusion": "success"
           }
         ],
-        "successful": false
+        "successful": true,
+        "flaky": true
       },
       {
         "sha": "e0197a329fbafca556c83f8593a6bd205858f345",
@@ -1328,6 +2072,2097 @@
           }
         ],
         "successful": true
+      }
+    ]
+  },
+  "timings": {
+    "runs": [
+      {
+        "id": 4456266299,
+        "conclusion": "failure",
+        "installDuration": 187000,
+        "testDuration": 1181000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "b4e60c3b47e5a5e86c55ff737ae9a63e2c8836fc"
+      },
+      {
+        "id": 4456266060,
+        "conclusion": "failure",
+        "installDuration": 180000,
+        "testDuration": 1222000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "541850f95f1c42fc16d9aeee3a3fef68a4b77082"
+      },
+      {
+        "id": 4456266218,
+        "conclusion": "failure",
+        "installDuration": 130000,
+        "testDuration": 1207000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "29f2629716e3693372ec9a4572113a3f3721ff5e"
+      },
+      {
+        "id": 4456266005,
+        "conclusion": "failure",
+        "installDuration": 136000,
+        "testDuration": 1144000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "11bf260bf164c6c9dffe71b875fde139c93f905d"
+      },
+      {
+        "id": 4456266166,
+        "conclusion": "failure",
+        "installDuration": 147000,
+        "testDuration": 1131000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "58232bec618edd403f18527913c489bfa11f570b"
+      },
+      {
+        "id": 4456265959,
+        "conclusion": "failure",
+        "installDuration": 635000,
+        "testDuration": 1260000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "02e35819aba28b494b94e698f5f4faaa0b975275"
+      },
+      {
+        "id": 4456265815,
+        "conclusion": "failure",
+        "installDuration": 154000,
+        "testDuration": 1563000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "ca91d2b712d1d21802333df3d99b70e45f7bdafb"
+      },
+      {
+        "id": 4456265902,
+        "conclusion": "failure",
+        "installDuration": 169000,
+        "testDuration": 1181000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "7025efe8654a8a55ff10e2105ddc6ce2dc5a89d6"
+      },
+      {
+        "id": 4456265736,
+        "conclusion": "failure",
+        "installDuration": 144000,
+        "testDuration": 1592000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "c07f838ce60dc33261fe3e1b5e7dd6fe05f1d63b"
+      },
+      {
+        "id": 4456265739,
+        "conclusion": "failure",
+        "installDuration": 135000,
+        "testDuration": 1133000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "0876c38aaeb8355141fecbc14e84cdda0b2c737b"
+      },
+      {
+        "id": 4456265728,
+        "conclusion": "failure",
+        "installDuration": 134000,
+        "testDuration": 1259000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "9bd7529193e4b75471bd692aaa69651dd9fbf9d3"
+      },
+      {
+        "id": 4456265499,
+        "conclusion": "failure",
+        "installDuration": 651000,
+        "testDuration": 1161000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "a28396ee91bfbccc6596812606c237a8e2c34088"
+      },
+      {
+        "id": 4456265633,
+        "conclusion": "failure",
+        "installDuration": 165000,
+        "testDuration": 1146000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "3718612bd7575a1b5eb149132f1bb6c5f60ba543"
+      },
+      {
+        "id": 4456265546,
+        "conclusion": "failure",
+        "installDuration": 178000,
+        "testDuration": 1477000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "f59b591c93ecd7cbd279668abe6494ef2b88c831"
+      },
+      {
+        "id": 4456265572,
+        "conclusion": "failure",
+        "installDuration": 141000,
+        "testDuration": 1434000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "7a352efff944c52062412e53ea2c1a034a25f908"
+      },
+      {
+        "id": 4456265455,
+        "conclusion": "failure",
+        "installDuration": 506000,
+        "testDuration": 1258000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "6a8c9b7ccc0b4ff0801a39b44884cca3a3148e09"
+      },
+      {
+        "id": 4456265369,
+        "conclusion": "failure",
+        "installDuration": 185000,
+        "testDuration": 1156000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "cd7a55ba5aeb83d1e540a65b5c6b2c74fd742461"
+      },
+      {
+        "id": 4456265416,
+        "conclusion": "failure",
+        "installDuration": 140000,
+        "testDuration": 1274000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "233f1fa7ec230e92e868de0247e315aa6a705ead"
+      },
+      {
+        "id": 4456265315,
+        "conclusion": "failure",
+        "installDuration": 167000,
+        "testDuration": 1232000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "fb8755ea3c720c98f002a6756c39b8fed11482c0"
+      },
+      {
+        "id": 4456265281,
+        "conclusion": "failure",
+        "installDuration": 716000,
+        "testDuration": 1222000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "341bfb810fe256eb8733f419ba8fbccd2b0680c8"
+      },
+      {
+        "id": 4456265162,
+        "conclusion": "failure",
+        "installDuration": 548000,
+        "testDuration": 1223000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "6242cac53baaed7e5c8be3ba477cd7f408fa1430"
+      },
+      {
+        "id": 4456265225,
+        "conclusion": "failure",
+        "installDuration": 619000,
+        "testDuration": 1111000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "be172cb720c8a44ebd1f0b86dddab321e1e3c9fd"
+      },
+      {
+        "id": 4456265120,
+        "conclusion": "failure",
+        "installDuration": 760000,
+        "testDuration": 1257000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "19dded18c9a588a30b9ac1fc274dcd967e9b7b6b"
+      },
+      {
+        "id": 4456265064,
+        "conclusion": "failure",
+        "installDuration": 588000,
+        "testDuration": 1149000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "e0ea97af8d7aaa014680f5f9d5702d1cafd49757"
+      },
+      {
+        "id": 4456265037,
+        "conclusion": "failure",
+        "installDuration": 667000,
+        "testDuration": 1219000,
+        "installConclusion": "success",
+        "testConclusion": "success",
+        "sha": "6916628a9f11e07cbcdf390f747f396fb0ef9e3c"
+      }
+    ],
+    "testcases": [
+      {
+        "name": "Authentication should setup owner",
+        "averageDuration": 5094,
+        "averageDurationInstrumented": 7513,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Authentication should sign user in",
+        "averageDuration": 2434,
+        "averageDurationInstrumented": 5467,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflows should create a new workflow using empty state card",
+        "averageDuration": 10838,
+        "averageDurationInstrumented": 15171,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 24,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflows should create multiple new workflows using add workflow button",
+        "averageDuration": 25710,
+        "averageDurationInstrumented": 36637,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflows should search for a workflow",
+        "averageDuration": 3203,
+        "averageDurationInstrumented": 15700,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflows should delete all the workflows",
+        "averageDuration": 5274,
+        "averageDurationInstrumented": 18339,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Log Streaming Settings should show the unlicensed view when the feature is disabled",
+        "averageDuration": 7164,
+        "averageDurationInstrumented": 10526,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Log Streaming Settings should show the licensed view when the feature is enabled",
+        "averageDuration": 1436,
+        "averageDurationInstrumented": 1044,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Log Streaming Settings should show the add destination modal",
+        "averageDuration": 2040,
+        "averageDurationInstrumented": 1772,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Log Streaming Settings should create a destination and delete it",
+        "averageDuration": 4914,
+        "averageDurationInstrumented": 5510,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Log Streaming Settings should create a destination and delete it via card actions",
+        "averageDuration": 5350,
+        "averageDurationInstrumented": 6132,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo adding nodes",
+        "averageDuration": 11573,
+        "averageDurationInstrumented": 12796,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo adding connected nodes",
+        "averageDuration": 8376,
+        "averageDurationInstrumented": 8552,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo adding node in the middle",
+        "averageDuration": 10548,
+        "averageDurationInstrumented": 10860,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo deleting node using delete button",
+        "averageDuration": 8224,
+        "averageDurationInstrumented": 10859,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo deleting node using keyboard shortcut",
+        "averageDuration": 8688,
+        "averageDurationInstrumented": 8886,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo deleting node between two connected nodes",
+        "averageDuration": 11272,
+        "averageDurationInstrumented": 11333,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo deleting whole workflow",
+        "averageDuration": 9161,
+        "averageDurationInstrumented": 9780,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo moving nodes",
+        "averageDuration": 8631,
+        "averageDurationInstrumented": 9113,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo deleting a connection by pressing delete button",
+        "averageDuration": 8970,
+        "averageDurationInstrumented": 9403,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo deleting a connection by moving it away",
+        "averageDuration": 8683,
+        "averageDurationInstrumented": 8731,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo disabling a node using disable button",
+        "averageDuration": 8373,
+        "averageDurationInstrumented": 8607,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo disabling a node using keyboard shortcut",
+        "averageDuration": 9693,
+        "averageDurationInstrumented": 10187,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo disabling multiple nodes",
+        "averageDuration": 9731,
+        "averageDurationInstrumented": 10095,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo renaming node using NDV",
+        "averageDuration": 10184,
+        "averageDurationInstrumented": 11497,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo renaming node using keyboard shortcut",
+        "averageDuration": 9483,
+        "averageDurationInstrumented": 10026,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo duplicating a node",
+        "averageDuration": 8862,
+        "averageDurationInstrumented": 8855,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo pasting nodes",
+        "averageDuration": 4687,
+        "averageDurationInstrumented": 5096,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Undo/Redo should undo/redo multiple steps",
+        "averageDuration": 18979,
+        "averageDurationInstrumented": 18638,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Inline expression editor should resolve primitive resolvables",
+        "averageDuration": 14774,
+        "averageDurationInstrumented": 16600,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Inline expression editor should resolve object resolvables",
+        "averageDuration": 8902,
+        "averageDurationInstrumented": 8917,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Inline expression editor should resolve array resolvables",
+        "averageDuration": 8550,
+        "averageDurationInstrumented": 8806,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Inline expression editor should resolve $parameter[]",
+        "averageDuration": 10419,
+        "averageDurationInstrumented": 11107,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data pinning Should be able to pin node output",
+        "averageDuration": 11239,
+        "averageDurationInstrumented": 13465,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data pinning Should be be able to set pinned data",
+        "averageDuration": 10336,
+        "averageDurationInstrumented": 10368,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data transformation expressions $json + native string methods",
+        "averageDuration": 16279,
+        "averageDurationInstrumented": 19491,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data transformation expressions $json + n8n string methods",
+        "averageDuration": 11831,
+        "averageDurationInstrumented": 12814,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data transformation expressions $json + native numeric methods",
+        "averageDuration": 10114,
+        "averageDurationInstrumented": 10909,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data transformation expressions $json + n8n numeric methods",
+        "averageDuration": 11224,
+        "averageDurationInstrumented": 12658,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data transformation expressions $json + native array access",
+        "averageDuration": 11742,
+        "averageDurationInstrumented": 11931,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data transformation expressions $json + n8n array methods",
+        "averageDuration": 10864,
+        "averageDurationInstrumented": 12028,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data mapping maps expressions from table header",
+        "averageDuration": 10520,
+        "averageDurationInstrumented": 11895,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data mapping maps expressions from table json, and resolves value based on hover",
+        "averageDuration": 5792,
+        "averageDurationInstrumented": 6050,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data mapping maps expressions from json view",
+        "averageDuration": 4985,
+        "averageDurationInstrumented": 4754,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data mapping maps expressions from schema view",
+        "averageDuration": 4575,
+        "averageDurationInstrumented": 4822,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data mapping maps expressions from previous nodes",
+        "averageDuration": 6481,
+        "averageDurationInstrumented": 7919,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data mapping maps keys to path",
+        "averageDuration": 11391,
+        "averageDurationInstrumented": 12105,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Data mapping maps expressions to updated fields correctly",
+        "averageDuration": 6728,
+        "averageDurationInstrumented": 6169,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Schedule Trigger node should execute and return the execution timestamp",
+        "averageDuration": 7732,
+        "averageDurationInstrumented": 9087,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Schedule Trigger node should execute once per second when activated",
+        "averageDuration": 13498,
+        "averageDurationInstrumented": 14711,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 16,
+          "failed": 9,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a GET request",
+        "averageDuration": 12025,
+        "averageDurationInstrumented": 19103,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 20,
+          "failed": 5,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a POST request",
+        "averageDuration": 7345,
+        "averageDurationInstrumented": 11721,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 18,
+          "failed": 6,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a DELETE request",
+        "averageDuration": 7018,
+        "averageDurationInstrumented": 11401,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a HEAD request",
+        "averageDuration": 6704,
+        "averageDurationInstrumented": 10936,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 18,
+          "failed": 6,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a PATCH request",
+        "averageDuration": 6494,
+        "averageDurationInstrumented": 11686,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a PUT request",
+        "averageDuration": 6808,
+        "averageDurationInstrumented": 11195,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 18,
+          "failed": 6,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a GET request and respond with Respond to Webhook node",
+        "averageDuration": 14495,
+        "averageDurationInstrumented": 19782,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 20,
+          "failed": 4,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a GET request and respond custom status code 201",
+        "averageDuration": 7074,
+        "averageDurationInstrumented": 12041,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a GET request and respond with last node",
+        "averageDuration": 12296,
+        "averageDurationInstrumented": 16710,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 1,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a GET request and respond with last node binary data",
+        "averageDuration": 15905,
+        "averageDurationInstrumented": 20757,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 20,
+          "failed": 4,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a GET request and respond with an empty body",
+        "averageDuration": 7760,
+        "averageDurationInstrumented": 12583,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a GET request with Basic Authentication",
+        "averageDuration": 9414,
+        "averageDurationInstrumented": 53535,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 13,
+          "failed": 11,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Webhook Trigger node should listen for a GET request with Header Authentication",
+        "averageDuration": 9106,
+        "averageDurationInstrumented": 42821,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 16,
+          "failed": 8,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Sharing should invite User U2 and User U3 to instance",
+        "averageDuration": 14151,
+        "averageDurationInstrumented": 24082,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Sharing should create C1, W1, W2, share W1 with U3, as U2",
+        "averageDuration": 23006,
+        "averageDurationInstrumented": 35665,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Sharing should create C2, share C2 with U1 and U2, as U3",
+        "averageDuration": 10497,
+        "averageDurationInstrumented": 22479,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Sharing should open W1, add node using C2 as U3",
+        "averageDuration": 7052,
+        "averageDurationInstrumented": 19276,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Sharing should not have access to W2, as U3",
+        "averageDuration": 3780,
+        "averageDurationInstrumented": 16284,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Sharing should have access to W1, W2, as U1",
+        "averageDuration": 7406,
+        "averageDurationInstrumented": 19008,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflow tags should create and attach tags inline",
+        "averageDuration": 7064,
+        "averageDurationInstrumented": 96600,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 3,
+          "failed": 21,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflow tags should create tags via modal",
+        "averageDuration": 5033,
+        "averageDurationInstrumented": 7018,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 24,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflow tags should delete a tag via modal",
+        "averageDuration": 4852,
+        "averageDurationInstrumented": 10793,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflow tags should update a tag via modal",
+        "averageDuration": 5488,
+        "averageDurationInstrumented": 15425,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Workflow tags should detach a tag inline by clicking on X on tag pill",
+        "averageDuration": 4597,
+        "averageDurationInstrumented": 81318,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 5,
+          "failed": 18,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Workflow tags should detach a tag inline by clicking on dropdown list item",
+        "averageDuration": 4523,
+        "averageDurationInstrumented": 94811,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 2,
+          "failed": 21,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "User Management should invite User B and User C to instance",
+        "averageDuration": 14005,
+        "averageDurationInstrumented": 23791,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management should prevent non-owners to access UM settings",
+        "averageDuration": 5943,
+        "averageDurationInstrumented": 18177,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management should allow instance owner to access UM settings",
+        "averageDuration": 3489,
+        "averageDurationInstrumented": 11466,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management should properly render UM settings page for instance owners",
+        "averageDuration": 3034,
+        "averageDurationInstrumented": 15723,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management should delete user and their data",
+        "averageDuration": 3938,
+        "averageDurationInstrumented": 17175,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management should delete user and transfer their data",
+        "averageDuration": 4073,
+        "averageDurationInstrumented": 16956,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management should allow user to change their personal data",
+        "averageDuration": 1791,
+        "averageDurationInstrumented": 11014,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management shouldn't allow user to set weak password",
+        "averageDuration": 4653,
+        "averageDurationInstrumented": 13365,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management shouldn't allow user to change password if old password is wrong",
+        "averageDuration": 2217,
+        "averageDurationInstrumented": 11328,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management should change current user password",
+        "averageDuration": 6128,
+        "averageDurationInstrumented": 21331,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 20,
+          "failed": 4,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management shouldn't allow users to set invalid email",
+        "averageDuration": 2363,
+        "averageDurationInstrumented": 14920,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 20,
+          "failed": 4,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "User Management should change user email",
+        "averageDuration": 5341,
+        "averageDurationInstrumented": 18014,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 20,
+          "failed": 4,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should create a new credential using empty state",
+        "averageDuration": 12645,
+        "averageDurationInstrumented": 19255,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should create a new credential using Add Credential button",
+        "averageDuration": 7018,
+        "averageDurationInstrumented": 11931,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should search credentials",
+        "averageDuration": 3462,
+        "averageDurationInstrumented": 12561,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should sort credentials",
+        "averageDuration": 2993,
+        "averageDurationInstrumented": 11646,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should create credentials from NDV for node with multiple auth options",
+        "averageDuration": 11258,
+        "averageDurationInstrumented": 19103,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should show multiple credential types in the same dropdown",
+        "averageDuration": 12746,
+        "averageDurationInstrumented": 21729,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should correctly render required and optional credentials",
+        "averageDuration": 7055,
+        "averageDurationInstrumented": 11566,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should create credentials from NDV for node with no auth options",
+        "averageDuration": 11125,
+        "averageDurationInstrumented": 19442,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should delete credentials from NDV",
+        "averageDuration": 10564,
+        "averageDurationInstrumented": 56498,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 13,
+          "failed": 11,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should rename credentials from NDV",
+        "averageDuration": 12050,
+        "averageDurationInstrumented": 78772,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 8,
+          "failed": 16,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Credentials should setup generic authentication for HTTP node",
+        "averageDuration": 11358,
+        "averageDurationInstrumented": 21487,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Current Workflow Executions should render executions tab correctly",
+        "averageDuration": 17397,
+        "averageDurationInstrumented": 33870,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 21,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Community Nodes should render and select community node",
+        "averageDuration": 12332,
+        "averageDurationInstrumented": 18897,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Community Nodes should render custom node with n8n credential",
+        "averageDuration": 9524,
+        "averageDurationInstrumented": 9994,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 0,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Community Nodes should render custom node with custom credential",
+        "averageDuration": 9593,
+        "averageDurationInstrumented": 9653,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 0,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Default owner should be able to create workflows",
+        "averageDuration": 8969,
+        "averageDurationInstrumented": 14560,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Default owner should be able to add new credentials",
+        "averageDuration": 7099,
+        "averageDurationInstrumented": 8094,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Default owner should be able to setup UM from settings",
+        "averageDuration": 1870,
+        "averageDurationInstrumented": 6276,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Default owner should be able to setup instance and migrate workflows and credentials",
+        "averageDuration": 2712,
+        "averageDurationInstrumented": 7691,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Default owner can click back to main menu and have migrated credential after setup",
+        "averageDuration": 4527,
+        "averageDurationInstrumented": 9163,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should open node creator on trigger tab if no trigger is on canvas",
+        "averageDuration": 7787,
+        "averageDurationInstrumented": 9416,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should navigate subcategory",
+        "averageDuration": 4374,
+        "averageDurationInstrumented": 5316,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should search for nodes",
+        "averageDuration": 9913,
+        "averageDurationInstrumented": 9914,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should check correct view panels",
+        "averageDuration": 5493,
+        "averageDurationInstrumented": 5756,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should add node to canvas from actions panel",
+        "averageDuration": 4806,
+        "averageDurationInstrumented": 5101,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should search through actions and confirm added action",
+        "averageDuration": 4523,
+        "averageDurationInstrumented": 5336,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should not show actions for single action nodes",
+        "averageDuration": 12116,
+        "averageDurationInstrumented": 12798,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should correctly append manual trigger for regular actions should append manual trigger when source is canvas add button",
+        "averageDuration": 4796,
+        "averageDurationInstrumented": 5367,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should correctly append manual trigger for regular actions should append manual trigger when source is plus button",
+        "averageDuration": 4785,
+        "averageDurationInstrumented": 5682,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Node Creator should correctly append manual trigger for regular actions should not append manual trigger when source is canvas related",
+        "averageDuration": 10194,
+        "averageDurationInstrumented": 10225,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Code node should execute the placeholder in all-items mode successfully",
+        "averageDuration": 8857,
+        "averageDurationInstrumented": 23149,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 20,
+          "failed": 3,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Code node should execute the placeholder in each-item mode successfully",
+        "averageDuration": 7013,
+        "averageDurationInstrumented": 16296,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 20,
+          "failed": 2,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "HTTP Request node should make a request with a URL and receive a response",
+        "averageDuration": 9729,
+        "averageDurationInstrumented": 15924,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Expression editor modal should resolve primitive resolvables",
+        "averageDuration": 13290,
+        "averageDurationInstrumented": 18729,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 1,
+          "skipped": 0
+        }
+      },
+      {
+        "name": "Expression editor modal should resolve object resolvables",
+        "averageDuration": 8150,
+        "averageDurationInstrumented": 8311,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 0,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Expression editor modal should resolve array resolvables",
+        "averageDuration": 7879,
+        "averageDurationInstrumented": 7816,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 0,
+          "skipped": 1
+        }
+      },
+      {
+        "name": "Expression editor modal should resolve $parameter[]",
+        "averageDuration": 7179,
+        "averageDurationInstrumented": 7501,
+        "results": {
+          "passed": 25,
+          "failed": 0,
+          "skipped": 0
+        },
+        "resultsInstrumented": {
+          "passed": 22,
+          "failed": 0,
+          "skipped": 1
+        }
       }
     ]
   }

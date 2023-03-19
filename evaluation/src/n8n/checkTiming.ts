@@ -30,6 +30,16 @@ type Data = {
       name: string;
       averageDuration: number;
       averageDurationInstrumented: number;
+      results: {
+        passed: number;
+        failed: number;
+        skipped: number;
+      };
+      resultsInstrumented: {
+        passed: number;
+        failed: number;
+        skipped: number;
+      };
     }[];
   };
 };
@@ -208,6 +218,7 @@ const downloadReports = db.chain
     }
     jetpack.dir(`./timing-reports/${run.id}`, { empty: true });
     await streamPipeline(
+      // @ts-ignore
       response.body,
       Extract({ path: `./timing-reports/${run.id}` })
     );
@@ -215,22 +226,24 @@ const downloadReports = db.chain
     const coverageArtifact = artifactResponse.data.artifacts.find((artifact) =>
       artifact.name?.includes("results-coverage")
     );
-    if (!artifact) {
+    if (!coverageArtifact) {
       console.log("no artifact found");
       return;
     }
-    const coverageDownloadResponse = await octokit.rest.actions.downloadArtifact({
-      owner: "heddendorp",
-      repo: "n8n",
-      artifact_id: coverageArtifact.id,
-      archive_format: "zip",
-    });
+    const coverageDownloadResponse =
+      await octokit.rest.actions.downloadArtifact({
+        owner: "heddendorp",
+        repo: "n8n",
+        artifact_id: coverageArtifact.id,
+        archive_format: "zip",
+      });
     const coverageResponse = await fetch(coverageDownloadResponse.url);
     if (!coverageResponse.ok) {
       throw new Error(`Unexpected response ${coverageResponse.statusText}`);
     }
     jetpack.dir(`./timing-reports/${run.id}-coverage`, { empty: true });
     await streamPipeline(
+      // @ts-ignore
       coverageResponse.body,
       Extract({ path: `./timing-reports/${run.id}-coverage` })
     );
@@ -241,6 +254,14 @@ await Promise.all(downloadReports);
 // Map that saves all durations for each testcase
 const testcaseDurations: Record<string, number[]> = {};
 const coverageTestcaseDurations: Record<string, number[]> = {};
+const testcaseResults: Record<
+  string,
+  { passed: number; failed: number; skipped: number }
+> = {};
+const coverageTestcaseResults: Record<
+  string,
+  { passed: number; failed: number; skipped: number }
+> = {};
 
 // Read downloaded reports and compile data for every testcase
 const readReports = db.chain
@@ -261,19 +282,20 @@ const readReports = db.chain
         allTests.push(...suite.tests);
         suite.suites.forEach((suite: any) => {
           allTests.push(...suite.tests);
-          suite.suites.forEach((suite: any) => {
-            allTests.push(...suite.tests);
-            suite.suites.forEach((suite: any) => {
-              allTests.push(...suite.tests);
-              if (suite.suites.length) {
-                console.log(suite.suites);
-              }
-            });
-          });
         });
       });
     });
     allTests.forEach((test: any) => {
+      if (!testcaseResults[test.fullTitle]) {
+        testcaseResults[test.fullTitle] = {
+          passed: 0,
+          failed: 0,
+          skipped: 0,
+        };
+      }
+      testcaseResults[test.fullTitle][
+        test.state as "passed" | "failed" | "skipped"
+      ]++;
       if (testcaseDurations[test.fullTitle]) {
         testcaseDurations[test.fullTitle].push(test.duration);
       } else {
@@ -288,19 +310,21 @@ const readReports = db.chain
         coverageTests.push(...suite.tests);
         suite.suites.forEach((suite: any) => {
           coverageTests.push(...suite.tests);
-          suite.suites.forEach((suite: any) => {
-            coverageTests.push(...suite.tests);
-            suite.suites.forEach((suite: any) => {
-              coverageTests.push(...suite.tests);
-              if (suite.suites.length) {
-                console.log(suite.suites);
-              }
-            });
-          });
+          
         });
       });
     });
     coverageTests.forEach((test: any) => {
+      if (!coverageTestcaseResults[test.fullTitle]) {
+        coverageTestcaseResults[test.fullTitle] = {
+          passed: 0,
+          failed: 0,
+          skipped: 0,
+        };
+      }
+      coverageTestcaseResults[test.fullTitle][
+        test.state as "passed" | "failed" | "skipped"
+      ]++;
       if (coverageTestcaseDurations[test.fullTitle]) {
         coverageTestcaseDurations[test.fullTitle].push(test.duration);
       } else {
@@ -328,8 +352,10 @@ Object.keys(testcaseDurations).forEach((testcase) => {
         ),
         averageDurationInstrumented: Math.round(
           coverageTestcaseDurations[testcase].reduce((a, b) => a + b, 0) /
-          coverageTestcaseDurations[testcase].length
+            coverageTestcaseDurations[testcase].length
         ),
+        results: testcaseResults[testcase],
+        resultsInstrumented: coverageTestcaseResults[testcase],
       })
       .value();
   } else {
@@ -343,12 +369,11 @@ Object.keys(testcaseDurations).forEach((testcase) => {
         ),
         averageDurationInstrumented: Math.round(
           coverageTestcaseDurations[testcase].reduce((a, b) => a + b, 0) /
-          coverageTestcaseDurations[testcase].length
+            coverageTestcaseDurations[testcase].length
         ),
       })
       .value();
   }
 });
-
 
 await db.write();
