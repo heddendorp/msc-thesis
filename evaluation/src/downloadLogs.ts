@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { chromium } from "playwright";
-import * as jetpack from "fs-jetpack";
+import jetpack from "fs-jetpack";
 import { XMLParser } from "fast-xml-parser";
 import { fetch } from "@whatwg-node/fetch";
 

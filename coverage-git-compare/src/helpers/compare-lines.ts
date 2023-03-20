@@ -50,7 +50,7 @@ export const compareLines = async (
     console.log(`"testResults": [`);
   }
   for (const file of coverageFiles) {
-    const testName = file.split('-')[0];
+    const testName = file.split('.')[0];
     const rawLines = (await coverageFolder.readAsync(file, 'json')) as {
       file: string;
       lines: number[];

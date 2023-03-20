@@ -23,8 +23,10 @@ async function triggerActions() {
           ref: commit.sha,
           compare: `${commit.sha}~1`,
           coverage: "[false,true]",
+          // coverage: "[false]",
           containers: "[1]",
           run: "establishHostedTimings",
+          // run: "establishBaseline",
           useHostedRunner: "true",
         },
       }

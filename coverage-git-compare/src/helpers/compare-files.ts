@@ -44,7 +44,7 @@ export const compareFiles = async (
     console.log(`"testResults": [`);
   }
   for (const file of coverageFiles) {
-    const testName = file.split('-')[0];
+    const testName = file.split('.')[0];
     const rawFiles = (await coverageFolder.readAsync(file, 'json')) as string[];
     const coveredFiles = rawFiles.map((f) => f.replaceAll('\\', '/'));
     const changedFilesForTest = changedFiles

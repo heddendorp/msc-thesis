@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { chromium } from "playwright";
-import * as jetpack from "fs-jetpack";
+import jetpack from "fs-jetpack";
 
 let startedRuns = 0;
 const maxRuns = process.env.MAX_RUNS ? Number(process.env.MAX_RUNS) : 8;

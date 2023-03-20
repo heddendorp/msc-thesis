@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 import { XMLParser } from "fast-xml-parser";
 dotenv.config();
 
-import * as jetpack from "fs-jetpack";
+import jetpack from "fs-jetpack";
 
 async function run() {
   const alwaysArray = [
@@ -35,7 +35,7 @@ async function run() {
     console.log(`Branch: ${branch.branchName}`);
     const originalBuildNumber = Number(branch.branchName.split("-").pop());
     const buildConfig = data.analyzedBuilds.find(
-      (build) => build.target === originalBuildNumber
+      (build: any) => build.target === originalBuildNumber
     );
     if (!branch.plans) {
       console.log(`No plans for ${branch.branchName}`);
@@ -88,7 +88,9 @@ async function run() {
         const testsuites: any[] = [];
         for (let i = 0; i < xmlStartLines.length; i++) {
           const offsetLine = lines[xmlStartLines[i] + 1];
-          const offset = offsetLine.slice(offsetLine.indexOf("|")+1).indexOf("<");
+          const offset = offsetLine
+            .slice(offsetLine.indexOf("|") + 1)
+            .indexOf("<");
           const xml = lines
             .slice(xmlStartLines[i] + 1, xmlEndLines[i])
             .map((line) => line.slice(line.indexOf("|") + offset))
@@ -110,10 +112,16 @@ async function run() {
         let flakeData: any = null;
         if (flakeOutputStartLine !== -1 && flakeOutputEndLine !== -1) {
           const offsetLine = lines[flakeOutputStartLine + 1];
-          const offset = offsetLine.slice(offsetLine.indexOf("|")+1).indexOf("{");
+          const offset = offsetLine
+            .slice(offsetLine.indexOf("|") + 1)
+            .indexOf("{");
           const flakeOutput = lines
             .slice(flakeOutputStartLine + 1, flakeOutputEndLine)
-            .filter((line) => line.includes("artemis-cypress_1") || line.includes("artemis-cypress-1"))
+            .filter(
+              (line) =>
+                line.includes("artemis-cypress_1") ||
+                line.includes("artemis-cypress-1")
+            )
             .map((line) => line.slice(line.indexOf("|") + offset))
             .join("\n");
           try {
@@ -125,29 +133,34 @@ async function run() {
               flakeData.positiveRuns === flakeData.runs.length;
           } catch (e) {
             console.error("Error parsing flake output");
-            jetpack.write(logFile
-              .replace("logs", "json/errors"), flakeOutput);
+            jetpack.write(logFile.replace("logs", "json/errors"), flakeOutput);
           }
         }
 
         const testcases = testsuites.flatMap((testsuite) =>
           testsuite.testsuites
-            .filter((testsuite) => testsuite.testcase?.length)
-            .flatMap((testsuite) => testsuite.testcase)
+            .filter((testsuite: any) => testsuite.testcase?.length)
+            .flatMap((testsuite: any) => testsuite.testcase)
         );
         const totalTime = testcases
           .map((testcase) => Number(testcase.time))
           .reduce((a, b) => a + b, 0);
 
         const failedBuild = testsuites.some((test) =>
-          test.testsuites.some((testsuite) => Number(testsuite.failures) > 0)
+          test.testsuites.some(
+            (testsuite: any) => Number(testsuite.failures) > 0
+          )
         );
         const hasRerun = log.includes("RERUN:");
         const suspectedFlaky = log.includes("FLAKECHECK:POSITIVE");
         const suspectedNotFlaky = log.includes("FLAKECHECK:NEGATIVE");
         const chromeIssue = log.includes("Could not connect to Chrome");
-        const unshallowError = log.includes("Error: Failed to unshallow repository");
-        const cypressMissing = log.includes("No version of Cypress is installed in: ");
+        const unshallowError = log.includes(
+          "Error: Failed to unshallow repository"
+        );
+        const cypressMissing = log.includes(
+          "No version of Cypress is installed in: "
+        );
         // Extract coverage compare version from `COVERAGE_GIT_COMPARE-VERSION: ${version}`
         const coverageCompareVersion = lines
           .find((line) => line.includes("COVERAGE_GIT_COMPARE-VERSION"))
@@ -164,15 +177,15 @@ async function run() {
         const confirmedFlaky = !failedBuild && hasRerun;
         const flakeCheckIssue = failedBuild && suspectedNotFlaky;
 
-        if(plan.isFlakeCheck){
-          if(failedBuild){
+        if (plan.isFlakeCheck) {
+          if (failedBuild) {
             flakyFails++;
           }
         } else {
-          if(failedBuild){
+          if (failedBuild) {
             regularFails++;
           }
-          if(hasRerun || failedBuild){
+          if (hasRerun || failedBuild) {
             regularRerunsOrFails++;
           }
         }

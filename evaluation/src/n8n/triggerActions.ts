@@ -11,7 +11,7 @@ async function triggerActions() {
       owner: "n8n-io",
       repo: "n8n",
       state: "open",
-      per_page: 30,
+      per_page: 10,
     }
   );
 

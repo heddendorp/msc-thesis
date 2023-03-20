@@ -61,9 +61,9 @@ type Data = {
   };
   candidates: {
     sha: string;
-  branch: string;
-  firstSuccessfulParent: string;
-  failingTestcases: string[];
+    branch: string;
+    firstSuccessfulParent: string;
+    failingTestcases: string[];
   }[];
 };
 
@@ -84,7 +84,11 @@ await db.read();
 
 // If file.json doesn't exist, db.data will be null
 // Set default data
-db.data ||= { baseLine: { commits: [] }, timings: { runs: [], testcases: [] }, candidates: [] };
+db.data ||= {
+  baseLine: { commits: [] },
+  timings: { runs: [], testcases: [] },
+  candidates: [],
+};
 db.data.baseLine ||= { commits: [] };
 db.data.timings ||= { runs: [], testcases: [] };
 db.data.candidates ||= [];
@@ -137,7 +141,9 @@ const commits = db.chain
   .value();
 
 console.log(`found ${commits.length} commits`);
-console.log(`${commits.filter(commit => commit.successful).length} successful`);
+console.log(
+  `${commits.filter((commit) => commit.successful).length} successful`
+);
 // commits.filter(commit => !commit.successful).forEach(commit => console.log(commit.runs))
 
 // throw new Error("stop");
@@ -186,7 +192,7 @@ const downloads = commits
     await Promise.all(runDownloads);
   });
 
-await Promise.all(downloads);
+// await Promise.all(downloads);
 
 interface Candidate {
   sha: string;
@@ -211,9 +217,11 @@ const candidates: Candidate[] = await Promise.all(
       };
     }
 
-    const failingTestcases: string[] = [];
-    const passingTestcases: string[] = [];
-    for (const run of commit.runs.filter((run) => run.testConclusion === "failure")) {
+    const failingSpecFiles: string[] = [];
+    const passingSpecFiles: string[] = [];
+    for (const run of commit.runs.filter(
+      (run) => run.testConclusion === "failure"
+    )) {
       const report = jetpack.read(
         `./baseline-reports/${run.id}/report.json`,
         "json"
@@ -224,31 +232,22 @@ const candidates: Candidate[] = await Promise.all(
         throw new Error("no report");
       }
       report.results.forEach((result: any) => {
-        result.tests.forEach((test: any) => {
-          if (test.state === "failed") {
-            failingTestcases.push(test.fullTitle);
-          } else if (test.state === "passed") {
-            passingTestcases.push(test.fullTitle);
-          }
-        });
-        result.suites.forEach((suite: any) => {
-          suite.tests.forEach((test: any) => {
-            if (test.state === "failed") {
-              failingTestcases.push(test.fullTitle);
-            } else if (test.state === "passed") {
-              passingTestcases.push(test.fullTitle);
-            }
-          });
-          suite.suites.forEach((suite: any) => {
-            suite.tests.forEach((test: any) => {
-              if (test.state === "failed") {
-                failingTestcases.push(test.fullTitle);
-              } else if (test.state === "passed") {
-                passingTestcases.push(test.fullTitle);
-              }
-            });
-          });
-        });
+        const specFile = result.file.split("/").pop().split(".")[0];
+        let tests = result.tests;
+        tests = tests.concat(
+          result.suites.flatMap((suite: any) =>
+            suite.tests.concat(
+              suite.suites.flatMap((suite: any) => suite.tests)
+            )
+          )
+        );
+        // console.log(tests);
+        const allPassing = tests.every((test: any) => test.pass);
+        if (allPassing) {
+          passingSpecFiles.push(specFile);
+        } else {
+          failingSpecFiles.push(specFile);
+        }
       });
     }
     // if(!commit.successful){
@@ -259,8 +258,8 @@ const candidates: Candidate[] = await Promise.all(
     // }
     // throw new Error("stop");
     const alwaysFailingTestcases = lodash.difference(
-      failingTestcases,
-      passingTestcases
+      failingSpecFiles,
+      passingSpecFiles
     );
     return {
       sha: commit.sha,
@@ -272,7 +271,12 @@ const candidates: Candidate[] = await Promise.all(
 );
 
 console.log(`found ${candidates.length} candidates`);
-console.log(`found ${candidates.filter(candidate => candidate.failingTestcases.length > 0).length} candidates with failing testcases`);
+console.log(
+  `found ${
+    candidates.filter((candidate) => candidate.failingTestcases.length > 0)
+      .length
+  } candidates with failing testcases`
+);
 
 db.data.candidates = candidates;
 

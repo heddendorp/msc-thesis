@@ -4,6 +4,7 @@ import { Octokit } from "octokit";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import lodash from "lodash";
+import { $, execa } from "execa";
 
 import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
@@ -213,6 +214,23 @@ const updateDB = runs
           db.data?.baseLine.commits[commitIndex].runs.push(runData);
         }
       }
+      try{
+        const { stderr, stdout } = await execa("git", [
+          "branch",
+          "--contains",
+          commit,
+        ],{cwd: '../../n8n'});
+        const branch = stdout.split(" ")[1];
+        if (branch && commitIndex !== -1) {
+          db.chain
+            .get("baseLine.commits")
+            .find({ sha: commit })
+            .set("branch", branch)
+            .value();
+        }
+      } catch (error) {
+        console.log("Error getting branch");
+      }
     }
   });
 await Promise.all(updateDB);
@@ -235,7 +253,7 @@ db.data?.baseLine.commits.forEach((commit) => {
 });
 
 // Check every commit for success and trigger new action if below five runs have been recorded
-const commitsToRun:string[] = [];
+const commitsToRun: string[] = [];
 db.data?.baseLine.commits.forEach((commit) => {
   if (commit.runs.length < 5) {
     if (!commit.successful) {
@@ -272,22 +290,20 @@ db.data?.baseLine.commits.forEach((commit) => {
 
 console.log(`Starting ${lodash.uniq(commitsToRun).length} runs`);
 
-for(const commit of lodash.uniq(commitsToRun)) {
-  await octokit.rest.actions.createWorkflowDispatch(
-    {
-      owner: "heddendorp",
-      repo: "n8n",
-      workflow_id: "e2e-historic.yml",
-      ref: "master",
-      inputs: {
-        ref: commit,
-        compare: `${commit}~1`,
-        coverage: "[false]",
-        containers: "[1]",
-        run: "establishBaselineRerun",
-      },
-    }
-  );
-};
+for (const commit of lodash.uniq(commitsToRun)) {
+  await octokit.rest.actions.createWorkflowDispatch({
+    owner: "heddendorp",
+    repo: "n8n",
+    workflow_id: "e2e-historic.yml",
+    ref: "master",
+    inputs: {
+      ref: commit,
+      compare: `${commit}~1`,
+      coverage: "[false]",
+      containers: "[1]",
+      run: "establishBaselineRerun",
+    },
+  });
+}
 
 await db.write();
