@@ -111,13 +111,12 @@ if (
       run.name?.includes("establishHostedTimings")
   )
 ) {
-  throw new Error("There is a run in progress, please wait for it to finish");
+  console.warn("run still in progress");
 }
 
 const getRunData = async (run: {
   id: number;
   conclusion: string | null;
-  //   [key: string]: any;
 }): Promise<{
   id: number;
   conclusion: string;

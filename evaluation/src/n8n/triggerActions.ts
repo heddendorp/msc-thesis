@@ -156,6 +156,12 @@ const commitsToRun = db.chain
       console.log("no commit");
       return plannedCommit.sha;
     }
+    if (commit.successful) {
+      return null;
+    }
+    if (commit.runs.length < 5) {
+      return plannedCommit.sha;
+    }
     const firstSuccessfulParent = getFirstSuccessfulParent(plannedCommit.sha);
     if (!firstSuccessfulParent) {
       console.log("no first successful parent");
@@ -174,12 +180,6 @@ const commitsToRun = db.chain
         console.log("single commit");
         return plannedCommit.parent;
       }
-    }
-    if (commit.successful) {
-      return null;
-    }
-    if (commit.runs.length < 5) {
-      return plannedCommit.sha;
     }
     return null;
   })

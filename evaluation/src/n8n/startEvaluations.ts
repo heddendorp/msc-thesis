@@ -96,6 +96,8 @@ db.data.timings ||= { runs: [], testcases: [] };
 db.data.candidates ||= [];
 db.data.results ||= [];
 
+const targetRunNumber = 6;
+
 if (!db.data) {
   throw new Error("no data");
 }
@@ -230,7 +232,7 @@ const actionStarts = db.chain
       }
       return candidate.sha === commit;
     });
-    return matchingRuns.length < 10;
+    return matchingRuns.length < targetRunNumber;
   })
   // .slice(0, 2)
   .map(async (candidate) => {
@@ -242,7 +244,7 @@ const actionStarts = db.chain
       }
       return candidate.sha === commit;
     });
-    for (let i = 0; i < 10 - matchingRuns.length; i++) {
+    for (let i = 0; i < targetRunNumber - matchingRuns.length; i++) {
       console.log("starting run", candidate.sha);
       await octokit.rest.actions.createWorkflowDispatch({
         owner: "heddendorp",

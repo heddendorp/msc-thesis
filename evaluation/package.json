@@ -3,6 +3,11 @@
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "baselineUpdate":"npx ts-node-esm src\\n8n\\checkBaseline.ts && npx ts-node-esm src\\n8n\\analytics.ts && npx ts-node-esm src\\n8n\\showBaseline.ts",
+    "baselineExtension":"npx ts-node-esm src\\n8n\\checkBaseline.ts && npx ts-node-esm src\\n8n\\triggerActions.ts",
+    "timingUpdate":"npx ts-node-esm src\\n8n\\checkTiming.ts && npx ts-node-esm src\\n8n\\analytics.ts"
+  },
   "keywords": [],
   "author": "",
   "type": "module",
