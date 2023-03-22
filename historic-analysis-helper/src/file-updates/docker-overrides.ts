@@ -84,4 +84,5 @@ export const addDockerOverrides = (cypressImage:string) => {
   jetpack.write(`${dockerFilesPath}/Cypress-Dockerfile`, cypressDockerfile);
   jetpack.write(`${dockerFilesPath}/bootstrap-coverage.sh`, bootstrapFile);
   jetpack.write(`${dockerFilesPath}/docker-compose.coverage.yml`, dockerComposeFile(cypressImage));
+  jetpack.write(`${dockerFilesPath}/cypress-E2E-tests-coverage-override.yml`, dockerComposeFile(cypressImage));
 }

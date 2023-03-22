@@ -130,6 +130,8 @@ if (runs.length >= 100) {
 
 console.log("runs", runs.length);
 
+let launchNewRuns = true;
+
 if (
   runs.find(
     (run) =>
@@ -137,7 +139,8 @@ if (
       run.name?.includes("evaluateRun")
   )
 ) {
-  // throw new Error("There is a run in progress, please wait for it to finish");
+  console.log("found running runs");
+  launchNewRuns = false;
 }
 
 // Get analysis results for finished runs
@@ -193,6 +196,10 @@ const analysisRuns = runs.map(async (run) => {
   }
   const json = JSON.parse(data);
   const candidate = db.chain.get("candidates").find({ sha: commit }).value();
+  if (!candidate) {
+    console.log("no candidate found");
+    return;
+  }
   const lineResults = json.runs[0].lineCheck.testResults.map((result: any) => {
     return {
       test: result.testName,
@@ -208,7 +215,7 @@ const analysisRuns = runs.map(async (run) => {
 
 await Promise.all(analysisRuns);
 
-throw new Error("done");
+// throw new Error("done");
 
 // Start evaluation if it didn't run ten times yet
 
@@ -225,7 +232,7 @@ const actionStarts = db.chain
     });
     return matchingRuns.length < 10;
   })
-  .slice(0, 2)
+  // .slice(0, 2)
   .map(async (candidate) => {
     const matchingRuns = runs.filter((run) => {
       const commit = run.name?.split("-")[1].split("➡️")[0].trim();
@@ -235,7 +242,7 @@ const actionStarts = db.chain
       }
       return candidate.sha === commit;
     });
-    if (matchingRuns.length < 10) {
+    for (let i = 0; i < 10 - matchingRuns.length; i++) {
       console.log("starting run", candidate.sha);
       await octokit.rest.actions.createWorkflowDispatch({
         owner: "heddendorp",
@@ -254,6 +261,8 @@ const actionStarts = db.chain
   })
   .value();
 
-await Promise.all(actionStarts);
+if(launchNewRuns) {
+  await Promise.all(actionStarts);
+}
 
 await db.write();

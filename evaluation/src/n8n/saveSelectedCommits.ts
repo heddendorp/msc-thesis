@@ -75,7 +75,7 @@ type Data = {
       sha: string;
       parent: string;
     }[];
-  }[];
+  }[]
 };
 
 class LowWithLodash<T> extends Low<T> {
@@ -100,7 +100,7 @@ db.data ||= {
   timings: { runs: [], testcases: [] },
   candidates: [],
   results: [],
-  prs: [],
+  prs: []
 };
 db.data.baseLine ||= { commits: [] };
 db.data.timings ||= { runs: [], testcases: [] };
@@ -112,98 +112,42 @@ if (!db.data) {
   throw new Error("no data");
 }
 
-const getFirstSuccessfulParent = (commit: string): string | null => {
-  const commitData = db.chain
-    .get("baseLine.commits")
-    .find({ sha: commit })
-    .value();
-  if (!commitData) {
-    return null;
-  }
-  if (commitData.successful) {
-    return commit;
-  }
-  if (!commitData.parent) {
-    return null;
-  }
-  return getFirstSuccessfulParent(commitData.parent);
-};
-
-const getOldestParent = (commit: string): string => {
-  const commitData = db.chain
-    .get("baseLine.commits")
-    .find({ sha: commit })
-    .value();
-  if (!commitData) {
-    return commit;
-  }
-  if (!commitData.parent) {
-    return commit;
-  }
-  return getOldestParent(commitData.parent);
-};
-
-const commitsToRun = db.chain
-  .get("prs")
-  .map("commits")
-  .flatten()
-  .map((plannedCommit) => {
-    const commit = db.chain
-      .get("baseLine.commits")
-      .find({ sha: plannedCommit.sha })
-      .value();
-    if (!commit) {
-      console.log("no commit");
-      return plannedCommit.sha;
-    }
-    const firstSuccessfulParent = getFirstSuccessfulParent(plannedCommit.sha);
-    if (!firstSuccessfulParent) {
-      console.log("no first successful parent");
-      return getOldestParent(plannedCommit.sha);
-    }
-    const child = db.chain
-      .get("baseLine.commits")
-      .find({ parent: plannedCommit.sha })
-      .value();
-    if (!child) {
-      const parent = db.chain
-        .get("baseLine.commits")
-        .find({ sha: plannedCommit.parent })
-        .value();
-      if (!parent) {
-        console.log("single commit");
-        return plannedCommit.parent;
-      }
-    }
-    if (commit.successful) {
-      return null;
-    }
-    if (commit.runs.length < 5) {
-      return plannedCommit.sha;
-    }
-    return null;
-  })
-  .filter((sha) => !!sha)
-  .uniq()
-  .value();
-
-console.log(`Starting ${commitsToRun.length} runs`);
-
-for (const commit of commitsToRun) {
-  if (!commit) {
-    continue;
-  }
-  await octokit.rest.actions.createWorkflowDispatch({
-    owner: "heddendorp",
+const pullRequests = await octokit.request(
+  "GET /repos/{owner}/{repo}/pulls",
+  {
+    owner: "n8n-io",
     repo: "n8n",
-    workflow_id: "e2e-historic.yml",
-    ref: "master",
-    inputs: {
-      ref: commit,
-      compare: `${commit}~1`,
-      coverage: "[false]",
-      containers: "[1]",
-      run: "establishBaselineExtension",
-    },
-  });
-}
+    state: "all",
+    per_page: 50,
+  }
+);
+
+const prRequests = pullRequests.data.map(async(pr) => {
+  const commits = await octokit.request(
+    "GET /repos/{owner}/{repo}/pulls/{pull_number}/commits",
+    {
+      owner: "n8n-io",
+      repo: "n8n",
+      pull_number: pr.number,
+      per_page: 5,
+    }
+  );
+  return {
+    number: pr.number,
+    name: pr.title,
+    state: pr.state,
+    merged: pr.merged_at !== null,
+    commits: commits.data.map((commit) => {
+      return {
+        sha: commit.sha,
+        parent: commit.parents[0].sha,
+      };
+    }),
+  };
+});
+
+const prs = await Promise.all(prRequests);
+
+db.data.prs = prs;
+
+await db.write();

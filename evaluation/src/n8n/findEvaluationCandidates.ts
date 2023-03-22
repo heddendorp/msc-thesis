@@ -65,6 +65,16 @@ type Data = {
     firstSuccessfulParent: string;
     failingTestcases: string[];
   }[];
+  prs: {
+    number: number;
+    name: string;
+    state: string;
+    merged: boolean;
+    commits: {
+      sha: string;
+      parent: string;
+    }[];
+  }[];
 };
 
 class LowWithLodash<T> extends Low<T> {
@@ -88,10 +98,12 @@ db.data ||= {
   baseLine: { commits: [] },
   timings: { runs: [], testcases: [] },
   candidates: [],
+  prs: [],
 };
 db.data.baseLine ||= { commits: [] };
 db.data.timings ||= { runs: [], testcases: [] };
 db.data.candidates ||= [];
+db.data.prs ||= [];
 
 if (!db.data) {
   throw new Error("no data");
@@ -117,8 +129,17 @@ const getFirstSuccessfulParent = (commit: string): string | null => {
 // Find commits that are successful or have five runs and have a parent that is successful
 
 const commits = db.chain
-  .get("baseLine.commits")
-  .filter((commit) => {
+  .get("prs")
+  .map("commits")
+  .flatten()
+  .filter((plannedCommit) => {
+    const commit = db.chain
+      .get("baseLine.commits")
+      .find({ sha: plannedCommit.sha })
+      .value();
+    if (!commit) {
+      return false;
+    }
     if (commit.successful) {
       return true;
     }
@@ -126,6 +147,16 @@ const commits = db.chain
       return true;
     }
     return false;
+  })
+  .map((plannedCommit) => {
+    const commit = db.chain
+      .get("baseLine.commits")
+      .find({ sha: plannedCommit.sha })
+      .value();
+    if (!commit) {
+      throw new Error("no commit");
+    }
+    return commit;
   })
   .filter((commit) => {
     const parent = getFirstSuccessfulParent(commit.parent);

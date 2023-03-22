@@ -87,15 +87,15 @@ if (runs.length >= 100) {
 
 console.log("runs", runs.length);
 
-if (
-  runs.find(
-    (run) =>
-      (run.status === "in_progress" || run.status === "queued") &&
-      run.name?.includes("establishBaseline")
-  )
-) {
-  throw new Error("There is a run in progress, please wait for it to finish");
-}
+// if (
+//   runs.find(
+//     (run) =>
+//       (run.status === "in_progress" || run.status === "queued") &&
+//       run.name?.includes("establishBaseline")
+//   )
+// ) {
+//   throw new Error("There is a run in progress, please wait for it to finish");
+// }
 
 const getRunData = async (run: {
   id: number;
@@ -131,37 +131,6 @@ const getRunData = async (run: {
     installConclusion: installJob?.conclusion ?? "",
     testConclusion: testJob?.conclusion ?? "",
   };
-};
-
-const getFirstSuccessfulParent = (commit: string): string | null => {
-  const commitData = db.chain
-    .get("baseLine.commits")
-    .find({ sha: commit })
-    .value();
-  if (!commitData) {
-    return null;
-  }
-  if (commitData.successful) {
-    return commit;
-  }
-  if (!commitData.parent) {
-    return null;
-  }
-  return getFirstSuccessfulParent(commitData.parent);
-};
-
-const getOldestParent = (commit: string): string => {
-  const commitData = db.chain
-    .get("baseLine.commits")
-    .find({ sha: commit })
-    .value();
-  if (!commitData) {
-    return commit;
-  }
-  if (!commitData.parent) {
-    return commit;
-  }
-  return getOldestParent(commitData.parent);
 };
 
 // throw new Error("stop");
@@ -229,7 +198,7 @@ const updateDB = runs
             .value();
         }
       } catch (error) {
-        console.log("Error getting branch");
+        // console.log("Error getting branch");
       }
     }
   });
@@ -251,59 +220,5 @@ db.data?.baseLine.commits.forEach((commit) => {
     commit.flaky = false;
   }
 });
-
-// Check every commit for success and trigger new action if below five runs have been recorded
-const commitsToRun: string[] = [];
-db.data?.baseLine.commits.forEach((commit) => {
-  if (commit.runs.length < 5) {
-    if (!commit.successful) {
-      console.log("not enough runs - extending");
-      commitsToRun.push(commit.sha);
-    }
-  } else {
-    if (!commit.successful) {
-      const parent = getFirstSuccessfulParent(commit.sha);
-      if (!parent) {
-        console.log("no parent found - extending");
-        commitsToRun.push(getOldestParent(commit.sha));
-      }
-    }
-  }
-
-  // Check if this commit is parent to any other commit
-  const child = db.chain
-    .get("baseLine.commits")
-    .find({ parent: commit.sha })
-    .value();
-  if (!child) {
-    // Check if parent of this commit is in the list of commits
-    const parent = db.chain
-      .get("baseLine.commits")
-      .find({ sha: commit.parent })
-      .value();
-    if (!parent) {
-      console.log("single commit found - extending");
-      commitsToRun.push(commit.parent);
-    }
-  }
-});
-
-console.log(`Starting ${lodash.uniq(commitsToRun).length} runs`);
-
-for (const commit of lodash.uniq(commitsToRun)) {
-  await octokit.rest.actions.createWorkflowDispatch({
-    owner: "heddendorp",
-    repo: "n8n",
-    workflow_id: "e2e-historic.yml",
-    ref: "master",
-    inputs: {
-      ref: commit,
-      compare: `${commit}~1`,
-      coverage: "[false]",
-      containers: "[1]",
-      run: "establishBaselineRerun",
-    },
-  });
-}
 
 await db.write();

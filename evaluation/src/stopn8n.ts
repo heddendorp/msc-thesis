@@ -7,13 +7,15 @@ const octokit = new Octokit({
 });
 
 const deleteAll = true;
+// const workflow_id = "e2e-eval.yml";
+const workflow_id = "e2e-historic.yml";
 
 async function run() {
   const runs = (
     await octokit.rest.actions.listWorkflowRuns({
       owner: "heddendorp",
       repo: "n8n",
-      workflow_id: "e2e-historic.yml",
+      workflow_id,
       per_page: 100,
       page: 1,
     })
@@ -24,7 +26,7 @@ async function run() {
     const runsData = await octokit.rest.actions.listWorkflowRuns({
       owner: "heddendorp",
       repo: "n8n",
-      workflow_id: "e2e-historic.yml",
+      workflow_id,
       per_page: 100,
       page,
     });
