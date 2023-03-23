@@ -53,6 +53,9 @@ async function run() {
       if (branch.shortName.includes("evaluation-check")) {
         return;
       }
+      if (branch.shortName.includes("schaller")) {
+        return;
+      }
       if (flakyBranch) {
         branches.push({
           flakyKey: flakyBranch.key,

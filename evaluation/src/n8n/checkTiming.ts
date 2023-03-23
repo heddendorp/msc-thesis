@@ -278,6 +278,11 @@ const readReports = db.chain
       `./timing-reports/${run.id}-coverage/report.json`,
       "json"
     );
+
+    if(!reportContent || !coverageReportContent) {
+      console.log("no report content found");
+      return;
+    }
     const allTests: any[] = [];
     reportContent.results.forEach((result: any) => {
       allTests.push(...result.tests);
