@@ -1,7 +1,7 @@
 \def\proposal{}
 \def\degree{Master}                         %TODO adjust to your program
 \def\program{Informatics}
-\def\title{Automatically Detecting Flaky End-to-end Tests in Multi-Language Systems Using Code Coverage}		    %TODO add title in English
+\def\title{Automatically Detecting Flaky End-to-End Tests in Multi-Language Systems Using Code Coverage}		    %TODO add title in English
 \def\titleGer{Automatische Erkennung von flaky End-to-End-Tests in mehrsprachigen Systemen unter Verwendung von Code Coverage}	            %TODO add title in German
 \def\supervisor{Prof. Dr. Alexander Pretschner}
 \def\advisor{Fabian Leinen, M.Sc.}  %TODO add advisor name

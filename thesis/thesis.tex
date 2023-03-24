@@ -73,55 +73,23 @@
 \chapter{Introduction}\label[chapter]{introduction}
 Software testing is an integral part of the software development process that ensures a system's quality and dependability. With the execution of test cases, one of the primary goals of software testing is to detect software bugs or errors. In a perfect world, test cases would be deterministic, meaning that given the same input, they would always yield the same output. In practice, however, test cases can be non-deterministic or "flaky" \cite{luo_empirical_2014} meaning they can fail intermittently without any modification to the code being tested or the test itself. \Ac{UI} tests, which frequently require asynchronous activities and limited computer resources, might be especially susceptible to unstable testing \cite{romano_empirical_2021}.
 
-This thesis focuses on identifying flaky \Ac{E2E} testing failures by applying a technique for detecting flaky unit test failures proposed by Bell et al in their DeFlaker paper \cite{bell_d_2018} to \ac{E2E} tests. By building on the DeFlaker approach, this thesis will develop a tool to collect code coverage information acrosss both server and client for \ac{E2E} tests. To evaluate our approach we selected two open source projects as case studies. Artemis \cite{krusche_artemis_2018} is a web-based learning platform for programming exercises. It uses Java for server code and JavaScript for the clientside code. n8n \cite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client. Both projects use Cypress \cite{noauthor_cypress-iocypress_2023} for \ac{E2E} testing.
+Flaky tests can waste resources, increase development time and erode confidence in the testing procedure. Google estimates that about 16\% of tests are flaky \cite{micco_state_2017}. Even given the importance of testing, the detection of flaky tests is still a challenge. The most common approach to identify flaky tests is rerunning \cite{lam_idflakies_2019}. However, rerunning has several downsides, such as consuming significant computational resources, generating false positives, and potentially missing certain types of flaky tests \cite{bell_deflaker_2018, luo_empirical_2014}.
 
-Using code coverage information, this thesis will address the detection and analysis of failed \ac{E2E} tests in multi-language systems. Flaky tests can waste computational resources, increase development time, and erode confidence in the testing procedure. In the context of Artemis, the restricted resources available for CI and the incidence of UI test flickering make the detection of flaky testfailures essential for preserving the quality and dependability of the platform.
+To provide an alternative for \ac{E2E} tests, his thesis focuses on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by Bell et al in their DeFlaker paper \cite{bell_deflaker_2018} to \ac{E2E} tests. In DeFlaker Bell et al show that by comparing the code covered by running a test with the changes since the last passing of that test, a good estimation can be made to wether or not a failure is flaky. To evaluate our approach we selected two open source projects as case studies. Artemis \cite{krusche_artemis_2018} is a web-based learning platform for programming exercises. It uses Java for server code and JavaScript for the clientside code. n8n \cite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client. Both projects use Cypress \cite{noauthor_cypress-iocypress_2023} for \ac{E2E} testing.
 
 The primary objectives of this thesis are as follows:
-\begin{itemize}
-	\item Develop a tool to collect code coverage information for end-to-end tests in both client and server parts of Artemis.
-	\item Determine if failing tests could be flaky based on the collected code coverage information and changes in the codebase.
-\end{itemize}
-To achieve these objectives, the thesis will involve reviewing the literature on flaky tests, learning about Cypress, setting up Artemis locally, building a solution to collect coverage information, and comparing the coverage information with the latest git changes. The approach will then be evaluated using relevant commits in Artemis, comparing the results with existing literature, and identifying any limitations.
+\begin{enumerate}
+	\item Develop a tool to collect code coverage information for \ac{E2E} across server and client code.
+	\item Determine if a failure is likely to be flaky based on the changes since the last pass and the covered code.
+	\item Evaluate recall and precision of the approach compared to rerunning the test.
+\end{enumerate}
 
 The remainder of this thesis is organized as follows:
-In \cref{background} we will give some background information on the topic of flaky tests and the challenges faced in Artemis. 
-In \cref{methodology} we will describe the methodology used in the project, including the instrumentation of the n8n project, data collection, and evaluation process. 
-In \cref{evaluation} we will present the results of the project, including the collected code coverage information and the analysis of the collected data. 
-In \cref{threats} we will discuss the limitations of the project, and in \cref{conclusion} we will summarize results of the evaluation and discuss future work.
-
-\begin{itemize}
-	\item \textbf{Motivation}: Discuss the importance of testing in software development and the challenges faced due to flaky tests, particularly in end-to-end tests and UI tests.
-
-	\item \textbf{Problem Statement}: Define the problem of flaky tests and how they impact software development processes, focusing on the issues faced in projects like Artemis and n8n, which use Java and JavaScript.
-
-	\item \textbf{Research Objectives}: Introduce the goals of the thesis, including the development of a tool to collect code coverage information for end-to-end tests and the detection of flaky test failures based on collected information and code changes.
-
-	\item \textbf{Methodology Overview}: Provide a brief overview of the methodology used in the project, including the instrumentation of the n8n project, data collection, and evaluation process.
-
-	\item \textbf{Significance}: Explain the potential benefits of the research, such as improving the efficiency of software development, reducing the time spent on addressing flaky tests, and providing insights into the causes of flaky test failures.
-
-	\item \textbf{Thesis Structure}: Outline the organization of the thesis, briefly describing the contents of each chapter.
-\end{itemize}
-
-\textit{Note: Introduce the topic of your thesis, e.g. with a little historical overview.}
-
-\section{Problem}
-
-\textit{Note: Describe the problem that you like to address in your thesis to show the importance of your work. Focus on the negative symptoms of the currently available solution.}
-
-\section{Motivation}
-
-\textit{Note: Motivate scientifically why solving this problem is necessary. What kind of benefits do we have by solving the problem?}
-
-\section{Objectives}
-
-\textit{Note: Describe the research goals and/or research questions and how you address them by summarizing what you want to achieve in your thesis, e.g. developing a system and then evaluating it.}
-
-\section{Outline}
-
-\textit{Note: Describe the outline of your thesis}
-
+In \cref{background} we will give some background information on the topic of \ac{E2E} testing, flaky tests, and coverage collection. 
+We will review current alternative approaches in \cref{related_work}.
+In \cref{methodology} we will describe the methodology used in the project, including the instrumentation, data collection and environment setup.
+In \cref{evaluation} we will present the results of the project and answer our research questions. 
+In \cref{threats} we will discuss the limitations of the project and in \cref{conclusion} we will summarize results of the evaluation and discuss future work.
 
 
 
@@ -139,25 +107,59 @@ In \cref{threats} we will discuss the limitations of the project, and in \cref{c
 
 %------- chapter 3 -------
 
-\chapter{Related Work}\label[chapter]{relatedWork}
+\chapter{Related Work}\label[chapter]{related_work}
 
 \textit{Note: Describe related work regarding your topic and emphasize your (scientific) contribution in \textbf{contrast} to existing approaches / concepts / workflows. Related work is usually current research by others and you defend yourself against the statement: ``Why is your thesis relevant? The problem was already solved by XYZ.'' If you have multiple related works, use subsections to separate them.}
 
+\section{E2E Testing}
 
+\section{Flaky Tests}
+
+\section{Coverage Collection}
 
 
 %------- chapter 4 -------
 
 \chapter{Methodology}\label[chapter]{methodology}
 
+\section{Instrumentation}
+
+\subsection{Server}
+
+\subsection{Client}
+
+\section{Change Collection}
+
+\subsection{File Level}
+
+\subsection{Line Level}
+
+\section{Implementation}
 
 %------- chapter 5 -------
 
 \chapter{Evaluation}\label[chapter]{evaluation}
 
+\section{Research Questions}
+
+\section{Evaluation Setup}
+
+\subsection{Artemis (Bamboo)}
+
+\subsection{n8n (GitHub)}
+
+\section{Evaluation Results}
+
+\section{Discussion}
+
+
 %------- chapter 6 -------
 
 \chapter{Threats to Validity}\label[chapter]{threats}
+
+\section{Threats to Internal Validity}
+
+\section{Threats to External Validity}
 
 
 %------- chapter 7 -------
@@ -210,6 +212,6 @@ In \cref{threats} we will discuss the limitations of the project, and in \cref{c
 \clearpage
 
 \bibliography{thesis}
-\bibliographystyle{alpha}
+\bibliographystyle{acm}
 
 \end{document}
