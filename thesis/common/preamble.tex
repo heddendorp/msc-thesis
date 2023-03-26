@@ -1,21 +1,39 @@
 %% This file is shared between thesis and proposal
 
-\documentclass[a4paper,12pt,twoside]{report}
+% \documentclass[a4paper,12pt,twoside,listof=totoc,bibliography=totoc]{report}
+\documentclass[headsepline,footsepline,footinclude=false,oneside,fontsize=11pt,paper=a4,listof=totoc,bibliography=totoc]{scrbook}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[scaled]{helvet}
 \usepackage{url}
-\usepackage{cite}
+% \usepackage{cite}
+\usepackage[ngerman,american]{babel}
+\usepackage[autostyle]{csquotes}
+\usepackage[%
+  backend=biber,
+  url=false,
+  style=numeric,
+  maxnames=4,
+  minnames=3,
+  maxbibnames=99,
+  giveninits,
+  uniquename=init]{biblatex}
+\usepackage{scrhack} % necessary for listings package
 \usepackage{listings}
 \usepackage[pdftex]{graphicx}
 \usepackage[hang,small,bf]{caption}
 \usepackage{styles/tum}
+\usepackage{tikz}
 \usepackage{setspace}
-\usepackage[german,english]{babel}
+\usepackage[l3]{csvsimple}
+% \usepackage[german,english]{babel}
 \usepackage{float}
 \usepackage{floatflt}
-\usepackage{fancyhdr}
+% \usepackage{fancyhdr}
 \usepackage{color}
 \usepackage{booktabs}
+\usepackage[final]{microtype}
 \usepackage[pdftex,bookmarks=true,plainpages=false,pdfpagelabels=true]{hyperref}	%TODO make yourself familiar with \label, \ref and \hyperref for referencing figures, tables, chapters, etc.
 \usepackage{mdwlist}
 \usepackage{enumerate}
@@ -24,7 +42,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[capitalize, noabbrev]{cleveref}
 \usepackage{wasysym}
-\usepackage{todonotes}
+\usepackage{adjustbox}
+\usepackage[backgroundcolor=TUMLightGray!20,linecolor=TUMAccentOrange,bordercolor=TUMAccentOrange,colorinlistoftodos]{todonotes}
 
 % Path for graphics
 \graphicspath{{figures/}}
@@ -32,19 +51,55 @@
 % Include the Thesis metadata like title, author, etc. 
 \input{metadata}
 
+\bibliography{thesis}
+
+\setkomafont{disposition}{\normalfont\bfseries} % use serif font for headings
+\linespread{1.05} % adjust line spread for mathpazo font
+% \bibliographystyle{acm}
+
+% Add table of contents to PDF bookmarks
+\BeforeTOCHead[toc]{{\cleardoublepage\pdfbookmark[0]{\contentsname}{toc}}}
+
+% Define TUM corporate design colors
+% Taken from http://portal.mytum.de/corporatedesign/index_print/vorlagen/index_farben
+\definecolor{TUMBlue}{HTML}{0065BD}
+\definecolor{TUMSecondaryBlue}{HTML}{005293}
+\definecolor{TUMSecondaryBlue2}{HTML}{003359}
+\definecolor{TUMBlack}{HTML}{000000}
+\definecolor{TUMWhite}{HTML}{FFFFFF}
+\definecolor{TUMDarkGray}{HTML}{333333}
+\definecolor{TUMGray}{HTML}{808080}
+\definecolor{TUMLightGray}{HTML}{CCCCC6}
+\definecolor{TUMAccentGray}{HTML}{DAD7CB}
+\definecolor{TUMAccentOrange}{HTML}{E37222}
+\definecolor{TUMAccentGreen}{HTML}{A2AD00}
+\definecolor{TUMAccentLightBlue}{HTML}{98C6EA}
+\definecolor{TUMAccentBlue}{HTML}{64A0C8}
+
+\addto\extrasamerican{
+	\def\lstnumberautorefname{Line}
+	\def\chapterautorefname{Chapter}
+	\def\sectionautorefname{Section}
+	\def\subsectionautorefname{Subsection}
+	\def\subsubsectionautorefname{Subsubsection}
+}
+
+\addto\extrasngerman{
+	\def\lstnumberautorefname{Zeile}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Custom Commands for this template
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Annotate feedback you received 
-\newcommand{\feedback}[1]{\todo[inline,color=green,caption={}]{#1}}
+\newcommand{\feedback}[1]{\todo[inline,bordercolor=TUMAccentGreen]{#1}}
 
 % State what is missing in this spot
-\newcommand{\missing}[1]{\todo[inline,color=yellow,caption={}]{#1}}
+\newcommand{\missing}[1]{\todo[inline,color=yellow,bordercolor=TUMGray,linecolor=TUMGray]{#1}}
 
 % Inline to do note: 
-\newcommand{\TODO}[1]{\todo[inline,caption={}]{#1}}
+\newcommand{\TODO}[1]{\todo[inline]{#1}}
 
-
-
-
+\newcommand{\addref}{\todo[bordercolor=red,linecolor=red,tickmarkheight=0.1cm]{Add reference.}}
+\newcommand{\rewrite}[1]{\todo[bordercolor=TUMAccentBlue,linecolor=TUMAccentBlue]{#1}}
