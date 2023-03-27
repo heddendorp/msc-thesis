@@ -1,6 +1,120 @@
 {
   "branches": [
     {
+      "branchName": "evaluation-assess-6/build-695",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1798",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF672",
+          "isFlakeCheck": true,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
+    },
+    {
+      "branchName": "evaluation-assess-6/build-723",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1794",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF668",
+          "isFlakeCheck": true,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
+    },
+    {
+      "branchName": "evaluation-assess-6/build-741",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1796",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF670",
+          "isFlakeCheck": true,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
+    },
+    {
+      "branchName": "evaluation-assess-6/build-745",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1797",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF671",
+          "isFlakeCheck": true,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
+    },
+    {
+      "branchName": "evaluation-assess-6/build-754",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1795",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF669",
+          "isFlakeCheck": true,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
+    },
+    {
+      "branchName": "evaluation-assess-6/build-766",
+      "plans": [
+        {
+          "planKey": "ARTEMIS-AETG1793",
+          "isFlakeCheck": false,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        },
+        {
+          "planKey": "ARTEMIS-AECF667",
+          "isFlakeCheck": true,
+          "runningGoal": 6,
+          "saveLogs": true,
+          "archived": false
+        }
+      ]
+    },
+    {
       "branchName": "evaluation-assess-7/build-635",
       "plans": [
         {

@@ -5,7 +5,7 @@ import { resolve } from "path";
 import jetpack from "fs-jetpack";
 
 // const branchPrefix = "flaky-evaluation-2";
-const branchPrefix = "evaluation-assess-7";
+const branchPrefix = "evaluation-assess-6";
 const helperVersion = "latest";
 const batchSize = 6;
 
