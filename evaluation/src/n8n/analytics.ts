@@ -7,6 +7,8 @@ import lodash from "lodash";
 
 import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
+import { stringify } from "csv/sync";
+import jetpack from "fs-jetpack";
 
 type Data = {
   baseLine: {
@@ -280,6 +282,15 @@ db.data.timings.testcases.forEach((testcase) => {
 
 console.table(table);
 
+const csvTable = [
+  ["Result", "Instrumented", "Non-Instrumented"],
+  ["Passed", table.passed.instrumented, table.passed.nonInstrumented],
+  ["Failed", table.failed.instrumented, table.failed.nonInstrumented],
+  ["Skipped", table.skipped.instrumented, table.skipped.nonInstrumented],
+];
+
+jetpack.write("../thesis/data/testcaseResults.csv", stringify(csvTable));
+
 // Build a table with the successful runs vs failed runs for instrumented and non-instrumented
 
 const table2: {
@@ -308,11 +319,26 @@ db.chain
 
 console.table(table2);
 
+const csvTable2 = [
+  ["Result", "Instrumented", "Non Instrumented"],
+  [
+    "successful",
+    table2.successful.instrumented,
+    table2.successful.nonInstrumented,
+  ],
+  ["failed", table2.failed.instrumented, table2.failed.nonInstrumented],
+];
+
+jetpack.write("../thesis/data/runResults.csv", stringify(csvTable2));
+
 // Build a table with testcases that have failed at least once and their stats
 
 const table3 = db.chain
   .get("timings.testcases")
-  .filter((testcase) => testcase.results.failed > 0 || testcase.resultsInstrumented.failed > 0)
+  .filter(
+    (testcase) =>
+      testcase.results.failed > 0 || testcase.resultsInstrumented.failed > 0
+  )
   .map((testcase) => {
     return {
       name: testcase.name,
@@ -324,7 +350,7 @@ const table3 = db.chain
         percentage(
           testcase.averageDurationInstrumented - testcase.averageDuration,
           testcase.averageDuration
-        )+'%',
+        ),
       // numberOfRuns: testcase.results.passed + testcase.results.failed,
       // numberOfRunsInstrumented:
       //   testcase.resultsInstrumented.passed +
@@ -348,5 +374,12 @@ const table3 = db.chain
   .value();
 
 console.table(table3);
+
+jetpack.write(
+  "../thesis/data/testcaseStats.csv",
+  stringify(table3, { header: true, quoted: true })
+    .replace(/(?<=^|,)"/gm, "{")
+    .replace(/"(?=$|,)/gm, "}")
+);
 
 await db.write();
