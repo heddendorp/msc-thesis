@@ -69,7 +69,13 @@
 % \headheight=15pt
 
 
-
+\chapter*{Not yet assigned info}
+\TODO{Talk about the frequent issues with the CI infrastructure, both at artemis and the LRZ}
+\TODO{Talk about the limited amount of actual failures in both projects for code that is run by the CI}
+\TODO{OVerview of the artemis historic data and insight, that all tested fails did eventually pass}
+\TODO{Mention the significant effect cypress rerunning had on artemis}
+\TODO{Elaborate how this approach is useful in everyday development contrary to flaky test detection}
+\TODO{Talk about the side-effect that failures can be located more easily}
 
 %------- chapter 1 -------
 
@@ -108,6 +114,7 @@ This chapter provides essential background information for understanding the con
 \section{E2E Testing}
 
 \TODO{Explanin what E2E testing is and why it is important}
+\TODO{Give an overview of testing frameworks available (also not for browsers?)}
 \TODO{Explain what Cypress is}
 
 \section{Flaky Tests}
@@ -137,6 +144,7 @@ This chapter provides essential background information for understanding the con
 \section{Usage of coverage data in testing}
 
 \TODO{Look at some papers that use coverage data}
+\TODO{Look at test case selection based on coverage data}
 
 %------- chapter 4 -------
 
@@ -168,9 +176,11 @@ This chapter provides essential background information for understanding the con
 \end{figure}
 
 \TODO{Overview for the Chapter and introduction to the different parts of the project.}
+\TODO{Explain the approach in DeFlaker and how this project has different requirements?}
 
 \section{Instrumentation}
 \TODO{Info about issues with default instrumentation which is not designed for remote collection for specific test cases.}
+\TODO{Mention the possible impact of insturmentation on the behaviour of the application and the tests.} 
 
 \subsection{Client}
 \TODO{Elaboration of instrumemtation ideas that did not work out. Preprocession with istanbul as suggested by cypress and teamscale.}
@@ -192,7 +202,7 @@ This chapter provides essential background information for understanding the con
 \TODO{Explain how to get file based changes from the git log}
 \TODO{Explain how to get line based changes from the git diff and the issues with buffer size}
 
-\section{Implementation}
+\section{Implementation}\todo{How different is the implementation chapter form the general approach?}
 \TODO{Explain the implementation of the coverage collection plugins}
 \TODO{Explain the implementation of the analysis program}
 
@@ -206,8 +216,11 @@ This chapter provides essential background information for understanding the con
 \TODO{RQ3: What are the precision and recall of the failure categorizer?}
 
 \section{Case Studies}
-\TODO{Explain the case studies}
-\TODO{Explain why they were chosen}
+\TODO{Bigger introduction to artemis and n8n}
+\TODO{Artemis was chosen because it is a large project with a lot of tests and a CI pipeline that experienced issues with flaky tests at the university}
+\TODO{Galdys was a contender but tests did not show any flakiness and there were also no indication in the commit messages}
+\TODO{Additional project, ToolJet turned out to have a too complicated setup for their E2E tests}
+\TODO{n8n was chosen from the list of projects with cypress and JavaScript and had issues with flaky tests before}
 
 \section{Evaluation Setup}
 \TODO{Setup as part of the existing CI pipeline}
@@ -222,7 +235,7 @@ This chapter provides essential background information for understanding the con
 \TODO{Explain the setup of the n8n CI pipeline}
 \TODO{Fork for historic evaluation}
 \TODO{Issues with GithHub Runners due to memory limitations}
-\TODO{Issues with tests after switching to chrome}
+\TODO{Issues with tests after switching to chrome, exclusion of tests that did not pass in three runs}
 \TODO{Setup of historic evaluation with baseline and comparisons}
 \TODO{Explain the timing baseline collected on hosted runners}
 
@@ -251,8 +264,8 @@ You can review the full table of testcases that failed during our evaluation in 
 \subsection{RQ3: What are the precision and recall of the failure categorizer?}
 \TODO{Review the gathered data for both case studies}
 
-\subsection{Secondary Results}
-\TODO{Present additional learnings from the evaluation}
+\subsection{Additional Observations}
+\TODO{Issues with memory}
 
 \section{Discussion}
 \TODO{Give an overview of the results}
