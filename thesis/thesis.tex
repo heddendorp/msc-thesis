@@ -1,4 +1,3 @@
-% !TeX root = thesis.tex
 % !BIB TS-program = biber
 
 % Add common preamble to the document
@@ -69,35 +68,56 @@
 % \headheight=15pt
 
 
-\chapter*{Not yet assigned info}
+\chapter*{Not yet assigned ideas}
 \TODO{Talk about the frequent issues with the CI infrastructure, both at artemis and the LRZ}
 \TODO{Talk about the limited amount of actual failures in both projects for code that is run by the CI}
-\TODO{OVerview of the artemis historic data and insight, that all tested fails did eventually pass}
+\TODO{Overview of the artemis historic data and insight, that all tested fails did eventually pass}
 \TODO{Mention the significant effect cypress rerunning had on artemis}
 \TODO{Elaborate how this approach is useful in everyday development contrary to flaky test detection}
 \TODO{Talk about the side-effect that failures can be located more easily}
+\TODO{Limitation: does not work if serivice does not start}
+\TODO{Problems: include bigger issues during development}
 
 %------- chapter 1 -------
 
 \chapter{Introduction}\label[chapter]{introduction}
-Software testing is an integral part of the software development process that ensures a system's quality and dependability. With the execution of test cases, the goal of software testing is to detect software bugs. It is assumed that test cases are be deterministic, meaning that given the same input, they would always yield the same output. In practice, however, test cases can be non-deterministic or \emph{flaky} \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{SUT} or the test itself. \Ac{UI} tests, which frequently involve asynchronous activities and limited computer resources, might be especially susceptible to flaky behaviour \autocite{romano_empirical_2021}.
+Software testing is an integral part of the software development process that ensures a system's quality and dependability. 
+With the execution of test cases, the goal of software testing is to detect software bugs. 
+It is assumed that test cases are be deterministic, meaning that given the same input, they would always yield the same output. 
+In practice, however, test cases can be non-deterministic or \emph{flaky} \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{sut} or the test itself. 
+\Ac{ui} tests, which frequently involve asynchronous activities and limited computer resources, might be especially susceptible to flaky behaviour \autocite{romano_empirical_2021}.
 
-Flaky tests can waste resources, increase development time and erode confidence in the testing procedure. Google reports that about 16\% of thier tests exhibit some level of flakiness \autocite{micco_state_2017}. Even given the importance of testing, the detection of flaky tests is still a challenge. The most common approach to identify flaky tests is rerunning \autocite{lam_idflakies_2019}. However, rerunning has several downsides, such as consuming significant computational resources, generating false positives, and potentially missing certain types of flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
+Flaky tests can waste resources, increase development time and erode confidence in the testing procedure. 
+Google reports that about 16\% of thier tests exhibit some level of flakiness \autocite{micco_state_2017}. 
+Even given the importance of testing, the detection of flaky tests is still a challenge. The most common approach to identify flaky tests is rerunning \autocite{lam_idflakies_2019}. 
+However, rerunning has several downsides, such as consuming significant computational resources, generating false positives, and potentially missing certain types of flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
 \feedback{The paragraph does not really describe the point of the thesis, which is to detect flaky failures. Maybe move from flaky tests to flaky failures?}
 
-An important distinction that has to be made is the difference between flaky tests and flaky test failures. While most research has focused on detecting flaky tests, it is important to distinguish them from flaky failures. \Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when discarding faults of flaky tests. Instead we want to focus on detecting flaky failures in this thesis to provide more value to the \ac{CI} during software development. \todo{Extend this paragraph?}
+An important distinction that has to be made is the difference between flaky tests and flaky test failures. 
+While most research has focused on detecting flaky tests, it is important to distinguish them from flaky failures. 
+\Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when discarding faults of flaky tests. 
+Instead we want to focus on detecting flaky failures in this thesis to provide more value to the \ac{ci} during software development. 
+\todo{Extend this paragraph?}
 
-To achieve this for \ac{E2E} tests, we focus on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{E2E} tests. \Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run. To evaluate our approach we selected two open source projects as case studies. \textsc{Artemis} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises. It uses Java for server code and JavaScript for the client-side code. \textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client. Both projects use Cypress \autocite{noauthor_cypress-iocypress_2023} for \ac{E2E} testing.
+To achieve this for \ac{e2e} tests, we focus on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests. 
+\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run. To evaluate our approach we selected two open source projects as case studies. 
+\textsc{Artemis} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises. 
+It uses Java for server code and JavaScript for the client-side code. \textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client. 
+Both projects use Cypress \autocite{noauthor_cypress-iocypress_2023} for \ac{e2e} testing.
 
 The contributions of this thesis are:
 \begin{itemize}
-	\item \textbf{Methodology.} We propose a methodology for detecting flaky failures in \ac{E2E} tests based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
-	\item \textbf{Case Studies.} We evaluate our approach on two open source projects by analyzing the impact on execution our method has and evaluating the performance of our approach. During the evaluation we saw that the instrumentation can have significant impact on test execution. Our approach performed well by correctly ident flaky failures in 90\% of the cases.\todo{Add more info on study and results}
+	\item \textbf{Methodology.} We propose a methodology for detecting flaky failures in \ac{e2e} tests based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
+	\item \textbf{Case Studies.} We evaluate our approach on two open source projects by analyzing the impact on execution our method has and evaluating the performance of our approach. 
+	During the evaluation we saw that the instrumentation can have significant impact on test execution. 
+	Our approach performed well by correctly ident flaky failures in 90\% \todo{Correct number} of the cases.
+	During the evaluation we saw three \todo{Correct number} false positives where our approach identified a failure as flaky, but it was not.
+	\todo{Add more info on study and results}
 	\item \textbf{Guidelines.} \todo{Add guidelines}
 \end{itemize}
 
 The remainder of this thesis is organized as follows:
-In \cref{background} we will give some background information on the topic of \ac{E2E} testing, flaky tests, and coverage collection.
+In \cref{background} we will give some background information on the topic of \ac{e2e} testing, flaky tests, and coverage collection.
 We will review current alternative approaches in \cref{related_work}.
 In \cref{methodology} we will describe the methodology used in the project, including the instrumentation, data collection and environment setup.
 In \cref{evaluation} we will present the results of the project and answer our research questions.
@@ -113,6 +133,7 @@ This chapter provides essential background information for understanding the con
 
 \section{E2E Testing}
 
+\TODO{General rouch introduction to software testing before moving to e2e and ui only}
 \TODO{Explanin what E2E testing is and why it is important}
 \TODO{Give an overview of testing frameworks available (also not for browsers?)}
 \TODO{Explain what Cypress is}
@@ -171,7 +192,7 @@ This chapter provides essential background information for understanding the con
 		\draw [->] (plugin) -- node[pos=0.5, below] {on fail} (coverage);
 		\draw [->] (coverage) -- (analysis);
 	\end{tikzpicture}
-	\caption[Full stack coverage collection process in e2e testing]{Diagram showing the full stack coverage collection process in \ac{E2E} testing}
+	\caption[Full stack coverage collection process in e2e testing]{Diagram showing the full stack coverage collection process in \ac{e2e} testing}
 	\label[figure]{full_stack_coverage_collection}
 \end{figure}
 
@@ -224,12 +245,14 @@ This chapter provides essential background information for understanding the con
 
 \section{Evaluation Setup}
 \TODO{Setup as part of the existing CI pipeline}
+\TODO{Talk about issues with running artemis tests locally, too much setup needed and too much environment}
 
 \subsection{Artemis (Bamboo)}
 \TODO{Explain the setup of the Artemis CI pipeline}
 \TODO{Live and historic evaluation}
 \TODO{Elaborate issues with the historic evaluation due to CI and code changes that had to be backported}
 \TODO{Explain setup of live evaluation with duplicated plan}
+\TODO{Specialty of the Artemis CI pipeline, regular e2e tests as base}
 
 \subsection{n8n (GitHub)}
 \TODO{Explain the setup of the n8n CI pipeline}
