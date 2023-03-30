@@ -1,6 +1,6 @@
 {
   "name": "@heddendorp/historic-analysis-helper",
-  "version": "1.4.30",
+  "version": "1.4.31",
   "description": "",
   "main": "dist/src/index.js",
   "bin": {

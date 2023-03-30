@@ -77,7 +77,7 @@ const runs = (
   await octokit.rest.actions.listWorkflowRuns({
     owner: "heddendorp",
     repo: "n8n",
-    workflow_id: "e2e-historic.yml",
+    workflow_id: "e2e-timing.yml",
     per_page: 100,
     page: 1,
   })
@@ -88,7 +88,7 @@ const getRunsPage = async (page: number) => {
   const runsData = await octokit.rest.actions.listWorkflowRuns({
     owner: "heddendorp",
     repo: "n8n",
-    workflow_id: "e2e-historic.yml",
+    workflow_id: "e2e-timing.yml",
     per_page: 100,
     page,
   });

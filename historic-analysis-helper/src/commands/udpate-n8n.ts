@@ -28,6 +28,7 @@ export async function runUpdate({ coverage }) {
     )
     .replace(`runMode: 2,`, `runMode: 0,`)
     .replace(`defaultCommandTimeout: 10000,`, `defaultCommandTimeout: 100000,`)
+    .replace(`experimentalSessionAndOrigin`, `experimentalMemoryManagement`)
     .replace(`requestTimeout: 12000,`, `requestTimeout: 120000,`);
   if (coverage) {
     newCypressConfigContent = newCypressConfigContent.replace(

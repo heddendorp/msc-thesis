@@ -9,6 +9,7 @@ async function triggerActions() {
     owner: "n8n-io",
     repo: "n8n",
     per_page: 25,
+    until: "2023-03-20",
   });
 
   for (const commit of commits.data) {
@@ -17,7 +18,7 @@ async function triggerActions() {
       {
         owner: "heddendorp",
         repo: "n8n",
-        workflow_id: "e2e-historic.yml",
+        workflow_id: "e2e-timing.yml",
         ref: "master",
         inputs: {
           ref: commit.sha,
@@ -36,7 +37,7 @@ async function triggerActions() {
       {
         owner: "heddendorp",
         repo: "n8n",
-        workflow_id: "e2e-historic.yml",
+        workflow_id: "e2e-timing.yml",
         ref: "master",
         inputs: {
           ref: commit.sha,
