@@ -1,31 +1,29 @@
-\thispagestyle{empty}
-{
-\sffamily
+\begin{titlepage}
+    % HACK for two-sided documents: ignore binding correction for cover page.
+    % Adapted from Markus Kohm's KOMA-Script titlepage=firstiscover handling.
+    % See http://mirrors.ctan.org/macros/latex/contrib/koma-script/scrkernel-title.dtx,
+    % \maketitle macro.
+    \oddsidemargin=\evensidemargin\relax
+    \textwidth=\dimexpr\paperwidth-2\evensidemargin-2in\relax
+    \hsize=\textwidth\relax
 
-\vspace{4cm}
-\begin{center}
-\oTUM{4cm}
+    \centering
+    \oTUM{4cm}
 
-\vspace{5mm}     
-{\LARGE \bf \sffamily Technical University of Munich}
+    \vspace{5mm}
+    {\huge\MakeUppercase{School of Computation, Information and Technology \\ -- Informatics --} \par }
 
-\vspace{5mm}
-{\Large School of Computation, Information and Technology \\ -- Informatics -- }
-\vspace{1mm}
-\end{center}
+    \vspace{5mm}
+    {\large\MakeUppercase{Technical University of Munich}\par}
 
-\vspace{15mm}
+    \vspace{15mm}
+    {\Large {\degree}'s Thesis in \program \par}
 
-\begin{center}
-{\large {\degree}'s Thesis in \program}
-\vspace{2cm}
+    \vspace{10mm}
+    {\huge\bfseries \title \par}
 
-\begin{spacing}{1.5}
-{\huge\bf \sffamily  \title}\\%[3ex]
-\end{spacing}
+    \vspace{10mm}
+    {\LARGE \author}
 
-\vspace{15mm}
-{\LARGE \author}
 
-\end{center}
-}
+\end{titlepage}

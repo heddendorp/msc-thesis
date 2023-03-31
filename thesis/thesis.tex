@@ -1,3 +1,5 @@
+% !BIB TS-program = biber
+
 % Add common preamble to the document
 \input{common/preamble.tex}
 
@@ -12,8 +14,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\setlength{\evensidemargin}{22pt}
-\setlength{\oddsidemargin}{22pt}
+% \setlength{\evensidemargin}{22pt}
+% \setlength{\oddsidemargin}{22pt}
 
 
 \hypersetup{pdfborder={0 0 0}, pdfauthor={\author}, pdftitle={\title}}
@@ -24,12 +26,10 @@
 
 %------- Cover and Title setup -------
 \include{common/cover}
+\frontmatter{}
 \include{common/titlepage}
 
 %------- Disclaimer -------
-\newpage
-\thispagestyle{empty}
-\mbox{}
 \include{thesis_tex/disclaimer}
 
 %------- Acknowledgements -------
@@ -38,90 +38,91 @@
 % \mbox{}
 % \include{thesis_tex/acknowledgement}
 
-\pagenumbering{roman}
+% \pagenumbering{roman}
 
 %------- Abstracts -------
-\selectlanguage{english}
+% \selectlanguage{english}
 \include{thesis_tex/abstract_en}
-\clearpage
+% \clearpage
 % \selectlanguage{german}
-% \include{thesis_tex/abstract_de}
+\include{thesis_tex/abstract_de}
 % \clearpage
 % \selectlanguage{english}
 
 %------- Table of contents -------
-\tableofcontents
-\clearpage
+\microtypesetup{protrusion=false}
+\tableofcontents{}
+\microtypesetup{protrusion=true}
 
-\clearpage
+%------- List of todos -------
+\todototoc
+\listoftodos
 
-%------- Common Acronyms -------
-\include{common/acronyms}
-\pagenumbering{arabic}
+\mainmatter{}
+% \pagenumbering{arabic}
 
-\fancyhead{}
-\pagestyle{fancy}
-\fancyhead[LE]{\slshape \leftmark}
-\fancyhead[RO]{\slshape \rightmark}
-\headheight=15pt
-
+% \fancyhead{}
+% \pagestyle{fancy}
+% \fancyhead[LE]{\slshape \leftmark}
+% \fancyhead[RO]{\slshape \rightmark}
+% \headheight=15pt
 
 
+\chapter*{Not yet assigned ideas}
+\TODO{Talk about the limited amount of actual failures in both projects for code that is run by the CI}
+\TODO{Overview of the artemis historic data and insight, that all tested fails did eventually pass}
+\TODO{Mention the significant effect cypress rerunning had on artemis}
+\TODO{Elaborate how this approach is useful in everyday development contrary to flaky test detection}
+\TODO{Talk about the side-effect that failures can be located more easily}
+\TODO{Limitation: does not work if serivice does not start}
+\TODO{Problems: include bigger issues during development}
 
 %------- chapter 1 -------
 
 \chapter{Introduction}\label[chapter]{introduction}
-Software testing is an integral part of the software development process that ensures a system's quality and dependability. With the execution of test cases, one of the primary goals of software testing is to detect software bugs or errors. In a perfect world, test cases would be deterministic, meaning that given the same input, they would always yield the same output. In practice, however, test cases can be non-deterministic or "flaky" \cite{luo_empirical_2014} meaning they can fail intermittently without any modification to the code being tested or the test itself. \Ac{UI} tests, which frequently require asynchronous activities and limited computer resources, might be especially susceptible to unstable testing \cite{romano_empirical_2021}.
+Software testing is an integral part of the software development process that ensures a system's quality and dependability.
+With the execution of test cases, the goal of software testing is to detect software bugs.
+It is assumed that test cases are be deterministic, meaning that given the same input, they would always yield the same output.
+In practice, however, test cases can be non-deterministic or \emph{flaky} \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{sut} or the test itself.
+\Ac{ui} tests, which frequently involve asynchronous activities and limited computer resources, might be especially susceptible to flaky behaviour \autocite{romano_empirical_2021}.
 
-This thesis focuses on identifying flaky \Ac{E2E} testing failures by applying a technique for detecting flaky unit test failures proposed by Bell et al in their DeFlaker paper \cite{bell_d_2018} to \ac{E2E} tests. By building on the DeFlaker approach, this thesis will develop a tool to collect code coverage information acrosss both server and client for \ac{E2E} tests. To evaluate our approach we selected two open source projects as case studies. Artemis \cite{krusche_artemis_2018} is a web-based learning platform for programming exercises. It uses Java for server code and JavaScript for the clientside code. n8n \cite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client. Both projects use Cypress \cite{noauthor_cypress-iocypress_2023} for \ac{E2E} testing.
+Flaky tests can waste resources, increase development time and erode confidence in the testing procedure.
+Google reports that about 16\% of thier tests exhibit some level of flakiness \autocite{micco_state_2017}.
+Even given the importance of testing, the detection of flaky tests is still a challenge. 
+The most common approach to identify flaky tests is rerunning \autocite{lam_idflakies_2019}.
+However, rerunning has several downsides, such as consuming significant computational resources, generating false positives, and potentially missing certain types of flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
+\feedback{The paragraph does not really describe the point of the thesis, which is to detect flaky failures. Maybe move from flaky tests to flaky failures?}
 
-Using code coverage information, this thesis will address the detection and analysis of failed \ac{E2E} tests in multi-language systems. Flaky tests can waste computational resources, increase development time, and erode confidence in the testing procedure. In the context of Artemis, the restricted resources available for CI and the incidence of UI test flickering make the detection of flaky testfailures essential for preserving the quality and dependability of the platform.
+An important distinction that has to be made is the difference between flaky tests and flaky test failures.
+While most research has focused on detecting flaky tests, it is important to distinguish them from flaky failures.
+\Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when discarding faults of flaky tests.
+Instead we want to focus on detecting flaky failures in this thesis to provide more value to the \ac{ci} during software development.
+\todo{Extend this paragraph?}
 
-The primary objectives of this thesis are as follows:
+To achieve this for \ac{e2e} tests, we focus on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests.
+\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run. To evaluate our approach we selected two open source projects as case studies.
+\textsc{Artemis} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises.
+It uses Java for server code and JavaScript for the client-side code. 
+\textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client.
+Both projects use Cypress \autocite{noauthor_cypress-iocypress_2023} for \ac{e2e} testing.
+
+The contributions of this thesis are:
 \begin{itemize}
-	\item Develop a tool to collect code coverage information for end-to-end tests in both client and server parts of Artemis.
-	\item Determine if failing tests could be flaky based on the collected code coverage information and changes in the codebase.
+	\item \textbf{Methodology.} We propose a methodology for detecting flaky failures in \ac{e2e} tests based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
+	\item \textbf{Case Studies.} We evaluate our approach on two open source projects by analyzing the impact on execution our method has and evaluating the performance of our approach.
+	      During the evaluation we saw that the instrumentation can have significant impact on test execution.
+	      Our approach performed well by correctly ident flaky failures in 90\% \todo{Correct number} of the cases.
+	      During the evaluation we saw three \todo{Correct number} false positives where our approach identified a failure as flaky, but it was not.
+	      \todo{Add more info on study and results}
+	\item \textbf{Guidelines.} \todo{Add guidelines}
 \end{itemize}
-To achieve these objectives, the thesis will involve reviewing the literature on flaky tests, learning about Cypress, setting up Artemis locally, building a solution to collect coverage information, and comparing the coverage information with the latest git changes. The approach will then be evaluated using relevant commits in Artemis, comparing the results with existing literature, and identifying any limitations.
 
 The remainder of this thesis is organized as follows:
-In \cref{background} we will give some background information on the topic of flaky tests and the challenges faced in Artemis. 
-In \cref{methodology} we will describe the methodology used in the project, including the instrumentation of the n8n project, data collection, and evaluation process. 
-In \cref{evaluation} we will present the results of the project, including the collected code coverage information and the analysis of the collected data. 
-In \cref{threats} we will discuss the limitations of the project, and in \cref{conclusion} we will summarize results of the evaluation and discuss future work.
-
-\begin{itemize}
-	\item \textbf{Motivation}: Discuss the importance of testing in software development and the challenges faced due to flaky tests, particularly in end-to-end tests and UI tests.
-
-	\item \textbf{Problem Statement}: Define the problem of flaky tests and how they impact software development processes, focusing on the issues faced in projects like Artemis and n8n, which use Java and JavaScript.
-
-	\item \textbf{Research Objectives}: Introduce the goals of the thesis, including the development of a tool to collect code coverage information for end-to-end tests and the detection of flaky test failures based on collected information and code changes.
-
-	\item \textbf{Methodology Overview}: Provide a brief overview of the methodology used in the project, including the instrumentation of the n8n project, data collection, and evaluation process.
-
-	\item \textbf{Significance}: Explain the potential benefits of the research, such as improving the efficiency of software development, reducing the time spent on addressing flaky tests, and providing insights into the causes of flaky test failures.
-
-	\item \textbf{Thesis Structure}: Outline the organization of the thesis, briefly describing the contents of each chapter.
-\end{itemize}
-
-\textit{Note: Introduce the topic of your thesis, e.g. with a little historical overview.}
-
-\section{Problem}
-
-\textit{Note: Describe the problem that you like to address in your thesis to show the importance of your work. Focus on the negative symptoms of the currently available solution.}
-
-\section{Motivation}
-
-\textit{Note: Motivate scientifically why solving this problem is necessary. What kind of benefits do we have by solving the problem?}
-
-\section{Objectives}
-
-\textit{Note: Describe the research goals and/or research questions and how you address them by summarizing what you want to achieve in your thesis, e.g. developing a system and then evaluating it.}
-
-\section{Outline}
-
-\textit{Note: Describe the outline of your thesis}
-
+In \cref{background} we will give some background information on the topic of \ac{e2e} testing, flaky tests, and coverage collection.
+We will review current alternative approaches in \cref{related_work}.
+In \cref{methodology} we will describe the methodology used in the project, including the instrumentation, data collection and environment setup.
+In \cref{evaluation} we will present the results of the project and answer our research questions.
+In \cref{threats} we will discuss the limitations of the project and in \cref{conclusion} we will summarize results of the evaluation and discuss future work.
 
 
 
@@ -129,87 +130,245 @@ In \cref{threats} we will discuss the limitations of the project, and in \cref{c
 
 \chapter{Background}\label[chapter]{background}
 
+This chapter provides essential background information for understanding the context of this thesis.
+
 \section{E2E Testing}
+
+\TODO{General rouch introduction to software testing before moving to e2e and ui only}
+\TODO{Explanin what E2E testing is and why it is important}
+\TODO{Give an overview of testing frameworks available (also not for browsers?)}
+\TODO{Explain what Cypress is}
 
 \section{Flaky Tests}
 
+\TODO{Mention the root causes for flaky tests and failures}
+\TODO{Press the importance and usefulness of identiffying flaky failures instead of just flaky tests}
+\TODO{Explain why this approach with flaky failures is superior to identifying flaky tests (more common)}
+\TODO{Explain what flaky failures are and why they are a problem}
+
 \section{Coverage Collection}
 
-
+\TODO{Explain what coverage collection is}
+\feedback{Coverage collection is expensive?}
+\TODO{Mention some usecases for coverage data}
 
 %------- chapter 3 -------
 
-\chapter{Related Work}\label[chapter]{relatedWork}
+\chapter{Related Work}\label[chapter]{related_work}
 
-\textit{Note: Describe related work regarding your topic and emphasize your (scientific) contribution in \textbf{contrast} to existing approaches / concepts / workflows. Related work is usually current research by others and you defend yourself against the statement: ``Why is your thesis relevant? The problem was already solved by XYZ.'' If you have multiple related works, use subsections to separate them.}
+\TODO{Give an overview of related work}
 
+\section{Flaky Failure Detection}
 
+\TODO{Look at some papers that detect flaky tests}
+\TODO{Explain why flaky test detection is not sufficient but we need flaky failure detection}
+\feedback{Fabian Leinen: Den eigenen Gedanken in dem Kapitel möglichst meiden. Z.B. in "The Importance of Discerning Flaky from Fault-triggering Test Failures: A Case Study on the Chromium CI" ist das ja wunderschön dargelegt.
+}
 
+\subsection{Expaning on \emph{DeFlaker}}
+
+\TODO{Explain how we can use the same approach for E2E tests}
+
+\section{Usage of coverage data in testing}
+
+\TODO{Look at some papers that use coverage data}
+\TODO{Look at test case selection based on coverage data}
 
 %------- chapter 4 -------
 
 \chapter{Methodology}\label[chapter]{methodology}
 
+\TODO{Overview for the Chapter and introduction to the different parts of the project.}
+\TODO{Explain the approach in DeFlaker and how this project has different requirements?}
+
+\section{Instrumentation}
+\TODO{Info about issues with default instrumentation which is not designed for remote collection for specific test cases.}
+\TODO{Explain why the entire coverage is collected and not just change coverage}
+\TODO{Explain how the decision was made on which level to collect coverage}
+\TODO{Explain how the coverage is matched to test cases: propagation vs timing}
+\TODO{Mention the possible impact of insturmentation on the behaviour of the application and the tests.}
+
+\section{Change Collection}
+
+
+\section{Implementation}
+\TODO{Explain the implementation of the coverage collection plugins}
+\TODO{Explain the implementation of the analysis program}
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[node distance=2cm]
+		% Nodes
+		\node (cypress) [rectangle, draw] {Cypress};
+		\node (tests) [rectangle, draw, right of=cypress, xshift=2cm] {Specs};
+		\node (plugin) [rectangle, draw, below of=cypress] {Coverage Collection Plugin};
+		\node (client) [rectangle, draw, below left of=plugin, xshift=-2cm] {Client};
+		\node (server) [rectangle, draw, below right of=plugin, xshift=2cm] {Server};
+		\node (coverage) [rectangle, draw, below of=plugin] {Full Coverage};
+		\node (analysis) [rectangle, draw, below of=coverage] {Analysis Program};
+
+		% Edges
+		\draw [<-] (tests) --  node[pos=0.5, below] {runs} (cypress);
+		\draw [-] (cypress) -- (plugin);
+		\draw [<->] (plugin) -- (client);
+		\draw [<->] (plugin) -- (server);
+		% \draw [->] (client) |- (coverage);
+		% \draw [->] (server) |- (coverage);
+		\draw [->] (plugin) -- node[pos=0.5, below] {on fail} (coverage);
+		\draw [->] (coverage) -- (analysis);
+	\end{tikzpicture}
+	\caption[Full stack coverage collection process in e2e testing]{Diagram showing the full stack coverage collection process in \ac{e2e} testing}
+	\label[figure]{full_stack_coverage_collection}
+\end{figure}
+
+\subsection{Coverage Collection Plugins}
+\subsubsection{Java server}
+\TODO{Explain the use of jacoco and it's setup in server mode}
+\TODO{Transform coverage to XML and to JSON}
+\subsubsection{Node.js server}
+\TODO{Explain NYC cannot be used as dynamically and would need a reset mechanism}
+\TODO{Explain the use of the node debugging protocol to use V8 coverage}
+\subsubsection{Client}
+\TODO{Elaboration of instrumemtation ideas that did not work out. Preprocession with istanbul as suggested by cypress and teamscale.}
+\TODO{Elaboration of chrome native based coverage}
+\TODO{Small tangent on electron insturmentation which is special as cypress already runs in an electron process}
+
+\subsection{Analysis Program}
+\TODO{Explain how to get file based changes from the git log}
+\TODO{Explain how to get line based changes from the git diff and the issues with buffer size}
 
 %------- chapter 5 -------
 
 \chapter{Evaluation}\label[chapter]{evaluation}
 
+\section{Research Questions}
+\begin{enumerate}
+	\item[\textbf{RQ1:}] How effective is the adapted Deflaker approach in identifying flaky failures in UI end-to-end tests?
+	\item[\textbf{RQ2:}] To what extent does instrumentation impact the temporal behavior of the application during end-to-end testing?
+	\item[\textbf{RQ3:}] How does the instrumentation of coverage collection affect the failure rate of end-to-end tests in the studied projects?
+\end{enumerate}
+
+\section{Case Studies}
+\TODO{Bigger introduction to artemis and n8n}
+\TODO{Artemis was chosen because it is a large project with a lot of tests and a CI pipeline that experienced issues with flaky tests at the university}
+\TODO{Galdys was a contender but tests did not show any flakiness and there were also no indication in the commit messages}
+\TODO{Additional project, ToolJet turned out to have a too complicated setup for their E2E tests}
+\TODO{n8n was chosen from the list of projects with cypress and JavaScript and had issues with flaky tests before}
+
+\section{Evaluation Setup}
+\TODO{Setup as part of the existing CI pipeline}
+\TODO{Talk about issues with running artemis tests locally, too much setup needed and too much environment}
+
+\subsection{Artemis (Bamboo)}
+\TODO{Explain the setup of the Artemis CI pipeline}
+\TODO{Live and historic evaluation}
+\TODO{Elaborate issues with the historic evaluation due to CI and code changes that had to be backported}
+\TODO{Explain setup of live evaluation with duplicated plan}
+\TODO{Specialty of the Artemis CI pipeline, regular e2e tests as base}
+
+\subsection{n8n (GitHub)}
+\TODO{Explain the setup of the n8n CI pipeline}
+\TODO{Fork for historic evaluation}
+\TODO{Issues with GithHub Runners due to memory limitations}
+\TODO{Issues with tests after switching to chrome, exclusion of tests that did not pass in three runs}
+\TODO{Setup of historic evaluation with baseline and comparisons}
+\TODO{Explain the timing baseline collected on hosted runners}
+\feedback{Fabian Leinen: Zusammenfassend gibt es ja drei Subjects zum Evaluieren: Artemis Live, Artemis Historic, n8n historic. Da musst du glaube ich drauf achten, dass es hier so klar wird und in der Results Section muss klar sein, was du womit beantwortest.}
+
+\section{Evaluation Results}
+
+\subsection{RQ1: Does instrumentation change the temporal behavior of the application?}
+\TODO{Review the gathered data for both case studies}
+You can review the full table of testcases that failed during our evaluation in \cref{behaviour_change_results}.
+
+\subsection{RQ2: Does instrumentation change the failure rate of tests?}
+\begin{table}[h]
+	\centering
+	\csvautobooktabular{data/runResults.csv}
+	\caption{Statistics of the evaluation runs}
+	\label[table]{runResults}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\csvautobooktabular{data/testcaseResults.csv}
+	\caption{Statistics of testcase results during evaluation}
+	\label[table]{testResults}
+\end{table}
+\TODO{Review the gathered data for both case studies}
+
+\subsection{RQ3: What are the precision and recall of the failure categorizer?}
+\TODO{Review the gathered data for both case studies}
+
+\subsection{Additional Observations}
+\TODO{Issues with memory}
+\feedback{Fabian Leinen: Was kommt alles in diese Subsection? Mein Gefühl ist, dass es nicht viel ist und das auch ganz gut bei RQ1 oder Discussion rein passt.}
+
+\section{Discussion}
+\TODO{Give an overview of the results}
+\feedback{Dies Discussion kann wie hier in einer eigenen Section sein, Dann achte bloß bei den Results etwas drauf nicht zu sehr Interpretationen und so weiter einzubauen sondern möglichst trocken die (quantitativen) Ergebnisse zu präsentieren.}
+
+\subsection{Quality of Failure Categorization}
+\TODO{Interpret the results of RQ1}
+
+\subsection{Change of Behaviour caused by Instrumentation}
+\TODO{Interpret the results of RQ2}
+\TODO{Show the inpact on RQ3}
+\TODO{Interprent the results of RQ2 for both case studies}
+
 %------- chapter 6 -------
 
 \chapter{Threats to Validity}\label[chapter]{threats}
+\TODO{Write chapter introduction}
+
+\section{Threats to Internal Validity}
+\TODO{Dependence on the CI pipeline}
+\TODO{Missing confirmed failures}
+\TODO{Limited insights to non code changes and testcase changes}
+
+\section{Threats to External Validity}
+\TODO{Only two case studies}
+\TODO{Limited availablity of run labels}
 
 
 %------- chapter 7 -------
 
 \chapter{Conclusion}\label[chapter]{conclusion}
 
-\textit{Note: This chapter includes the status of your thesis, a conclusion and an outlook about future work.}
+\TODO{Summary of the results}
+\TODO{Summary of the implementation and evaluation}
 
-\section{Status}
-
-\textit{Note: Describe honestly the achieved goals (e.g. the well implemented and tested use cases) and the open goals here. if you only have achieved goals, you did something wrong in your analysis.}
-
-\begin{itemize}
-	\item [\Circle]
-	\item [\LEFTcircle]
-	\item [\CIRCLE]
-\end{itemize}
-
-\subsection{Realized Goals}
-
-\textit{Note: Summarize the achieved goals by repeating the realized requirements or use cases stating how you realized them.}
-
-\subsection{Open Goals}
-
-\textit{Note: Summarize the open goals by repeating the open requirements or use cases and explaining why you were not able to achieve them. \textbf{Important:} It might be suspicious, if you do not have open goals. This usually indicates that you did not thoroughly analyze your problems.}
-
-\section{Conclusion}
-
-\textit{Note: Recap shortly which problem you solved in your thesis and discuss your \textbf{contributions} here.}
 
 \section{Future Work}
 
-\textit{Note: Tell us the next steps  (that you would do if you have more time). Be creative, visionary and open-minded here.}
-
-
+\TODO{Replicate tests with other test frameworks such as Playwright}
+\TODO{Extend analysis to other languages}
+\TODO{Investigate ways to mitigate the impact of instrumentation on test execution}
+\TODO{Make the analysis more robust for non code changes and test case changes}
 
 \appendix
 
-\chapter{e.g. Questionnaire}
+\chapter[Behaviour change results]{Extensive results for the behaviour change evaluation}\label[appendix]{behaviour_change_results}
 
-\textit{Note: If you have large models, additional evaluation data like questionnaires or non summarized results, put them into the appendix.}
+\csvautobooktabular{data/runResults.csv}
 
+\begin{adjustbox}{max width=\textwidth, caption={Statistics of testcase results during evaluation}, float=table}
+	\begin{tabular}{@{}lrrrrr@{}} \toprule
+		\multicolumn{2}{c}{} & \multicolumn{2}{c}{Uninstrumented} & \multicolumn{2}{c}{Instrumented}                                                       \\ \cmidrule{3-4} \cmidrule{5-6}
+		Test name            & Duration increase \%               & passed                           & failed  & passed              & failed              \\ \midrule
+		\csvreader[
+			head to column names
+		]{data/testcaseStats.csv}{}{%
+		\name                & \durationIncrease                  & \passed                          & \failed & \passedInstrumented & \failedInstrumented \\
+		}
+		\\ \bottomrule
+	\end{tabular}
+\end{adjustbox}
 
-\clearpage
-
-\listoffigures
-\clearpage
-
-\listoftables
-\clearpage
-
-\bibliography{thesis}
-\bibliographystyle{alpha}
+\microtypesetup{protrusion=false}
+\include{common/acronyms}
+\listoffigures{}
+\listoftables{}
+\microtypesetup{protrusion=true}
+\printbibliography{}
 
 \end{document}

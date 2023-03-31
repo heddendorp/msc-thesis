@@ -1,6 +1,7 @@
-\begin{abstract}
+\chapter{Abstract}
 
-%abstract german
-\textit{Note: Insert the German translation of the English abstract here.}
+Software-Tests sind ein entscheidender Aspekt der Softwareentwicklung, um die Qualität und Zuverlässigkeit von Systemen sicherzustellen. Obwohl Testfälle eigentlich deterministisch sein sollten, können sogenannte "flaky" Tests nicht-deterministisches Verhalten aufweisen, was zu intermittierenden Fehlern führt, ohne dass Änderungen am zu testenden System (SUT) oder am Test selbst vorgenommen wurden. Diese Arbeit zielt darauf ab, flaky Fehler in End-to-End (E2E)-Tests zu erkennen, indem die von Bell et al. in "DeFlaker" vorgeschlagene Methode zum Erkennen von flaky Fehlern in Unit-Tests angewendet wird. Durch die Konzentration auf flaky Fehler anstelle von flaky Tests soll unser Ansatz während der Softwareentwicklung im Continuous Integration (CI)-Prozess einen höheren Mehrwert bieten.
 
-\end{abstract}
+Wir schlagen eine Methodik zur Erkennung von flaky Fehlern in E2E-Tests vor und bewerten deren Leistung anhand von zwei Open-Source-Projekten als Fallstudien: Artemis, eine webbasierte Lernplattform für Programmierübungen, und n8n, ein Workflow-Automatisierungstool. Beide Projekte verwenden Cypress für E2E-Tests. Unsere Bewertung beurteilt die Auswirkungen unserer Methodik auf die Testausführung und ihre Fähigkeit, flaky Fehler korrekt zu identifizieren. Unser Ansatz funktioniert gut und identifiziert flaky Fehler in 90\% der Fälle korrekt, wobei es in drei Fällen falsche Positive gab, bei denen unser Ansatz einen Fehler als flaky einstufte, der es jedoch nicht war.
+
+Diese Arbeit bietet einen Überblick über E2E-Tests, flaky Tests, Erfassung von Codeabdeckung und alternative Ansätze zur Erkennung von flaky Tests. Sie beschreibt auch die Methodik, Fallstudien, Ergebnisse der Bewertung, Einschränkungen und zukünftige Arbeiten zur Erkennung von flaky Fehlern in E2E-Tests.
