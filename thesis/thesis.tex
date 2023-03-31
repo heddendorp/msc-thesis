@@ -45,7 +45,7 @@
 \include{thesis_tex/abstract_en}
 % \clearpage
 % \selectlanguage{german}
-% \include{thesis_tex/abstract_de}
+\include{thesis_tex/abstract_de}
 % \clearpage
 % \selectlanguage{english}
 
@@ -69,7 +69,6 @@
 
 
 \chapter*{Not yet assigned ideas}
-\TODO{Talk about the frequent issues with the CI infrastructure, both at artemis and the LRZ}
 \TODO{Talk about the limited amount of actual failures in both projects for code that is run by the CI}
 \TODO{Overview of the artemis historic data and insight, that all tested fails did eventually pass}
 \TODO{Mention the significant effect cypress rerunning had on artemis}
@@ -81,38 +80,40 @@
 %------- chapter 1 -------
 
 \chapter{Introduction}\label[chapter]{introduction}
-Software testing is an integral part of the software development process that ensures a system's quality and dependability. 
-With the execution of test cases, the goal of software testing is to detect software bugs. 
-It is assumed that test cases are be deterministic, meaning that given the same input, they would always yield the same output. 
-In practice, however, test cases can be non-deterministic or \emph{flaky} \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{sut} or the test itself. 
+Software testing is an integral part of the software development process that ensures a system's quality and dependability.
+With the execution of test cases, the goal of software testing is to detect software bugs.
+It is assumed that test cases are be deterministic, meaning that given the same input, they would always yield the same output.
+In practice, however, test cases can be non-deterministic or \emph{flaky} \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{sut} or the test itself.
 \Ac{ui} tests, which frequently involve asynchronous activities and limited computer resources, might be especially susceptible to flaky behaviour \autocite{romano_empirical_2021}.
 
-Flaky tests can waste resources, increase development time and erode confidence in the testing procedure. 
-Google reports that about 16\% of thier tests exhibit some level of flakiness \autocite{micco_state_2017}. 
-Even given the importance of testing, the detection of flaky tests is still a challenge. The most common approach to identify flaky tests is rerunning \autocite{lam_idflakies_2019}. 
+Flaky tests can waste resources, increase development time and erode confidence in the testing procedure.
+Google reports that about 16\% of thier tests exhibit some level of flakiness \autocite{micco_state_2017}.
+Even given the importance of testing, the detection of flaky tests is still a challenge. 
+The most common approach to identify flaky tests is rerunning \autocite{lam_idflakies_2019}.
 However, rerunning has several downsides, such as consuming significant computational resources, generating false positives, and potentially missing certain types of flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
 \feedback{The paragraph does not really describe the point of the thesis, which is to detect flaky failures. Maybe move from flaky tests to flaky failures?}
 
-An important distinction that has to be made is the difference between flaky tests and flaky test failures. 
-While most research has focused on detecting flaky tests, it is important to distinguish them from flaky failures. 
-\Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when discarding faults of flaky tests. 
-Instead we want to focus on detecting flaky failures in this thesis to provide more value to the \ac{ci} during software development. 
+An important distinction that has to be made is the difference between flaky tests and flaky test failures.
+While most research has focused on detecting flaky tests, it is important to distinguish them from flaky failures.
+\Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when discarding faults of flaky tests.
+Instead we want to focus on detecting flaky failures in this thesis to provide more value to the \ac{ci} during software development.
 \todo{Extend this paragraph?}
 
-To achieve this for \ac{e2e} tests, we focus on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests. 
-\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run. To evaluate our approach we selected two open source projects as case studies. 
-\textsc{Artemis} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises. 
-It uses Java for server code and JavaScript for the client-side code. \textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client. 
+To achieve this for \ac{e2e} tests, we focus on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests.
+\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run. To evaluate our approach we selected two open source projects as case studies.
+\textsc{Artemis} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises.
+It uses Java for server code and JavaScript for the client-side code. 
+\textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client.
 Both projects use Cypress \autocite{noauthor_cypress-iocypress_2023} for \ac{e2e} testing.
 
 The contributions of this thesis are:
 \begin{itemize}
 	\item \textbf{Methodology.} We propose a methodology for detecting flaky failures in \ac{e2e} tests based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
-	\item \textbf{Case Studies.} We evaluate our approach on two open source projects by analyzing the impact on execution our method has and evaluating the performance of our approach. 
-	During the evaluation we saw that the instrumentation can have significant impact on test execution. 
-	Our approach performed well by correctly ident flaky failures in 90\% \todo{Correct number} of the cases.
-	During the evaluation we saw three \todo{Correct number} false positives where our approach identified a failure as flaky, but it was not.
-	\todo{Add more info on study and results}
+	\item \textbf{Case Studies.} We evaluate our approach on two open source projects by analyzing the impact on execution our method has and evaluating the performance of our approach.
+	      During the evaluation we saw that the instrumentation can have significant impact on test execution.
+	      Our approach performed well by correctly ident flaky failures in 90\% \todo{Correct number} of the cases.
+	      During the evaluation we saw three \todo{Correct number} false positives where our approach identified a failure as flaky, but it was not.
+	      \todo{Add more info on study and results}
 	\item \textbf{Guidelines.} \todo{Add guidelines}
 \end{itemize}
 
@@ -140,11 +141,15 @@ This chapter provides essential background information for understanding the con
 
 \section{Flaky Tests}
 
+\TODO{Mention the root causes for flaky tests and failures}
+\TODO{Press the importance and usefulness of identiffying flaky failures instead of just flaky tests}
+\TODO{Explain why this approach with flaky failures is superior to identifying flaky tests (more common)}
 \TODO{Explain what flaky failures are and why they are a problem}
 
 \section{Coverage Collection}
 
 \TODO{Explain what coverage collection is}
+\feedback{Coverage collection is expensive?}
 \TODO{Mention some usecases for coverage data}
 
 %------- chapter 3 -------
@@ -153,10 +158,12 @@ This chapter provides essential background information for understanding the con
 
 \TODO{Give an overview of related work}
 
-\section{Flaky failure detection}
+\section{Flaky Failure Detection}
 
 \TODO{Look at some papers that detect flaky tests}
 \TODO{Explain why flaky test detection is not sufficient but we need flaky failure detection}
+\feedback{Fabian Leinen: Den eigenen Gedanken in dem Kapitel möglichst meiden. Z.B. in "The Importance of Discerning Flaky from Fault-triggering Test Failures: A Case Study on the Chromium CI" ist das ja wunderschön dargelegt.
+}
 
 \subsection{Expaning on \emph{DeFlaker}}
 
@@ -170,6 +177,23 @@ This chapter provides essential background information for understanding the con
 %------- chapter 4 -------
 
 \chapter{Methodology}\label[chapter]{methodology}
+
+\TODO{Overview for the Chapter and introduction to the different parts of the project.}
+\TODO{Explain the approach in DeFlaker and how this project has different requirements?}
+
+\section{Instrumentation}
+\TODO{Info about issues with default instrumentation which is not designed for remote collection for specific test cases.}
+\TODO{Explain why the entire coverage is collected and not just change coverage}
+\TODO{Explain how the decision was made on which level to collect coverage}
+\TODO{Explain how the coverage is matched to test cases: propagation vs timing}
+\TODO{Mention the possible impact of insturmentation on the behaviour of the application and the tests.}
+
+\section{Change Collection}
+
+
+\section{Implementation}
+\TODO{Explain the implementation of the coverage collection plugins}
+\TODO{Explain the implementation of the analysis program}
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[node distance=2cm]
@@ -196,45 +220,32 @@ This chapter provides essential background information for understanding the con
 	\label[figure]{full_stack_coverage_collection}
 \end{figure}
 
-\TODO{Overview for the Chapter and introduction to the different parts of the project.}
-\TODO{Explain the approach in DeFlaker and how this project has different requirements?}
-
-\section{Instrumentation}
-\TODO{Info about issues with default instrumentation which is not designed for remote collection for specific test cases.}
-\TODO{Mention the possible impact of insturmentation on the behaviour of the application and the tests.} 
-
-\subsection{Client}
+\subsection{Coverage Collection Plugins}
+\subsubsection{Java server}
+\TODO{Explain the use of jacoco and it's setup in server mode}
+\TODO{Transform coverage to XML and to JSON}
+\subsubsection{Node.js server}
+\TODO{Explain NYC cannot be used as dynamically and would need a reset mechanism}
+\TODO{Explain the use of the node debugging protocol to use V8 coverage}
+\subsubsection{Client}
 \TODO{Elaboration of instrumemtation ideas that did not work out. Preprocession with istanbul as suggested by cypress and teamscale.}
 \TODO{Elaboration of chrome native based coverage}
 \TODO{Small tangent on electron insturmentation which is special as cypress already runs in an electron process}
 
-\subsection{Server}
-\TODO{Explain the issue with a separate server process and the need for a server mode}
-
-\subsubsection{Java}
-\TODO{Explain the use of jacoco and it's setup in server mode}
-\TODO{Transform coverage to XML and to JSON}
-
-\subsubsection{Node.js}
-\TODO{Explain NYC cannot be used as dynamically and would need a reset mechanism}
-\TODO{Explain the use of the node debugging protocol to use V8 coverage}
-
-\section{Change Collection}
+\subsection{Analysis Program}
 \TODO{Explain how to get file based changes from the git log}
 \TODO{Explain how to get line based changes from the git diff and the issues with buffer size}
-
-\section{Implementation}\todo{How different is the implementation chapter form the general approach?}
-\TODO{Explain the implementation of the coverage collection plugins}
-\TODO{Explain the implementation of the analysis program}
 
 %------- chapter 5 -------
 
 \chapter{Evaluation}\label[chapter]{evaluation}
 
 \section{Research Questions}
-\TODO{RQ1: Does instrumentation change the temporal behavior of the application?}
-\TODO{RQ2: Does instrumentation change the failure rate of tests?}
-\TODO{RQ3: What are the precision and recall of the failure categorizer?}
+\begin{enumerate}
+	\item[\textbf{RQ1:}] How effective is the adapted Deflaker approach in identifying flaky failures in UI end-to-end tests?
+	\item[\textbf{RQ2:}] To what extent does instrumentation impact the temporal behavior of the application during end-to-end testing?
+	\item[\textbf{RQ3:}] How does the instrumentation of coverage collection affect the failure rate of end-to-end tests in the studied projects?
+\end{enumerate}
 
 \section{Case Studies}
 \TODO{Bigger introduction to artemis and n8n}
@@ -261,6 +272,7 @@ This chapter provides essential background information for understanding the con
 \TODO{Issues with tests after switching to chrome, exclusion of tests that did not pass in three runs}
 \TODO{Setup of historic evaluation with baseline and comparisons}
 \TODO{Explain the timing baseline collected on hosted runners}
+\feedback{Fabian Leinen: Zusammenfassend gibt es ja drei Subjects zum Evaluieren: Artemis Live, Artemis Historic, n8n historic. Da musst du glaube ich drauf achten, dass es hier so klar wird und in der Results Section muss klar sein, was du womit beantwortest.}
 
 \section{Evaluation Results}
 
@@ -289,17 +301,19 @@ You can review the full table of testcases that failed during our evaluation in 
 
 \subsection{Additional Observations}
 \TODO{Issues with memory}
+\feedback{Fabian Leinen: Was kommt alles in diese Subsection? Mein Gefühl ist, dass es nicht viel ist und das auch ganz gut bei RQ1 oder Discussion rein passt.}
 
 \section{Discussion}
 \TODO{Give an overview of the results}
-
-\subsection{Change of Behaviour caused by Instrumentation}
-\TODO{Interpret the results of RQ1}
-\TODO{Show the inpact on RQ2}
-\TODO{Interprent the results of RQ2 for both case studies}
+\feedback{Dies Discussion kann wie hier in einer eigenen Section sein, Dann achte bloß bei den Results etwas drauf nicht zu sehr Interpretationen und so weiter einzubauen sondern möglichst trocken die (quantitativen) Ergebnisse zu präsentieren.}
 
 \subsection{Quality of Failure Categorization}
-\TODO{Interpret the results of RQ3}
+\TODO{Interpret the results of RQ1}
+
+\subsection{Change of Behaviour caused by Instrumentation}
+\TODO{Interpret the results of RQ2}
+\TODO{Show the inpact on RQ3}
+\TODO{Interprent the results of RQ2 for both case studies}
 
 %------- chapter 6 -------
 

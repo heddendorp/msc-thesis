@@ -1,12 +1,7 @@
 \chapter{Abstract}
-%abstract english
 
-\textit{Note:}
+Software testing is a crucial aspect of software development to ensure system quality and dependability. While test cases are expected to be deterministic, flaky tests can exhibit non-deterministic behavior, causing intermittent failures without any changes to the System Under Test (SUT) or the test itself. This thesis aims to detect flaky failures in End-to-End (E2E) tests by applying the technique proposed by Bell et al. in "DeFlaker" for detecting flaky unit test failures. By focusing on flaky failures instead of flaky tests, our approach aims to provide more value to the Continuous Integration (CI) process during software development.
 
-\textit{\textbf{1. paragraph:} What is the motivation of your thesis? Why is it interesting from a scientific point of view? Which main problem do you like to solve?}
+We propose a methodology for detecting flaky failures in E2E tests and evaluate its performance using two open-source projects as case studies: Artemis, a web-based learning platform for programming exercises, and n8n, a workflow automation tool. Both projects use Cypress for E2E testing. Our evaluation assesses the impact of our methodology on test execution and its ability to correctly identify flaky failures. Our approach performs well, correctly identifying flaky failures in 90\% of the cases, with three false positives where our approach identified a failure as flaky, but it was not.
 
-\textit{\textbf{2. paragraph:} What is the purpose of the document? What is the main content, the main contribution?}
-
-\textit{\textbf{3. paragraph:} What is your methodology? How do you proceed?}
-
-% \end{abstract}
+This thesis provides an overview of E2E testing, flaky tests, coverage collection, and alternative approaches to detecting flaky tests. It also details the methodology, case studies, evaluation results, limitations, and future work in detecting flaky failures in E2E tests.
