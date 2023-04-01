@@ -1,5 +1,7 @@
 % !BIB TS-program = biber
 
+\RequirePackage[l2tabu,orthodox]{nag}
+
 % Add common preamble to the document
 \input{common/preamble.tex}
 
@@ -18,9 +20,7 @@
 % \setlength{\oddsidemargin}{22pt}
 
 
-\hypersetup{pdfborder={0 0 0}, pdfauthor={\author}, pdftitle={\title}}
-
-\lstset{showspaces=false, numbers=left, frame=single, basicstyle=\small}
+% \hypersetup{pdfborder={0 0 0}, pdfauthor={\author}, pdftitle={\title}}
 
 \pagenumbering{alph}
 
@@ -80,49 +80,50 @@
 %------- chapter 1 -------
 
 \chapter{Introduction}\label[chapter]{introduction}
-Software testing is an integral part of the software development process that ensures a system's quality and dependability.
-With the execution of test cases, the goal of software testing is to detect software bugs.
-It is assumed that test cases are be deterministic, meaning that given the same input, they would always yield the same output.
-In practice, however, test cases can be non-deterministic or \emph{flaky} \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{sut} or the test itself.
+Software testing is an integral part of the software development process ensuring a system's quality and dependability.
+With the execution of test cases, software testing aims to detect software bugs.
+Test cases are typically assumed to be deterministic, meaning that given the same input, they would always yield the same output.
+In practice, however, test cases can be non-deterministic or \emph{flaky}, \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{sut} or the test itself.
 \Ac{ui} tests, which frequently involve asynchronous activities and limited computer resources, might be especially susceptible to flaky behaviour \autocite{romano_empirical_2021}.
 
 Flaky tests can waste resources, increase development time and erode confidence in the testing procedure.
 Google reports that about 16\% of thier tests exhibit some level of flakiness \autocite{micco_state_2017}.
-Even given the importance of testing, the detection of flaky tests is still a challenge. 
+Even given the importance of testing, detecting flaky tests is still challenging.
 The most common approach to identify flaky tests is rerunning \autocite{lam_idflakies_2019}.
 However, rerunning has several downsides, such as consuming significant computational resources, generating false positives, and potentially missing certain types of flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
 \feedback{The paragraph does not really describe the point of the thesis, which is to detect flaky failures. Maybe move from flaky tests to flaky failures?}
 
 An important distinction that has to be made is the difference between flaky tests and flaky test failures.
-While most research has focused on detecting flaky tests, it is important to distinguish them from flaky failures.
+While most research has focused on detecting flaky tests, it is essential to distinguish them from flaky failures.
 \Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when discarding faults of flaky tests.
-Instead we want to focus on detecting flaky failures in this thesis to provide more value to the \ac{ci} during software development.
+Instead, we want to focus on detecting flaky failures in this thesis to provide more value to the \ac{ci} during software development.
 \todo{Extend this paragraph?}
 
 To achieve this for \ac{e2e} tests, we focus on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests.
-\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run. To evaluate our approach we selected two open source projects as case studies.
+\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run. 
+To evaluate our approach, we selected two open-source projects as case studies.
 \textsc{Artemis} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises.
-It uses Java for server code and JavaScript for the client-side code. 
-\textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for both server and client.
+It uses Java for server code and JavaScript for client-side code.
+\textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for server and client.
 Both projects use Cypress \autocite{noauthor_cypress-iocypress_2023} for \ac{e2e} testing.
 
 The contributions of this thesis are:
 \begin{itemize}
 	\item \textbf{Methodology.} We propose a methodology for detecting flaky failures in \ac{e2e} tests based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
-	\item \textbf{Case Studies.} We evaluate our approach on two open source projects by analyzing the impact on execution our method has and evaluating the performance of our approach.
-	      During the evaluation we saw that the instrumentation can have significant impact on test execution.
-	      Our approach performed well by correctly ident flaky failures in 90\% \todo{Correct number} of the cases.
-	      During the evaluation we saw three \todo{Correct number} false positives where our approach identified a failure as flaky, but it was not.
+	\item \textbf{Case Studies.} We evaluate our approach on two open-source projects by analyzing the impact on execution of our method has and evaluating the performance of our approach.
+	      During the evaluation, we saw that the instrumentation can significantly impact test execution.
+	      Our approach correctly identified flaky failures in 90\% \todo{Correct number} of the cases.
+	      During the evaluation, we saw three \todo{Correct number} false positives where our approach identified a failure as flaky, but it was not.
 	      \todo{Add more info on study and results}
 	\item \textbf{Guidelines.} \todo{Add guidelines}
 \end{itemize}
 
 The remainder of this thesis is organized as follows:
-In \cref{background} we will give some background information on the topic of \ac{e2e} testing, flaky tests, and coverage collection.
-We will review current alternative approaches in \cref{related_work}.
-In \cref{methodology} we will describe the methodology used in the project, including the instrumentation, data collection and environment setup.
-In \cref{evaluation} we will present the results of the project and answer our research questions.
-In \cref{threats} we will discuss the limitations of the project and in \cref{conclusion} we will summarize results of the evaluation and discuss future work.
+In \cref{background}, we will give some background information on \ac{e2e} testing, flaky tests, and coverage collection.
+We review related work in \cref{related_work}.
+Our methodology, including instrumentation, data collection, and environment setup, is described in \cref{methodology}.
+In \cref{evaluation}, we present the results of our case studies and answer our research questions. 
+We discuss the limitations of our approach in \cref{threats} and conclude with a summary of our findings and potential future work in \cref{conclusion}.
 
 
 
@@ -180,20 +181,49 @@ This chapter provides essential background information for understanding the con
 
 \TODO{Overview for the Chapter and introduction to the different parts of the project.}
 \TODO{Explain the approach in DeFlaker and how this project has different requirements?}
+This chapter presents the methodology used to detect flaky failures in \ac{e2e} tests. We first discuss the coverage collection process, followed by change collection, and finally the implementation of the analysis program and coverage collection plugins.
 
-\section{Instrumentation}
+\section{Coverage Collection}
+The approach presented in this thesis is inspired by \citeauthor*{bell_deflaker_2018}'s work on detecting flaky unit test failures \autocite{bell_deflaker_2018}. 
+The main differences between the two approaches are that we analyze \ac{e2e} test runs instead of unit test runs, and we collect coverage data on the entire code base instead of just the code that changed recently.
 \TODO{Info about issues with default instrumentation which is not designed for remote collection for specific test cases.}
 \TODO{Explain why the entire coverage is collected and not just change coverage}
 \TODO{Explain how the decision was made on which level to collect coverage}
 \TODO{Explain how the coverage is matched to test cases: propagation vs timing}
 \TODO{Mention the possible impact of insturmentation on the behaviour of the application and the tests.}
 
+Coverage collection is a central part of the approach introduced by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018}.
+While \citeauthor*{bell_deflaker_2018} work with change coverage in unit tests, this option is not feasible in \ac{e2e} tests.
+The changes in the code can be very large and span multiple services and languages, which makes it difficult to instrument the specific parts of the code.
+To reduce implementation complexity, we decided to collect coverage data on the entire code base in a more generic way.
+
+Another important step is to match the collected coverage with the test cases that were executed.
+Here, multiple options are possible.
+
+\paragraph{Propagation} First option is to propagate data about the executed test cases through the code base.
+Since we collect coverage data on the entire code base, it is required to propagate the data from the testing framework to both the client and server code.
+Additionally the coverage collection has to be reset after each test case to avoid mixing coverage data from different test cases.
+
+\paragraph{Timing} The second option is to match the coverage data with the test cases based on the timing of the test cases.
+This simpler approach is possible because the test cases are executed sequentially and the coverage data is collected in the same order.
+Instead of propagating the test case information through the code base, we can simply match the coverage data with the test cases based on the timing.
+In this approach, the coverage is collected and saved after each test case and the collection is reset.
+
+For simplicity we decided to use the second approach and match the coverage data with the test cases based on the timing.
+This approach is also more robust and does not require any changes to the code base.
+Event parallel execution of tests is possible if there is a separate instance of the tested software for each worker.
+
 \section{Change Collection}
 
+In addition to coverage collection, we also need to collect changes in the code base to determine which parts of the code have been modified since the last successful test run. 
+In this section, we explain how we collect changes using the git history of the code base and match them with the collected coverage data.
 
 \section{Implementation}
 \TODO{Explain the implementation of the coverage collection plugins}
 \TODO{Explain the implementation of the analysis program}
+In this section, we describe the implementation of the coverage collection plugins for the two case studies and the analysis program. Both the case studies use the cypress testing framework, and the analysis program is implemented in TypeScript and Node.js.
+It is realized as a \ac{cli} tool that can be executed with the command \texttt{npx @heddendorp/coverage-git-compare}.
+Both tools are open source and published to the npm registry.
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[node distance=2cm]
@@ -221,20 +251,104 @@ This chapter provides essential background information for understanding the con
 \end{figure}
 
 \subsection{Coverage Collection Plugins}
+We implemented coverage collection plugins for both case studies, with specific adjustments to accommodate their different setups. In this subsection, we discuss the implementation details for the Java server, the Node.js server, and the client.
+
+Due to their different setups, the coverage collection plugins for the two case studies are implemented differently.
+The Java server uses the jacoco agent to collect coverage data.
+The Node.js server uses the V8 coverage \ac{api} to collect coverage data.
+The client coverage is collected by using the V8 coverage for both case studies as both run their tests in chrome.
+The plugins remap all file paths to be relative to the repository root and merge the coverage information of client and server.
+
+The cypress plugins are implemented as node modules that can be installed with npm.
+They make use of the cypress plugin \ac{api} \autocite{cypressio_writing_nodate} to hook into the cypress test runner.
+As cypress only offers a \texttt{before:spec} and \texttt{after:spec} hook, the coverage can only be collected for each spec file instead of each individual test case.
+Additionally the plugins make use of the cypress \texttt{before:browser:launch} hook to identify the port of the chrom debugging protocol.
 \subsubsection{Java server}
 \TODO{Explain the use of jacoco and it's setup in server mode}
 \TODO{Transform coverage to XML and to JSON}
+As \textsc{Artemis} uses the JHipster \autocite{jhipster_jhipster_nodate} development platform, the server is implemented in Java.
+To collect coverage data, we use the jacoco agent \autocite{noauthor_jacoco_nodate} in server mode.
+The server mode of jacoco allows to collect and reset coverage data from the server without restarting.
+To enable the jacoco agent, we use the \texttt{-javaagent} option of the java command.
+
+On the \texttt{before:spec} hook, we send a request to the jacoco agent to reset the coverage data.
+On the \texttt{after:spec} hook, the plugin checks if the spec passed.
+If the spec passed the coverage data is not collected as there is no analysis to be done.
+If the spec failed, the coverage data is collected in the jacoco binary format.
+After the report is collected, the plugin uses the jacoco \ac{cli} to transform the binary report to an XML report.
+The XML report is transformed using the \textsc{jacoco-parse} library \autocite{noauthor_jacoco-parse_2023}.
+\footnote{We maintain a fork of the library with security updates at \url{https://github.com/heddendorp/jacoco-parse} which is used in this project.}
+The plugin saves the covered lines for each file in a JSON file after merging them with the coverage data of the client.
+
 \subsubsection{Node.js server}
 \TODO{Explain NYC cannot be used as dynamically and would need a reset mechanism}
 \TODO{Explain the use of the node debugging protocol to use V8 coverage}
-\subsubsection{Client}
+\textsc{n8n} is a Node.js based workflow automation tool.
+To collect coverage data, we use the V8 native coverage to collect coverage data.
+The process of collecting coverage using the V8 native coverage is described in \cref{client_coverage_collection}.
+To enable the debugging protocol, we use the \texttt{--inspect} option of the node command.
+
+\paragraph{NYC} Coverage in node.js programs is usually collected with the \textsc{NYC} tool \autocite{noauthor_nyc_2023}.
+NYC is a command line tool that can be used to collect coverage data for node.js programs.\todo{Benchmark NYC vs V8 coverage?}
+However NYC is not suitable for our use case as it does not allow to collect coverage data dynamically.
+NYC does not allow to collect coverage data dynamically as it does not expose an \ac{api} to collect coverage data.
+Since we have to collect coverage data after each test case from the cypress test runner, we decided against using NYC.
+The author of NYC also maintains C8 \autocite{noauthor_bcoec8_nodate}, a similar tool that uses V8 native coverage instead of code instrumentation.
+Event though C8 does not allow to collect coverage data dynamically, it served as inspiration for our implementation.
+\subsubsection{Client} \label[subsection]{client_coverage_collection}
+
 \TODO{Elaboration of instrumemtation ideas that did not work out. Preprocession with istanbul as suggested by cypress and teamscale.}
 \TODO{Elaboration of chrome native based coverage}
 \TODO{Small tangent on electron insturmentation which is special as cypress already runs in an electron process}
 
+Both case studies run their tests in chrome.
+This allows us to use V8 native coverage to collect coverage data.
+Coverage data is available in the chrome developer tools \autocite{kayce_basques_coverage_2020}.
+Additionally it is accessible through the chrome debugging protocol \autocite{noauthor_chrome_nodate}.
+To connect to the chrome debugging protocol, we use the \textsc{chrome-remote-interface} library \autocite{cardaci_chrome-remote-interface_2023}.
+In order to connect to the debugging protocol, we need to know the port of the debugging protocol.
+The port is set by cypress when it starts the browser and can be retrieved from the cypress \texttt{before:browser:launch} hook.
+Then, before every spec run we connect to the debugging protocol and enable coverage collection.
+After the spec run has finished we check if the spec run failed.
+If the spec run failed, we collect the coverage data and reset the coverage data.
+If the spec run did not fail, we just reset the coverage collection without retrieving it.
+
+To work with the coverage data it is transformed from the V8 format into the common istanbul format.
+For this we use the \textsc{v8-to-istanbul} library \autocite{noauthor_v8--istanbul_2023}.
+As the library requires the orginal files to transform coverage, our plugin maps the paths of the files as reported by chrome to the correct paths in the file system.
+The library reads the code files that are executed in the browser and follows the source maps to map the coverage data to the original source files.
+This is necessary as the browser executes the transpiled code and not the original source files.
+The coverage data is then simplified to a custom format that includes only covered lines and files and saved as JSON.
+
+\paragraph{Code Instrumentation} The common way to collect coverage in JavaScript is to instrument the code with a coverage library.
+Cypress uses the \textsc{istanbul} library to instrument the code \autocite{noauthor_code_nodate}, it is available through the nyc command line tool \autocite{noauthor_nyc_2023} or as a transpilation plugin.
+
+
+\subsubsection{Additional Helper Programs}
+\TODO{Elaborate on the historic analysis helper?}
+\TODO{Explain the jacoco coverage transform fork?}
+
 \subsection{Analysis Program}
 \TODO{Explain how to get file based changes from the git log}
 \TODO{Explain how to get line based changes from the git diff and the issues with buffer size}
+The analysis program is executed when the tests exhibit at least one failure. 
+In this subsection, we explain the process of retrieving change data from the git repository and comparing it with the coverage data to identify potentially flaky tests.
+As our plugin saves the coverage data for any spec that does not pass in a JSON file, the analysis program can be executed after the test run has finished.
+A good example is the testing script in artemis \texttt{npm ci \&\& npm run cypress:run || npm run detect:flakies} this runs the tests and if they fail, the analysis program is executed.
+\cref{coverage_compose} contains the docker compose file that is used to run the analysis program.
+
+Since \textsc{Artemis} is running \ac{ci} on bamboo the analysis is called with the current plan, build number and an access token.
+The analysis program then checks the bamboo \ac{api} for the latest build that passed.
+If the latest build that passed is not the previous build, the analysis program falls back to a comparison with the \texttt{develop} branch.
+The program can also be invoked in the \texttt{compare} mode where the commit for comparison is passed as an argument.
+
+After identifying the commit to compare with, the program retrieves the change data from the git repository.
+For this, the program uses the \texttt{git diff} command to retrieve the changes between the two commits.
+Afterwards, the diff is parsed using the \textsc{parse-diff} library \autocite{todyshev_parse-diff_2023}.
+The program then extracts the changed lines for each file.
+The collected changes are then compared to the coverage data.
+For each spec file, the program checks if the changed lines are covered by the tests.
+If the changed lines are not covered by the tests, the spec is marked as potentially flaky.
 
 %------- chapter 5 -------
 
@@ -242,9 +356,12 @@ This chapter provides essential background information for understanding the con
 
 \section{Research Questions}
 \begin{enumerate}
-	\item[\textbf{RQ1:}] How effective is the adapted Deflaker approach in identifying flaky failures in UI end-to-end tests?
-	\item[\textbf{RQ2:}] To what extent does instrumentation impact the temporal behavior of the application during end-to-end testing?
-	\item[\textbf{RQ3:}] How does the instrumentation of coverage collection affect the failure rate of end-to-end tests in the studied projects?
+	\item[\textbf{RQ\textsubscript{1}:}] How effective is the adapted Deflaker approach in identifying flaky failures in UI end-to-end tests?
+	\item[\textbf{RQ\textsubscript{2}:}] What impact does the instrumentation have on the behaviour of the application and tests?
+		\begin{enumerate}
+			\item[\textbf{RQ\textsubscript{2.1}:}] To what extent does instrumentation impact the temporal behavior of the application during end-to-end testing?
+			\item[\textbf{RQ\textsubscript{2.2}:}] How does the instrumentation of coverage collection affect the failure rate of end-to-end tests in the studied projects?
+		\end{enumerate}
 \end{enumerate}
 
 \section{Case Studies}
@@ -275,12 +392,15 @@ This chapter provides essential background information for understanding the con
 \feedback{Fabian Leinen: Zusammenfassend gibt es ja drei Subjects zum Evaluieren: Artemis Live, Artemis Historic, n8n historic. Da musst du glaube ich drauf achten, dass es hier so klar wird und in der Results Section muss klar sein, was du womit beantwortest.}
 
 \section{Evaluation Results}
-
-\subsection{RQ1: Does instrumentation change the temporal behavior of the application?}
+In this section we show the quantitaive results of our evaluation.
+You can find the qualitative discussion in \cref{discussion}.
+\subsection{\texorpdfstring{RQ\textsubscript{1}:}{RQ1:} How effective is the adapted DeFlaker approach in identifying flaky failures in \acs{ui} \acs{e2e} tests?}
 \TODO{Review the gathered data for both case studies}
+\subsection{\texorpdfstring{RQ\textsubscript{2}:}{RQ2:} What impact does the instrumentation have on the behaviour of the application and tests?}
+\subsubsection{\texorpdfstring{RQ\textsubscript{2.1}:}{RQ2.1:} To what extent does instrumentation impact the temporal behavior of the application during \acs{e2e} testing?}
 You can review the full table of testcases that failed during our evaluation in \cref{behaviour_change_results}.
 
-\subsection{RQ2: Does instrumentation change the failure rate of tests?}
+\subsubsection{\texorpdfstring{RQ\textsubscript{2.2}:}{RQ2.2:} How does the instrumentation of coverage collection affect the failure rate of \acs{e2e} tests in the studied projects?}
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/runResults.csv}
@@ -296,24 +416,22 @@ You can review the full table of testcases that failed during our evaluation in 
 \end{table}
 \TODO{Review the gathered data for both case studies}
 
-\subsection{RQ3: What are the precision and recall of the failure categorizer?}
-\TODO{Review the gathered data for both case studies}
 
 \subsection{Additional Observations}
 \TODO{Issues with memory}
-\feedback{Fabian Leinen: Was kommt alles in diese Subsection? Mein Gefühl ist, dass es nicht viel ist und das auch ganz gut bei RQ1 oder Discussion rein passt.}
+\feedback{Fabian Leinen: Was kommt alles in diese Subsection? Mein Gefühl ist, dass es nicht viel ist und das auch ganz gut bei RQ\textsubscript{1} oder Discussion rein passt.}
 
-\section{Discussion}
+\section{Discussion} \label[section]{discussion}
 \TODO{Give an overview of the results}
-\feedback{Dies Discussion kann wie hier in einer eigenen Section sein, Dann achte bloß bei den Results etwas drauf nicht zu sehr Interpretationen und so weiter einzubauen sondern möglichst trocken die (quantitativen) Ergebnisse zu präsentieren.}
+\feedback{Fabian Leinen: Dies Discussion kann wie hier in einer eigenen Section sein, Dann achte bloß bei den Results etwas drauf nicht zu sehr Interpretationen und so weiter einzubauen sondern möglichst trocken die (quantitativen) Ergebnisse zu präsentieren.}
 
 \subsection{Quality of Failure Categorization}
-\TODO{Interpret the results of RQ1}
+\TODO{Interpret the results of RQ\textsubscript{1}}
 
 \subsection{Change of Behaviour caused by Instrumentation}
-\TODO{Interpret the results of RQ2}
-\TODO{Show the inpact on RQ3}
-\TODO{Interprent the results of RQ2 for both case studies}
+\TODO{Interpret the results of RQ\textsubscript{2.1}}
+\TODO{Show the inpact on RQ\textsubscript{1}}
+\TODO{Interprent the results of RQ\textsubscript{2.2} for both case studies}
 
 %------- chapter 6 -------
 
@@ -364,10 +482,15 @@ You can review the full table of testcases that failed during our evaluation in 
 	\end{tabular}
 \end{adjustbox}
 
+\chapter{Referenced code} \label[appendix]{code}
+
+\lstinputlisting[language=yaml,caption={Docker compose override file for coverage collection},label=coverage_compose]{code/cypress-E2E-tests-coverage-override.yml}
+
 \microtypesetup{protrusion=false}
 \include{common/acronyms}
 \listoffigures{}
 \listoftables{}
+\lstlistoflistings{}
 \microtypesetup{protrusion=true}
 \printbibliography{}
 
