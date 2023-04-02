@@ -119,6 +119,7 @@ const pullRequests = await octokit.request(
     repo: "n8n",
     state: "all",
     per_page: 50,
+    until: "2023-03-20",
   }
 );
 
