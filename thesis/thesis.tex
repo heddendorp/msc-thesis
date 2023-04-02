@@ -70,8 +70,8 @@
 
 \chapter*{Not yet assigned ideas}
 \TODO{Talk about the limited amount of actual failures in both projects for code that is run by the CI}
-\TODO{Overview of the artemis historic data and insight, that all tested fails did eventually pass}
-\TODO{Mention the significant effect cypress rerunning had on artemis}
+\TODO{Overview of the ArTEMiS historic data and insight, that all tested fails did eventually pass}
+\TODO{Mention the significant effect cypress rerunning had on ArTEMiS}
 \TODO{Elaborate how this approach is useful in everyday development contrary to flaky test detection}
 \TODO{Talk about the side-effect that failures can be located more easily}
 \TODO{Limitation: does not work if serivice does not start}
@@ -100,9 +100,9 @@ Instead, we want to focus on detecting flaky failures in this thesis to provide 
 \todo{Extend this paragraph?}
 
 To achieve this for \ac{e2e} tests, we focus on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests.
-\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run. 
+\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run.
 To evaluate our approach, we selected two open-source projects as case studies.
-\textsc{Artemis} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises.
+\textsc{ArTEMiS} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises.
 It uses Java for server code and JavaScript for client-side code.
 \textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for server and client.
 Both projects use Cypress \autocite{noauthor_cypress-iocypress_2023} for \ac{e2e} testing.
@@ -122,7 +122,7 @@ The remainder of this thesis is organized as follows:
 In \cref{background}, we will give some background information on \ac{e2e} testing, flaky tests, and coverage collection.
 We review related work in \cref{related_work}.
 Our methodology, including instrumentation, data collection, and environment setup, is described in \cref{methodology}.
-In \cref{evaluation}, we present the results of our case studies and answer our research questions. 
+In \cref{evaluation}, we present the results of our case studies and answer our research questions.
 We discuss the limitations of our approach in \cref{threats} and conclude with a summary of our findings and potential future work in \cref{conclusion}.
 
 
@@ -184,7 +184,7 @@ This chapter provides essential background information for understanding the con
 This chapter presents the methodology used to detect flaky failures in \ac{e2e} tests. We first discuss the coverage collection process, followed by change collection, and finally the implementation of the analysis program and coverage collection plugins.
 
 \section{Coverage Collection}
-The approach presented in this thesis is inspired by \citeauthor*{bell_deflaker_2018}'s work on detecting flaky unit test failures \autocite{bell_deflaker_2018}. 
+The approach presented in this thesis is inspired by \citeauthor*{bell_deflaker_2018}'s work on detecting flaky unit test failures \autocite{bell_deflaker_2018}.
 The main differences between the two approaches are that we analyze \ac{e2e} test runs instead of unit test runs, and we collect coverage data on the entire code base instead of just the code that changed recently.
 \TODO{Info about issues with default instrumentation which is not designed for remote collection for specific test cases.}
 \TODO{Explain why the entire coverage is collected and not just change coverage}
@@ -215,7 +215,7 @@ Event parallel execution of tests is possible if there is a separate instance of
 
 \section{Change Collection}
 
-In addition to coverage collection, we also need to collect changes in the code base to determine which parts of the code have been modified since the last successful test run. 
+In addition to coverage collection, we also need to collect changes in the code base to determine which parts of the code have been modified since the last successful test run.
 In this section, we explain how we collect changes using the git history of the code base and match them with the collected coverage data.
 
 \section{Implementation}
@@ -241,8 +241,6 @@ Both tools are open source and published to the npm registry.
 		\draw [-] (cypress) -- (plugin);
 		\draw [<->] (plugin) -- (client);
 		\draw [<->] (plugin) -- (server);
-		% \draw [->] (client) |- (coverage);
-		% \draw [->] (server) |- (coverage);
 		\draw [->] (plugin) -- node[pos=0.5, below] {on fail} (coverage);
 		\draw [->] (coverage) -- (analysis);
 	\end{tikzpicture}
@@ -266,7 +264,7 @@ Additionally the plugins make use of the cypress \texttt{before:browser:launch} 
 \subsubsection{Java server}
 \TODO{Explain the use of jacoco and it's setup in server mode}
 \TODO{Transform coverage to XML and to JSON}
-As \textsc{Artemis} uses the JHipster \autocite{jhipster_jhipster_nodate} development platform, the server is implemented in Java.
+As \textsc{ArTEMiS} uses the JHipster \autocite{jhipster_jhipster_nodate} development platform, the server is implemented in Java.
 To collect coverage data, we use the jacoco agent \autocite{noauthor_jacoco_nodate} in server mode.
 The server mode of jacoco allows to collect and reset coverage data from the server without restarting.
 To enable the jacoco agent, we use the \texttt{-javaagent} option of the java command.
@@ -331,13 +329,13 @@ Cypress uses the \textsc{istanbul} library to instrument the code \autocite{noau
 \subsection{Analysis Program}
 \TODO{Explain how to get file based changes from the git log}
 \TODO{Explain how to get line based changes from the git diff and the issues with buffer size}
-The analysis program is executed when the tests exhibit at least one failure. 
+The analysis program is executed when the tests exhibit at least one failure.
 In this subsection, we explain the process of retrieving change data from the git repository and comparing it with the coverage data to identify potentially flaky tests.
 As our plugin saves the coverage data for any spec that does not pass in a JSON file, the analysis program can be executed after the test run has finished.
-A good example is the testing script in artemis \texttt{npm ci \&\& npm run cypress:run || npm run detect:flakies} this runs the tests and if they fail, the analysis program is executed.
+A good example is the testing script in ArTEMiS \texttt{npm ci \&\& npm run cypress:run || npm run detect:flakies} this runs the tests and if they fail, the analysis program is executed.
 \cref{coverage_compose} contains the docker compose file that is used to run the analysis program.
 
-Since \textsc{Artemis} is running \ac{ci} on bamboo the analysis is called with the current plan, build number and an access token.
+Since \textsc{ArTEMiS} is running \ac{ci} on bamboo the analysis is called with the current plan, build number and an access token.
 The analysis program then checks the bamboo \ac{api} for the latest build that passed.
 If the latest build that passed is not the previous build, the analysis program falls back to a comparison with the \texttt{develop} branch.
 The program can also be invoked in the \texttt{compare} mode where the commit for comparison is passed as an argument.
@@ -353,66 +351,141 @@ If the changed lines are not covered by the tests, the spec is marked as potenti
 %------- chapter 5 -------
 
 \chapter{Evaluation}\label[chapter]{evaluation}
-
+In this chapter we put our approach, outlined in \cref{methodology}, to the test.
+We first describe the case studies that we use to evaluate our approach.
+Then we present the results of our evaluation and discuss them.
 \section{Research Questions}
+We have two \acp{rq} that we want to answer with our evaluation.
 \begin{enumerate}
-	\item[\textbf{RQ\textsubscript{1}:}] How effective is the adapted Deflaker approach in identifying flaky failures in UI end-to-end tests?
-	\item[\textbf{RQ\textsubscript{2}:}] What impact does the instrumentation have on the behaviour of the application and tests?
+	\item[\textbf{\ac{rq}\textsubscript{1}:}] How effective is the adapted Deflaker approach in identifying flaky failures in UI \ac{e2e} tests?
+
+		We want to determine the effectiveness of our approach in identifying flaky failures in UI \ac{e2e} tests.
+		We will evaluate the approach by comparing the results of our approach with an establisehd baseline from rerunning the tests.
+	\item[\textbf{\ac{rq}\textsubscript{2}:}] What impact does the instrumentation have on the behaviour of the application and tests?
+
+		We recognize that the instrumentation of the application and tests has an impact on the behaviour of the application and tests.
+		Therefore we further Investigate this impact with two subquestions:
 		\begin{enumerate}
-			\item[\textbf{RQ\textsubscript{2.1}:}] To what extent does instrumentation impact the temporal behavior of the application during end-to-end testing?
-			\item[\textbf{RQ\textsubscript{2.2}:}] How does the instrumentation of coverage collection affect the failure rate of end-to-end tests in the studied projects?
+			\item[\textbf{\ac{rq}\textsubscript{2.1}:}] To what extent does instrumentation impact the temporal behavior of the application during \ac{e2e} testing?
+
+				We want to determine the impact of instrumentation on the temporal behaviour of the application during \ac{e2e} testing.
+				We will evaluate the impact by comparing the temporal behaviour of the application during \ac{e2e} testing with and without instrumentation.
+			\item[\textbf{\ac{rq}\textsubscript{2.2}:}] How does the instrumentation of coverage collection affect the failure rate of \ac{e2e} tests in the studied projects?
+
+				We want to determine the impact of instrumentation on the failure rate of \ac{e2e} tests in the studied projects.
+				We will evaluate the impact by comparing the failure rate of \ac{e2e} tests in the studied projects with and without instrumentation.
 		\end{enumerate}
 \end{enumerate}
 
 \section{Case Studies}
-\TODO{Bigger introduction to artemis and n8n}
-\TODO{Artemis was chosen because it is a large project with a lot of tests and a CI pipeline that experienced issues with flaky tests at the university}
-\TODO{Galdys was a contender but tests did not show any flakiness and there were also no indication in the commit messages}
-\TODO{Additional project, ToolJet turned out to have a too complicated setup for their E2E tests}
+\TODO{Bigger introduction to ArTEMiS and n8n}
+\TODO{\textsc{ArTEMiS} was chosen because it is a large project with a lot of tests and a CI pipeline that experienced issues with flaky tests at the university}
+\TODO{\textsc{Gladys} was a contender but tests did not show any flakiness and there were also no indication in the commit messages}
+\TODO{Additional project, \textsc{ToolJet} turned out to have a too complicated setup for their E2E tests}
 \TODO{n8n was chosen from the list of projects with cypress and JavaScript and had issues with flaky tests before}
+To validate our approach we chose two case studies.
+Both case studies are open source projects that use \textsc{cypress} for \ac{e2e} testing.
+They both have a large number of tests and are actively maintained.
+Also, both projects have experienced issues with flaky tests in the past.
+
+\paragraph{ArTEMiS} is a learning management system that is used at multiple universities to manage courses and exercises \autocite{krusche_artemis_2018}.
+The project was a good fit since it is also developed at \ac{tum}.
+The team has experienced issues with flaky tests in the past and the project has a large number of tests.
+
+\paragraph{n8n} is a workflow automation tool that allows users to connect different services and automate workflows \autocite{noauthor_n8n_2023}. The project was identified as a case study by searching GithHub for projects that depend on \textsc{cypress} and use JavaScript as the main programming language. A further check of the commit history showed that the project had experienced issues with flaky tests in the past.
+
+\paragraph{} During the search for case studies, we also considered \textsc{Gladys} \autocite{noauthor_gladys_2023} and \textsc{ToolJet} \autocite{noauthor_tooljettooljet_2023}. However, we decided against using them as case studies because \textsc{Galdys} did not show any flakiness in the tests and \textsc{ToolJet} had a too complicated setup for their \ac{e2e} tests.
 
 \section{Evaluation Setup}
 \TODO{Setup as part of the existing CI pipeline}
-\TODO{Talk about issues with running artemis tests locally, too much setup needed and too much environment}
+\TODO{Talk about issues with running ArTEMiS tests locally, too much setup needed and too much environment}
+In this section, we discuss the evaluation setup used for our experiments.
+Our evaluation is designed to be part of the existing \ac{ci} pipeline of the case studies.
+Also \textsc{ArTEMiS} has a very complex setup and is not easily runnable locally.
 
-\subsection{Artemis (Bamboo)}
-\TODO{Explain the setup of the Artemis CI pipeline}
+\subsection{ArTEMiS (Bamboo)}
+\TODO{Explain the setup of the ArTEMiS CI pipeline}
 \TODO{Live and historic evaluation}
 \TODO{Elaborate issues with the historic evaluation due to CI and code changes that had to be backported}
 \TODO{Explain setup of live evaluation with duplicated plan}
-\TODO{Specialty of the Artemis CI pipeline, regular e2e tests as base}
+\TODO{Specialty of the ArTEMiS CI pipeline, regular e2e tests as base}
+We start by describing the setup of the \textsc{ArTEMiS} \ac{ci} pipeline.
+The \textsc{ArTEMiS} \ac{ci} pipeline is hosted on \textsc{Bamboo} \autocite{atlassian_bamboo_nodate} and consists of multiple plans.
+The plans are triggered by commits to the \textsc{ArTEMiS} GithHub repository.
+We created a second version of the \ac{e2e} test plan that included our instrumentation.
+This plan is running in parallel to the original plan.
 
-\subsection{n8n (GitHub)}
+Additionally we selected builds from the regular \ac{e2e} test plan that were executed before the instrumentation was added.
+We reran these builds with our instrumentation to test our approach on historic builds.
+Due to the complex nature of the \textsc{ArTEMiS} \ac{ci} pipeline and ongoing development of the project, we had to backport some changes to the historic builds.
+While we were able to run some historic builds, there were ongoing issues with the \ac{ci} pipeline that prevented us from running all historic builds.
+
+The second part of the evaluation is the live evaluation.
+We run the \ac{e2e} tests with and without instrumentation in parallel.
+We compare the results of the two runs to determine the impact of the instrumentation on the \ac{e2e} tests.
+Additionally we can check the results of both runs to see if the approach correctly identifies failures as flaky.
+If both plans fail, we check if the same tests failed in both runs.
+Should there be a difference in the failed tests, we can conclude that the instrumentation correctly identified the failure as flaky.
+
+\subsection{n8n (GitHub)} \label[section]{evaluation_n8n}
 \TODO{Explain the setup of the n8n CI pipeline}
 \TODO{Fork for historic evaluation}
 \TODO{Issues with GithHub Runners due to memory limitations}
 \TODO{Issues with tests after switching to chrome, exclusion of tests that did not pass in three runs}
 \TODO{Setup of historic evaluation with baseline and comparisons}
 \TODO{Explain the timing baseline collected on hosted runners}
-\feedback{Fabian Leinen: Zusammenfassend gibt es ja drei Subjects zum Evaluieren: Artemis Live, Artemis Historic, n8n historic. Da musst du glaube ich drauf achten, dass es hier so klar wird und in der Results Section muss klar sein, was du womit beantwortest.}
+
+Next, we discuss the setup of the \textsc{n8n} \ac{ci} evaluation.
+The \textsc{n8n} \ac{ci} pipeline is hosted on \textsc{GitHub} and consists of multiple workflows.
+To run the evaluation we created a fork of the \textsc{n8n} repository.\footnote{\url{https://github.com/heddendorp/n8n}}
+In the forked repository we created a new workflow that runs the \ac{e2e} tests with and without instrumentation from a specific commit.
+While our workflow is still pulling from the original repository, we had apply some changes to the \ac{e2e} tests to make them work with our instrumentation.
+We had to run the tests in chrome instead of electron due to memory issues when executing the tests.
+Additionally, we had to exclude some tests that did not pass in three runs, even after changing the test setup.
+
+To evaluate the historic builds, we created a baseline of runs to know if the tests can pass for a specific commit.
+The commits for the baseline were selected by taking up to five commits from the latest 50 \acp{pr} that were opened on the \textsc{n8n} repository.
+We then ran the \ac{e2e} tests for each commit in the baseline and collected the results.
+If a test failed in one of the runs, we triggered up to four additional runs to see if the test passes in the next run.
+Additionally, for every commit in the baseline we also checked if it had at least one successful parent.
+If a commit did not have a successful parent, we extended the baseline to include the parent commit.
+We repeated this process until we had a baseline of commits that had at least one successful parent.
+
+To answer \textbf{\ac{rq}\textsubscript{2}} we also ran another experiment.
+We collected the 25 latest commits from the \textsc{n8n} repository and ran the \ac{e2e} tests with and without instrumentation on them.
+We collected the information form these runs to judge the impact of the instrumentation on the \ac{e2e} tests.
+
+\feedback{Fabian Leinen: Zusammenfassend gibt es ja drei Subjects zum Evaluieren: ArTEMiS Live, ArTEMiS Historic, n8n historic. Da musst du glaube ich drauf achten, dass es hier so klar wird und in der Results Section muss klar sein, was du womit beantwortest.}
 
 \section{Evaluation Results}
 In this section we show the quantitaive results of our evaluation.
 You can find the qualitative discussion in \cref{discussion}.
 \subsection{\texorpdfstring{RQ\textsubscript{1}:}{RQ1:} How effective is the adapted DeFlaker approach in identifying flaky failures in \acs{ui} \acs{e2e} tests?}
 \TODO{Review the gathered data for both case studies}
+To answer \textbf{\ac{rq}\textsubscript{1}} we look at both, the \textsc{ArTEMiS} and \textsc{n8n} case studies.
 \subsection{\texorpdfstring{RQ\textsubscript{2}:}{RQ2:} What impact does the instrumentation have on the behaviour of the application and tests?}
+To answer \textbf{\ac{rq}\textsubscript{2}} we look at the \textsc{n8n} case study.
+As described in \cref{evaluation_n8n}, we ran the \ac{e2e} tests with and without instrumentation on the 25 latest commits.
 \subsubsection{\texorpdfstring{RQ\textsubscript{2.1}:}{RQ2.1:} To what extent does instrumentation impact the temporal behavior of the application during \acs{e2e} testing?}
 You can review the full table of testcases that failed during our evaluation in \cref{behaviour_change_results}.
 
 \subsubsection{\texorpdfstring{RQ\textsubscript{2.2}:}{RQ2.2:} How does the instrumentation of coverage collection affect the failure rate of \acs{e2e} tests in the studied projects?}
+Or experiment shows that the instrumentation of coverage collection does not have a significant impact on the failure rate of \acs{e2e} tests.
+As you can see in \cref{failure_rate_results}, the failure rate of the \ac{e2e} tests is almost identical for both runs.
+We also collected the failure rate on a testcase level and compared the results.
+As you can see in \cref{testacse_results}, the failure rate of the testcases is also almost identical for both runs.
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/runResults.csv}
 	\caption{Statistics of the evaluation runs}
-	\label[table]{runResults}
+	\label[table]{failure_rate_results}
 \end{table}
 
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/testcaseResults.csv}
 	\caption{Statistics of testcase results during evaluation}
-	\label[table]{testResults}
+	\label[table]{testacse_results}
 \end{table}
 \TODO{Review the gathered data for both case studies}
 
