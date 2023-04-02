@@ -259,6 +259,43 @@ console.log(
   `${percentageOfFailedTestcasesInstrumented}% of testcases have failed at least once when instrumented`
 );
 
+const averageDurationPassed = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.results.passed > 0)
+  .map((testcase) => testcase.averageDuration)
+  .mean()
+  .value();
+
+const averageDurationPassedInstrumented = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.resultsInstrumented.passed > 0)
+  .map((testcase) => testcase.averageDurationInstrumented)
+  .mean()
+  .value();
+
+const averageDurationFailed = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.results.failed > 0)
+  .map((testcase) => testcase.averageDuration)
+  .mean()
+  .value();
+
+const averageDurationFailedInstrumented = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.resultsInstrumented.failed > 0)
+  .map((testcase) => testcase.averageDurationInstrumented)
+  .mean()
+  .value();
+
+
+  const csvDurationTable = [
+    ['Result', 'Duration (ms)', 'Instrumented Duration (ms)'],
+    ['Passed', averageDurationPassed, averageDurationPassedInstrumented],
+    ['Failed', averageDurationFailed, averageDurationFailedInstrumented],
+  ]
+
+  jetpack.write('../thesis/data/durationResults.csv', stringify(csvDurationTable));
+
 // Build a table with counts of successful, failed and skipped testcases instrumented and non-instrumented
 
 const table: {
@@ -322,11 +359,11 @@ console.table(table2);
 const csvTable2 = [
   ["Result", "Instrumented", "Non Instrumented"],
   [
-    "successful",
+    "Passed",
     table2.successful.instrumented,
     table2.successful.nonInstrumented,
   ],
-  ["failed", table2.failed.instrumented, table2.failed.nonInstrumented],
+  ["Failed", table2.failed.instrumented, table2.failed.nonInstrumented],
 ];
 
 jetpack.write("../thesis/data/runResults.csv", stringify(csvTable2));
