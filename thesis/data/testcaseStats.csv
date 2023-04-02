@@ -1,6 +1,8 @@
 {name},{durationIncrease},{failed},{failedInstrumented},{passed},{passedInstrumented}
-{Schedule Trigger node should execute once per second when activated},{29},{0},{1},{36},{35}
-{Webhook Trigger node should listen for a DELETE request},{8},{0},{1},{36},{35}
-{Webhook Trigger node should listen for a GET request with Basic Authentication},{82},{0},{1},{36},{35}
-{Workflow tags should detach a tag inline by clicking on X on tag pill},{48},{1},{2},{35},{34}
-{Workflow tags should detach a tag inline by clicking on dropdown list item},{47},{1},{2},{35},{34}
+{Workflow tags should delete a tag via modal},{-18},{1},{0},{86},{87}
+{Credentials should delete credentials from NDV},{18},{1},{0},{86},{87}
+{Schedule Trigger node should execute once per second when activated},{4},{1},{1},{86},{86}
+{Webhook Trigger node should listen for a DELETE request},{8},{0},{1},{87},{86}
+{Webhook Trigger node should listen for a GET request with Basic Authentication},{60},{0},{1},{87},{86}
+{Workflow tags should detach a tag inline by clicking on X on tag pill},{24},{2},{3},{85},{84}
+{Workflow tags should detach a tag inline by clicking on dropdown list item},{61},{2},{5},{85},{82}
