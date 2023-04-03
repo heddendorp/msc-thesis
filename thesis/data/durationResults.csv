@@ -1,0 +1,3 @@
+Result,Duration (ms),Instrumented Duration (ms)
+Passed,6745.491935483871,7662.330645161291
+Failed,7894.4,9558

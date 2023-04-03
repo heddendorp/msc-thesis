@@ -468,7 +468,12 @@ To answer \textbf{\ac{rq}\textsubscript{2}} we look at the \textsc{n8n} case stu
 As described in \cref{evaluation_n8n}, we ran the \ac{e2e} tests with and without instrumentation on the 25 latest commits.
 \subsubsection{\texorpdfstring{RQ\textsubscript{2.1}:}{RQ2.1:} To what extent does instrumentation impact the temporal behavior of the application during \acs{e2e} testing?}
 You can review the full table of testcases that failed during our evaluation in \cref{behaviour_change_results}.
-
+\begin{table}[h]
+	\centering
+	\csvautobooktabular{data/durationResults.csv}
+	\caption{Average testcase duration for the \ac{e2e} tests with and without instrumentation}
+	\label[table]{duration_results}
+\end{table}
 \subsubsection{\texorpdfstring{RQ\textsubscript{2.2}:}{RQ2.2:} How does the instrumentation of coverage collection affect the failure rate of \acs{e2e} tests in the studied projects?}
 Or experiment shows that the instrumentation of coverage collection does not have a significant impact on the failure rate of \acs{e2e} tests.
 As you can see in \cref{failure_rate_results}, the failure rate of the \ac{e2e} tests is almost identical for both runs.
@@ -539,8 +544,6 @@ As you can see in \cref{testacse_results}, the failure rate of the testcases is 
 \appendix
 
 \chapter[Behaviour change results]{Extensive results for the behaviour change evaluation}\label[appendix]{behaviour_change_results}
-
-\csvautobooktabular{data/runResults.csv}
 
 \begin{adjustbox}{max width=\textwidth, caption={Statistics of testcase results during evaluation}, float=table}
 	\begin{tabular}{@{}lrrrrr@{}} \toprule

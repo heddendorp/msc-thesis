@@ -34,6 +34,7 @@
 \usepackage{float}
 \usepackage{floatflt}
 % \usepackage{fancyhdr}
+\usepackage{siunitx}
 \usepackage{color}
 \usepackage{booktabs}
 \usepackage[final]{microtype}
@@ -60,6 +61,7 @@
 \setkomafont{disposition}{\normalfont\bfseries} % use serif font for headings
 \linespread{1.05} % adjust line spread for mathpazo font
 
+\sisetup{round-mode = places, round-precision = 2, round-integer-to-decimal}
 
 % Add table of contents to PDF bookmarks
 \BeforeTOCHead[toc]{{\cleardoublepage\pdfbookmark[0]{\contentsname}{toc}}}
