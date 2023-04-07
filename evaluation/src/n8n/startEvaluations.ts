@@ -146,6 +146,20 @@ if (
 }
 
 // Get analysis results for finished runs
+const lineResultsSum = {
+  truePositives: 0,
+  falsePositives: 0,
+  trueNegatives: 0,
+  falseNegatives: 0,
+};
+
+const fileResultsSum = {
+  truePositives: 0,
+  falsePositives: 0,
+  trueNegatives: 0,
+  falseNegatives: 0,
+};
+
 const analysisRuns = runs.map(async (run) => {
   const commit = run.name?.split("-")[1].split("➡️")[0].trim();
   if (!commit) {
@@ -162,9 +176,29 @@ const analysisRuns = runs.map(async (run) => {
     (artifact) => artifact.name === "coverage-analysis"
   );
 
+  if (run.status !== "completed") {
+    return {
+      runId: run.id,
+      commit,
+      error: "run not completed",
+    };
+  }
+
+  if (run.conclusion === "success") {
+    return {
+      runId: run.id,
+      commit,
+      passed: true,
+    };
+  }
+
   if (!artifact) {
     console.log("no artifact found");
-    return;
+    return {
+      runId: run.id,
+      commit,
+      error: "no artifact found",
+    };
   }
 
   const downloadResponse = await octokit.rest.actions.downloadArtifact({
@@ -202,20 +236,81 @@ const analysisRuns = runs.map(async (run) => {
     console.log("no candidate found");
     return;
   }
-  const lineResults = json.runs[0].lineCheck.testResults.map((result: any) => {
-    return {
-      test: result.testName,
-      flaky: result.changedFiles.lenght > 0,
-      falkyFile: result.changedFileLevel.lenght > 0,
-    };
-  });
+  const lineResults: { test: string; flaky: boolean; flakyFile: boolean }[] =
+    json.runs[0].lineCheck.testResults.map((result: any) => {
+      return {
+        test: result.testName,
+        flaky: result.changedFiles.length === 0,
+        flakyFile: result.changedFileLevel.length === 0,
+      };
+    });
   // console.log(json.runs[0].lineCheck.testResults);
+  // console.log(json.runs[0].lineCheck.testResults[0].changedFiles.length);
+  // console.log(json.runs[0].lineCheck.testResults[0].changedFiles.length>0);
 
-  console.log(candidate.failingTestcases);
-  console.log(lineResults);
+  // console.log(candidate.failingTestcases);
+  // console.log(lineResults);
+
+  const result = {
+    runId: run.id,
+    commit,
+    lineResults: {
+      truePostives: lineResults.filter(
+        (result) =>
+          !candidate.failingTestcases.includes(result.test) && result.flaky
+      ).length,
+      falseNegatives: lineResults.filter(
+        (result) =>
+          !candidate.failingTestcases.includes(result.test) && !result.flaky
+      ).length,
+      trueNegatives: lineResults.filter(
+        (result) =>
+          candidate.failingTestcases.includes(result.test) && !result.flaky
+      ).length,
+      falsePositives: lineResults.filter(
+        (result) =>
+          candidate.failingTestcases.includes(result.test) && result.flaky
+      ).length,
+    },
+    fileResults: {
+      truePostives: lineResults.filter(
+        (result) =>
+          !candidate.failingTestcases.includes(result.test) && result.flakyFile
+      ).length,
+      falseNegatives: lineResults.filter(
+        (result) =>
+          !candidate.failingTestcases.includes(result.test) && !result.flakyFile
+      ).length,
+      trueNegatives: lineResults.filter(
+        (result) =>
+          candidate.failingTestcases.includes(result.test) && !result.flakyFile
+      ).length,
+      falsePositives: lineResults.filter(
+        (result) =>
+          candidate.failingTestcases.includes(result.test) && result.flakyFile
+      ).length,
+    },
+  };
+
+  lineResultsSum.truePositives += result.lineResults.truePostives;
+  lineResultsSum.falsePositives += result.lineResults.falsePositives;
+  lineResultsSum.trueNegatives += result.lineResults.trueNegatives;
+  lineResultsSum.falseNegatives += result.lineResults.falseNegatives;
+
+  fileResultsSum.truePositives += result.fileResults.truePostives;
+  fileResultsSum.falsePositives += result.fileResults.falsePositives;
+  fileResultsSum.trueNegatives += result.fileResults.trueNegatives;
+  fileResultsSum.falseNegatives += result.fileResults.falseNegatives;
+
+  return result;
 });
 
-await Promise.all(analysisRuns);
+const evaluation = await Promise.all(analysisRuns);
+
+console.log("evaluation", evaluation);
+console.log("lineResultsSum", lineResultsSum);
+console.log("fileResultsSum", fileResultsSum);
+console.log("runs", runs.length);
 
 // throw new Error("done");
 
@@ -259,11 +354,12 @@ const actionStarts = db.chain
           compare: candidate.firstSuccessfulParent,
         },
       });
+      break;
     }
   })
   .value();
 
-if(launchNewRuns) {
+if (launchNewRuns) {
   await Promise.all(actionStarts);
 }
 

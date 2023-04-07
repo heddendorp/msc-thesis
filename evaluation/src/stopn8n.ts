@@ -7,8 +7,8 @@ const octokit = new Octokit({
 });
 
 const deleteAll = true;
-// const workflow_id = "e2e-eval.yml";
-const workflow_id = "e2e-historic.yml";
+const workflow_id = "e2e-eval.yml";
+// const workflow_id = "e2e-historic.yml";
 
 async function run() {
   const runs = (
@@ -42,9 +42,7 @@ async function run() {
 
   console.log("runs", runs.length);
 
-  for (const run of runs.filter((run) =>
-    run.name?.includes("establishHostedTimings")
-  )) {
+  for (const run of runs) {
     console.log(run.id);
     if (["in_progress", "queued"].includes(run.status ?? "")) {
       await octokit.rest.actions.cancelWorkflowRun({

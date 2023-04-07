@@ -10,6 +10,8 @@ import { JSONFile } from "lowdb/node";
 import { stringify } from "csv/sync";
 import jetpack from "fs-jetpack";
 
+const toLatexNum = (num) => `\\num{${num}}`;
+
 type Data = {
   baseLine: {
     commits: {
@@ -287,14 +289,16 @@ const averageDurationFailedInstrumented = db.chain
   .mean()
   .value();
 
+const csvDurationTable = [
+  ["Result", "Duration (ms)", "Instrumented Duration (ms)"],
+  ["Passed", toLatexNum(averageDurationPassed), toLatexNum(averageDurationPassedInstrumented)],
+  ["Failed", toLatexNum(averageDurationFailed), toLatexNum(averageDurationFailedInstrumented)],
+];
 
-  const csvDurationTable = [
-    ['Result', 'Duration (ms)', 'Instrumented Duration (ms)'],
-    ['Passed', averageDurationPassed, averageDurationPassedInstrumented],
-    ['Failed', averageDurationFailed, averageDurationFailedInstrumented],
-  ]
-
-  jetpack.write('../thesis/data/durationResults.csv', stringify(csvDurationTable));
+jetpack.write(
+  "../thesis/data/durationResults.csv",
+  stringify(csvDurationTable)
+);
 
 // Build a table with counts of successful, failed and skipped testcases instrumented and non-instrumented
 
@@ -321,9 +325,9 @@ console.table(table);
 
 const csvTable = [
   ["Result", "Instrumented", "Non-Instrumented"],
-  ["Passed", table.passed.instrumented, table.passed.nonInstrumented],
-  ["Failed", table.failed.instrumented, table.failed.nonInstrumented],
-  ["Skipped", table.skipped.instrumented, table.skipped.nonInstrumented],
+  ["Passed", toLatexNum(table.passed.instrumented), toLatexNum(table.passed.nonInstrumented)],
+  ["Failed", toLatexNum(table.failed.instrumented), toLatexNum(table.failed.nonInstrumented)],
+  ["Skipped", toLatexNum(table.skipped.instrumented), toLatexNum(table.skipped.nonInstrumented)],
 ];
 
 jetpack.write("../thesis/data/testcaseResults.csv", stringify(csvTable));
@@ -358,12 +362,8 @@ console.table(table2);
 
 const csvTable2 = [
   ["Result", "Instrumented", "Non Instrumented"],
-  [
-    "Passed",
-    table2.successful.instrumented,
-    table2.successful.nonInstrumented,
-  ],
-  ["Failed", table2.failed.instrumented, table2.failed.nonInstrumented],
+  ["Passed", toLatexNum(table2.successful.instrumented), toLatexNum(table2.successful.nonInstrumented)],
+  ["Failed", toLatexNum(table2.failed.instrumented), toLatexNum(table2.failed.nonInstrumented)],
 ];
 
 jetpack.write("../thesis/data/runResults.csv", stringify(csvTable2));
@@ -383,19 +383,18 @@ const table3 = db.chain
       // averageDurationInstrumented: testcase.averageDurationInstrumented,
       // averageDurationDifference:
       //   testcase.averageDurationInstrumented - testcase.averageDuration,
-      durationIncrease:
-        percentage(
-          testcase.averageDurationInstrumented - testcase.averageDuration,
-          testcase.averageDuration
-        ),
+      durationIncrease: toLatexNum(percentage(
+        testcase.averageDurationInstrumented - testcase.averageDuration,
+        testcase.averageDuration
+      )),
       // numberOfRuns: testcase.results.passed + testcase.results.failed,
       // numberOfRunsInstrumented:
       //   testcase.resultsInstrumented.passed +
       //   testcase.resultsInstrumented.failed,
-      failed: testcase.results.failed,
-      failedInstrumented: testcase.resultsInstrumented.failed,
-      passed: testcase.results.passed,
-      passedInstrumented: testcase.resultsInstrumented.passed,
+      failed: toLatexNum(testcase.results.failed),
+      failedInstrumented: toLatexNum(testcase.resultsInstrumented.failed),
+      passed: toLatexNum(testcase.results.passed),
+      passedInstrumented: toLatexNum(testcase.resultsInstrumented.passed),
       // percentageOfFailedRuns: percentage(
       //   testcase.results.failed,
       //   testcase.results.passed + testcase.results.failed

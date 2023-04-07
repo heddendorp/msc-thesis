@@ -223,7 +223,7 @@ const downloads = commits
     await Promise.all(runDownloads);
   });
 
-// await Promise.all(downloads);
+await Promise.all(downloads);
 
 interface Candidate {
   sha: string;
