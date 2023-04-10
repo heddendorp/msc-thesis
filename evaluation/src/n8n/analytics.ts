@@ -10,7 +10,7 @@ import { JSONFile } from "lowdb/node";
 import { stringify } from "csv/sync";
 import jetpack from "fs-jetpack";
 
-const toLatexNum = (num) => `\\num{${num}}`;
+const toLatexNum = (num:any) => `\\num{${num}}`;
 
 type Data = {
   baseLine: {

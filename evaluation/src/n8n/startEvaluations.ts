@@ -8,11 +8,14 @@ import { promisify } from "util";
 import { pipeline } from "stream";
 import jetpack from "fs-jetpack";
 import { Extract } from "unzip-stream";
+import { stringify } from "csv/sync";
 
 import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const streamPipeline = promisify(pipeline);
+
+const toLatexNum = (num: any) => `\\num{${num}}`;
 
 type Data = {
   baseLine: {
@@ -311,6 +314,67 @@ console.log("evaluation", evaluation);
 console.log("lineResultsSum", lineResultsSum);
 console.log("fileResultsSum", fileResultsSum);
 console.log("runs", runs.length);
+
+const linePrecision =
+  lineResultsSum.truePositives /
+  (lineResultsSum.truePositives + lineResultsSum.falsePositives);
+const lineRecall =
+  lineResultsSum.truePositives /
+  (lineResultsSum.truePositives + lineResultsSum.falseNegatives);
+const lineF1 =
+  (2 * (linePrecision * lineRecall)) / (linePrecision + lineRecall);
+
+const filePrecision =
+  fileResultsSum.truePositives /
+  (fileResultsSum.truePositives + fileResultsSum.falsePositives);
+const fileRecall =
+  fileResultsSum.truePositives /
+  (fileResultsSum.truePositives + fileResultsSum.falseNegatives);
+const fileF1 =
+  (2 * (filePrecision * fileRecall)) / (filePrecision + fileRecall);
+
+const resultsCsv = [
+  [
+    "True Positives",
+    "False Positives",
+    "True Negatives",
+    "False Negatives",
+    "Precision",
+    "Recall",
+    "F1",
+  ],
+  [
+    "Line coverage",
+    ...[
+      lineResultsSum.truePositives,
+      lineResultsSum.falsePositives,
+      lineResultsSum.trueNegatives,
+      lineResultsSum.falseNegatives,
+      linePrecision,
+      lineRecall,
+      lineF1,
+    ].map((num) => toLatexNum(num)),
+  ],
+  [
+    "File coverage",
+    ...[
+      fileResultsSum.truePositives,
+      fileResultsSum.falsePositives,
+      fileResultsSum.trueNegatives,
+      fileResultsSum.falseNegatives,
+      filePrecision,
+      fileRecall,
+      fileF1,
+    ].map((num) => toLatexNum(num)),
+  ],
+];
+
+jetpack.write(
+  "../thesis/data/evaluationResult.csv",
+  stringify(resultsCsv, { quoted: true })
+    .replace(/(?<=^|,)"/gm, "{")
+    .replace(/"(?=$|,)/gm, "}")
+);
 
 // throw new Error("done");
 
