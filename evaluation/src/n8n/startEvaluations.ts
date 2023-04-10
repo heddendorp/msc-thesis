@@ -354,7 +354,7 @@ const actionStarts = db.chain
           compare: candidate.firstSuccessfulParent,
         },
       });
-      break;
+      // break;
     }
   })
   .value();

@@ -19310,9 +19310,27 @@
   },
   "candidates": [
     {
+      "sha": "b4a72be92c9b19295225d575c19227f285ebe283",
+      "branch": "pay-144-duplicate-key-value-violates-unique",
+      "firstSuccessfulParent": "744c3fd21130b6ee3c722df3fab096b169fd0ff8",
+      "failingTestcases": []
+    },
+    {
       "sha": "2ca2cc4d71c6be86d3ee8b62898c3cf393c51fb8",
       "branch": "pay-144-duplicate-key-value-violates-unique",
       "firstSuccessfulParent": "b4a72be92c9b19295225d575c19227f285ebe283",
+      "failingTestcases": []
+    },
+    {
+      "sha": "c83c7f0a199918b30cb3a5518f03f9f12eb784a1",
+      "branch": "node-237-add-info-box-at-top-of-date-and-time",
+      "firstSuccessfulParent": "744c3fd21130b6ee3c722df3fab096b169fd0ff8",
+      "failingTestcases": []
+    },
+    {
+      "sha": "ae61ea2ac8f71c41b6ba0577518bf4cba565a041",
+      "branch": "ado-499-variable-selector-empty-when-following-a",
+      "firstSuccessfulParent": "744c3fd21130b6ee3c722df3fab096b169fd0ff8",
       "failingTestcases": []
     },
     {
