@@ -430,7 +430,7 @@ Should there be a difference in the failed tests, we can conclude that the instr
 \subsection{n8n (GitHub)} \label[section]{evaluation_n8n}
 \TODO{Explain the setup of the n8n CI pipeline}
 \TODO{Fork for historic evaluation}
-\TODO{Issues with GithHub Runners due to memory limitations}
+\TODO{Issues with GitHub Runners due to memory limitations}
 \TODO{Issues with tests after switching to chrome, exclusion of tests that did not pass in three runs}
 \TODO{Setup of historic evaluation with baseline and comparisons}
 \TODO{Explain the timing baseline collected on hosted runners}
@@ -458,11 +458,19 @@ We collected the information form these runs to judge the impact of the instrume
 \feedback{Fabian Leinen: Zusammenfassend gibt es ja drei Subjects zum Evaluieren: ArTEMiS Live, ArTEMiS Historic, n8n historic. Da musst du glaube ich drauf achten, dass es hier so klar wird und in der Results Section muss klar sein, was du womit beantwortest.}
 
 \section{Evaluation Results}
-In this section we show the quantitaive results of our evaluation.
+In this section we show the quantitative results of our evaluation.
 You can find the qualitative discussion in \cref{discussion}.
 \subsection{\texorpdfstring{RQ\textsubscript{1}:}{RQ1:} How effective is the adapted DeFlaker approach in identifying flaky failures in \acs{ui} \acs{e2e} tests?}
 \TODO{Review the gathered data for both case studies}
 To answer \textbf{\ac{rq}\textsubscript{1}} we look at both, the \textsc{ArTEMiS} and \textsc{n8n} case studies.
+\begin{table}[h]
+	\centering
+	\begin{adjustbox}{width=\textwidth, totalheight=\textheight, keepaspectratio}
+		\csvautobooktabular{data/evaluationResult.csv}
+	\end{adjustbox}
+	\caption{Results of running the evaluation against the baseline}
+	\label[table]{n8n_evaluation_results}
+\end{table}
 \subsection{\texorpdfstring{RQ\textsubscript{2}:}{RQ2:} What impact does the instrumentation have on the behaviour of the application and tests?}
 To answer \textbf{\ac{rq}\textsubscript{2}} we look at the \textsc{n8n} case study.
 As described in \cref{evaluation_n8n}, we ran the \ac{e2e} tests with and without instrumentation on the 25 latest commits.

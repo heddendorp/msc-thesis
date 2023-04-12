@@ -1,8 +1,8 @@
 {name},{durationIncrease},{failed},{failedInstrumented},{passed},{passedInstrumented}
-{Workflow tags should delete a tag via modal},{-18},{1},{0},{86},{87}
-{Credentials should delete credentials from NDV},{18},{1},{0},{86},{87}
-{Schedule Trigger node should execute once per second when activated},{4},{1},{1},{86},{86}
-{Webhook Trigger node should listen for a DELETE request},{8},{0},{1},{87},{86}
-{Webhook Trigger node should listen for a GET request with Basic Authentication},{60},{0},{1},{87},{86}
-{Workflow tags should detach a tag inline by clicking on X on tag pill},{24},{2},{3},{85},{84}
-{Workflow tags should detach a tag inline by clicking on dropdown list item},{61},{2},{5},{85},{82}
+{Workflow tags should delete a tag via modal},{\num{-18}},{\num{1}},{\num{0}},{\num{86}},{\num{87}}
+{Credentials should delete credentials from NDV},{\num{18}},{\num{1}},{\num{0}},{\num{86}},{\num{87}}
+{Schedule Trigger node should execute once per second when activated},{\num{4}},{\num{1}},{\num{1}},{\num{86}},{\num{86}}
+{Webhook Trigger node should listen for a DELETE request},{\num{8}},{\num{0}},{\num{1}},{\num{87}},{\num{86}}
+{Webhook Trigger node should listen for a GET request with Basic Authentication},{\num{60}},{\num{0}},{\num{1}},{\num{87}},{\num{86}}
+{Workflow tags should detach a tag inline by clicking on X on tag pill},{\num{24}},{\num{2}},{\num{3}},{\num{85}},{\num{84}}
+{Workflow tags should detach a tag inline by clicking on dropdown list item},{\num{61}},{\num{2}},{\num{5}},{\num{85}},{\num{82}}
