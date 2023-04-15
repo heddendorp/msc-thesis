@@ -734,6 +734,31 @@ cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+csv-generate@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/csv-generate/-/csv-generate-4.2.2.tgz#b0ae1dca9f608fb8dfbb9df32949652d8f583ade"
+  integrity sha512-Ah/NcMxHMqwQsuL173yp8EOzHrbLh8iyScqTy990b+TJZNjHhy7gs5FfSmyQ2arLC2QVrueO3DYJVQnibJB3WQ==
+
+csv-parse@^5.3.6:
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-5.3.6.tgz#181d7c12300a60684bb51261ea9a5c3135ba8688"
+  integrity sha512-WI330GjCuEioK/ii8HM2YE/eV+ynpeLvU+RXw4R8bRU8R0laK5zO3fDsc4gH8s472e3Ga38rbIjCAiQh+tEHkw==
+
+csv-stringify@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-6.3.0.tgz#21ae523c5c0b25f16d8625bde45dc1b4b5b77eb0"
+  integrity sha512-kTnnBkkLmAR1G409aUdShppWUClNbBQZXhrKrXzKYBGw4yfROspiFvVmjbKonCrdGfwnqwMXKLQG7ej7K/jwjg==
+
+csv@^6.2.8:
+  version "6.2.8"
+  resolved "https://registry.yarnpkg.com/csv/-/csv-6.2.8.tgz#0eb831a4e0c64794ccd2990e5ddb5148b22d57a0"
+  integrity sha512-QGemEqFr5XgbHcufWwO+qnReFhClbd+6WywKDVqEXmRfGrJHl5fRrlphZUnsky2YAwcCxYJJilPUfaWbuBMfWA==
+  dependencies:
+    csv-generate "^4.2.2"
+    csv-parse "^5.3.6"
+    csv-stringify "^6.3.0"
+    stream-transform "^3.2.2"
+
 debug@4, debug@4.3.4, debug@^4.1.1, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
@@ -1357,6 +1382,11 @@ steno@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/steno/-/steno-3.0.0.tgz"
   integrity sha512-uZtn7Ht9yXLiYgOsmo8btj4+f7VxyYheMt8g6F1ANjyqByQXEE2Gygjgenp3otHH1TlHsS4JAaRGv5wJ1wvMNw==
+
+stream-transform@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/stream-transform/-/stream-transform-3.2.2.tgz#3d6083d6582eddac233645fcee574fc56ebeb184"
+  integrity sha512-DHZQPNxvjU2qdQlGcpitn8pkJHQVTqdshtgXaLz6Vc5VCAognbGuuwGS5ugeqGVnyw8j4h89QcV8cwm0D1+V0A==
 
 streamsearch@^1.1.0:
   version "1.1.0"
