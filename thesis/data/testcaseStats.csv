@@ -1,63 +1,8 @@
 {name},{durationIncrease},{failed},{failedInstrumented},{passed},{passedInstrumented}
-{Workflows should create a new workflow using empty state card},{12},{0},{1},{40},{39}
-{Credentials should correctly render required and optional credentials},{35},{0},{1},{40},{33}
-{Community Nodes should render and select community node},{25},{0},{1},{40},{35}
-{Default owner should be able to create workflows},{43},{0},{1},{40},{35}
-{Default owner should be able to add new credentials},{44},{0},{1},{40},{35}
-{Default owner should be able to setup UM from settings},{145},{0},{1},{40},{35}
-{Node Creator should open node creator on trigger tab if no trigger is on canvas},{49},{0},{1},{40},{35}
-{Code node should execute the placeholder in all-items mode successfully},{41},{0},{1},{40},{35}
-{Code node should execute the placeholder in each-item mode successfully},{40},{0},{1},{40},{35}
-{Workflows should create multiple new workflows using add workflow button},{11},{0},{2},{40},{38}
-{Workflows should search for a workflow},{125},{0},{2},{40},{38}
-{Workflows should delete all the workflows},{82},{0},{2},{40},{38}
-{Credentials should create a new credential using Add Credential button},{40},{0},{2},{40},{32}
-{Credentials should search credentials},{152},{0},{2},{40},{32}
-{Credentials should sort credentials},{175},{0},{2},{40},{32}
-{Credentials should create credentials from NDV for node with multiple auth options},{34},{0},{2},{40},{32}
-{Credentials should create credentials from NDV for node with no auth options},{40},{0},{2},{40},{32}
-{Credentials should setup generic authentication for HTTP node},{56},{0},{2},{40},{32}
-{Default owner should be able to setup instance and migrate workflows and credentials},{114},{0},{2},{40},{34}
-{Default owner can click back to main menu and have migrated credential after setup},{112},{0},{2},{40},{34}
-{HTTP Request node should make a request with a URL and receive a response},{65},{0},{2},{40},{34}
-{Webhook Trigger node should listen for a PATCH request},{38},{0},{3},{40},{32}
-{Webhook Trigger node should listen for a GET request and respond with Respond to Webhook node},{8},{0},{3},{40},{32}
-{Webhook Trigger node should listen for a GET request and respond custom status code 201},{34},{0},{3},{40},{32}
-{Webhook Trigger node should listen for a GET request and respond with last node binary data},{15},{0},{3},{40},{32}
-{Sharing should invite User U2 and User U3 to instance},{46},{0},{3},{40},{33}
-{Workflow tags should create tags via modal},{184},{0},{3},{40},{31}
-{Credentials should show multiple credential types in the same dropdown},{60},{0},{3},{40},{31}
-{Webhook Trigger node should listen for a DELETE request},{33},{0},{4},{40},{31}
-{Sharing should create C1, W1, W2, share W1 with U3, as U2},{43},{0},{4},{40},{32}
-{Sharing should create C2, share C2 with U1 and U2, as U3},{94},{0},{4},{40},{32}
-{Sharing should not have access to W2, as U3},{282},{0},{4},{40},{32}
-{User Management should allow user to change their personal data},{598},{0},{4},{40},{32}
-{User Management shouldn't allow user to set weak password},{236},{0},{4},{40},{32}
-{User Management shouldn't allow user to change password if old password is wrong},{490},{0},{4},{40},{32}
-{Credentials should create a new credential using empty state},{63},{0},{4},{40},{32}
-{Sharing should open W1, add node using C2 as U3},{184},{0},{5},{40},{31}
-{Sharing should have access to W1, W2, as U1},{133},{0},{5},{40},{31}
-{User Management should invite User B and User C to instance},{83},{0},{5},{40},{31}
-{User Management should allow instance owner to access UM settings},{281},{0},{5},{40},{31}
-{User Management should properly render UM settings page for instance owners},{350},{0},{5},{40},{31}
-{Webhook Trigger node should listen for a POST request},{24},{0},{6},{40},{29}
-{Webhook Trigger node should listen for a PUT request},{33},{0},{6},{40},{29}
-{User Management should delete user and transfer their data},{394},{0},{6},{40},{30}
-{Webhook Trigger node should listen for a GET request and respond with last node},{15},{0},{7},{40},{28}
-{Webhook Trigger node should listen for a GET request},{82},{0},{8},{40},{31}
-{Webhook Trigger node should listen for a GET request and respond with an empty body},{34},{0},{8},{40},{27}
-{User Management should prevent non-owners to access UM settings},{333},{0},{8},{40},{28}
-{User Management should delete user and their data},{308},{1},{8},{39},{28}
-{User Management should change current user password},{295},{0},{8},{40},{28}
-{User Management shouldn't allow users to set invalid email},{839},{0},{8},{40},{28}
-{Current Workflow Executions should render executions tab correctly},{106},{1},{8},{39},{28}
-{Webhook Trigger node should listen for a HEAD request},{35},{0},{9},{40},{26}
-{User Management should change user email},{403},{0},{9},{40},{27}
-{Credentials should rename credentials from NDV},{264},{0},{12},{40},{22}
-{Webhook Trigger node should listen for a GET request with Header Authentication},{362},{0},{13},{40},{22}
-{Credentials should delete credentials from NDV},{315},{0},{13},{40},{21}
-{Webhook Trigger node should listen for a GET request with Basic Authentication},{367},{0},{15},{40},{20}
-{Schedule Trigger node should execute once per second when activated},{14},{0},{17},{40},{23}
-{Workflow tags should detach a tag inline by clicking on dropdown list item},{1134},{0},{19},{40},{13}
-{Workflow tags should detach a tag inline by clicking on X on tag pill},{1376},{0},{24},{40},{9}
-{Workflow tags should create and attach tags inline},{1293},{0},{34},{40},{2}
+{Workflow tags should delete a tag via modal},{\num{-18}},{\num{1}},{\num{0}},{\num{86}},{\num{87}}
+{Credentials should delete credentials from NDV},{\num{18}},{\num{1}},{\num{0}},{\num{86}},{\num{87}}
+{Schedule Trigger node should execute once per second when activated},{\num{4}},{\num{1}},{\num{1}},{\num{86}},{\num{86}}
+{Webhook Trigger node should listen for a DELETE request},{\num{8}},{\num{0}},{\num{1}},{\num{87}},{\num{86}}
+{Webhook Trigger node should listen for a GET request with Basic Authentication},{\num{60}},{\num{0}},{\num{1}},{\num{87}},{\num{86}}
+{Workflow tags should detach a tag inline by clicking on X on tag pill},{\num{24}},{\num{2}},{\num{3}},{\num{85}},{\num{84}}
+{Workflow tags should detach a tag inline by clicking on dropdown list item},{\num{61}},{\num{2}},{\num{5}},{\num{85}},{\num{82}}

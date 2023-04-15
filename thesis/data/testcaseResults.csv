@@ -1,4 +1,4 @@
 Result,Instrumented,Non-Instrumented
-Passed,4252,4958
-Failed,357,2
-Skipped,94,0
+Passed,\num{10777},\num{10781}
+Failed,\num{11},\num{7}
+Skipped,\num{0},\num{0}

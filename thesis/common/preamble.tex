@@ -4,14 +4,17 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[scaled]{helvet}
+\usepackage{cascadia-code}
+% \usepackage[scaled]{helvet}
+\usepackage[sc]{mathpazo}
+% \usepackage{newcent}
 \usepackage{url}
 % \usepackage{cite}
 \usepackage[ngerman,american]{babel}
 \usepackage[autostyle]{csquotes}
 \usepackage[%
   backend=biber,
-  url=false,
+  url=true,
   style=numeric,
   maxnames=4,
   minnames=3,
@@ -20,8 +23,9 @@
   uniquename=init]{biblatex}
 \usepackage{scrhack} % necessary for listings package
 \usepackage{listings}
+\usepackage{lstautogobble}
 \usepackage[pdftex]{graphicx}
-\usepackage[hang,small,bf]{caption}
+% \usepackage[hang,small,bf]{caption}
 \usepackage{styles/tum}
 \usepackage{tikz}
 \usepackage{setspace}
@@ -30,10 +34,12 @@
 \usepackage{float}
 \usepackage{floatflt}
 % \usepackage{fancyhdr}
+\usepackage{siunitx}
 \usepackage{color}
 \usepackage{booktabs}
 \usepackage[final]{microtype}
-\usepackage[pdftex,bookmarks=true,plainpages=false,pdfpagelabels=true]{hyperref}	%TODO make yourself familiar with \label, \ref and \hyperref for referencing figures, tables, chapters, etc.
+\usepackage{caption}
+\usepackage[pdftex,bookmarks=true,plainpages=false,pdfpagelabels=true,hidelinks]{hyperref}	%TODO make yourself familiar with \label, \ref and \hyperref for referencing figures, tables, chapters, etc.
 \usepackage{mdwlist}
 \usepackage{enumerate}
 \usepackage{array}
@@ -54,7 +60,8 @@
 
 \setkomafont{disposition}{\normalfont\bfseries} % use serif font for headings
 \linespread{1.05} % adjust line spread for mathpazo font
-% \bibliographystyle{acm}
+
+\sisetup{round-mode = places, round-precision = 2}
 
 % Add table of contents to PDF bookmarks
 \BeforeTOCHead[toc]{{\cleardoublepage\pdfbookmark[0]{\contentsname}{toc}}}
@@ -86,6 +93,26 @@
 \addto\extrasngerman{
 	\def\lstnumberautorefname{Zeile}
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom config for code listings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{%
+  numbers=left,
+  showstringspaces=false,
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  autogobble,
+  keywordstyle=\bfseries\color{TUMBlue},
+  stringstyle=\color{TUMAccentBlue},
+  commentstyle=\color{TUMAccentGreen},
+  ndkeywordstyle=\color{TUMDarkGray}\bfseries,
+  captionpos=b,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{TUMAccentGray}{$\hookrightarrow$}\space}
+}
+
+\input{styles/yaml_listing.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Custom Commands for this template
