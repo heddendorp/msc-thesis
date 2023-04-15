@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "baselineUpdate":"npx ts-node-esm src\\n8n\\checkBaseline.ts && npx ts-node-esm src\\n8n\\analytics.ts && npx ts-node-esm src\\n8n\\showBaseline.ts",
-    "baselineExtension":"npx ts-node-esm src\\n8n\\checkBaseline.ts && npx ts-node-esm src\\n8n\\triggerActions.ts",
-    "timingUpdate":"npx ts-node-esm src\\n8n\\checkTiming.ts && npx ts-node-esm src\\n8n\\analytics.ts"
+    "baselineUpdate": "npx ts-node-esm src\\n8n\\checkBaseline.ts && npx ts-node-esm src\\n8n\\analytics.ts && npx ts-node-esm src\\n8n\\showBaseline.ts",
+    "baselineExtension": "npx ts-node-esm src\\n8n\\checkBaseline.ts && npx ts-node-esm src\\n8n\\triggerActions.ts",
+    "timingUpdate": "npx ts-node-esm src\\n8n\\checkTiming.ts && npx ts-node-esm src\\n8n\\analytics.ts"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +26,7 @@
   "dependencies": {
     "@mermaid-js/mermaid-cli": "^10.0.2",
     "@whatwg-node/fetch": "^0.6.1",
+    "csv": "^6.2.8",
     "execa": "^7.1.1",
     "fast-xml-parser": "^4.0.13",
     "fs-jetpack": "^5.1.0",

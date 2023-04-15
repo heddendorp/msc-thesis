@@ -99,7 +99,7 @@ db.data.timings ||= { runs: [], testcases: [] };
 db.data.candidates ||= [];
 db.data.results ||= [];
 
-const targetRunNumber = 6;
+const targetRunNumber = 10;
 
 if (!db.data) {
   throw new Error("no data");
