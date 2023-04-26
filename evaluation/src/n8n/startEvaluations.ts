@@ -3,77 +3,20 @@ dotenv.config();
 import { Octokit } from "octokit";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import lodash from "lodash";
 import { promisify } from "util";
 import { pipeline } from "stream";
 import jetpack from "fs-jetpack";
 import { Extract } from "unzip-stream";
-import { stringify } from "csv/sync";
+const {stringify} = require('csv/dist/cjs/sync.cjs');
 
-import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
+import { Data, LowWithLodash } from "./db-model.js";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const streamPipeline = promisify(pipeline);
 
 const toLatexNum = (num: any) => `\\num{${num}}`;
 
-type Data = {
-  baseLine: {
-    commits: {
-      sha: string;
-      parent: string;
-      branch: string;
-      successful: boolean;
-      runs: {
-        id: number;
-        conclusion: string;
-        installDuration: number;
-        testDuration: number;
-        installConclusion: string;
-        testConclusion: string;
-      }[];
-    }[];
-  };
-  timings: {
-    runs: {
-      id: number;
-      conclusion: string;
-      installDuration: number;
-      testDuration: number;
-      installConclusion: string;
-      testConclusion: string;
-      sha: string;
-      passed: boolean;
-      passedInstrumented: boolean;
-    }[];
-    testcases: {
-      name: string;
-      averageDuration: number;
-      averageDurationInstrumented: number;
-      results: {
-        passed: number;
-        failed: number;
-        skipped: number;
-      };
-      resultsInstrumented: {
-        passed: number;
-        failed: number;
-        skipped: number;
-      };
-    }[];
-  };
-  candidates: {
-    sha: string;
-    branch: string;
-    firstSuccessfulParent: string;
-    failingTestcases: string[];
-  }[];
-  results: {}[];
-};
 
-class LowWithLodash<T> extends Low<T> {
-  chain: lodash.ExpChain<this["data"]> = lodash.chain(this).get("data");
-}
 
 // File path
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -308,9 +251,23 @@ const analysisRuns = runs.map(async (run) => {
   return result;
 });
 
-const evaluation = await Promise.all(analysisRuns);
+let analysedRuns = 0;
+const evaluation =[];
 
-console.log("evaluation", evaluation);
+for(const run of analysisRuns) {
+  const result = await run;
+  if(result) {
+    evaluation.push(result);
+  } else {
+    console.log("no result");
+  }
+  analysedRuns++;
+  console.log(`analysed ${analysedRuns} of ${runs.length}`);
+}
+
+// const evaluation = await Promise.all(analysisRuns);
+
+// console.log("evaluation", evaluation);
 console.log("lineResultsSum", lineResultsSum);
 console.log("fileResultsSum", fileResultsSum);
 console.log("runs", runs.length);
@@ -333,6 +290,12 @@ const fileRecall =
 const fileF1 =
   (2 * (filePrecision * fileRecall)) / (filePrecision + fileRecall);
 
+  const mccScore = (lineResultsSum.truePositives * lineResultsSum.trueNegatives - lineResultsSum.falsePositives * lineResultsSum.falseNegatives) /
+  Math.sqrt((lineResultsSum.truePositives + lineResultsSum.falsePositives) * (lineResultsSum.truePositives + lineResultsSum.falseNegatives) * (lineResultsSum.trueNegatives + lineResultsSum.falsePositives) * (lineResultsSum.trueNegatives + lineResultsSum.falseNegatives));
+
+  const mccScoreFile = (fileResultsSum.truePositives * fileResultsSum.trueNegatives - fileResultsSum.falsePositives * fileResultsSum.falseNegatives) /
+  Math.sqrt((fileResultsSum.truePositives + fileResultsSum.falsePositives) * (fileResultsSum.truePositives + fileResultsSum.falseNegatives) * (fileResultsSum.trueNegatives + fileResultsSum.falsePositives) * (fileResultsSum.trueNegatives + fileResultsSum.falseNegatives));
+
 const resultsCsv = [
   [
     "True Positives",
@@ -342,6 +305,7 @@ const resultsCsv = [
     "Precision",
     "Recall",
     "F1",
+    // "MCC"
   ],
   [
     "Line coverage",
@@ -353,6 +317,7 @@ const resultsCsv = [
       linePrecision,
       lineRecall,
       lineF1,
+      // mccScore
     ].map((num) => toLatexNum(num)),
   ],
   [
@@ -365,6 +330,7 @@ const resultsCsv = [
       filePrecision,
       fileRecall,
       fileF1,
+      // mccScoreFile
     ].map((num) => toLatexNum(num)),
   ],
 ];
@@ -423,8 +389,13 @@ const actionStarts = db.chain
   })
   .value();
 
-if (launchNewRuns) {
-  await Promise.all(actionStarts);
+  let launchedRuns = 0;
+if (false) {
+  for(const actionStart of actionStarts) {
+    await actionStart;
+    launchedRuns++;
+    console.log("launched", launchedRuns, "runs");
+  }
 }
 
 await db.write();

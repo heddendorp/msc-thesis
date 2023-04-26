@@ -22,8 +22,10 @@ type Data = {
       conclusion: string;
       installDuration: number;
       testDuration: number;
+      testInstrumentedDuration: number;
       installConclusion: string;
       testConclusion: string;
+      testInstrumentedConclusion: string;
       sha: string;
       passed: boolean;
       passedInstrumented: boolean;
@@ -122,8 +124,10 @@ const getRunData = async (run: {
   conclusion: string;
   installDuration: number;
   testDuration: number;
+  testInstrumentedDuration: number;
   installConclusion: string;
   testConclusion: string;
+  testInstrumentedConclusion: string;
 }> => {
   const runData = await octokit.rest.actions.listJobsForWorkflowRun({
     owner: "heddendorp",
@@ -133,9 +137,19 @@ const getRunData = async (run: {
   const installJob = runData.data.jobs.find((job) =>
     job.name?.includes("install")
   );
-  const testJob = runData.data.jobs.find((job) =>
-    job.name?.includes("testing")
+  const testRegularJob = runData.data.jobs.find((job) =>
+    job.name?.includes("testing (1, false)")
   );
+  const testInstrumentedJob = runData.data.jobs.find((job) =>
+    job.name?.includes("testing (1, true)")
+  );
+
+  if(!installJob || !testRegularJob || !testInstrumentedJob) {
+    console.log(runData.data.jobs.map(job => job.name));
+    console.log(runData.data.jobs);
+    throw new Error("no job found");
+  }
+
   return {
     id: run.id,
     conclusion: run.conclusion ?? "",
@@ -143,10 +157,14 @@ const getRunData = async (run: {
       new Date(installJob?.completed_at ?? "").getTime() -
       new Date(installJob?.started_at ?? "").getTime(),
     testDuration:
-      new Date(testJob?.completed_at ?? "").getTime() -
-      new Date(testJob?.started_at ?? "").getTime(),
+      new Date(testRegularJob?.completed_at ?? "").getTime() -
+      new Date(testRegularJob?.started_at ?? "").getTime(),
+    testInstrumentedDuration:
+      new Date(testInstrumentedJob?.completed_at ?? "").getTime() -
+      new Date(testInstrumentedJob?.started_at ?? "").getTime(),
     installConclusion: installJob?.conclusion ?? "",
-    testConclusion: testJob?.conclusion ?? "",
+    testConclusion: testRegularJob?.conclusion ?? "",
+    testInstrumentedConclusion: testInstrumentedJob?.conclusion ?? "",
   };
 };
 
@@ -180,9 +198,11 @@ const updateDB = runs
             testDuration: runData.testDuration,
             installConclusion: runData.installConclusion,
             testConclusion: runData.testConclusion,
+            testInstrumentedConclusion: runData.testInstrumentedConclusion,
+            testInstrumentedDuration: runData.testInstrumentedDuration,
             sha: commit,
-            passed: run.conclusion === "success",
-            passedInstrumented: run.conclusion === "success",
+            passed: runData.testConclusion === "success",
+            passedInstrumented: runData.testInstrumentedConclusion === "success",
           })
           .value();
       } else {
@@ -279,7 +299,7 @@ const readReports = db.chain
       "json"
     );
 
-    if(!reportContent || !coverageReportContent) {
+    if (!reportContent || !coverageReportContent) {
       console.log("no report content found");
       return;
     }
@@ -318,7 +338,6 @@ const readReports = db.chain
         coverageTests.push(...suite.tests);
         suite.suites.forEach((suite: any) => {
           coverageTests.push(...suite.tests);
-          
         });
       });
     });

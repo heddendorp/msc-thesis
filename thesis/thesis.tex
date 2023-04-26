@@ -73,8 +73,8 @@
 \TODO{Overview of the ArTEMiS historic data and insight, that all tested fails did eventually pass}
 \TODO{Mention the significant effect cypress rerunning had on ArTEMiS}
 \TODO{Elaborate how this approach is useful in everyday development contrary to flaky test detection}
-\TODO{Talk about the side-effect that failures can be located more easily}
-\TODO{Limitation: does not work if serivice does not start}
+\TODO{Talk about the side effect that failures can be located more easily}
+\TODO{Limitation: does not work if service does not start}
 \TODO{Problems: include bigger issues during development}
 
 %------- chapter 1 -------
@@ -83,24 +83,24 @@
 Software testing is an integral part of the software development process ensuring a system's quality and dependability.
 With the execution of test cases, software testing aims to detect software bugs.
 Test cases are typically assumed to be deterministic, meaning that given the same input, they would always yield the same output.
-In practice, however, test cases can be non-deterministic or \emph{flaky}, \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{sut} or the test itself.
-\Ac{ui} tests, which frequently involve asynchronous activities and limited computer resources, might be especially susceptible to flaky behaviour \autocite{romano_empirical_2021}.
+In practice, however, test cases can be non-deterministic or \emph{flaky}, \autocite{luo_empirical_2014} meaning they can fail intermittently without any modification to the \ac{sut} \todo{Decide on Acronym casing} or the test itself.
+\Ac{ui} tests, which frequently involve asynchronous activities and limited computer resources, might be especially susceptible to flaky behavior \autocite{romano_empirical_2021}.
 
 Flaky tests can waste resources, increase development time and erode confidence in the testing procedure.
-Google reports that about 16\% of thier tests exhibit some level of flakiness \autocite{micco_state_2017}.
+Google reports that about 16\% of their tests exhibit some level of flakiness \autocite{micco_state_2017}.
 Even given the importance of testing, detecting flaky tests is still challenging.
 The most common approach to identify flaky tests is rerunning \autocite{lam_idflakies_2019}.
 However, rerunning has several downsides, such as consuming significant computational resources, generating false positives, and potentially missing certain types of flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
 \feedback{The paragraph does not really describe the point of the thesis, which is to detect flaky failures. Maybe move from flaky tests to flaky failures?}
 
-An important distinction that has to be made is the difference between flaky tests and flaky test failures.
+An important distinction that has to be made is the difference between flaky tests and flaky test failures \todo{Explain flaky failures better}.
 While most research has focused on detecting flaky tests, it is essential to distinguish them from flaky failures.
-\Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when discarding faults of flaky tests.
+\Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when discarding failures of flaky tests.
 Instead, we want to focus on detecting flaky failures in this thesis to provide more value to the \ac{ci} during software development.
 \todo{Extend this paragraph?}
 
-To achieve this for \ac{e2e} tests, we focus on identifying flaky failures by applying a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests.
-\Citeauthor*{bell_deflaker_2018} that that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run.
+To achieve this for \ac{e2e} tests, we focus on identifying flaky failures by applying a technique \todo{Give short explanation} for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests.
+\Citeauthor*{bell_deflaker_2018} found that it is possible to identify if a failure is flaky by comparing the code covered by the test with the changes since the last passing run.
 To evaluate our approach, we selected two open-source projects as case studies.
 \textsc{ArTEMiS} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises.
 It uses Java for server code and JavaScript for client-side code.
@@ -109,7 +109,7 @@ Both projects use Cypress \autocite{noauthor_cypress-iocypress_2023} for \ac{e2e
 
 The contributions of this thesis are:
 \begin{itemize}
-	\item \textbf{Methodology.} We propose a methodology for detecting flaky failures in \ac{e2e} tests based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
+	\item \textbf{Methodology.} We propose a methodology \todo{Explain methodology} for detecting flaky failures in \ac{e2e} tests based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
 	\item \textbf{Case Studies.} We evaluate our approach on two open-source projects by analyzing the impact on execution of our method has and evaluating the performance of our approach.
 	      During the evaluation, we saw that the instrumentation can significantly impact test execution.
 	      Our approach correctly identified flaky failures in 90\% \todo{Correct number} of the cases.
@@ -119,7 +119,7 @@ The contributions of this thesis are:
 \end{itemize}
 
 The remainder of this thesis is organized as follows:
-In \cref{background}, we will give some background information on \ac{e2e} testing, flaky tests, and coverage collection.
+In \cref{background}, we will give some background information on \ac{e2e} testing, flaky tests and failures, and coverage collection.
 We review related work in \cref{related_work}.
 Our methodology, including instrumentation, data collection, and environment setup, is described in \cref{methodology}.
 In \cref{evaluation}, we present the results of our case studies and answer our research questions.
@@ -135,15 +135,15 @@ This chapter provides essential background information for understanding the con
 
 \section{E2E Testing}
 
-\TODO{General rouch introduction to software testing before moving to e2e and ui only}
-\TODO{Explanin what E2E testing is and why it is important}
+\TODO{General rough introduction to software testing before moving to \ac{e2e} and \ac{ui} only}
+\TODO{Explain what E2E testing is and why it is important}
 \TODO{Give an overview of testing frameworks available (also not for browsers?)}
 \TODO{Explain what Cypress is}
 
-\section{Flaky Tests}
+\section{Flaky Tests and Failures}
 
 \TODO{Mention the root causes for flaky tests and failures}
-\TODO{Press the importance and usefulness of identiffying flaky failures instead of just flaky tests}
+\TODO{Press the importance and usefulness of identifying flaky failures instead of just flaky tests}
 \TODO{Explain why this approach with flaky failures is superior to identifying flaky tests (more common)}
 \TODO{Explain what flaky failures are and why they are a problem}
 
@@ -151,7 +151,7 @@ This chapter provides essential background information for understanding the con
 
 \TODO{Explain what coverage collection is}
 \feedback{Coverage collection is expensive?}
-\TODO{Mention some usecases for coverage data}
+\TODO{Mention some use cases for coverage data}
 
 %------- chapter 3 -------
 
@@ -160,13 +160,43 @@ This chapter provides essential background information for understanding the con
 \TODO{Give an overview of related work}
 
 \section{Flaky Failure Detection}
+\Citeauthor*{haben_importance_2023} have studied the difference between detecting flaky tests and flaky test failures, highlighting the importance of the latter for a more effective \ac{ci} process.
+In recent years, various methods have been proposed to identify flaky tests.
+However, these methods have not been evaluated within a \ac{ci} process, leaving their actual utility unclear \autocite{haben_importance_2023}.
 
+\Citeauthor*{haben_importance_2023} conducted a case study on the Chromium \ac{ci}, applying state-of-the-art flakiness prediction methods to examine their performance.
+They found that despite the high precision of the methods (99.2\%), their application resulted in many missed faults, approximately 76.2\% of all regression faults.
+To investigate this finding, the authors analyzed the fault-triggering failures and discovered that flaky tests have a strong fault-revealing capability, revealing more than one-third of all regression faults \autocite{haben_importance_2023}.
+
+This result highlights an inherent limitation of methods that focus on identifying flaky tests rather than flaky test failures.
+To address this issue, \Citeauthor*{haben_importance_2023} proposed failure-focused prediction methods and optimized them by considering new features.
+Interestingly, they found that these methods performed better than the test-focused ones, with the \ac{mcc} increasing from 0.20 to 0.42 \autocite{haben_importance_2023}.
+
+Overall, the study by \citeauthor*{haben_importance_2023} suggests that future research should concentrate on predicting flaky test failures instead of flaky tests.
+Additionally, it emphasizes the need for adopting more thorough experimental methodologies when evaluating flakiness prediction methods \autocite{haben_importance_2023}.
+This insight underscores the importance of discerning flaky from fault-triggering test failures in order to improve the efficiency of \ac{ci} processes and minimize the waste of valuable developer time on investigating false alerts caused by flaky test failures.
 \TODO{Look at some papers that detect flaky tests}
-\TODO{Explain why flaky test detection is not sufficient but we need flaky failure detection}
+\TODO{Explain why flaky test detection is not sufficient, but we need flaky failure detection}
 \feedback{Fabian Leinen: Den eigenen Gedanken in dem Kapitel möglichst meiden. Z.B. in "The Importance of Discerning Flaky from Fault-triggering Test Failures: A Case Study on the Chromium CI" ist das ja wunderschön dargelegt.
 }
 
-\subsection{Expaning on \emph{DeFlaker}}
+\section{Adapting \emph{DeFlaker}}
+
+\Citeauthor*{bell_deflaker_2018} have looked at the problem of flaky tests in unit tests and proposed a method to detect flaky tests without rerunning them \autocite{bell_deflaker_2018}.
+
+To address this issue, the authors propose a novel technique called DeFlaker, which detects flaky tests without the need for rerunning them and incurs minimal runtime overhead.
+DeFlaker works by monitoring the coverage of the latest code changes and identifying any newly failing test that did not execute the changes as flaky.
+This approach significantly reduces the time and resources required to detect flaky tests, leading to a more efficient development cycle \autocite{bell_deflaker_2018}.
+
+The effectiveness of DeFlaker was evaluated on 96 Java projects hosted on TravisCI, where it identified 87 previously unknown flaky tests in 10 of the projects.
+Moreover, the authors conducted experiments on project histories, where DeFlaker detected 1,874 flaky tests from a total of 4,846 failures.
+These results highlight the low false alarm rate of DeFlaker, at just 1.5\%.
+Additionally, DeFlaker demonstrated superior performance when compared to Maven's default flaky test detector, boasting a 95.5\% recall rate as opposed to Maven's 23\% \autocite{bell_deflaker_2018}.
+
+The approach presented in the \citetitle{bell_deflaker_2018} paper has significant potential for application in \ac{e2e} \ac{ui} testing.
+By incorporating coverage analysis into UI testing, developers can more accurately and efficiently detect flaky tests, ultimately leading to improved test quality and a more streamlined development process.
+The integration of coverage metrics into the \ac{ui} testing process of two case studies is presented in \cref{methodology}.
+
 
 \TODO{Explain how we can use the same approach for E2E tests}
 
@@ -190,7 +220,7 @@ The main differences between the two approaches are that we analyze \ac{e2e} tes
 \TODO{Explain why the entire coverage is collected and not just change coverage}
 \TODO{Explain how the decision was made on which level to collect coverage}
 \TODO{Explain how the coverage is matched to test cases: propagation vs timing}
-\TODO{Mention the possible impact of insturmentation on the behaviour of the application and the tests.}
+\TODO{Mention the possible impact of instrumentation on the behavior of the application and the tests.}
 
 Coverage collection is a central part of the approach introduced by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018}.
 While \citeauthor*{bell_deflaker_2018} work with change coverage in unit tests, this option is not feasible in \ac{e2e} tests.
@@ -200,16 +230,16 @@ To reduce implementation complexity, we decided to collect coverage data on the 
 Another important step is to match the collected coverage with the test cases that were executed.
 Here, multiple options are possible.
 
-\paragraph{Propagation} First option is to propagate data about the executed test cases through the code base.
+\paragraph{Propagation.} First option is to propagate data about the executed test cases through the code base.
 Since we collect coverage data on the entire code base, it is required to propagate the data from the testing framework to both the client and server code.
-Additionally the coverage collection has to be reset after each test case to avoid mixing coverage data from different test cases.
+Additionally, the coverage collection has to be reset after each test case to avoid mixing coverage data from different test cases.
 
-\paragraph{Timing} The second option is to match the coverage data with the test cases based on the timing of the test cases.
+\paragraph{Timing.} The second option is to match the coverage data with the test cases based on the timing of the test cases.
 This simpler approach is possible because the test cases are executed sequentially and the coverage data is collected in the same order.
 Instead of propagating the test case information through the code base, we can simply match the coverage data with the test cases based on the timing.
 In this approach, the coverage is collected and saved after each test case and the collection is reset.
 
-For simplicity we decided to use the second approach and match the coverage data with the test cases based on the timing.
+For simplicity, we decided to use the second approach and match the coverage data with the test cases based on the timing.
 This approach is also more robust and does not require any changes to the code base.
 Event parallel execution of tests is possible if there is a separate instance of the tested software for each worker.
 
@@ -260,13 +290,13 @@ The plugins remap all file paths to be relative to the repository root and merge
 The cypress plugins are implemented as node modules that can be installed with npm.
 They make use of the cypress plugin \ac{api} \autocite{cypressio_writing_nodate} to hook into the cypress test runner.
 As cypress only offers a \texttt{before:spec} and \texttt{after:spec} hook, the coverage can only be collected for each spec file instead of each individual test case.
-Additionally the plugins make use of the cypress \texttt{before:browser:launch} hook to identify the port of the chrom debugging protocol.
+Additionally, the plugins make use of the cypress \texttt{before:browser:launch} hook to identify the port of the chrome debugging protocol.
 \subsubsection{Java server}
 \TODO{Explain the use of jacoco and it's setup in server mode}
 \TODO{Transform coverage to XML and to JSON}
 As \textsc{ArTEMiS} uses the JHipster \autocite{jhipster_jhipster_nodate} development platform, the server is implemented in Java.
 To collect coverage data, we use the jacoco agent \autocite{noauthor_jacoco_nodate} in server mode.
-The server mode of jacoco allows to collect and reset coverage data from the server without restarting.
+The server mode of jacoco allows collecting and reset coverage data from the server without restarting.
 To enable the jacoco agent, we use the \texttt{-javaagent} option of the java command.
 
 On the \texttt{before:spec} hook, we send a request to the jacoco agent to reset the coverage data.
@@ -282,27 +312,27 @@ The plugin saves the covered lines for each file in a JSON file after merging th
 \TODO{Explain NYC cannot be used as dynamically and would need a reset mechanism}
 \TODO{Explain the use of the node debugging protocol to use V8 coverage}
 \textsc{n8n} is a Node.js based workflow automation tool.
-To collect coverage data, we use the V8 native coverage to collect coverage data.
-The process of collecting coverage using the V8 native coverage is described in \cref{client_coverage_collection}.
-To enable the debugging protocol, we use the \texttt{--inspect} option of the node command.
-
-\paragraph{NYC} Coverage in node.js programs is usually collected with the \textsc{NYC} tool \autocite{noauthor_nyc_2023}.
-NYC is a command line tool that can be used to collect coverage data for node.js programs.\todo{Benchmark NYC vs V8 coverage?}
-However NYC is not suitable for our use case as it does not allow to collect coverage data dynamically.
-NYC does not allow to collect coverage data dynamically as it does not expose an \ac{api} to collect coverage data.
+Coverage in node.js programs is usually collected with the \textsc{NYC} tool \autocite{noauthor_nyc_2023}.
+NYC is a command line tool that can be used to collect coverage data for node.js programs.
+However, NYC is not suitable for our use case as it does not allow collecting coverage data dynamically.
+NYC does not allow collecting coverage data dynamically as it does not expose an \ac{api} to collect coverage data.
 Since we have to collect coverage data after each test case from the cypress test runner, we decided against using NYC.
 The author of NYC also maintains C8 \autocite{noauthor_bcoec8_nodate}, a similar tool that uses V8 native coverage instead of code instrumentation.
-Event though C8 does not allow to collect coverage data dynamically, it served as inspiration for our implementation.
+Event though C8 does not allow collecting coverage data dynamically, it served as inspiration for our implementation.
+
+To collect coverage data, we use the V8 native coverage to collect coverage data.
+The process of collecting coverage using the V8 native coverage is the same as for the client described in the following section.
+To enable the debugging protocol, we use the \texttt{--inspect} option of the node command.
 \subsubsection{Client} \label[subsection]{client_coverage_collection}
 
-\TODO{Elaboration of instrumemtation ideas that did not work out. Preprocession with istanbul as suggested by cypress and teamscale.}
+\TODO{Elaboration of instrumentation ideas that did not work out. Preprocessing with istanbul as suggested by cypress and teamscale.}
 \TODO{Elaboration of chrome native based coverage}
-\TODO{Small tangent on electron insturmentation which is special as cypress already runs in an electron process}
+\TODO{Small tangent on electron instrumentation which is special as cypress already runs in an electron process}
 
 Both case studies run their tests in chrome.
 This allows us to use V8 native coverage to collect coverage data.
 Coverage data is available in the chrome developer tools \autocite{kayce_basques_coverage_2020}.
-Additionally it is accessible through the chrome debugging protocol \autocite{noauthor_chrome_nodate}.
+Additionally, it is accessible through the chrome debugging protocol \autocite{noauthor_chrome_nodate}.
 To connect to the chrome debugging protocol, we use the \textsc{chrome-remote-interface} library \autocite{cardaci_chrome-remote-interface_2023}.
 In order to connect to the debugging protocol, we need to know the port of the debugging protocol.
 The port is set by cypress when it starts the browser and can be retrieved from the cypress \texttt{before:browser:launch} hook.
@@ -313,7 +343,7 @@ If the spec run did not fail, we just reset the coverage collection without retr
 
 To work with the coverage data it is transformed from the V8 format into the common istanbul format.
 For this we use the \textsc{v8-to-istanbul} library \autocite{noauthor_v8--istanbul_2023}.
-As the library requires the orginal files to transform coverage, our plugin maps the paths of the files as reported by chrome to the correct paths in the file system.
+As the library requires the original files to transform coverage, our plugin maps the paths of the files as reported by chrome to the correct paths in the file system.
 The library reads the code files that are executed in the browser and follows the source maps to map the coverage data to the original source files.
 This is necessary as the browser executes the transpiled code and not the original source files.
 The coverage data is then simplified to a custom format that includes only covered lines and files and saved as JSON.
@@ -357,19 +387,19 @@ Then we present the results of our evaluation and discuss them.
 \section{Research Questions}
 We have two \acp{rq} that we want to answer with our evaluation.
 \begin{enumerate}
-	\item[\textbf{\ac{rq}\textsubscript{1}:}] How effective is the adapted Deflaker approach in identifying flaky failures in UI \ac{e2e} tests?
+	\item[\textbf{\ac{rq}\textsubscript{1}:}] How effective is the adapted DeFlaker approach in identifying flaky failures in UI \ac{e2e} tests?
 
 		We want to determine the effectiveness of our approach in identifying flaky failures in UI \ac{e2e} tests.
-		We will evaluate the approach by comparing the results of our approach with an establisehd baseline from rerunning the tests.
-	\item[\textbf{\ac{rq}\textsubscript{2}:}] What impact does the instrumentation have on the behaviour of the application and tests?
+		We will evaluate the approach by comparing the results of our approach with an established baseline from rerunning the tests.
+	\item[\textbf{\ac{rq}\textsubscript{2}:}] What impact does the instrumentation have on the behavior of the application and tests?
 
-		We recognize that the instrumentation of the application and tests has an impact on the behaviour of the application and tests.
-		Therefore we further Investigate this impact with two subquestions:
+		We recognize that the instrumentation of the application and tests has an impact on the behavior of the application and tests.
+		Therefore, we further Investigate this impact with two subquestions:
 		\begin{enumerate}
 			\item[\textbf{\ac{rq}\textsubscript{2.1}:}] To what extent does instrumentation impact the temporal behavior of the application during \ac{e2e} testing?
 
-				We want to determine the impact of instrumentation on the temporal behaviour of the application during \ac{e2e} testing.
-				We will evaluate the impact by comparing the temporal behaviour of the application during \ac{e2e} testing with and without instrumentation.
+				We want to determine the impact of instrumentation on the temporal behavior of the application during \ac{e2e} testing.
+				We will evaluate the impact by comparing the temporal behavior of the application during \ac{e2e} testing with and without instrumentation.
 			\item[\textbf{\ac{rq}\textsubscript{2.2}:}] How does the instrumentation of coverage collection affect the failure rate of \ac{e2e} tests in the studied projects?
 
 				We want to determine the impact of instrumentation on the failure rate of \ac{e2e} tests in the studied projects.
@@ -380,19 +410,19 @@ We have two \acp{rq} that we want to answer with our evaluation.
 \section{Case Studies}
 \TODO{Bigger introduction to ArTEMiS and n8n}
 \TODO{\textsc{ArTEMiS} was chosen because it is a large project with a lot of tests and a CI pipeline that experienced issues with flaky tests at the university}
-\TODO{\textsc{Gladys} was a contender but tests did not show any flakiness and there were also no indication in the commit messages}
+\TODO{\textsc{Gladys} was a contender, but tests did not show any flakiness and there were also no indication in the commit messages}
 \TODO{Additional project, \textsc{ToolJet} turned out to have a too complicated setup for their E2E tests}
 \TODO{n8n was chosen from the list of projects with cypress and JavaScript and had issues with flaky tests before}
 To validate our approach we chose two case studies.
 Both case studies are open source projects that use \textsc{cypress} for \ac{e2e} testing.
-They both have a large number of tests and are actively maintained.
+They both have many tests and are actively maintained.
 Also, both projects have experienced issues with flaky tests in the past.
 
 \paragraph{ArTEMiS} is a learning management system that is used at multiple universities to manage courses and exercises \autocite{krusche_artemis_2018}.
 The project was a good fit since it is also developed at \ac{tum}.
-The team has experienced issues with flaky tests in the past and the project has a large number of tests.
+The team has experienced issues with flaky tests in the past and the project has many tests.
 
-\paragraph{n8n} is a workflow automation tool that allows users to connect different services and automate workflows \autocite{noauthor_n8n_2023}. The project was identified as a case study by searching GithHub for projects that depend on \textsc{cypress} and use JavaScript as the main programming language. A further check of the commit history showed that the project had experienced issues with flaky tests in the past.
+\paragraph{n8n} is a workflow automation tool that allows users to connect different services and automate workflows \autocite{noauthor_n8n_2023}. The project was identified as a case study by searching GitHub for projects that depend on \textsc{cypress} and use JavaScript as the main programming language. A further check of the commit history showed that the project had experienced issues with flaky tests in the past.
 
 \paragraph{} During the search for case studies, we also considered \textsc{Gladys} \autocite{noauthor_gladys_2023} and \textsc{ToolJet} \autocite{noauthor_tooljettooljet_2023}. However, we decided against using them as case studies because \textsc{Galdys} did not show any flakiness in the tests and \textsc{ToolJet} had a too complicated setup for their \ac{e2e} tests.
 
@@ -401,7 +431,7 @@ The team has experienced issues with flaky tests in the past and the project has
 \TODO{Talk about issues with running ArTEMiS tests locally, too much setup needed and too much environment}
 In this section, we discuss the evaluation setup used for our experiments.
 Our evaluation is designed to be part of the existing \ac{ci} pipeline of the case studies.
-Also \textsc{ArTEMiS} has a very complex setup and is not easily runnable locally.
+Also, \textsc{ArTEMiS} has a very complex setup and is not easily runable locally.
 
 \subsection{ArTEMiS (Bamboo)}
 \TODO{Explain the setup of the ArTEMiS CI pipeline}
@@ -411,11 +441,11 @@ Also \textsc{ArTEMiS} has a very complex setup and is not easily runnable locall
 \TODO{Specialty of the ArTEMiS CI pipeline, regular e2e tests as base}
 We start by describing the setup of the \textsc{ArTEMiS} \ac{ci} pipeline.
 The \textsc{ArTEMiS} \ac{ci} pipeline is hosted on \textsc{Bamboo} \autocite{atlassian_bamboo_nodate} and consists of multiple plans.
-The plans are triggered by commits to the \textsc{ArTEMiS} GithHub repository.
+The plans are triggered by commits to the \textsc{ArTEMiS} GitHub repository.
 We created a second version of the \ac{e2e} test plan that included our instrumentation.
 This plan is running in parallel to the original plan.
 
-Additionally we selected builds from the regular \ac{e2e} test plan that were executed before the instrumentation was added.
+Additionally, we selected builds from the regular \ac{e2e} test plan that were executed before the instrumentation was added.
 We reran these builds with our instrumentation to test our approach on historic builds.
 Due to the complex nature of the \textsc{ArTEMiS} \ac{ci} pipeline and ongoing development of the project, we had to backport some changes to the historic builds.
 While we were able to run some historic builds, there were ongoing issues with the \ac{ci} pipeline that prevented us from running all historic builds.
@@ -423,7 +453,7 @@ While we were able to run some historic builds, there were ongoing issues with t
 The second part of the evaluation is the live evaluation.
 We run the \ac{e2e} tests with and without instrumentation in parallel.
 We compare the results of the two runs to determine the impact of the instrumentation on the \ac{e2e} tests.
-Additionally we can check the results of both runs to see if the approach correctly identifies failures as flaky.
+Additionally, we can check the results of both runs to see if the approach correctly identifies failures as flaky.
 If both plans fail, we check if the same tests failed in both runs.
 Should there be a difference in the failed tests, we can conclude that the instrumentation correctly identified the failure as flaky.
 
@@ -463,49 +493,148 @@ You can find the qualitative discussion in \cref{discussion}.
 \subsection{\texorpdfstring{RQ\textsubscript{1}:}{RQ1:} How effective is the adapted DeFlaker approach in identifying flaky failures in \acs{ui} \acs{e2e} tests?}
 \TODO{Review the gathered data for both case studies}
 To answer \textbf{\ac{rq}\textsubscript{1}} we look at both, the \textsc{ArTEMiS} and \textsc{n8n} case studies.
+
 \begin{table}[h]
 	\centering
 	\begin{adjustbox}{width=\textwidth, totalheight=\textheight, keepaspectratio}
 		\csvautobooktabular{data/evaluationResult.csv}
 	\end{adjustbox}
-	\caption{Results of running the evaluation against the baseline}
+	\caption{Results of running the evaluation against the baseline for \textsc{n8n}}
 	\label[table]{n8n_evaluation_results}
 \end{table}
-\subsection{\texorpdfstring{RQ\textsubscript{2}:}{RQ2:} What impact does the instrumentation have on the behaviour of the application and tests?}
+
+\begin{table}[h]
+	\centering
+	\begin{adjustbox}{width=\textwidth, totalheight=\textheight, keepaspectratio}
+		\csvautobooktabular{data/artemis-evaluationResult.csv}
+	\end{adjustbox}
+	\caption{Worst case results of running the evaluation for \textsc{ArTEMiS}}
+	\label[table]{artemis_evaluation_results}
+\end{table}
+
+As we are missing a baseline for the \textsc{ArTEMiS} case study, we can only compare the results of the live evaluation.
+For this reason the results in \cref{artemis_evaluation_results} are the \textbf{worst case} results.
+We defined \emph{true positives} as versions of the \ac{sut} for which the instrumented run failed, was labeled as \emph{suspected flaky} and the non-instrumented run passed or there was no overlap in the failed tests.
+Additionally, we defined \emph{true negatives} as versions of the \ac{sut} for which the both runs failed, and the failed tests matched for at least 75\% of the tests.
+This leads to an overestimation of both, the \emph{false positives} and the \emph{false negatives}.
+We did however also calculate the \textbf{best case} results for \textsc{ArTEMiS} which showed moderate improvements with a precision of \num{0.81879} and a recall of \num{0.4357}.
+
+\subsection{\texorpdfstring{RQ\textsubscript{2}:}{RQ2:} What impact does the instrumentation have on the behavior of the application and tests?}
 To answer \textbf{\ac{rq}\textsubscript{2}} we look at the \textsc{n8n} case study.
 As described in \cref{evaluation_n8n}, we ran the \ac{e2e} tests with and without instrumentation on the 25 latest commits.
 \subsubsection{\texorpdfstring{RQ\textsubscript{2.1}:}{RQ2.1:} To what extent does instrumentation impact the temporal behavior of the application during \acs{e2e} testing?}
-You can review the full table of testcases that failed during our evaluation in \cref{behaviour_change_results}.
+You can review the full table of test cases that failed during our evaluation in \cref{behaviour_change_results}.
+
+As can be seen in \cref{duration_results_artemis} and \cref{artemis_time_boxplot} the average run times of the \ac{e2e} tests for \textsc{ArTEMiS} are higher when using the instrumentation.
+To test for a statistically significant difference between the instrumentation and non-instrumentation groups, we used a t-test.
+Before using the t-test, we checked the prerequisites for its use.
+When checking for outliers we found that there were several extreme outliers, we decided to remove only the most extreme outlier from the \emph{failed build with instrumentation} group.
+All other outliers were kept as they were valid results.
+To assess the normality of the measurement results, we ran both the Kolmogorov-Smirnov test and the Shapiro-Wilk test.
+Both tests showed that all groups of results were not normally distributed ($p < .001$).
+As all groups contain more than 30 samples, we can use a t-test, as it has been shown to be robust against non-normality in this case. \addref
+The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(424,807) = -9.155, p = < .001$) and passed builds ($t(20,897) = -2.21, p = .038$).
+
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/durationResults.csv}
-	\caption{Average testcase duration for the \ac{e2e} tests with and without instrumentation}
+	\caption{Average test case duration for the n8n \ac{e2e} tests with and without instrumentation}
 	\label[table]{duration_results}
 \end{table}
+
+\begin{table}[h]
+	\centering
+	\csvautobooktabular{data/artemis-durationResults.csv}
+	\caption{Average test case duration for the ArTEMiS \ac{e2e} tests with and without instrumentation}
+	\label[table]{duration_results_artemis}
+\end{table}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				boxplot/draw direction=y,
+				ylabel={Duration (min)},
+				yticklabel={\pgfmathparse{exp(\tick)}\pgfmathprintnumber[fixed]{\pgfmathresult}},
+				xtick={1, 2, 3, 4},
+				xticklabels={Failed, Failed (instrumented), Passed, Passed (instrumented)},
+				xticklabel style={align=center, font=\small, rotate=-20, anchor=north west},
+				ymode=log,
+				boxplot/box extend=0.4,
+				boxplot/whisker extend=0.2,
+			]
+			\addplot+[boxplot] table[y index=0]{data/artemis/failedDurationsRegular.csv};
+			\addplot+[boxplot] table[y index=0]{data/artemis/failedDurationsFlaky.csv};
+			\addplot+[boxplot] table[y index=0]{data/artemis/passedDurationsRegular.csv};
+			\addplot+[boxplot] table[y index=0]{data/artemis/passedDurationsFlaky.csv};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Box plots of test runtimes for ArTEMiS}
+	\label[figure]{artemis_time_boxplot}
+\end{figure}
+
+% \begin{figure}
+% 	\centering
+% 	\begin{tikzpicture}
+% 		\begin{axis}[
+% 				boxplot/draw direction=y,
+% 				ylabel={Duration (min)},
+% 				yticklabel={\pgfmathparse{exp(\tick)}\pgfmathprintnumber[fixed]{\pgfmathresult}},
+% 				xtick={1, 2, 3, 4},
+% 				xticklabels={Failed, Failed (instrumented), Passed, Passed (instrumented)},
+% 				xticklabel style={align=center, font=\small, rotate=-20, anchor=north west},
+% 				ymode=log,
+% 				boxplot/box extend=0.4,
+% 				boxplot/whisker extend=0.2,
+% 			]
+% 			\addplot+[boxplot] table[y index=0]{data/n8n/failedDurationsRegular.csv};
+% 			\addplot+[boxplot] table[y index=0]{data/n8n/failedDurationsFlaky.csv};
+% 			\addplot+[boxplot] table[y index=0]{data/n8n/passedDurationsRegular.csv};
+% 			\addplot+[boxplot] table[y index=0]{data/n8n/passedDurationsFlaky.csv};
+% 		\end{axis}
+% 	\end{tikzpicture}
+% 	\caption{Box plots of test runtimes for n8n}
+% 	\label{fig:n8n_time_boxplot}
+% \end{figure}
+
 \subsubsection{\texorpdfstring{RQ\textsubscript{2.2}:}{RQ2.2:} How does the instrumentation of coverage collection affect the failure rate of \acs{e2e} tests in the studied projects?}
 Or experiment shows that the instrumentation of coverage collection does not have a significant impact on the failure rate of \acs{e2e} tests.
 As you can see in \cref{failure_rate_results}, the failure rate of the \ac{e2e} tests is almost identical for both runs.
-We also collected the failure rate on a testcase level and compared the results.
-As you can see in \cref{testacse_results}, the failure rate of the testcases is also almost identical for both runs.
+We also collected the failure rate on a test case level and compared the results.
+As you can see in \cref{testcase_results}, the failure rate of the test cases is also almost identical for both runs.
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/runResults.csv}
-	\caption{Statistics of the evaluation runs}
+	\caption{Statistics of the evaluation runs for n8n}
 	\label[table]{failure_rate_results}
 \end{table}
 
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/testcaseResults.csv}
-	\caption{Statistics of testcase results during evaluation}
-	\label[table]{testacse_results}
+	\caption{Statistics of test case results during evaluation for n8n}
+	\label[table]{testcase_results}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\csvautobooktabular{data/artemis-runResults.csv}
+	\caption{Statistics of the live CI runs for ArTEMiS}
+	\label[table]{failure_rate_results_artemis}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\csvautobooktabular{data/artemis-runResults-withReruns.csv}
+	\caption{Statistics of live CI runs for ArTEMiS when considering reruns as failures}
+	\label[table]{failure_rate_results-rerun_artemis}
 \end{table}
 \TODO{Review the gathered data for both case studies}
 
 
-\subsection{Additional Observations}
-\TODO{Issues with memory}
-\feedback{Fabian Leinen: Was kommt alles in diese Subsection? Mein Gefühl ist, dass es nicht viel ist und das auch ganz gut bei RQ\textsubscript{1} oder Discussion rein passt.}
+% \subsection{Additional Observations}
+% \TODO{Issues with memory}
+% \feedback{Fabian Leinen: Was kommt alles in diese Subsection? Mein Gefühl ist, dass es nicht viel ist und das auch ganz gut bei RQ\textsubscript{1} oder Discussion rein passt.}
 
 \section{Discussion} \label[section]{discussion}
 \TODO{Give an overview of the results}
@@ -514,10 +643,10 @@ As you can see in \cref{testacse_results}, the failure rate of the testcases is 
 \subsection{Quality of Failure Categorization}
 \TODO{Interpret the results of RQ\textsubscript{1}}
 
-\subsection{Change of Behaviour caused by Instrumentation}
+\subsection{Change of Behavior caused by Instrumentation}
 \TODO{Interpret the results of RQ\textsubscript{2.1}}
-\TODO{Show the inpact on RQ\textsubscript{1}}
-\TODO{Interprent the results of RQ\textsubscript{2.2} for both case studies}
+\TODO{Show the impact on RQ\textsubscript{1}}
+\TODO{Interpret the results of RQ\textsubscript{2.2} for both case studies}
 
 %------- chapter 6 -------
 
@@ -527,11 +656,11 @@ As you can see in \cref{testacse_results}, the failure rate of the testcases is 
 \section{Threats to Internal Validity}
 \TODO{Dependence on the CI pipeline}
 \TODO{Missing confirmed failures}
-\TODO{Limited insights to non code changes and testcase changes}
+\TODO{Limited insights to non code changes and test case changes}
 
 \section{Threats to External Validity}
 \TODO{Only two case studies}
-\TODO{Limited availablity of run labels}
+\TODO{Limited availability of run labels}
 
 
 %------- chapter 7 -------
@@ -551,7 +680,7 @@ As you can see in \cref{testacse_results}, the failure rate of the testcases is 
 
 \appendix
 
-\chapter[Behaviour change results]{Extensive results for the behaviour change evaluation}\label[appendix]{behaviour_change_results}
+\chapter[Behaviour change results]{Extensive results for the behavior change evaluation}\label[appendix]{behaviour_change_results}
 
 \begin{adjustbox}{max width=\textwidth, caption={Statistics of testcase results during evaluation}, float=table}
 	\begin{tabular}{@{}lrrrrr@{}} \toprule

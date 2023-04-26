@@ -163,6 +163,8 @@ const updateDB = runs
           });
         const branch = prResponse.data[0]?.head?.ref;
         const runData = await getRunData(run);
+        // wait 1 second to not hit rate limit
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         db.data?.baseLine.commits.push({
           sha: commit ?? "",
           branch: branch ?? "",
@@ -183,12 +185,12 @@ const updateDB = runs
           db.data?.baseLine.commits[commitIndex].runs.push(runData);
         }
       }
-      try{
-        const { stderr, stdout } = await execa("git", [
-          "branch",
-          "--contains",
-          commit,
-        ],{cwd: '../../n8n'});
+      try {
+        const { stderr, stdout } = await execa(
+          "git",
+          ["branch", "--contains", commit],
+          { cwd: "../../n8n" }
+        );
         const branch = stdout.split(" ")[1];
         if (branch && commitIndex !== -1) {
           db.chain
@@ -202,7 +204,13 @@ const updateDB = runs
       }
     }
   });
-await Promise.all(updateDB);
+
+let updateCount = 0;
+
+for (const update of updateDB) {
+  await update;
+  console.log("updated", updateCount++);
+}
 
 // update commit to success if any run was successful
 db.data?.baseLine.commits.forEach((commit) => {

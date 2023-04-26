@@ -10,7 +10,7 @@ import { JSONFile } from "lowdb/node";
 import { stringify } from "csv/sync";
 import jetpack from "fs-jetpack";
 
-const toLatexNum = (num:any) => `\\num{${num}}`;
+const toLatexNum = (num: any) => `\\num{${num}}`;
 
 type Data = {
   baseLine: {
@@ -35,8 +35,10 @@ type Data = {
       conclusion: string;
       installDuration: number;
       testDuration: number;
+      testInstrumentedDuration: number;
       installConclusion: string;
       testConclusion: string;
+      testInstrumentedConclusion: string;
       sha: string;
       passed: boolean;
       passedInstrumented: boolean;
@@ -291,9 +293,41 @@ const averageDurationFailedInstrumented = db.chain
 
 const csvDurationTable = [
   ["Result", "Duration (ms)", "Instrumented Duration (ms)"],
-  ["Passed", toLatexNum(averageDurationPassed), toLatexNum(averageDurationPassedInstrumented)],
-  ["Failed", toLatexNum(averageDurationFailed), toLatexNum(averageDurationFailedInstrumented)],
+  [
+    "Passed",
+    toLatexNum(averageDurationPassed),
+    toLatexNum(averageDurationPassedInstrumented),
+  ],
+  [
+    "Failed",
+    toLatexNum(averageDurationFailed),
+    toLatexNum(averageDurationFailedInstrumented),
+  ],
 ];
+
+const durationsPassed = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.results.passed > 0)
+  .map((testcase) => testcase.averageDuration)
+  .value();
+
+const durationsPassedInstrumented = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.resultsInstrumented.passed > 0)
+  .map((testcase) => testcase.averageDurationInstrumented)
+  .value();
+
+const durationsFailed = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.results.failed > 0)
+  .map((testcase) => testcase.averageDuration)
+  .value();
+
+const durationsFailedInstrumented = db.chain
+  .get("timings.testcases")
+  .filter((testcase) => testcase.resultsInstrumented.failed > 0)
+  .map((testcase) => testcase.averageDurationInstrumented)
+  .value();
 
 jetpack.write(
   "../thesis/data/durationResults.csv",
@@ -325,9 +359,21 @@ console.table(table);
 
 const csvTable = [
   ["Result", "Instrumented", "Non-Instrumented"],
-  ["Passed", toLatexNum(table.passed.instrumented), toLatexNum(table.passed.nonInstrumented)],
-  ["Failed", toLatexNum(table.failed.instrumented), toLatexNum(table.failed.nonInstrumented)],
-  ["Skipped", toLatexNum(table.skipped.instrumented), toLatexNum(table.skipped.nonInstrumented)],
+  [
+    "Passed",
+    toLatexNum(table.passed.instrumented),
+    toLatexNum(table.passed.nonInstrumented),
+  ],
+  [
+    "Failed",
+    toLatexNum(table.failed.instrumented),
+    toLatexNum(table.failed.nonInstrumented),
+  ],
+  [
+    "Skipped",
+    toLatexNum(table.skipped.instrumented),
+    toLatexNum(table.skipped.nonInstrumented),
+  ],
 ];
 
 jetpack.write("../thesis/data/testcaseResults.csv", stringify(csvTable));
@@ -362,8 +408,16 @@ console.table(table2);
 
 const csvTable2 = [
   ["Result", "Instrumented", "Non Instrumented"],
-  ["Passed", toLatexNum(table2.successful.instrumented), toLatexNum(table2.successful.nonInstrumented)],
-  ["Failed", toLatexNum(table2.failed.instrumented), toLatexNum(table2.failed.nonInstrumented)],
+  [
+    "Passed",
+    toLatexNum(table2.successful.instrumented),
+    toLatexNum(table2.successful.nonInstrumented),
+  ],
+  [
+    "Failed",
+    toLatexNum(table2.failed.instrumented),
+    toLatexNum(table2.failed.nonInstrumented),
+  ],
 ];
 
 jetpack.write("../thesis/data/runResults.csv", stringify(csvTable2));
@@ -383,10 +437,12 @@ const table3 = db.chain
       // averageDurationInstrumented: testcase.averageDurationInstrumented,
       // averageDurationDifference:
       //   testcase.averageDurationInstrumented - testcase.averageDuration,
-      durationIncrease: toLatexNum(percentage(
-        testcase.averageDurationInstrumented - testcase.averageDuration,
-        testcase.averageDuration
-      )),
+      durationIncrease: toLatexNum(
+        percentage(
+          testcase.averageDurationInstrumented - testcase.averageDuration,
+          testcase.averageDuration
+        )
+      ),
       // numberOfRuns: testcase.results.passed + testcase.results.failed,
       // numberOfRunsInstrumented:
       //   testcase.resultsInstrumented.passed +
@@ -419,3 +475,67 @@ jetpack.write(
 );
 
 await db.write();
+
+// Export of timings to csv
+
+const dataPath = "../thesis/data/n8n/";
+
+const failedDurationsRegular = db.chain
+  .get("timings.runs")
+  .filter((run) => !run.passed)
+  .map((run) => run.testDuration)
+  .map((duration) => duration / 1000 / 60)
+  .value();
+
+const failedDurationsFlaky = db.chain
+  .get("timings.runs")
+  .filter((run) => !run.passedInstrumented)
+  .map((run) => run.testInstrumentedDuration)
+  .map((duration) => duration / 1000 / 60)
+  .value();
+
+const passedDurationsRegular = db.chain
+  .get("timings.runs")
+  .filter((run) => run.passed)
+  .map((run) => run.testDuration)
+  .map((duration) => duration / 1000 / 60)
+  .value();
+
+const passedDurationsFlaky = db.chain
+  .get("timings.runs")
+  .filter((run) => run.passedInstrumented)
+  .map((run) => run.testInstrumentedDuration)
+  .map((duration) => duration / 1000 / 60)
+  .value();
+
+const spssTable = [
+  ["Group", "Duration (min)"],
+  ...failedDurationsRegular.map((duration) => ["FR", duration]),
+  ...failedDurationsFlaky.map((duration) => ["FF", duration]),
+  ...passedDurationsRegular.map((duration) => ["PR", duration]),
+  ...passedDurationsFlaky.map((duration) => ["PF", duration]),
+];
+
+jetpack.write("data/n8n-spss.csv", stringify(spssTable));
+
+// const dataPath = "../thesis/data/artemis/";
+
+jetpack.write(
+  dataPath + "failedDurationsRegular.csv",
+  stringify(failedDurationsRegular.map((duration) => [duration]))
+);
+
+jetpack.write(
+  dataPath + "failedDurationsFlaky.csv",
+  stringify(failedDurationsFlaky.map((duration) => [duration]))
+);
+
+jetpack.write(
+  dataPath + "passedDurationsRegular.csv",
+  stringify(passedDurationsRegular.map((duration) => [duration]))
+);
+
+jetpack.write(
+  dataPath + "passedDurationsFlaky.csv",
+  stringify(passedDurationsFlaky.map((duration) => [duration]))
+);

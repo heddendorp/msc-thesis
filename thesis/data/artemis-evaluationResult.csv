@@ -1,0 +1,2 @@
+{True Positives},{False Positives},{True Negatives},{False Negatives},{Precision},{Recall},{F1}
+{\num{108}},{\num{41}},{\num{24}},{\num{171}},{\num{0.7248322147651006}},{\num{0.3870967741935484}},{\num{0.5046728971962617}}

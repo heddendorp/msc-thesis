@@ -28,6 +28,8 @@
 % \usepackage[hang,small,bf]{caption}
 \usepackage{styles/tum}
 \usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
 \usepackage{setspace}
 \usepackage[l3]{csvsimple}
 % \usepackage[german,english]{babel}
@@ -37,6 +39,7 @@
 \usepackage{siunitx}
 \usepackage{color}
 \usepackage{booktabs}
+\usepackage{threeparttable}
 \usepackage[final]{microtype}
 \usepackage{caption}
 \usepackage[pdftex,bookmarks=true,plainpages=false,pdfpagelabels=true,hidelinks]{hyperref}	%TODO make yourself familiar with \label, \ref and \hyperref for referencing figures, tables, chapters, etc.
@@ -93,6 +96,14 @@
 \addto\extrasngerman{
 	\def\lstnumberautorefname{Zeile}
 }
+
+% Settings for pgfplots
+\pgfplotsset{compat=newest}
+\pgfplotsset{
+  % For available color names, see http://www.latextemplates.com/svgnames-colors
+  cycle list={TUMBlue\\TUMAccentOrange\\TUMAccentGreen\\TUMSecondaryBlue2\\TUMDarkGray\\},
+}
+\usepgfplotslibrary{statistics}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Custom config for code listings

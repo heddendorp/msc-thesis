@@ -75,7 +75,7 @@ type Data = {
       sha: string;
       parent: string;
     }[];
-  }[]
+  }[];
 };
 
 class LowWithLodash<T> extends Low<T> {
@@ -88,7 +88,7 @@ const file = join(__dirname, "db.json");
 
 // Configure lowdb to write to JSONFile
 const adapter = new JSONFile<Data>(file);
-const db = new LowWithLodash(adapter);
+const db = new LowWithLodash<Data>(adapter);
 
 // Read data from JSON file, this will set db.data content
 await db.read();
@@ -100,7 +100,7 @@ db.data ||= {
   timings: { runs: [], testcases: [] },
   candidates: [],
   results: [],
-  prs: []
+  prs: [],
 };
 db.data.baseLine ||= { commits: [] };
 db.data.timings ||= { runs: [], testcases: [] };
@@ -112,18 +112,50 @@ if (!db.data) {
   throw new Error("no data");
 }
 
-const pullRequests = await octokit.request(
-  "GET /repos/{owner}/{repo}/pulls",
-  {
+const branches = await octokit.rest.repos.listBranches({
+  owner: "n8n-io",
+  repo: "n8n",
+  per_page: 50,
+});
+
+const branchRequests = branches.data.map(async (branch) => {
+  const commits = await octokit.rest.repos.listCommits({
     owner: "n8n-io",
     repo: "n8n",
-    state: "all",
-    per_page: 50,
+    sha: branch.name,
+    per_page: 5,
     until: "2023-03-20",
-  }
-);
+  });
 
-const prRequests = pullRequests.data.map(async(pr) => {
+  return {
+    number: 0,
+    name: branch.name,
+    state: "branch",
+    merged: false,
+    commits: commits.data.map((commit) => {
+      return {
+        sha: commit.sha,
+        parent: commit.parents[0].sha,
+      };
+    }),
+  };
+});
+
+const branchCommits = await Promise.all(branchRequests);
+
+console.log(branchCommits);
+
+// throw new Error("stop");
+
+const pullRequests = await octokit.request("GET /repos/{owner}/{repo}/pulls", {
+  owner: "n8n-io",
+  repo: "n8n",
+  state: "all",
+  per_page: 50,
+  until: "2023-03-20",
+});
+
+const prRequests = pullRequests.data.map(async (pr) => {
   const commits = await octokit.request(
     "GET /repos/{owner}/{repo}/pulls/{pull_number}/commits",
     {
@@ -149,6 +181,31 @@ const prRequests = pullRequests.data.map(async(pr) => {
 
 const prs = await Promise.all(prRequests);
 
-db.data.prs = prs;
+const selection = prs.concat(
+  branchCommits
+    .filter((branch) => branch.commits.length > 0)
+    .filter((branch) => {
+      return !prs.some((pr) =>
+        pr.commits.some((prCommit) =>
+          branch.commits.some(
+            (branchCommit) => prCommit.sha === branchCommit.sha
+          )
+        )
+      );
+    })
+);
 
-await db.write();
+if(db.data){
+  // merge db prs with selection
+  const oldPrs = db.data.prs.filter((pr) => {
+    return !selection.some((newPr) => newPr.number === pr.number);
+  });
+  db.data.prs = oldPrs.concat(selection);
+  await db.write();
+}
+
+// if (db.data) {
+//   db.data!.prs = selection;
+
+//   await db.write();
+// }

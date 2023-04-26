@@ -1,0 +1,3 @@
+,Instrumented,Non Instrumented
+Passed,\num{21},\num{140}
+Failed,\num{344},\num{225}

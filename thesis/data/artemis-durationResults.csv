@@ -1,0 +1,3 @@
+Result,Duration (min),Instrumented Duration (min)
+Passed,\num{56.55402118794325},\num{68.47508174603175}
+Failed,\num{60.14944482109228},\num{85.40041686046513}

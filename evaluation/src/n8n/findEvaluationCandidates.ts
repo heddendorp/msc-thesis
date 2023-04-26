@@ -87,7 +87,7 @@ const file = join(__dirname, "db.json");
 
 // Configure lowdb to write to JSONFile
 const adapter = new JSONFile<Data>(file);
-const db = new LowWithLodash(adapter);
+const db = new LowWithLodash<Data>(adapter);
 
 // Read data from JSON file, this will set db.data content
 await db.read();
