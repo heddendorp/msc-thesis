@@ -1,2 +1,3 @@
 ArTEMiS
 DeFlaker
+Shapiro-Wilk

@@ -11,71 +11,9 @@ import { Extract } from "unzip-stream";
 
 import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
+import { Data } from "./db-model.js";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const streamPipeline = promisify(pipeline);
-
-type Data = {
-  baseLine: {
-    commits: {
-      sha: string;
-      parent: string;
-      branch: string;
-      successful: boolean;
-      runs: {
-        id: number;
-        conclusion: string;
-        installDuration: number;
-        testDuration: number;
-        installConclusion: string;
-        testConclusion: string;
-      }[];
-    }[];
-  };
-  timings: {
-    runs: {
-      id: number;
-      conclusion: string;
-      installDuration: number;
-      testDuration: number;
-      installConclusion: string;
-      testConclusion: string;
-      sha: string;
-      passed: boolean;
-      passedInstrumented: boolean;
-    }[];
-    testcases: {
-      name: string;
-      averageDuration: number;
-      averageDurationInstrumented: number;
-      results: {
-        passed: number;
-        failed: number;
-        skipped: number;
-      };
-      resultsInstrumented: {
-        passed: number;
-        failed: number;
-        skipped: number;
-      };
-    }[];
-  };
-  candidates: {
-    sha: string;
-    branch: string;
-    firstSuccessfulParent: string;
-    failingTestcases: string[];
-  }[];
-  prs: {
-    number: number;
-    name: string;
-    state: string;
-    merged: boolean;
-    commits: {
-      sha: string;
-      parent: string;
-    }[];
-  }[];
-};
 
 class LowWithLodash<T> extends Low<T> {
   chain: lodash.ExpChain<this["data"]> = lodash.chain(this).get("data");
@@ -99,6 +37,7 @@ db.data ||= {
   timings: { runs: [], testcases: [] },
   candidates: [],
   prs: [],
+  results: [],
 };
 db.data.baseLine ||= { commits: [] };
 db.data.timings ||= { runs: [], testcases: [] };
@@ -229,6 +168,7 @@ interface Candidate {
   sha: string;
   branch: string;
   firstSuccessfulParent: string;
+  flaky?: boolean;
   failingTestcases: string[];
 }
 // For each of the selected commits, find the testcases that always fail
@@ -240,10 +180,15 @@ const candidates: Candidate[] = await Promise.all(
       throw new Error("no first successful parent");
     }
     if (commit.successful) {
+      const commitData = db.chain
+      .get("baseLine.commits")
+      .find({ sha: commit.sha })
+      .value();
       return {
         sha: commit.sha,
         branch: commit.branch,
         firstSuccessfulParent,
+        flaky: commitData?.flaky,
         failingTestcases: [],
       };
     }
@@ -292,10 +237,16 @@ const candidates: Candidate[] = await Promise.all(
       failingSpecFiles,
       passingSpecFiles
     );
+    const commitData = db.chain
+      .get("baseLine.commits")
+      .find({ sha: commit.sha })
+      .value();
+      
     return {
       sha: commit.sha,
       branch: commit.branch,
       firstSuccessfulParent,
+      flaky: commitData?.flaky,
       failingTestcases: lodash.uniq(alwaysFailingTestcases),
     };
   })
@@ -307,6 +258,13 @@ console.log(
     candidates.filter((candidate) => candidate.failingTestcases.length > 0)
       .length
   } candidates with failing testcases`
+);
+
+console.log(
+  `found ${
+    candidates.filter((candidate) => candidate.flaky)
+      .length
+  } candidates showing flaky behavior`
 );
 
 db.data.candidates = candidates;

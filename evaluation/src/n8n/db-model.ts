@@ -4,6 +4,7 @@ import { Low } from "lowdb";
 export type Data = {
     baseLine: {
       commits: {
+        flaky: boolean;
         sha: string;
         parent: string;
         branch: string;
@@ -53,6 +54,16 @@ export type Data = {
       failingTestcases: string[];
     }[];
     results: {}[];
+    prs: {
+      number: number;
+      name: string;
+      state: string;
+      merged: boolean;
+      commits: {
+        sha: string;
+        parent: string;
+      }[];
+    }[];
   };
 
   export class LowWithLodash<T> extends Low<T> {

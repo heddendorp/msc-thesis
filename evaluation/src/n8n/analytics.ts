@@ -264,44 +264,63 @@ console.log(
 );
 
 const averageDurationPassed = db.chain
-  .get("timings.testcases")
-  .filter((testcase) => testcase.results.passed > 0)
-  .map((testcase) => testcase.averageDuration)
+  .get("timings.runs")
+  .filter((run) => run.passed)
+  .map((run) => run.testDuration)
+  .map((duration) => duration / 1000 / 60)
   .mean()
   .value();
 
 const averageDurationPassedInstrumented = db.chain
-  .get("timings.testcases")
-  .filter((testcase) => testcase.resultsInstrumented.passed > 0)
-  .map((testcase) => testcase.averageDurationInstrumented)
+  .get("timings.runs")
+  .filter((run) => run.passedInstrumented)
+  .map((run) => run.testInstrumentedDuration)
+  .map((duration) => duration / 1000 / 60)
   .mean()
   .value();
 
 const averageDurationFailed = db.chain
-  .get("timings.testcases")
-  .filter((testcase) => testcase.results.failed > 0)
-  .map((testcase) => testcase.averageDuration)
+  .get("timings.runs")
+  .filter((run) => !run.passed)
+  .map((run) => run.testDuration)
+  .map((duration) => duration / 1000 / 60)
   .mean()
   .value();
 
 const averageDurationFailedInstrumented = db.chain
-  .get("timings.testcases")
-  .filter((testcase) => testcase.resultsInstrumented.failed > 0)
-  .map((testcase) => testcase.averageDurationInstrumented)
+  .get("timings.runs")
+  .filter((run) => !run.passedInstrumented)
+  .map((run) => run.testInstrumentedDuration)
+  .map((duration) => duration / 1000 / 60)
   .mean()
   .value();
 
+  // Calculate the percent change between the two averages
+const percentChange = (a:number, b:number) => ((b - a) / a) * 100;
+
+const percentChangePassed = percentChange(
+  averageDurationPassed,
+  averageDurationPassedInstrumented
+);
+
+const percentChangeFailed = percentChange(
+  averageDurationFailed,
+  averageDurationFailedInstrumented
+);
+
 const csvDurationTable = [
-  ["Result", "Duration (ms)", "Instrumented Duration (ms)"],
+  ["Result", "Duration (min)", "Instrumented Duration (min)", "Change"],
   [
     "Passed",
     toLatexNum(averageDurationPassed),
     toLatexNum(averageDurationPassedInstrumented),
+    toLatexNum(percentChangePassed)+" \\%",
   ],
   [
     "Failed",
     toLatexNum(averageDurationFailed),
     toLatexNum(averageDurationFailedInstrumented),
+    toLatexNum(percentChangeFailed)+" \\%",
   ],
 ];
 
@@ -359,21 +378,9 @@ console.table(table);
 
 const csvTable = [
   ["Result", "Instrumented", "Non-Instrumented"],
-  [
-    "Passed",
-    toLatexNum(table.passed.instrumented),
-    toLatexNum(table.passed.nonInstrumented),
-  ],
-  [
-    "Failed",
-    toLatexNum(table.failed.instrumented),
-    toLatexNum(table.failed.nonInstrumented),
-  ],
-  [
-    "Skipped",
-    toLatexNum(table.skipped.instrumented),
-    toLatexNum(table.skipped.nonInstrumented),
-  ],
+  ["Passed", table.passed.instrumented, table.passed.nonInstrumented],
+  ["Failed", table.failed.instrumented, table.failed.nonInstrumented],
+  ["Skipped", table.skipped.instrumented, table.skipped.nonInstrumented],
 ];
 
 jetpack.write("../thesis/data/testcaseResults.csv", stringify(csvTable));
@@ -408,16 +415,8 @@ console.table(table2);
 
 const csvTable2 = [
   ["Result", "Instrumented", "Non Instrumented"],
-  [
-    "Passed",
-    toLatexNum(table2.successful.instrumented),
-    toLatexNum(table2.successful.nonInstrumented),
-  ],
-  [
-    "Failed",
-    toLatexNum(table2.failed.instrumented),
-    toLatexNum(table2.failed.nonInstrumented),
-  ],
+  ["Passed", table2.successful.instrumented, table2.successful.nonInstrumented],
+  ["Failed", table2.failed.instrumented, table2.failed.nonInstrumented],
 ];
 
 jetpack.write("../thesis/data/runResults.csv", stringify(csvTable2));
@@ -447,10 +446,10 @@ const table3 = db.chain
       // numberOfRunsInstrumented:
       //   testcase.resultsInstrumented.passed +
       //   testcase.resultsInstrumented.failed,
-      failed: toLatexNum(testcase.results.failed),
-      failedInstrumented: toLatexNum(testcase.resultsInstrumented.failed),
-      passed: toLatexNum(testcase.results.passed),
-      passedInstrumented: toLatexNum(testcase.resultsInstrumented.passed),
+      failed: testcase.results.failed,
+      failedInstrumented: testcase.resultsInstrumented.failed,
+      passed: testcase.results.passed,
+      passedInstrumented: testcase.resultsInstrumented.passed,
       // percentageOfFailedRuns: percentage(
       //   testcase.results.failed,
       //   testcase.results.passed + testcase.results.failed

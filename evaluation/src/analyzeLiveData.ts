@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import jetpack from "fs-jetpack";
-import lodash, { sortBy } from "lodash";
+import lodash from "lodash";
 import { stringify } from "csv/sync";
 
 export interface LiveData {
@@ -206,24 +206,52 @@ const infoTable = [
   ["", "Instrumented", "Non Instrumented"],
   [
     "Passed",
-    toLatexNum(passedFlakyBuilds),
-    toLatexNum(passedRegularBuildsNoReruns),
+    passedFlakyBuilds,
+    passedRegularBuildsNoReruns,
   ],
   [
     "Failed",
-    toLatexNum(failedFlakyBuilds),
-    toLatexNum(failedRegularBuildsOrReruns),
+    failedFlakyBuilds,
+    failedRegularBuildsOrReruns,
   ],
 ];
 
 const infoTableWithReruns = [
   ["", "Instrumented", "Non Instrumented"],
-  ["Passed", toLatexNum(passedFlakyBuilds), toLatexNum(passedRegularBuilds)],
-  ["Failed", toLatexNum(failedFlakyBuilds), toLatexNum(failedRegularBuilds)],
+  ["Passed", passedFlakyBuilds, passedRegularBuilds],
+  ["Failed", failedFlakyBuilds, failedRegularBuilds],
 ];
 
 console.log(infoTable);
 console.log(infoTableWithReruns);
+
+const allBuildsInfo = [
+  ["instrumented", "result"],
+  ...data
+    .get("branchData")
+    .flatMap((branchData) => branchData.results)
+    .flatMap((result) => [
+      ["instrumented", result.flakyBuild.successful ? "passed" : "failed"],
+      ["non-instrumented", result.regularBuild.successful ? "passed" : "failed"],
+    ])
+    .value(),
+]
+
+jetpack.write("data/artemis-allBuildsInfo.csv", stringify(allBuildsInfo));
+
+const allBuildsWithRerunAsFail = [
+  ["instrumented", "result"],
+  ...data
+    .get("branchData")
+    .flatMap((branchData) => branchData.results)
+    .flatMap((result) => [
+      ["instrumented", result.flakyBuild.successful ? "passed" : "failed"],
+      ["non-instrumented", (result.regularBuild.label || !result.regularBuild.successful) ? "failed" : "passed"],
+    ])
+    .value(),
+]
+
+jetpack.write("data/artemis-allBuildsWithRerunAsFail.csv", stringify(allBuildsWithRerunAsFail));
 
 jetpack.write("../thesis/data/artemis-runResults.csv", stringify(infoTable));
 jetpack.write(
@@ -280,17 +308,32 @@ const averageFailedDurationFlaky = data
 
 console.log(averageFailedDurationFlaky, "min averageFailedDurationFlaky");
 
+// Calculate the percent change between the two averages
+const percentChange = (a:number, b:number) => ((b - a) / a) * 100;
+
+const percentChangePassed = percentChange(
+  averagePassedDurationRegular,
+  averagePassedDurationFlaky
+);
+
+const percentChangeFailed = percentChange(
+  averageFailedDurationRegular,
+  averageFailedDurationFlaky
+);
+
 const averageDurationTable = [
-  ["Result", "Duration (min)", "Instrumented Duration (min)"],
+  ["Result", "Duration (min)", "Instrumented Duration (min)", "Change"],
   [
     "Passed",
     toLatexNum(averagePassedDurationRegular),
     toLatexNum(averagePassedDurationFlaky),
+    toLatexNum(percentChangePassed)+" \\%",
   ],
   [
     "Failed",
     toLatexNum(averageFailedDurationRegular),
     toLatexNum(averageFailedDurationFlaky),
+    toLatexNum(percentChangeFailed)+" \\%",
   ],
 ];
 
@@ -325,10 +368,6 @@ const passedDurationsFlaky = data
   .map((result) => result.flakyBuild.duration)
   .map((duration) => duration / 1000 / 60)
   .value();
-
-// Remove largest outlier from flaky failed durations
-failedDurationsFlaky.sort((a, b) => a - b);
-failedDurationsFlaky.pop();
 
 const spssTable = [
   ["Group", "Duration (min)"],

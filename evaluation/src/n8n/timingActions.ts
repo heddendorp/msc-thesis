@@ -32,25 +32,25 @@ async function triggerActions() {
         },
       }
     );
-    await octokit.request(
-      "POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches",
-      {
-        owner: "heddendorp",
-        repo: "n8n",
-        workflow_id: "e2e-timing.yml",
-        ref: "master",
-        inputs: {
-          ref: commit.sha,
-          compare: `${commit.sha}~1`,
-          coverage: "[false,true]",
-          // coverage: "[false]",
-          containers: "[1]",
-          run: "establishHostedTimings",
-          // run: "establishBaseline",
-          useHostedRunner: "true",
-        },
-      }
-    );
+    // await octokit.request(
+    //   "POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches",
+    //   {
+    //     owner: "heddendorp",
+    //     repo: "n8n",
+    //     workflow_id: "e2e-timing.yml",
+    //     ref: "master",
+    //     inputs: {
+    //       ref: commit.sha,
+    //       compare: `${commit.sha}~1`,
+    //       coverage: "[false,true]",
+    //       // coverage: "[false]",
+    //       containers: "[1]",
+    //       run: "establishHostedTimings",
+    //       // run: "establishBaseline",
+    //       useHostedRunner: "true",
+    //     },
+    //   }
+    // );
   }
 }
 

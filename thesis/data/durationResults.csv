@@ -1,3 +1,3 @@
-Result,Duration (ms),Instrumented Duration (ms)
-Passed,\num{6745.491935483871},\num{7662.330645161291}
-Failed,\num{7894.4},\num{9558}
+Result,Duration (min),Instrumented Duration (min),Change
+Passed,\num{16.527619047619055},\num{18.98655913978495},\num{14.877763609393742} \%
+Failed,\num{18.21},\num{20.72179487179487},\num{13.793491882453976} \%

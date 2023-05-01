@@ -7,16 +7,16 @@ import { promisify } from "util";
 import { pipeline } from "stream";
 import jetpack from "fs-jetpack";
 import { Extract } from "unzip-stream";
-const {stringify} = require('csv/dist/cjs/sync.cjs');
+import { stringify } from "csv/sync";
 
 import { JSONFile } from "lowdb/node";
 import { Data, LowWithLodash } from "./db-model.js";
+import { LiveData } from "../analyzeLiveData.js";
+import lodash from "lodash";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const streamPipeline = promisify(pipeline);
 
 const toLatexNum = (num: any) => `\\num{${num}}`;
-
-
 
 // File path
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -36,13 +36,14 @@ db.data ||= {
   timings: { runs: [], testcases: [] },
   candidates: [],
   results: [],
+  prs: [],
 };
 db.data.baseLine ||= { commits: [] };
 db.data.timings ||= { runs: [], testcases: [] };
 db.data.candidates ||= [];
 db.data.results ||= [];
 
-const targetRunNumber = 10;
+const targetRunNumber = 5;
 
 if (!db.data) {
   throw new Error("no data");
@@ -252,11 +253,11 @@ const analysisRuns = runs.map(async (run) => {
 });
 
 let analysedRuns = 0;
-const evaluation =[];
+const evaluation = [];
 
-for(const run of analysisRuns) {
+for (const run of analysisRuns) {
   const result = await run;
-  if(result) {
+  if (result) {
     evaluation.push(result);
   } else {
     console.log("no result");
@@ -290,14 +291,229 @@ const fileRecall =
 const fileF1 =
   (2 * (filePrecision * fileRecall)) / (filePrecision + fileRecall);
 
-  const mccScore = (lineResultsSum.truePositives * lineResultsSum.trueNegatives - lineResultsSum.falsePositives * lineResultsSum.falseNegatives) /
-  Math.sqrt((lineResultsSum.truePositives + lineResultsSum.falsePositives) * (lineResultsSum.truePositives + lineResultsSum.falseNegatives) * (lineResultsSum.trueNegatives + lineResultsSum.falsePositives) * (lineResultsSum.trueNegatives + lineResultsSum.falseNegatives));
+// Get numbers for artemis
+console.log("===Artemis===");
+const liveData = jetpack.read("data/live-data.json", "json") as LiveData;
 
-  const mccScoreFile = (fileResultsSum.truePositives * fileResultsSum.trueNegatives - fileResultsSum.falsePositives * fileResultsSum.falseNegatives) /
-  Math.sqrt((fileResultsSum.truePositives + fileResultsSum.falsePositives) * (fileResultsSum.truePositives + fileResultsSum.falseNegatives) * (fileResultsSum.trueNegatives + fileResultsSum.falsePositives) * (fileResultsSum.trueNegatives + fileResultsSum.falseNegatives));
+liveData.branchData = liveData.branchData
+  .map((branchData) => ({
+    ...branchData,
+    results: branchData.results.filter((result) => {
+      if (result.regularTests.length === 0 || result.flakyTests.length === 0) {
+        console.log("excluded build because no tests", result.regularBuild.key);
+        return false;
+      }
+      if (result.regularBuild.successful === false) {
+        if (!result.regularFailed.length) {
+          console.log(
+            "excluded build because regular build failed and no regular failed tests",
+            result.regularBuild.key
+          );
+          return false;
+        }
+      }
+      if (result.flakyBuild.successful === false) {
+        if (!result.flakyFailed.length) {
+          console.log(
+            "excluded build because flaky build failed and no flaky failed tests",
+            result.flakyBuild.key
+          );
+          return false;
+        }
+      }
+      if (result.regularBuild.duration < 1000 * 60 * 20) {
+        console.log(
+          "excluded build because of short regular build duration",
+          result.regularBuild.duration / 1000 / 60,
+          result.regularBuild.key
+        );
+        return false;
+      }
+      if (result.flakyBuild.duration < 1000 * 60 * 20) {
+        console.log(
+          "excluded build because of short flaky build duration",
+          result.flakyBuild.duration / 1000 / 60,
+          result.flakyBuild.key
+        );
+        return false;
+      }
+      return true;
+    }),
+  }))
+  .filter((branch) => branch.results.length > 0);
+
+const artemisData = lodash.chain(liveData);
+
+const failedFlakyBuilds = artemisData
+  .get("branchData")
+  .flatMap((branchData) => branchData.results)
+  .filter((result) => result.flakyBuild.successful === false)
+  .value().length;
+
+console.log(failedFlakyBuilds, "failedFlakyBuilds");
+
+const labeledFlakyResults = artemisData
+  .get("branchData")
+  .flatMap((branchData) => branchData.results)
+  .filter((result) => !!result.flakyBuild.label)
+  .value().length;
+
+console.log(labeledFlakyResults, "labeledFlakyResults");
+
+const knownTruePositive = artemisData
+  .get("branchData")
+  .flatMap((branchData) => branchData.results)
+  .filter((result) => !!result.flakyBuild.label)
+  .filter((result) => {
+    if (result.flakyBuild.successful === false) {
+      if (result.regularBuild.successful === true) {
+        return true;
+      }
+      const testsFailedInFlaky = result.flakyTests.filter(
+        (test) => test.successful === false
+      );
+      const testsFailedInRegular = result.regularTests.filter(
+        (test) => test.successful === false
+      );
+      const testIntersection = testsFailedInFlaky.filter((test) =>
+        testsFailedInRegular.some(
+          (otherTest) => otherTest.methodName === test.methodName
+        )
+      );
+      if (testIntersection.length == 0) {
+        return true;
+      }
+    }
+    return false;
+  })
+  .value().length;
+
+console.log(knownTruePositive, "knownTruePositive");
+
+const knownFalseNegative = artemisData
+  .get("branchData")
+  .flatMap((branchData) => branchData.results)
+  .filter((result) => !result.flakyBuild.label)
+  .filter((result) => result.flakyBuild.successful === false)
+  .filter((result) => {
+    if (result.flakyBuild.successful === false) {
+      if (result.regularBuild.successful === true) {
+        return true;
+      }
+      const testsFailedInFlaky = result.flakyTests.filter(
+        (test) => test.successful === false
+      );
+      const testsFailedInRegular = result.regularTests.filter(
+        (test) => test.successful === false
+      );
+      const testIntersection = testsFailedInFlaky.filter((test) =>
+        testsFailedInRegular.some(
+          (otherTest) => otherTest.methodName === test.methodName
+        )
+      );
+      if (testIntersection.length == 0) {
+        return true;
+      }
+    }
+    return false;
+  })
+  .value().length;
+
+const likelyTrueNegatives = artemisData
+  .get("branchData")
+  .flatMap((branchData) => branchData.results)
+  .filter((result) => !result.flakyBuild.label)
+  .filter((result) => result.flakyBuild.successful === false)
+  .filter((result) => {
+    if (result.flakyBuild.successful === false) {
+      if (result.regularBuild.successful === true) {
+        return false;
+      }
+      const testsFailedInFlaky = result.flakyTests.filter(
+        (test) => test.successful === false
+      );
+      const testsFailedInRegular = result.regularTests.filter(
+        (test) => test.successful === false
+      );
+      const testIntersection = testsFailedInFlaky.filter((test) =>
+        testsFailedInRegular.some(
+          (otherTest) => otherTest.methodName === test.methodName
+        )
+      );
+      const similarity =
+        (testIntersection.length * 2) /
+        (testsFailedInFlaky.length + testsFailedInRegular.length);
+      if (similarity > 0.75) {
+        return true;
+      }
+    }
+    return false;
+  })
+  .value().length;
+
+console.log(likelyTrueNegatives, "likelyTrueNegatives");
+
+const likelyFalsePositives = artemisData
+  .get("branchData")
+  .flatMap((branchData) => branchData.results)
+  .filter((result) => !!result.flakyBuild.label)
+  .filter((result) => result.flakyBuild.successful === false)
+  .filter((result) => {
+    if (result.flakyBuild.successful === false) {
+      if (result.regularBuild.successful === true) {
+        return false;
+      }
+      const testsFailedInFlaky = result.flakyTests.filter(
+        (test) => test.successful === false
+      );
+      const testsFailedInRegular = result.regularTests.filter(
+        (test) => test.successful === false
+      );
+      const testIntersection = testsFailedInFlaky.filter((test) =>
+        testsFailedInRegular.some(
+          (otherTest) => otherTest.methodName === test.methodName
+        )
+      );
+      const similarity =
+        (testIntersection.length * 2) /
+        (testsFailedInFlaky.length + testsFailedInRegular.length);
+      if (similarity > 0.75) {
+        return true;
+      }
+    }
+    return false;
+  })
+  .value().length;
+
+console.log(likelyFalsePositives, "likelyFalsePositives");
+
+console.log(knownFalseNegative, "knownFalseNegative");
+
+const unlabeledFlakyFails = failedFlakyBuilds - labeledFlakyResults;
+
+const maxFlasePositives = labeledFlakyResults - knownTruePositive;
+
+console.log(maxFlasePositives, "maxFlasePositives");
+
+const maxTrueNegatives = unlabeledFlakyFails - knownFalseNegative;
+const maxFalseNegatives = unlabeledFlakyFails - likelyTrueNegatives;
+
+console.log(maxTrueNegatives, "maxTrueNegatives");
+console.log(maxFalseNegatives, "maxFalseNegatives");
+
+const precision = knownTruePositive / (knownTruePositive + maxFlasePositives);
+const recall = knownTruePositive / (knownTruePositive + maxFalseNegatives);
+
+console.log(precision, "precision");
+console.log(recall, "recall");
+
+const f1 = (2 * (precision * recall)) / (precision + recall);
+
+console.log("===End Artemis===");
 
 const resultsCsv = [
   [
+    "Experiment",
     "True Positives",
     "False Positives",
     "True Negatives",
@@ -308,12 +524,12 @@ const resultsCsv = [
     // "MCC"
   ],
   [
-    "Line coverage",
+    "\\textsc{n8n} (line)",
+    lineResultsSum.truePositives,
+    lineResultsSum.falsePositives,
+    lineResultsSum.trueNegatives,
+    lineResultsSum.falseNegatives,
     ...[
-      lineResultsSum.truePositives,
-      lineResultsSum.falsePositives,
-      lineResultsSum.trueNegatives,
-      lineResultsSum.falseNegatives,
       linePrecision,
       lineRecall,
       lineF1,
@@ -321,17 +537,27 @@ const resultsCsv = [
     ].map((num) => toLatexNum(num)),
   ],
   [
-    "File coverage",
+    "\\textsc{n8n} (file)",
+    fileResultsSum.truePositives,
+    fileResultsSum.falsePositives,
+    fileResultsSum.trueNegatives,
+    fileResultsSum.falseNegatives,
     ...[
-      fileResultsSum.truePositives,
-      fileResultsSum.falsePositives,
-      fileResultsSum.trueNegatives,
-      fileResultsSum.falseNegatives,
       filePrecision,
       fileRecall,
       fileF1,
       // mccScoreFile
     ].map((num) => toLatexNum(num)),
+  ],
+  [
+    "\\textsc{ArtTEMis}",
+    knownTruePositive,
+    maxFlasePositives,
+    likelyTrueNegatives,
+    maxFalseNegatives,
+    toLatexNum(precision),
+    toLatexNum(recall),
+    toLatexNum(f1),
   ],
 ];
 
@@ -342,9 +568,7 @@ jetpack.write(
     .replace(/"(?=$|,)/gm, "}")
 );
 
-// throw new Error("done");
-
-// Start evaluation if it didn't run ten times yet
+throw new Error("done");
 
 const actionStarts = db.chain
   .get("candidates")
@@ -359,7 +583,7 @@ const actionStarts = db.chain
     });
     return matchingRuns.length < targetRunNumber;
   })
-  // .slice(0, 2)
+  .slice(0, 5)
   .map(async (candidate) => {
     const matchingRuns = runs.filter((run) => {
       const commit = run.name?.split("-")[1].split("➡️")[0].trim();
@@ -384,14 +608,13 @@ const actionStarts = db.chain
           compare: candidate.firstSuccessfulParent,
         },
       });
-      // break;
     }
   })
   .value();
 
-  let launchedRuns = 0;
-if (false) {
-  for(const actionStart of actionStarts) {
+let launchedRuns = 0;
+if (launchNewRuns) {
+  for (const actionStart of actionStarts) {
     await actionStart;
     launchedRuns++;
     console.log("launched", launchedRuns, "runs");

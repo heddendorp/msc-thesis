@@ -1,6 +1,6 @@
 % !TeX root = ..\thesis.tex
 % \documentclass[a4paper,12pt,twoside,listof=totoc,bibliography=totoc]{report}
-\documentclass[headsepline,footsepline,footinclude=false,oneside,fontsize=11pt,paper=a4,listof=totoc,bibliography=totoc]{scrbook}
+\documentclass[headsepline,footsepline,footinclude=false,oneside,fontsize=11pt,paper=a4,listof=totoc,bibliography=totoc,parskip=half]{scrbook}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -15,7 +15,7 @@
 \usepackage[%
   backend=biber,
   url=true,
-  style=numeric,
+  style=numeric-comp,
   maxnames=4,
   minnames=3,
   maxbibnames=99,
@@ -30,6 +30,8 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
+\usepackage{amsmath}
+\usepackage[USenglish]{datetime2}
 \usepackage{setspace}
 \usepackage[l3]{csvsimple}
 % \usepackage[german,english]{babel}
@@ -51,7 +53,8 @@
 \usepackage[capitalize, noabbrev]{cleveref}
 \usepackage{wasysym}
 \usepackage{adjustbox}
-\usepackage[backgroundcolor=TUMLightGray!20,linecolor=TUMAccentOrange,bordercolor=TUMAccentOrange,colorinlistoftodos]{todonotes}
+\usepackage{mdframed}[framemethod=TikZ]
+\usepackage[backgroundcolor=TUMLightGray!20,linecolor=TUMAccentOrange,bordercolor=TUMAccentOrange,colorinlistoftodos,tickmarkheight=0.1cm]{todonotes}
 
 % Path for graphics
 \graphicspath{{figures/}}
@@ -97,6 +100,10 @@
 	\def\lstnumberautorefname{Zeile}
 }
 
+\mdfsetup{linewidth=1pt, linecolor=TUMDarkGray, nobreak}
+\newtheorem{definition}{Definition}
+\usetikzlibrary{shapes,fit,positioning}
+
 % Settings for pgfplots
 \pgfplotsset{compat=newest}
 \pgfplotsset{
@@ -139,5 +146,5 @@
 % Inline to do note: 
 \newcommand{\TODO}[1]{\todo[inline]{#1}}
 
-\newcommand{\addref}{\todo[bordercolor=red,linecolor=red,tickmarkheight=0.1cm]{Add reference.}}
+\newcommand{\addref}{\todo[bordercolor=red,linecolor=red]{Add reference.}}
 \newcommand{\rewrite}[1]{\todo[bordercolor=TUMAccentBlue,linecolor=TUMAccentBlue]{#1}}

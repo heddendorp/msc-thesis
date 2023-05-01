@@ -1,3 +1,4 @@
-{},{True Positives},{False Positives},{True Negatives},{False Negatives},{Precision},{Recall},{F1},{MCC}
-{Line coverage},{\num{6}},{\num{0}},{\num{40}},{\num{12}},{\num{1}},{\num{0.3333333333333333}},{\num{0.5}},{\num{0.5063696835418333}}
-{File coverage},{\num{6}},{\num{0}},{\num{40}},{\num{12}},{\num{1}},{\num{0.3333333333333333}},{\num{0.5}},{\num{0.5063696835418333}}
+{Experiment},{True Positives},{False Positives},{True Negatives},{False Negatives},{Precision},{Recall},{F1}
+{\textsc{n8n} (line)},{7},{0},{44},{13},{\num{1}},{\num{0.35}},{\num{0.5185185185185185}}
+{\textsc{n8n} (file)},{7},{0},{44},{13},{\num{1}},{\num{0.35}},{\num{0.5185185185185185}}
+{\textsc{ArtTEMis}},{108},{41},{24},{171},{\num{0.7248322147651006}},{\num{0.3870967741935484}},{\num{0.5046728971962617}}

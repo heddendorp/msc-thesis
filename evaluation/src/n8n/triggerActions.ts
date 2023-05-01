@@ -143,24 +143,43 @@ const getOldestParent = (commit: string): string => {
   return getOldestParent(commitData.parent);
 };
 
+const nextCommitToRun = (commit: string): string | null => {
+  const commitData = db.chain
+    .get("baseLine.commits")
+    .find({ sha: commit })
+    .value();
+  if (!commitData) {
+    console.log("no commit data");
+    return commit;
+  }
+  if (commitData.successful) {
+    console.log("commit successful");
+    return null;
+  }
+  if (!commitData.successful && commitData.runs.length < 5) {
+    console.log("commit not successful, but not enough runs");
+    return commit;
+  }
+  return nextCommitToRun(commitData.parent);
+};
+
 const commitsToRun = db.chain
   .get("prs")
   .map("commits")
   .flatten()
   .map((plannedCommit) => {
-    const commit = db.chain
+    const reccomendation = nextCommitToRun(plannedCommit.sha);
+    if (reccomendation) {
+      return reccomendation;
+    }
+    const commitData = db.chain
       .get("baseLine.commits")
       .find({ sha: plannedCommit.sha })
       .value();
-    if (!commit) {
-      console.log("no commit");
-      return plannedCommit.sha;
-    }
-    if (commit.successful) {
+
+    if (commitData.runs.every((run) => run.installConclusion === "failure")) {
+      console.log("commit not successful, but all runs failed to install");
       return null;
-    }
-    if (commit.runs.length < 5) {
-      return plannedCommit.sha;
     }
     const firstSuccessfulParent = getFirstSuccessfulParent(plannedCommit.sha);
     if (!firstSuccessfulParent) {
@@ -184,15 +203,25 @@ const commitsToRun = db.chain
     return null;
   })
   .filter((sha) => !!sha)
+  .tap((commits) => {
+    console.log(`Found ${commits.length} commits to run`);
+  })
   .uniq()
+  .tap((commits) => {
+    console.log(`Found ${commits.length} unique commits to run`);
+  })
+  .take(15)
   .value();
 
 console.log(`Starting ${commitsToRun.length} runs`);
+
+let startedRuns = 0;
 
 for (const commit of commitsToRun) {
   if (!commit) {
     continue;
   }
+  console.log(`Starting run ${++startedRuns} of ${commitsToRun.length}`);
   await octokit.rest.actions.createWorkflowDispatch({
     owner: "heddendorp",
     repo: "n8n",

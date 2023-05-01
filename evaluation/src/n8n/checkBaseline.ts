@@ -132,10 +132,9 @@ const getRunData = async (run: {
     testConclusion: testJob?.conclusion ?? "",
   };
 };
-
-// throw new Error("stop");
 const updateDB = runs
   .filter((run) => run.name?.includes("establishBaseline"))
+  .filter(run => run.status === "completed")
   .map(async (run) => {
     if (run.conclusion) {
       const commit = run.name?.split("-")[1].split("➡️")[0].trim();
@@ -170,7 +169,7 @@ const updateDB = runs
           branch: branch ?? "",
           parent: parentCommit,
           runs: [runData],
-          successful: run.conclusion === "success",
+          successful: runData.testConclusion === "success",
           flaky: false,
         });
       } else {
@@ -214,14 +213,14 @@ for (const update of updateDB) {
 
 // update commit to success if any run was successful
 db.data?.baseLine.commits.forEach((commit) => {
-  if (commit.runs.some((run) => run.conclusion === "success")) {
+  if (commit.runs.some((run) => run.testConclusion === "success")) {
     commit.successful = true;
   } else {
     commit.successful = false;
   }
   if (
-    commit.runs.some((run) => run.conclusion === "success") &&
-    commit.runs.some((run) => run.conclusion === "failure")
+    commit.runs.some((run) => run.testConclusion === "success") &&
+    commit.runs.some((run) => run.testConclusion === "failure")
   ) {
     commit.flaky = true;
   } else {

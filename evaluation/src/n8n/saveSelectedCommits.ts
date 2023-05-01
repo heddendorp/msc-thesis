@@ -3,7 +3,7 @@ dotenv.config();
 import { Octokit } from "octokit";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import lodash from "lodash";
+import lodash, { pull } from "lodash";
 import { promisify } from "util";
 import { pipeline } from "stream";
 import jetpack from "fs-jetpack";
@@ -143,19 +143,57 @@ const branchRequests = branches.data.map(async (branch) => {
 
 const branchCommits = await Promise.all(branchRequests);
 
-console.log(branchCommits);
-
 // throw new Error("stop");
 
-const pullRequests = await octokit.request("GET /repos/{owner}/{repo}/pulls", {
+const pullRequests = await octokit.rest.pulls.list({
   owner: "n8n-io",
   repo: "n8n",
   state: "all",
-  per_page: 50,
-  until: "2023-03-20",
+  sort: "created",
+  direction: "desc",
+  per_page: 100,
+  page: 4,
 });
 
-const prRequests = pullRequests.data.map(async (pr) => {
+const pullRequests2 = await octokit.rest.pulls.list({
+  owner: "n8n-io",
+  repo: "n8n",
+  state: "all",
+  sort: "updated",
+  direction: "desc",
+  per_page: 100,
+  page: 5,
+});
+
+const pullRequests3 = await octokit.rest.pulls.list({
+  owner: "n8n-io",
+  repo: "n8n",
+  state: "all",
+  sort: "updated",
+  direction: "desc",
+  per_page: 100,
+  page: 6,
+});
+
+const prNew = pullRequests.data
+  .concat(pullRequests2.data)
+  .concat(pullRequests3.data)
+  .filter((pr) => {
+    const createdAt = new Date(pr.updated_at);
+    const targetDate = new Date("2023-03-20");
+    return createdAt < targetDate;
+  })
+  .slice(0, 50);
+
+console.log(pullRequests.data[0].updated_at);
+console.log(pullRequests2.data[0].updated_at);
+console.log(pullRequests3.data[0].updated_at);
+
+console.log(prNew.length);
+
+// throw new Error("stop");
+
+const prRequests = prNew.map(async (pr) => {
   const commits = await octokit.request(
     "GET /repos/{owner}/{repo}/pulls/{pull_number}/commits",
     {
@@ -195,17 +233,17 @@ const selection = prs.concat(
     })
 );
 
-if(db.data){
-  // merge db prs with selection
-  const oldPrs = db.data.prs.filter((pr) => {
-    return !selection.some((newPr) => newPr.number === pr.number);
-  });
-  db.data.prs = oldPrs.concat(selection);
-  await db.write();
-}
-
-// if (db.data) {
-//   db.data!.prs = selection;
-
+// if(db.data){
+//   // merge db prs with selection
+//   const oldPrs = db.data.prs.filter((pr) => {
+//     return !selection.some((newPr) => newPr.number === pr.number);
+//   });
+//   db.data.prs = oldPrs.concat(selection);
 //   await db.write();
 // }
+
+if (db.data) {
+  db.data!.prs = prs;
+
+  await db.write();
+}
