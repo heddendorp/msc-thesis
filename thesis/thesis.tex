@@ -701,9 +701,11 @@ For the second case study, \textsc{n8n}, the average run times are higher when u
 The recorded timings in \cref{n8n_time_boxplot} show much less variance than for \textsc{ArTEMiS}.
 \Cref{duration_results} shows the average run times for the \ac{e2e} tests.
 The preconditions are also met except for the normality of the data.
-The Shapiro-Wilk test shows that the data is not normally distributed ($p < .001$)\todo{update} \autocite{shapiro_analysis_1965}.
-As all groups are bigger than 30 again, a t-test is still applicable.
-The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(1, 024) = -3.99, p = < .001$)\todo{update} and passed builds ($t(1, 024) = -3.99, p = < .001$)\todo{update}.
+The Shapiro-Wilk test shows that the data is not normally distributed for the cases in which the tests passed ($p < .001$) \autocite{shapiro_analysis_1965}.
+In cases in which the tests failed without instrumentation ($p .047$) and with instrumentation ($p .018$) the data is also not normally distributed.
+As both groups in which the tests passed have more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality, in this case \autocite{wilcox_introduction_2011}.
+In cases in which the tests failed, the groups have less than 30 samples, we will use a t-test anyway as it has been shown to be robust to violations of the normality assumption.
+The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(10.128) = 33.179, p = < .001$)\todo{update} and passed builds ($t(129.965) = 90.426, p = < .001$).
 
 \begin{figure}[h]
 	\centering
@@ -773,6 +775,10 @@ The external validity is not limited by the dedicated \ac{ci} system since the \
 	\caption{Statistics of live CI runs for \textsc{ArTEMiS} when considering reruns as failures}
 	\label[table]{failure_rate_results-rerun_artemis}
 \end{table}
+
+We analyze the failure rate of the tests in the \textsc{n8n} case study with the results from \cref{failure_rate_results-rerun_artemis}.
+Again, we see a higher failure rate for the instrumented run.
+The chi-squared test shows that the more frequently reported failures show a significant difference between the experiment with and without instrumentation ($\chi^2(1) = 122.844, p = < .001$).
 
 % \subsection{Additional Observations}
 % \TODO{Issues with memory}

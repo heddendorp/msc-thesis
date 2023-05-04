@@ -43,7 +43,7 @@ db.data.timings ||= { runs: [], testcases: [] };
 db.data.candidates ||= [];
 db.data.results ||= [];
 
-const targetRunNumber = 5;
+const targetRunNumber = 6;
 
 if (!db.data) {
   throw new Error("no data");
@@ -300,41 +300,41 @@ liveData.branchData = liveData.branchData
     ...branchData,
     results: branchData.results.filter((result) => {
       if (result.regularTests.length === 0 || result.flakyTests.length === 0) {
-        console.log("excluded build because no tests", result.regularBuild.key);
+        // console.log("excluded build because no tests", result.regularBuild.key);
         return false;
       }
       if (result.regularBuild.successful === false) {
         if (!result.regularFailed.length) {
-          console.log(
-            "excluded build because regular build failed and no regular failed tests",
-            result.regularBuild.key
-          );
+          // console.log(
+          //   "excluded build because regular build failed and no regular failed tests",
+          //   result.regularBuild.key
+          // );
           return false;
         }
       }
       if (result.flakyBuild.successful === false) {
         if (!result.flakyFailed.length) {
-          console.log(
-            "excluded build because flaky build failed and no flaky failed tests",
-            result.flakyBuild.key
-          );
+          // console.log(
+          //   "excluded build because flaky build failed and no flaky failed tests",
+          //   result.flakyBuild.key
+          // );
           return false;
         }
       }
       if (result.regularBuild.duration < 1000 * 60 * 20) {
-        console.log(
-          "excluded build because of short regular build duration",
-          result.regularBuild.duration / 1000 / 60,
-          result.regularBuild.key
-        );
+        // console.log(
+        //   "excluded build because of short regular build duration",
+        //   result.regularBuild.duration / 1000 / 60,
+        //   result.regularBuild.key
+        // );
         return false;
       }
       if (result.flakyBuild.duration < 1000 * 60 * 20) {
-        console.log(
-          "excluded build because of short flaky build duration",
-          result.flakyBuild.duration / 1000 / 60,
-          result.flakyBuild.key
-        );
+        // console.log(
+        //   "excluded build because of short flaky build duration",
+        //   result.flakyBuild.duration / 1000 / 60,
+        //   result.flakyBuild.key
+        // );
         return false;
       }
       return true;
@@ -568,7 +568,7 @@ jetpack.write(
     .replace(/"(?=$|,)/gm, "}")
 );
 
-throw new Error("done");
+// throw new Error("done");
 
 const actionStarts = db.chain
   .get("candidates")
@@ -583,7 +583,7 @@ const actionStarts = db.chain
     });
     return matchingRuns.length < targetRunNumber;
   })
-  .slice(0, 5)
+  .take(7)
   .map(async (candidate) => {
     const matchingRuns = runs.filter((run) => {
       const commit = run.name?.split("-")[1].split("➡️")[0].trim();

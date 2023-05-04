@@ -508,11 +508,11 @@ const passedDurationsFlaky = db.chain
   .value();
 
 const spssTable = [
-  ["Group", "Duration (min)"],
-  ...failedDurationsRegular.map((duration) => ["FR", duration]),
-  ...failedDurationsFlaky.map((duration) => ["FF", duration]),
-  ...passedDurationsRegular.map((duration) => ["PR", duration]),
-  ...passedDurationsFlaky.map((duration) => ["PF", duration]),
+  ["Group", "Duration (min)", "exp", "res"],
+  ...failedDurationsRegular.map((duration) => ["FR", duration, "regular", "failed"]),
+  ...failedDurationsFlaky.map((duration) => ["FF", duration, "flaky", "failed"]),
+  ...passedDurationsRegular.map((duration) => ["PR", duration, "regular", "passed"]),
+  ...passedDurationsFlaky.map((duration) => ["PF", duration,  "flaky", "passed"]),
 ];
 
 jetpack.write("data/n8n-spss.csv", stringify(spssTable));
