@@ -76,36 +76,47 @@
 
 %------- chapter 1 -------
 \chapter{Introduction}\label[chapter]{introduction}
-Software testing is an integral part of the software development process that ensures the quality and reliability of a system.
-By executing test cases, software testing aims to detect software defects.
-Test cases are typically assumed to be deterministic, meaning that given the same input, they would always produce the same output.
+Software testing is a critical component of the software development process that ensures the quality, reliability, and overall performance of a system. 
+By executing test cases, the primary goal of software testing is to identify and fix software defects. 
+Developers can use test cases to verify that the system behaves as expected and to ensure that changes to the system do not introduce new defects.
+This saves time on manual testing, prevents bugs from reaching production, and increases confidence in the system.
+Ideally, test cases should be deterministic, that is, they should always produce the same output given the same input. 
 In practice, however, test cases may be non-deterministic or \emph{flaky}, \autocite{luo_empirical_2014} meaning that they may fail intermittently without any change to the \ac{sut} or the test itself.
-\Ac{ui} tests, often involving asynchronous activities and limited computer resources, may be particularly susceptible to flaky behavior \autocite{romano_empirical_2021}.
+\Ac{ui} tests, which often involve asynchronous activities and limited computer resources, are particularly susceptible to flaky behavior \autocite{romano_empirical_2021}.
 
-Flaky tests can waste resources, increase development time, and undermine confidence in the testing process.
-Google reports that about 16\% of their tests exhibit some level of flakiness \autocite{micco_state_2017}.
-Even given the importance of testing, detecting flaky tests is still challenging.
-The most common approach to identifying flaky tests is to rerun them \autocite{lam_idflakies_2019, lam_understanding_2020}.
-However, rerunning has several drawbacks, such as consuming significant computational resources, generating false positives, and potentially missing certain flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
+Flaky tests pose a significant challenge to the software development process because they consume valuable resources, increase development time, and undermine confidence in the testing process. 
+In addition, flaky tests can cause delays in the development process as developers spend effort investigating false alarms resulting from these tests. 
+The prevalence of this problem is evident in industry reports, with Google stating that approximately 16\% of their tests exhibit some degree of flakiness \autocite{micco_state_2017}. 
+In a survey conducted by \citeauthor*{eck_understanding_2019}, a striking 79\% of respondents characterized flaky tests as a \enquote{moderate to serious} concern \autocite{eck_understanding_2019}.
 
-An important distinction is the difference between flaky tests and flaky test failures.
-A flaky failure is a failure that is not caused by a bug in the \ac{sut} but showed by coincidence.
-Following this definition, a flaky test is a test that has flaky failures.
-While most research has focused on detecting flaky tests, we want to detect flaky failures with the approach presented in this thesis.
-\Citeauthor*{haben_importance_2023} find that \enquote{approximately 76.2\% of all regression faults} \autocite{haben_importance_2023} are missed when we discard failures of tests identified as flaky.
-They also find that those tests find about one-third of all regression faults \autocite{haben_importance_2023}.
-Therefore, the practical use of detectors for flaky tests is limited.
-In order to support the development process and improve the \ac{ci} pipeline, we want to detect flaky failures instead of flaky tests.
+Despite the recognized importance of addressing flaky tests, detecting them remains a formidable challenge. 
+The most common method of identifying flaky tests is to rerun them \autocite{lam_idflakies_2019, lam_understanding_2020}. 
+However, this approach is not without its drawbacks, as it consumes significant computational resources and may still miss certain flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}. 
+In addition, \citeauthor*{parry_what_2022} found that rerunning tests detected only 40\% of flaky tests \autocite{parry_what_2022}. 
+These findings highlight the need for more effective strategies to identify and address flaky tests in order to improve the efficiency and reliability of the software development process.
 
-To achieve this for \ac{e2e} tests, we adapt a technique for detecting flaky unit test failures proposed by \citeauthor*{bell_deflaker_2018} in \citetitle{bell_deflaker_2018} \autocite{bell_deflaker_2018} to \ac{e2e} tests.
-\Citeauthor*{bell_deflaker_2018} found that it is possible to identify whether a failure is flaky by comparing the code covered by the test with the changes since the last pass.
-If the code covered by the test did not change, the failure is likely flaky.
-To evaluate our approach, we chose two open-source projects as case studies.
-\textsc{ArTEMiS} \autocite{krusche_artemis_2018} is a web-based learning platform for programming exercises.
-It uses Java for server code and JavaScript for client-side code.
-\textsc{n8n} \autocite{noauthor_n8n_2023} is a workflow automation tool written in TypeScript for server and client.
-Both projects use \textit{cypress} \autocite{noauthor_cypress-iocypress_2023} for \ac{e2e} testing.
-We instrumented the test runners of both projects to collect the code coverage and analyze failures in the \ac{ci} pipeline.
+It is important to distinguish between flaky tests and flaky test failures. 
+A flaky failure refers to a test failure that is not due to a bug in the \ac{sut}, but rather occurs by chance. 
+Consequently, a flaky test is a test that exhibits flaky failures. 
+While the majority of research has focused on the detection of flaky tests, the approach presented in this thesis is aimed at the detection of flaky failures.
+
+\Citeauthor*{haben_importance_2023} discovered that an alarming 76.2\% of all regression failures, which are new bugs introduced by code changes in previously working system components, are missed when failures of tests considered flaky are ignored \autocite{haben_importance_2023}. 
+Furthermore, they found that these tests detect approximately one-third of all regression faults \autocite{haben_importance_2023}. 
+As a result, the practical utility of test defect detectors is limited, as they can only guide developers to tests that need improvement, but provide little value in day-to-day development activities.
+To better support the development process and improve the \ac{ci} pipeline, our goal is to detect flaky failures rather than simply identifying flaky tests. 
+This approach will provide more actionable insights to developers, enabling them to gain insight into each failure and address it accordingly.
+
+To address the issue of flaky failures in \ac{e2e} tests, we adapt a technique originally developed by \citeauthor*{bell_deflaker_2018} for detecting flaky Java unit test failures in \citetitle{bell_deflaker_2018}. \autocite{bell_deflaker_2018}. 
+They discovered that it is possible to determine whether a failure is flaky by comparing the code covered during test execution to the changes made since the test was last successfully executed. 
+If the covered code remains unchanged, the failure is likely flaky.
+Applying this approach to \ac{e2e} tests requires the instrumentation of code to collect coverage data during test execution. 
+Because \ac{e2e} tests span the entire \ac{sut} and involve multiple languages, we cannot selectively instrument code as \citeauthor*{bell_deflaker_2018} did. 
+In addition, we must adapt our collection approach because \ac{e2e} tests do not run in the same context as the \ac{sut}.
+
+To evaluate our methodology, we selected two open source projects as case studies: 
+\textsc{ArTEMiS} \autocite{krusche_artemis_2018}, a web-based learning platform for programming exercises that uses Java for server code and JavaScript for client-side code, and \textsc{n8n} \autocite{noauthor_n8n_2023}, a workflow automation tool written in TypeScript for both server and client. 
+Both projects use \textit{cypress} \autocite{noauthor_cypress-iocypress_2023} for \ac{e2e} testing and have previously reported flaky failures. 
+We instrumented the test-runners of these projects to collect code coverage data and analyze failures within the \ac{ci} pipeline.
 
 The contributions of this thesis are
 \begin{itemize}
@@ -144,7 +155,8 @@ Failed tests can indicate regressions in the application, meaning that parts of 
 
 There are several types of tests used in software development.
 From \emph{unit tests}, which test small parts of the application in isolation, to \emph{integration tests}, which test the interaction between several application components.
-\emph{\ac{e2e} tests} are used to test the application as a whole, simulating the interaction of a user with the \autocite{jacob_schmitt_what_2022} application.
+Both of these testing types are testing technical aspects of the application.
+\emph{\ac{e2e} tests} are used to test the application as a whole from the users point of view, simulating the interaction of a user with the \autocite{jacob_schmitt_what_2022} application.
 
 To test the \ac{ui} of an application, \ac{e2e} tests are used.
 They simulate a user's interaction with the application and check if the application behaves as expected.
@@ -190,43 +202,46 @@ Code coverage is a metric that describes what code is executed by a test suite.
 It is often used to identify parts of the code not executed by the test suite \autocite{marick_brian_and_smith_john_and_jones_mark_how_1999}.
 These identified parts of the code can be a good start for the development of new tests to ensure the test suite covers the entire system.
 It is also sometimes misused as a measure of the quality of a test suite \autocite{martin_fowler_bliki_2012}.
+However, \citeauthor*{martin_fowler_bliki_2012} also suggests that the quality of a test suite can be measured by the number of bugs that make it into production and willingness of developers changing code that could lead to bugs \autocite{martin_fowler_bliki_2012}.
 \Citeauthor*{kochhar_code_2017} even show that code coverage has no significant correlation with the fault detection rate of a test suite \autocite{kochhar_code_2017}.
+
 Code coverage is usually measured in terms of \emph{lines} or \emph{branches} covered by the test suite.
 A line is considered covered if it is executed by the test suite at least once.
 Coverage data is also used for regression test selection to reduce the number of tests to run for a code change \autocite{rothermel_empirical_1998}.
 The idea is to only run tests that cover the changed code.
+This limits the time needed to test the system while still ensuring that the changed code is tested.
 \Citeauthor*{bell_deflaker_2018} Use code coverage to identify flaky failures in unit tests \autocite{bell_deflaker_2018}.
 
 %------- chapter 3 -------
 
 \chapter{Related Work}\label[chapter]{related_work}
-This chapter will give an overview of existing work related to this thesis.
-First, we will show some approaches to detect flaky tests.
-Following that, we motivate why detecting flaky failures is vital and not only determining if a test is flaky.
+This chapter provides an overview of existing work related to this thesis.
+First, we show some approaches to detecting flaky tests.
+Then, we motivate why it is important to detect flaky failures, not just to determine whether a test is flaky.
 Then, we will present existing work on flaky failure detection and the effect of instrumentation on flakiness.
-Finally, we will show the research gap this thesis aims to fill.
+Finally, we present the research gap that this thesis aims to fill.
 
 \section{Approaches for Flakiness Detection}
-There are multiple approaches to detecting flakiness.
-We want to give an overview of some published approaches in this section.
+There are several approaches to flakiness detection.
+In this section, we want to give an overview of some published approaches.
 
-The simplest and most common way to detect flaky failures is to rerun the test on a particular version of the \ac{sut} multiple times.
-The idea is that if the test is prone to show flaky behavior, it will fail in some reruns but pass in others.
-The ideal amount of reruns is unclear \autocite{parry_survey_2021}, and practitioners must decide how many reruns they want to perform.
-Others suggest using up to five reruns \autocite{lam_understanding_2020} or use as many as 10.000 \autocite{alshammari_flakeflagger_2021} to detect flakiness.
+The simplest and most common way to detect flaky failures is to rerun the test on a given version of \ac{sut} multiple times.
+The idea is that if the test is prone to flaky behavior, it will fail on some reruns but pass on others.
+The ideal number of reruns is unclear \autocite{parry_survey_2021}, and practitioners must decide how many reruns to perform.
+Others suggest using up to five reruns \autocite{lam_understanding_2020} or as many as 10,000 \autocite{alshammari_flakeflagger_2021} to detect flakiness.
 
-\Citeauthor*{silva_shake_2020} propose a lightweight approach to provoke flaky behavior in tests called \emph{SHAKER}.
+\Citeauthor*{silva_shake_2020} propose a lightweight approach to provoke flaky behavior in tests called \textsc{SHAKER}.
 SHAKER adds noise in the execution environment (e.g., adding stressor tasks to compete for the CPU or memory).
 It builds on the observations that concurrency is an important source of flakiness and that adding noise in the environment can interfere with the ordering of events and, consequently, influence the test outputs.
 They report better and faster detection than rerunning and also found additional flaky tests \autocite{silva_shake_2020}.
 
-\Citeauthor*{lam_idflakies_2019} introduce a framework called \emph{iDFlakies} that uses a dynamic analysis approach to detect flaky tests.
+\Citeauthor*{lam_idflakies_2019} introduce a framework called \textsc{iDFlakies} that uses a dynamic analysis approach to detect flaky tests.
 The framework automates experimentation in Maven-based Java projects.
 It uses a combination of test reruns and reordering of tests to detect flakiness.
 Additionally, it classifies found flakes into \ac{od} and \ac{nod} flaky tests.
 They report that iDFlakies that both classes occur at about the same rate, but note that their approach is very time and resource-consuming \autocite{lam_idflakies_2019}.
 
-\Citeauthor*{alshammari_flakeflagger_2021} present a tool called \emph{FlakeFlagger} predicts if tests are likely flaky without rerunning.
+\Citeauthor*{alshammari_flakeflagger_2021} present a tool called \textsc{FlakeFlagger} predicts if tests are likely flaky without rerunning.
 They present an approach that collects a set of features describing the behavior of each test and then predicts tests that are likely to be flaky based on similar behavioral features.
 The authors found that FlakeFlagger correctly labeled as flaky on at least as many tests as a state-of-the-art flaky test classifier but that FlakeFlagger reported far fewer false positives.
 Evaluated on their dataset of 23 projects with flaky tests, FlakeFlagger outperformed the prior approach (by F1 score) on 16 projects and tied on four projects.
@@ -697,15 +712,15 @@ The mean difference is much bigger for failed builds (23.67 min) than for passed
 	\label[table]{duration_results_artemis}
 \end{table}
 
-For the second case study, \textsc{n8n}, the average run times are higher when using the instrumentation.
-The recorded timings in \cref{n8n_time_boxplot} show much less variance than for \textsc{ArTEMiS}.
-\Cref{duration_results} shows the average run times for the \ac{e2e} tests.
-The preconditions are also met except for the normality of the data.
-The Shapiro-Wilk test shows that the data is not normally distributed for the cases in which the tests passed ($p < .001$) \autocite{shapiro_analysis_1965}.
-In cases in which the tests failed without instrumentation ($p .047$) and with instrumentation ($p .018$) the data is also not normally distributed.
-As both groups in which the tests passed have more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality, in this case \autocite{wilcox_introduction_2011}.
-In cases in which the tests failed, the groups have less than 30 samples, we will use a t-test anyway as it has been shown to be robust to violations of the normality assumption.
-The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(10.128) = 33.179, p = < .001$)\todo{update} and passed builds ($t(129.965) = 90.426, p = < .001$).
+For the second case study, \textsc{n8n}, the average runtimes are higher when the instrumentation is used.
+The recorded times in \cref{n8n_time_boxplot} show much less variance than for \textsc{ArTEMiS}.
+\Cref{duration_results} shows the average duration of the \ac{e2e} tests.
+The prerequisites are also met, except for the normality of the data.
+The Shapiro-Wilk test shows that the data are not normally distributed in cases where the tests passed ($p < .001$) \autocite{shapiro_analysis_1965}.
+In the cases where the tests failed without instrumentation ($p .004$) and with instrumentation ($p < .001$), the data are also not normally distributed.
+Since both groups in which the tests passed have more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality, in this case \autocite{wilcox_introduction_2011}.
+In cases where the tests fail because the groups have fewer than 30 samples, we will still use a t-test because it has been shown to be robust to violations of the normality assumption.
+The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(7,721) = 11,654, p = < .001$) and passed builds ($t(174,985) = 113,555, p = < .001$).
 
 \begin{figure}[h]
 	\centering
@@ -778,7 +793,7 @@ The external validity is not limited by the dedicated \ac{ci} system since the \
 
 We analyze the failure rate of the tests in the \textsc{n8n} case study with the results from \cref{failure_rate_results-rerun_artemis}.
 Again, we see a higher failure rate for the instrumented run.
-The chi-squared test shows that the more frequently reported failures show a significant difference between the experiment with and without instrumentation ($\chi^2(1) = 122.844, p = < .001$).
+The chi-squared test shows that the more frequently reported failures do not show a significant difference between the instrumented and not instrumented runs ($\chi^2(1) = 2.407, p = .121$).
 
 % \subsection{Additional Observations}
 % \TODO{Issues with memory}

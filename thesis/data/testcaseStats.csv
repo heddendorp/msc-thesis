@@ -1,9 +1,9 @@
 {name},{durationIncrease},{failed},{failedInstrumented},{passed},{passedInstrumented}
-{Webhook Trigger node should listen for a GET request with Header Authentication},{\num{30}},{1},{0},{74},{75}
-{Workflow tags should create and attach tags inline},{\num{-15}},{1},{0},{74},{75}
-{User Management should delete user and their data},{\num{-23}},{1},{0},{74},{75}
-{Webhook Trigger node should listen for a GET request and respond custom status code 201},{\num{28}},{0},{1},{75},{74}
-{Credentials should rename credentials from NDV},{\num{36}},{0},{1},{75},{74}
-{Schedule Trigger node should execute once per second when activated},{\num{28}},{0},{2},{75},{73}
-{Workflow tags should detach a tag inline by clicking on dropdown list item},{\num{143}},{0},{4},{75},{71}
-{Workflow tags should detach a tag inline by clicking on X on tag pill},{\num{108}},{2},{7},{73},{68}
+{Webhook Trigger node should listen for a GET request with Header Authentication},{\num{35}},{1},{0},{99},{100}
+{Workflow tags should create and attach tags inline},{\num{-22}},{2},{0},{98},{100}
+{User Management should delete user and their data},{\num{-16}},{1},{0},{99},{100}
+{Webhook Trigger node should listen for a GET request and respond custom status code 201},{\num{27}},{0},{1},{100},{99}
+{Credentials should rename credentials from NDV},{\num{36}},{0},{1},{100},{99}
+{Schedule Trigger node should execute once per second when activated},{\num{22}},{0},{2},{100},{98}
+{Workflow tags should detach a tag inline by clicking on dropdown list item},{\num{66}},{1},{4},{99},{96}
+{Workflow tags should detach a tag inline by clicking on X on tag pill},{\num{68}},{4},{9},{96},{91}
