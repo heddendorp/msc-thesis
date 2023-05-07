@@ -509,6 +509,20 @@ console.log(recall, "recall");
 
 const f1 = (2 * (precision * recall)) / (precision + recall);
 
+const totalTruePositives = lineResultsSum.truePositives + knownTruePositive;
+const totalFalsePositives = lineResultsSum.falsePositives + maxFlasePositives;
+const totalTrueNegatives = lineResultsSum.trueNegatives + likelyTrueNegatives;
+const totalFalseNegatives = lineResultsSum.falseNegatives + maxFalseNegatives;
+
+const totalPrecision =
+  totalTruePositives / (totalTruePositives + totalFalsePositives);
+
+const totalRecall =
+  totalTruePositives / (totalTruePositives + totalFalseNegatives);
+
+const totalF1 =
+  (2 * (totalPrecision * totalRecall)) / (totalPrecision + totalRecall);
+
 console.log("===End Artemis===");
 
 const resultsCsv = [
@@ -558,6 +572,16 @@ const resultsCsv = [
     toLatexNum(precision),
     toLatexNum(recall),
     toLatexNum(f1),
+  ],
+  [
+    "Combined",
+    totalTruePositives,
+    totalFalsePositives,
+    totalTrueNegatives,
+    totalFalseNegatives,
+    toLatexNum(totalPrecision),
+    toLatexNum(totalRecall),
+    toLatexNum(totalF1),
   ],
 ];
 

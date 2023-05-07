@@ -2,10 +2,10 @@
 \def\degree{Master}                         %TODO adjust to your program
 \def\program{Informatics}
 \def\title{Automatically Detecting Flaky End-to-End Test Failures in Multi-Language Systems Using Code Coverage}		    %TODO add title in English
-\def\titleGer{Automatische Erkennung von flaky End-to-End-Test Fehlschl\"agen in mehrsprachigen Systemen unter Verwendung von Code Coverage}	            %TODO add title in German
+\def\titleGer{Automatische Erkennung von flaky End-to-End Test Fehlschl\"agen in mehrsprachigen Systemen unter Verwendung von Code Coverage}	            %TODO add title in German
 \def\supervisor{Prof. Dr. Alexander Pretschner}
-\def\advisor{Fabian Leinen, M.Sc.}  %TODO add advisor name
-\def\advisorTwo{Roland W\"ursching, M.Sc.}  %TODO add advisor name
+\def\advisor{Fabian Leinen}  %TODO add advisor name
+\def\advisorTwo{Roland W\"ursching}  %TODO add advisor name
 \def\author{Lukas Heddendorp}			    %TODO add author name
 \def\date{15.05.2023}		    %TODO add submission / handover date
 \def\startdate{15.11.2022}		    %TODO add startdate

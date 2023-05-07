@@ -1,4 +1,4 @@
 {Experiment},{True Positives},{False Positives},{True Negatives},{False Negatives},{Precision},{Recall},{F1}
-{\textsc{n8n} (line)},{13},{0},{0},{13},{\num{1}},{\num{0.5}},{\num{0.6666666666666666}}
-{\textsc{n8n} (file)},{13},{0},{0},{13},{\num{1}},{\num{0.5}},{\num{0.6666666666666666}}
+{\textsc{n8n} (line)},{19},{0},{0},{17},{\num{1}},{\num{0.5277777777777778}},{\num{0.6909090909090909}}
+{\textsc{n8n} (file)},{19},{0},{0},{17},{\num{1}},{\num{0.5277777777777778}},{\num{0.6909090909090909}}
 {\textsc{ArtTEMis}},{108},{41},{24},{171},{\num{0.7248322147651006}},{\num{0.3870967741935484}},{\num{0.5046728971962617}}
