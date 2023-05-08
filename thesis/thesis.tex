@@ -57,7 +57,7 @@
 %------- List of todos -------
 \listoftodos
 
-\section*{Proof reading info}
+\section*{Proofreading info}
 \TODO{
 	As the evaluation for \textsc{n8n} is still ongoing, the results of RQ\textsubscript{1} are not yet available. This also impacts the discussion.\\
 	The thesis is mostly complete content wise, but be on the lookout for cases in which a concept surprises you. Occasionally there are sections in which a concept is mentioned but was not properly introduced yet.\\
@@ -84,7 +84,7 @@ In addition, flaky tests can cause delays in the development process as develope
 The prevalence of this problem is evident in industry reports, with Google stating that approximately 16\% of their tests exhibit some degree of flakiness \autocite{micco_state_2017}.
 In a survey conducted by \citeauthor*{eck_understanding_2019}, a striking 79\% of respondents characterized flaky tests as a \enquote{moderate to serious} concern \autocite{eck_understanding_2019}.
 
-Despite the recognized importance of addressing flaky tests, detecting them remains a formidable challenge.
+Despite the recognized importance of addressing flaky tests, detecting them remains a major challenge.
 The most common method of identifying flaky tests is to rerun them \autocite{lam_idflakies_2019, lam_understanding_2020}.
 However, this approach is not without its drawbacks, as it consumes significant computational resources and may still miss certain flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
 In addition, \citeauthor*{parry_what_2022} found that rerunning tests detected only 40\% of flaky tests \autocite{parry_what_2022}.
@@ -117,13 +117,13 @@ The contributions of this thesis are
 \begin{itemize}
 	\item \textbf{Methodology.} We propose an approach using change coverage for detecting flaky failures in \ac{e2e} testing, based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
 	\item \textbf{Study Subjects.} We evaluate our approach on two open-source projects by analyzing our method's impact on execution and evaluating the performance of our approach.
-	      During the evaluation, we found that instrumentation can significantly impact test execution.
-	      Our approach correctly identified flaky failures 90\% of the time \todo{correct number}.
+	      During the evaluation, we found that instrumentation can significantly impact test execution, increasing the execution time.
+	      Our approach correctly identified flaky failures 42\% of the time \todo{correct number}.
 	      During the evaluation, we saw three \todo{Correct number} false positives where our approach identified a failure as flaky when it was not.
 	\item \textbf{Guidelines.} Based on our experiences, we derive guidelines for practitioners, these are
 	      (1) change coverage-based detection shows very few false positives in our experiments,
 	      (2) large spec files combined with instrumentation cause memory issues, and
-	      (3) instrumentation can significantly impact the runtime overhead test execution.
+	      (3) instrumentation can significantly impact the runtime overhead of test execution.
 \end{itemize}
 
 The rest of this thesis is organized as follows:
@@ -146,19 +146,18 @@ We introduce the concept of \ac{e2e} testing, explain flaky test failures and th
 
 When developing software applications, ensuring that the application behaves as expected is essential.
 Automated testing is used to ease the manual work of going through the system after changes and checking that everything still works.
-Tests are run automatically and can be used to verify that the application still behaves as expected.
 Failed tests can indicate regressions in the application, meaning that parts of the application do not behave as expected \autocite{lam_large-scale_2020, luo_empirical_2014,romano_empirical_2021}.
 
 There are several types of tests used in software development.
 From \emph{unit tests}, which test small parts of the application in isolation, to \emph{integration tests}, which test the interaction between several application components.
 Both of these testing types are testing technical aspects of the application.
-\emph{\ac{e2e} tests} are used to test the application as a whole from the users point of view, simulating the interaction of a user with the \autocite{jacob_schmitt_what_2022} application.
+\emph{\ac{e2e} tests} are used to test the application as a whole from the users point of view, simulating the interaction of a user with the application \autocite{jacob_schmitt_what_2022}.
 
 \Ac{e2e} tests also include the \ac{ui} of the application.
 They simulate a user's interaction with the application and check if the application behaves as expected.
 \ac{e2e} tests for web applications are usually written to run in a browser, simulating a user's interaction with the application.
 The interactions are realized using an \ac{ui} testing framework that simulates user interaction with the application.
-This thesis focuses on \ac{e2e} \ac{ui} tests executed in a browser.
+This thesis focuses on \ac{e2e} tests executed in a browser.
 
 
 \section{Flaky Tests and Failures}
@@ -178,7 +177,8 @@ Flaky failures are common in software testing, \citeauthor*{harman_start-ups_201
 A survey of developers at Pivotal by \citeauthor*{hilton_trade-offs_2017} found that about 50\% of \ac{ci} builds fail due to flaky failures \autocite{hilton_trade-offs_2017}.
 
 Due to the asynchronous nature of \ac{ui} interactions, many events and tasks are executed in a non-deterministic order.
-Also, flaky \ac{ui} test failures are more challenging to reproduce than flaky unit test failures.
+When opening a website, many requests are sent at the same time to load the page's resources.
+Therefore, flaky \ac{ui} test failures are more challenging to reproduce than flaky unit test failures.
 \Citeauthor*{romano_empirical_2021} found common causes for flaky failures based on the work of \citeauthor*{luo_empirical_2014}, but extended for \ac{ui} tests \autocite{luo_empirical_2014,romano_empirical_2021}.
 
 \begin{itemize}
@@ -195,18 +195,20 @@ Also, flaky \ac{ui} test failures are more challenging to reproduce than flaky u
 \section{Code Coverage}
 
 Code coverage is a record of what code was executed by a test suite.
+A test suite is a collection of tests that are executed together to test the system.
 It is often used to identify parts of the code not executed by the test suite \autocite{marick_brian_and_smith_john_and_jones_mark_how_1999}.
 These identified parts of the code can be a good start for the development of new tests to ensure the test suite covers the entire system.
 It is also sometimes misused as a measure of the quality of a test suite \autocite{martin_fowler_bliki_2012}.
 However, \citeauthor*{martin_fowler_bliki_2012} also suggests that the quality of a test suite can be measured by the number of bugs that make it into production and willingness of developers changing code that could lead to bugs \autocite{martin_fowler_bliki_2012}.
 \Citeauthor*{kochhar_code_2017} even show that code coverage has no significant correlation with the fault detection rate of a test suite \autocite{kochhar_code_2017}.
+That is, a test suite with a high code coverage does not necessarily detect more bugs than a test suite with a low code coverage.
 
 Code coverage is usually measured in terms of \emph{lines} or \emph{branches} covered by the test suite.
 A line is considered covered if it is executed by the test suite at least once.
 Coverage data is also used for regression test selection to reduce the number of tests to run for a code change \autocite{rothermel_empirical_1998}.
 The idea is to only run tests that cover the changed code.
 This limits the time needed to test the system while still ensuring that the changed code is tested.
-\Citeauthor*{bell_deflaker_2018} Use code coverage to identify flaky failures in unit tests \autocite{bell_deflaker_2018}.
+\Citeauthor*{bell_deflaker_2018} use code coverage to identify flaky failures in unit tests \autocite{bell_deflaker_2018}.
 
 %------- chapter 3 -------
 
@@ -224,7 +226,7 @@ The ideal number of reruns is unclear \autocite{parry_survey_2021}, and practiti
 Some suggest using up to five reruns \autocite{lam_understanding_2020} to confirm a failure is not flaky or as many as 10,000 \autocite{alshammari_flakeflagger_2021} to make sure a test does not show flaky failures.
 
 \Citeauthor*{silva_shake_2020} propose a lightweight approach to provoke flaky behavior in tests called \textsc{SHAKER}.
-SHAKER adds noise in the execution environment (i.e., adding stressor tasks to compete for the CPU or memory).
+\textsc{SHAKER} adds noise in the execution environment (i.e., adding stressor tasks to compete for the CPU or memory).
 It builds on the observations that concurrency is an important source of flakiness and that adding noise in the environment can interfere with the ordering of events and, consequently, influence the test outputs.
 They report better and faster detection than rerunning and also found additional flaky tests \autocite{silva_shake_2020}.
 
@@ -232,38 +234,37 @@ They report better and faster detection than rerunning and also found additional
 The framework automates experimentation in Maven-based Java projects.
 It uses a combination of test reruns and reordering of tests to detect flakiness.
 Additionally, it classifies found flakes into \ac{od} and \ac{nod} flaky tests.
-They report that iDFlakies that both classes occur at about the same rate, but note that their approach is very time and resource-consuming \autocite{lam_idflakies_2019}.
+They report that \textsc{iDFlakies} that both classes occur at about the same rate, but note that their approach is very time and resource-consuming \autocite{lam_idflakies_2019}.
 
 \Citeauthor*{alshammari_flakeflagger_2021} present a tool called \textsc{FlakeFlagger} predicts if tests are likely flaky without rerunning.
 They present an approach that collects a set of features describing the behavior of each test and then predicts tests that are likely to be flaky based on similar behavioral features.
-The authors found that FlakeFlagger correctly labeled as flaky on at least as many tests as a state-of-the-art flaky test classifier but that FlakeFlagger reported far fewer false positives.
-Evaluated on their dataset of 23 projects with flaky tests, FlakeFlagger outperformed the prior approach (by F1 score) on 16 projects and tied on four projects.
+The authors found that \textsc{FlakeFlagger} correctly labeled as flaky on at least as many tests as a state-of-the-art flaky test classifier but that \textsc{FlakeFlagger} reported far fewer false positives.
+Evaluated on their dataset of 23 projects with flaky tests, \textsc{FlakeFlagger} outperformed the prior approach (by F1 score) on 16 projects and tied on four projects.
 Their results indicate that this approach can effectively identify likely flaky tests before running time-consuming flaky test detectors \autocite{alshammari_flakeflagger_2021}.
-While FlakeFlagger can analyze a test without reruns, it is not able to categorize a single failure of a test as flaky or not.
+While \textsc{FlakeFlagger} can analyze a test without reruns, it is not able to categorize a single failure of a test as flaky or not.
 This weakness is shared by the other mentioned approaches as well.
-As we motivate in the following section, that is an essential feature for an approach that adds value in a \ac{ci} environment.
+But as we motivate in the following section, detecting flaky failures is an essential feature for an approach that adds value in a \ac{ci} environment.
 
 \section{Importance of Detecting Flaky Failures}
 \Citeauthor*{haben_importance_2023} have studied the difference between detecting flaky tests and flaky test failures, highlighting the importance of the latter for a more effective \ac{ci} process.
 In recent years, several methods have been proposed to identify flaky tests.
 However, these methods have not been evaluated within a \ac{ci} process, leaving their actual utility unclear \autocite{haben_importance_2023}.
 
-\Citeauthor*{haben_importance_2023} conducted a study subject on the Chromium \ac{ci}, using state-of-the-art flakiness prediction methods to examine their performance.
-They found that despite the high precision of the methods (99.2\%), their application resulted in many missed failures, about 76.2\% of all regression failures (56.2\% of which were due to model misclassifications).
+\Citeauthor*{haben_importance_2023} conducted a case study on the Chromium \ac{ci}, using state-of-the-art flakiness prediction methods to examine their performance.
+They found that despite the high precision of the methods (\SI{99.2}{\percent}), their application resulted in many missed failures, which were about \SI{76.2}{\percent} of all regression failures (\SI{56.2}{\percent} of which were due to model misclassifications).
 To investigate this finding, the authors analyzed the fault-triggering failures. They discovered that flaky tests have a strong fault-revealing capability, revealing over one-third of all regression faults \autocite{haben_importance_2023}.
 
 This result highlights an inherent limitation of methods that focus on identifying flaky tests rather than flaky test failures.
 To address this issue, \Citeauthor*{haben_importance_2023} proposed failure-focused prediction methods and optimized them by considering new features.
 The new features included test execution characteristics such as duration and history.
-Interestingly, they found that these methods performed better than the test-focused ones, with the \ac{mcc} increasing from 0.20 to 0.42 \autocite{haben_importance_2023}.
+Interestingly, they found that these methods performed better than the test-focused ones, with the \ac{mcc} increasing from \num{0.20} to \num{0.42} \autocite{haben_importance_2023}.
 
 Overall, \citeauthor*{haben_importance_2023}'s study suggests that future research should focus on predicting flaky test failures rather than flaky tests.
 In addition, it emphasizes the need for more thorough experimental methods when evaluating flakiness prediction methods \autocite{haben_importance_2023}.
 This finding underscores the importance of distinguishing flaky from fault-triggering test failures to improve the efficiency of \ac{ci} processes and minimize the waste of valuable developer time investigating false alarms caused by flaky test failures.
 
 \Citeauthor*{rasheed_test_2022} reviewed the literature on flaky test detection and found that most tools can only detect flaky tests, not flaky test failures.
-They found that the most common techniques are either static analysis of the test code or dynamic analysis of the test execution, where the tool attempts to trigger flaky behavior.
-Some approaches also combine the two \autocite{rasheed_test_2022}.
+They found that the most common techniques are either static analysis of the test code or dynamic analysis of the test execution, where the tool attempts to trigger flaky behavior \autocite{rasheed_test_2022}.
 \section{Change Coverage Based Flaky Failure Detection}\label[section]{related_deflaker}
 
 \Citeauthor*{bell_deflaker_2018} have addressed the problem of flaky test failures in Java unit tests and proposed a method to detect flaky tests without rerunning them \autocite{bell_deflaker_2018}.
@@ -273,10 +274,10 @@ The technique works by monitoring the coverage of the latest code changes and id
 This approach significantly reduces the time and resources required to detect flakiness, resulting in a more efficient development cycle \autocite{bell_deflaker_2018}.
 
 The effectiveness was evaluated on 26 Java projects hosted on TravisCI, where it identified 91 previously unknown flaky failures.
-In addition, the authors conducted experiments on project histories, where they detected 1,874 flaky tests out of a total of 4,846 failures.
-These results highlight the low false alarm rate of only 1.5\%.
+In addition, the authors conducted experiments on project histories, where they detected 1,874 flaky failures out of a total of 4,846 failures.
+Moreover, they observed a low false alarm rate of only 1.5\%.
 The detector also demonstrated superior performance compared to Maven's default flaky test detector, with a 95.5\% recall rate compared to Maven's 23\%.
-They also show great runtime performance as the runtime of tests is only 4.5\% higher on average with their detection active \autocite{bell_deflaker_2018}.
+They also demonstrated great runtime performance as the runtime of tests is only 4.5\% higher on average with their detection active \autocite{bell_deflaker_2018}.
 
 \section{Effect of Instrumentation on Flakiness}
 The approach presented by \citeauthor*{bell_deflaker_2018} is based on the instrumentation of the code.
@@ -291,7 +292,8 @@ Considering the importance of detecting flaky failures instead of flaky tests \a
 Flaky failures are more common in \ac{e2e} tests due to the high complexity of the test interactions \autocite{romano_empirical_2021}.
 Additionally, reruns are more expensive for \ac{e2e} tests as they typically take much longer to execute than unit tests.
 Developers could benefit greatly from immediate and reliable feedback on any failures encountered.
-In this thesis we adopt the approach of \citeauthor*{bell_deflaker_2018} to the \ac{e2e} tests of two open source web projects.
+This sentiment is also shared by \citeauthor*{ngo_research_2023} who found that most academic studies only concern themselves with unit tests while the industry interest is focused on \ac{e2e} tests \autocite{ngo_research_2023}.
+In this thesis we adopt the approach of \citeauthor*{bell_deflaker_2018} to the \ac{e2e} tests of two open source web projects, \textsc{ArTEMiS} and \textsc{n8n}.
 Both projects have client and server-side code for which we collect coverage.
 We will evaluate the performance of the detection and the effect of instrumentation on the test behavior.
 
@@ -303,17 +305,59 @@ We want to know which parts of the code of the \ac{sut} were executed by what te
 If a test fails, we can check for the last version of the \ac{sut} for which the tests passed.
 By comparing the code that changed since the last time the tests passed and the code for which we know that the failing test executed it, we can judge if the failure is likely to be flaky.
 If there is no interception of the code that was covered by the failing test execution and the code that changed, the failure is assumed to be flaky.
+\Cref{detection_process} shows the process of detecting flaky failures.
+
+\begin{figure}[h]
+	\begin{adjustbox}{max width=\textwidth}
+		\begin{tikzpicture}[
+				node distance=2cm,
+				block/.style={rectangle, rounded corners, draw, minimum width=3cm, minimum height=1cm, align=center},
+				arrow/.style={thick, ->, >=stealth}
+			]
+
+			\node[block, draw=none] (tests) {
+				\includegraphics[width=1cm]{icons8-code-file}
+				\\ \ac{e2e} Tests};
+			\node[block, shape=rectangle split, rectangle split parts=2, below=of tests, align=center] (runner) {Test Exectution \nodepart{two} Coverage collection};
+			\node[block, shape=rectangle split, rectangle split parts=2, right=of runner, align=center] (results) { Test Results\nodepart{two} Coverage Information};
+
+			\node[block, right=of tests, draw=none] (vcs) {
+				\includegraphics[width=1cm]{icons8-cloud-database}
+				\\ \ac{vcs}};
+			\node[block, right=of vcs] (passing-version) {
+				Last passing version};
+			\node[block] at ($(passing-version.north)!(results.center)!(passing-version.south)$) (changes) {
+				Changes compared to\\ tested version};
+
+			\node[block, below=of $(results)!0.5!(changes)$] (comparison) {
+				Analysis of changes\\ and coverage};
+			\node[block, left=of comparison] (flaky) {
+				Flaky failure?};
+
+			\draw[arrow] (tests) -- (runner);
+			\draw[arrow] (runner) -- (results);
+			\draw[arrow] (vcs) -- (passing-version);
+			\draw[arrow] (passing-version) -- (changes);
+			\draw[arrow] (results) -| (comparison);
+			\draw[arrow] (changes) -| (comparison);
+			\draw[arrow] (comparison) -- (flaky);
+
+		\end{tikzpicture}
+	\end{adjustbox}
+	\caption{Process to determine if a test failure is flaky}
+	\label[figure]{detection_process}
+\end{figure}
 
 To achieve this, we need to know what code was executed by a test and what code changed since the last time the tests passed.
 In this chapter we explain the coverage and change collection and also the implementation of our approach.
-Different from \citeauthor*{bell_deflaker_2018}, we face new challenges as we have to collect coverage across multiple processes and multiple languages.
+Different from \citeauthor*{bell_deflaker_2018}, we face new challenges as we have to collect coverage across multiple processes and multiple programming languages.
 This means, our implementation has to be tailored to the studied project and can rely on a standardized framework.
-Also, \ac{e2e} tests have longer runtimes and bigger scopes than unit tests, which can impact the runtime overhead introduced by our approach and the detection performance.
+Also, \ac{e2e} tests have longer runtimes and bigger scopes than unit tests, which can impact the runtime overhead introduced by our approach and the detection performance. \todo{improve sentence}
 
 \section{Coverage Collection}
 \Citeauthor*{bell_deflaker_2018} use differential coverage in their approach.
 That is, they analyze the changes made to the code and instrument only the parts of the \ac{sut} that were changed.
-They analyze each change and decide how to track coverage for that particular change \autocite{bell_deflaker_2018}.
+They analyze each change and decide how to track coverage for that particular change by analyzing the code \autocite{bell_deflaker_2018}.
 Because our approach works across the entire stack, the changes detected can span multiple languages and be very complex.
 Implementing differential coverage for each specific setup was not feasible within the scope of this thesis.
 Instead, we collect coverage for all code executed by any test case, which saves the time of analyzing the changes to perform precise instrumentation and is applicable to more setups.
@@ -326,23 +370,26 @@ To analyze the result of a test execution, it is necessary to know which parts o
 Due to limitations in cypress, we can only collect coverage data per spec file, not per individual test case.
 A spec file, short for specification, is meant to hold multiple tests that concern the same area of the \ac{sut} \autocite{noauthor_writing_nodate}.
 Cypress only allows plugins to execute before and after running a spec file, but not before and after every single test case that is included.
-There are two common ways to associate coverage data with test cases.
+We evaluated two approaches to full stack code coverage.
 
 \paragraph{Propagation.} The first option is to propagate data about the executed test cases through the code base.
 Since we are collecting coverage data on the entire code base, it is necessary to propagate the data from the test framework to both the client and server code.
 In addition, the coverage collection must be reset after each test case to avoid mixing coverage data from different test cases.
+This approach is similar to distributed tracing, were a trace ID has to be propagated through the code base to link all log entries to the same trace \autocite{noauthor_distributed_nodate}
 
 \paragraph{Timing.} The second option is to match the coverage data to the test cases based on the timing of the test cases.
 This more straightforward approach is possible because the test cases are executed sequentially, and the coverage data is collected in the same order.
 Instead of propagating the test case information through the code base, we can map the coverage data to the test cases based on timing.
 In this approach, coverage is collected and stored after each test case, and the collection is reset.
+This is also suggested in cypress documentation \autocite{noauthor_code_nodate}.
 
 To keep our approach more general, we used the second option and matched the coverage data to the test cases based on timing.
 Mapping by timing is also more robust and does not require any changes to the code base.
 Even parallel execution of tests is possible if each worker has a separate instance of the \ac{sut}.
 
 A limitation of coverage collection is missing out on files that influence the behavior of the \ac{sut} but are not executed.
-This can be CSS files to modify the styles of a web application or configuration files that are read by the application but not executed.
+This can be CSS files to modify the styles of a web application or configuration files that are read by the application but not executed.f
+This can lead to false positives, where a test failure is marked as flaky even though it is not.
 \section{Change Collection}
 In addition to collecting coverage that tells us which code was executed by the tests, we also need to collect changes to the codebase to determine which parts of the code have changed since the last successful test run.
 With both sets we can analyze a test failure and determine if it is flaky.
@@ -351,33 +398,9 @@ After identifying the last commit that passed the tests, we use the git \ac{cli}
 
 \section{Implementation}
 In this section, we describe the implementation of the coverage collection plugins for the two study subjects and the analysis program.
-% \Cref{full_stack_coverage_collection} shows the architecture of the coverage collection.
 We register a plugin with cypress that starts the coverage collection before each spec file and saves the coverage data after the spec file in case the tests fail.
 When a test case fails, the analysis program determines if the failure is flaky.
 It is implemented as a \ac{cli} tool\footnote{The tool can be executed with the command \texttt{npx @heddendorp/coverage-git-compare}.}.
-% \begin{figure}[h]
-% 	\centering
-% 	\begin{tikzpicture}[node distance=2cm]
-% 		% Nodes
-% 		\node (cypress) [rectangle, draw] {Cypress};
-% 		\node (tests) [rectangle, draw, right of=cypress, xshift=2cm] {Specs};
-% 		\node (plugin) [rectangle, draw, below of=cypress] {Coverage Collection Plugin};
-% 		\node (client) [rectangle, draw, below left of=plugin, xshift=-2cm] {Client};
-% 		\node (server) [rectangle, draw, below right of=plugin, xshift=2cm] {Server};
-% 		\node (coverage) [rectangle, draw, below of=plugin] {Full Coverage};
-% 		\node (analysis) [rectangle, draw, below of=coverage] {Analysis Program};
-
-% 		% Edges
-% 		\draw [<-] (tests) --  node[pos=0.5, below] {runs} (cypress);
-% 		\draw [-] (cypress) -- (plugin);
-% 		\draw [<->] (plugin) -- (client);
-% 		\draw [<->] (plugin) -- (server);
-% 		\draw [->] (plugin) -- node[pos=0.5, below] {on fail} (coverage);
-% 		\draw [->] (coverage) -- (analysis);
-% 	\end{tikzpicture}
-% 	\caption[Full stack coverage collection process in e2e testing]{Diagram showing the full stack coverage collection process in \ac{e2e} testing}
-% 	\label[figure]{full_stack_coverage_collection}
-% \end{figure}
 
 \subsection{Coverage Collection Plugins} \label[subsection]{coverage_collection_plugins}
 We implemented coverage collection plugins for both study subjects, with specific adjustments to accommodate their different setups. This subsection discusses the implementation details for the Java server, the Node.js server, and the client.
@@ -410,8 +433,7 @@ The plugin stores the covered lines for each file in a JSON file after merging t
 Our second study subject, \textsc{n8n}, is a Node.js-based workflow automation tool.
 Coverage in node.js programs is typically collected using the \emph{NYC} tool \autocite{noauthor_nyc_2023}.
 NYC is a command-line tool that can collect coverage data for node.js applications.
-However, NYC is unsuitable for our use case because it does not allow us to collect coverage data dynamically.
-NYC does not allow to collect coverage data dynamically because it does not expose an \ac{api} to collect coverage data.
+However, NYC is unsuitable for our use case because it does not allow us to collect coverage data dynamically, because it does not expose an \ac{api} to collect coverage data.
 Since we need to collect coverage data from the cypress test-runner after each test case, we decided not to use NYC.
 The author of NYC also maintains C8 \autocite{noauthor_bcoec8_nodate}, a similar tool that uses native V8 coverage instead of code instrumentation.
 Although C8 does not allow the dynamic collection of coverage data, it served as an inspiration for our implementation.
@@ -472,8 +494,8 @@ In this chapter, we put our approach outlined in \cref{methodology} to the test.
 First, we describe the study subjects we use to evaluate our approach.
 Then we present and discuss the results of our evaluation.
 \section{Research Questions}
-We want to understand if our adapted approach if effective for \ac{e2e} tests and if it has an effect on the behavior of the tests.
-To find out, we formulate two research questions.
+We want to understand if our adapted approach is effective for \ac{e2e} tests and if it has an effect on the behavior of the tests.
+To investigate this, we formulate two research questions.
 \begin{enumerate}
 	\item[\textbf{\acs{rq}\textsubscript{1}:}] How effective is the change coverage based approach in identifying flaky failures in UI \ac{e2e} tests?
 
@@ -495,20 +517,20 @@ To find out, we formulate two research questions.
 \section{Study Subjects}
 To validate our approach, we chose two study subjects.
 Both study subjects are open-source projects that use \textsc{cypress} for \ac{e2e} testing.
-They both have many tests and are actively maintained.
+They both have a high number of \ac{e2e} tests and are actively maintained.
 Also, both projects have experienced issues with flaky tests in the past.
 
-\textsc{ArTEMiS} is a learning management system used at multiple universities to manage courses and exercises \autocite{krusche_artemis_2018}.
-The project is developed at \ac{tum} where we conducted our research.
-The team has experienced issues with flaky tests in the past, and the project has many tests.
+\textsc{ArTEMiS} is a learning management system used at several universities to manage courses and exercises \autocite{krusche_artemis_2018}.
+The project is being developed at \ac{tum}, where we conducted our research.
+The team has experienced problems with flaky tests in the past, and the project has numerous tests.
 This makes it a good candidate for our evaluation.
-We also wanted to evaluate our approach with a project that is in active development.
+We also wanted to evaluate our approach on a project that was in active development.
 
 \textsc{n8n} is a workflow automation tool that allows users to connect different services and automate workflows \autocite{noauthor_n8n_2023}.
-The project was identified as a study subject by searching GitHub for projects that depend on cypress and use JavaScript as the primary programming language.
-The limit to projects that use cypress was set because our approach is only compatible with cypress.
-We wanted to find another project that is in active development and has many tests.
-A further check of the commit history showed that the project had experienced issues with flaky tests.
+The project was identified as a study subject by searching GitHub for projects that depend on cypress and use JavaScript as their primary programming language.
+The restriction to projects using cypress was set because our approach is only compatible with cypress.
+We wanted to find another project that was in active development with plenty of tests.
+Another check of the commit history showed that the project had experienced problems with flaky tests.
 
 During the search for study subjects, we also considered \textsc{Gladys} \autocite{noauthor_gladys_2023} and \textsc{ToolJet} \autocite{noauthor_tooljettooljet_2023}. However, we decided against using them as study subjects because \textsc{Galdys} did not show any flakiness in the tests, and \textsc{ToolJet} uses a setup for testing that could not be replicated locally in a reasonable amount of time.
 
@@ -568,7 +590,7 @@ The \emph{recall} describes the ratio of correctly identified flaky failures to 
 \end{equation}
 
 \paragraph{F1 Score} The \emph{F1 score} is the harmonic mean of precision and recall (\ref{f1}).
-It is used to summarize the performance of a binary classification test.
+It is used to summarize the performance of a binary classification test and is a value between 0 and 1.
 \begin{equation}
 	\text{F1 Score} = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
 	\label[equation]{f1}
@@ -658,15 +680,17 @@ We defined \emph{true positives} as versions of the \ac{sut} for which the instr
 In addition, we defined \emph{true negatives} as versions of the \ac{sut} for which both runs failed and the failed tests matched for at least 75\% of the tests.
 These definitions lead to overestimating the \emph{false positives} and the \emph{false negatives}.
 Thus, the results in \cref{evaluation_results} are the \textbf{worst case} results.
-We also calculated the \textbf{best case} results for \textsc{ArTEMiS}, which showed moderate improvements with a precision of \num{0.81879} and a recall of \num{0.4357}.
+We also calculated the \textbf{best case} results for \textsc{ArTEMiS}, which showed moderate improvements with a precision of \num{0.81879} and a recall of \num{0.4357} which increases the f1 score to \num{0.568751927875}.
 
 The results for the \textsc{n8n} study subject are of better quality, as we could compare the results to ground truth.
 As described in \cref{evaluation_n8n}, we ran the \ac{e2e} tests multiple times to establish a ground truth for the selected commits.
 To test the performance of our approach, the selected commits were run six times each with instrumentation.
 The results of these runs are shown in \cref{evaluation_results}.
 We collected coverage on \textit{line level}, but also ran an analysis that worked on \textit{file level}.
+Due to a lack more precise information we could not do the same for the \textsc{ArTEMiS} study subject.
 In this experiment, there is no difference between the two levels.
 This could indicate that the coverage collection could be more coarse without worsening the labeling quality.
+Lastly, we calculated the \emph{precision}, \emph{recall}, and \emph{f1 score} for the approach in general by combining the results from both study subjects.
 
 \subsection{Behavior change Impact}
 To answer \textbf{\ac{rq}\textsubscript{2}}, we analyzed the data from both study subjects.
@@ -813,7 +837,7 @@ While we believe that false positives are a much bigger problem than false negat
 
 We suspect that the low recall is due to the fact that \ac{e2e} tests cover much more code than unit tests.
 This leads to a much higher chance that changes in the \ac{sut} causing the failure will be covered by a failing test, even if those changes did not cause the failure.
-Since we only consider failures to be flakye if they cover \textbf{none} of the changed lines, this leads to many false negatives.
+Since we only consider failures to be flaky if they cover \textbf{none} of the changed lines, this leads to many false negatives.
 
 Due to the low recall of our approach, we do not believe it can go far in solving the problems caused by flaky failures.
 Developers will still have to deal with flaky failures that are not detected by our approach.
@@ -903,7 +927,6 @@ While the ground truth for \textsc{n8n} is more reliable than our estimations fo
 %------- chapter 7 -------
 
 \chapter{Conclusion}\label[chapter]{conclusion}
-\TODO{DeFlaker vergleich auch in conclusion}
 In this thesis, we have presented and evaluated an approach for detecting flaky failures in \ac{e2e} tests using change coverage.
 Flaky failures are a common problem in \ac{e2e} testing and can lead to a loss of confidence in the test suite.
 Flakiness is widespread in practice \autocite{hilton_trade-offs_2017,micco_state_2017}, with some authors even suggesting that all tests should be considered flaky \autocite{harman_start-ups_2018}.
@@ -938,7 +961,7 @@ We found that our approach has very low false positives, reducing the risk of mi
 However, our approach has a low recall, which means that it is not able to detect all flaky failures.
 The results we saw are much worse than the results of \textsc{DeFlaker}.
 \Citeauthor*{bell_deflaker_2018} report a recall of \num{0.955} and a precision of \num{0.985} \cite{bell_deflaker_2018}.
-We observed an average recall of \num{0.333} and an average precision of \num{0.875} during our evaluation\todo{update numbers}.
+We observed an average recall of \num{0.42} and an average precision of \num{0.77} during our evaluation\todo{update numbers}.
 
 These results show that while \textsc{DeFlaker} is a promising approach for detecting flaky failures in unit tests, it is not directly applicable to \ac{e2e} tests.
 We believe that this is due to the differences between unit and \ac{e2e} tests.

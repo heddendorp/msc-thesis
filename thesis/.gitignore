@@ -1,7 +1,5 @@
 *.pdf
-
-
-# Created by https://www.gitignore.io/api/macos
+!figures/*.pdf
 
 ### macOS ###
 *.DS_Store
