@@ -1,7 +1,13 @@
 \chapter{Abstract}
 
-Software testing is a crucial aspect of software development to ensure system quality and dependability. While test cases are expected to be deterministic, flaky tests can exhibit non-deterministic behavior, causing intermittent failures without any changes to the System Under Test (SUT) or the test itself. This thesis aims to detect flaky failures in End-to-End (E2E) tests by applying the technique proposed by Bell et al. in "DeFlaker" for detecting flaky unit test failures. By focusing on flaky failures instead of flaky tests, our approach aims to provide more value to the Continuous Integration (CI) process during software development.
+Software testing plays a vital role in ensuring system quality, reliability, and performance. 
+\acf*{e2e} tests, in particular, can be susceptible to flaky behavior, causing significant challenges to the software development process. 
+While existing research has primarily focused on detecting flaky tests, this thesis addresses the detection of flaky failures in \ac*{e2e} tests. 
+We adapt a technique from \citeauthor*{bell_deflaker_2018} for detecting flaky Java unit test failures and apply it to \ac*{e2e} tests, which involve multiple languages and a different context for test execution. Our approach requires the instrumentation of code to collect coverage data during test execution. 
+To evaluate our methodology, we selected two open-source projects, \textsc{ArTEMiS} and \textsc{n8n}, which use the Cypress framework for \ac*{e2e} testing.
 
-We propose a methodology for detecting flaky failures in E2E tests and evaluate its performance using two open-source projects as case studies: Artemis, a web-based learning platform for programming exercises, and n8n, a workflow automation tool. Both projects use Cypress for E2E testing. Our evaluation assesses the impact of our methodology on test execution and its ability to correctly identify flaky failures. Our approach performs well, correctly identifying flaky failures in 90\% of the cases, with three false positives where our approach identified a failure as flaky, but it was not.
-
-This thesis provides an overview of E2E testing, flaky tests, coverage collection, and alternative approaches to detecting flaky tests. It also details the methodology, case studies, evaluation results, limitations, and future work in detecting flaky failures in E2E tests.
+Our contributions include a novel methodology for detecting flaky failures in \ac*{e2e} testing, an evaluation of our approach on two open-source projects, and guidelines for practitioners. 
+Our evaluation shows that instrumentation can significantly impact test execution and that our approach correctly identified flaky failures 42\% of the time \todo{Update number after eval finishes}. 
+We also observed three false positives in the evaluation. 
+The results indicate that while the adapted approach has potential, it is not directly applicable to \ac*{e2e} tests, and further research is needed to improve its performance. 
+Future work should explore the applicability of our approach to different tech stacks, extend the coverage collection tool to support other testing frameworks, and investigate the impact of instrumentation on test execution.
