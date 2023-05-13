@@ -108,6 +108,7 @@ const commits = db.chain
   .filter((commit) =>
     commit.runs.some((run) => run.installConclusion === "success")
   )
+  .uniqBy("sha")
   .value();
 
 console.log(`found ${commits.length} commits`);

@@ -66,6 +66,7 @@
 }
 \TODO{Check for \textbf{bugs, defects} and other words used instead of (flaky) \textbf{failures} as some tools for text improvements love to make sure that every word is used only once.}
 \feedback{Manchmal schreibst du UI E2E (oder E2E UI) tests.Finde sowohl E2E tests als auch UI tests ok, sollte aber konsistent sein. \\ Decision: use \textbf{\acs{e2e} tests}}
+\feedback{Research Questions: evaluation seems late in the thesis to pose your research questsions}
 
 \mainmatter{}
 
@@ -76,7 +77,7 @@ By executing test cases, the primary goal of software testing is to identify and
 Developers can use test cases to verify that the system behaves as expected and to ensure that changes to the system do not introduce new defects.
 This saves time on manual testing, prevents bugs from reaching production, and increases confidence in the system.
 Ideally, test cases should be deterministic, that is, they should always produce the same output given the same input.
-In practice, however, test cases may be non-deterministic or \emph{flaky}, \autocite{luo_empirical_2014} meaning that they may fail intermittently without any change to the \ac{sut} or the test itself.
+In practice, however, test cases may be non-deterministic or \emph{flaky} \autocite{luo_empirical_2014}, meaning that they may fail intermittently without any change to the \ac{sut} or the test itself.
 \Ac{ui} tests, which often involve asynchronous activities and limited computer resources, are particularly susceptible to flaky behavior \autocite{romano_empirical_2021}.
 
 Flaky tests pose a significant challenge to the software development process because they consume valuable resources, increase development time, and undermine confidence in the testing process.
@@ -86,11 +87,13 @@ In a survey conducted by \citeauthor*{eck_understanding_2019}, a striking 79\% o
 
 Despite the recognized importance of addressing flaky tests, detecting them remains a major challenge.
 The most common method of identifying flaky tests is to rerun them \autocite{lam_idflakies_2019, lam_understanding_2020}.
-However, this approach is not without its drawbacks, as it consumes significant computational resources and may still miss certain flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
+However, this approach is not without drawbacks, as it consumes significant computational resources and may still miss certain flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
 In addition, \citeauthor*{parry_what_2022} found that rerunning tests detected only 40\% of flaky tests \autocite{parry_what_2022}.
 These findings highlight the need for more effective strategies to identify and address flaky tests in order to improve the efficiency and reliability of the software development process.
-
-It is important to distinguish between flaky tests and flaky test failures.
+\feedback{might be me, but I still don’t see clearly how this differs:
+flaky test: test failes in-deterministically
+flaky failure: test with test failures?}
+It is important to distinguish between flaky tests and flaky test failures \autocite{haben_importance_2023}.
 A flaky failure refers to a test failure that does not manifest in every run, but rather occurs by chance.
 Consequently, a flaky test is a test that exhibits flaky failures.
 While the majority of research has focused on the detection of flaky tests, the approach presented in this thesis is aimed at the detection of flaky failures.
@@ -118,11 +121,11 @@ The contributions of this thesis are
 	\item \textbf{Methodology.} We propose an approach using change coverage for detecting flaky failures in \ac{e2e} testing, based on previous work in detecting flaky unit test failures \autocite{bell_deflaker_2018}.
 	\item \textbf{Study Subjects.} We evaluate our approach on two open-source projects by analyzing our method's impact on execution and evaluating the performance of our approach.
 	      During the evaluation, we found that instrumentation can significantly impact test execution, increasing the execution time.
-	      Our approach correctly identified flaky failures 42\% of the time \todo{correct number}.
-	      During the evaluation, we saw three \todo{Correct number} false positives where our approach identified a failure as flaky when it was not.
+	      Our approach correctly identified flaky failures 42\% of the time.
+	      During the evaluation, we saw 27\% false positives where our approach identified a failure as flaky when it was not.
 	\item \textbf{Guidelines.} Based on our experiences, we derive guidelines for practitioners, these are
 	      (1) change coverage-based detection shows very few false positives in our experiments,
-	      (2) large spec files combined with instrumentation cause memory issues, and
+	      (2) large test files combined with instrumentation cause memory issues, and
 	      (3) instrumentation can significantly impact the runtime overhead of test execution.
 \end{itemize}
 
@@ -142,20 +145,16 @@ We discuss the limitations of our approach in \cref{threats} and summarize our f
 This chapter provides essential background information for understanding the context of this thesis.
 We introduce the concept of \ac{e2e} testing, explain flaky test failures and their causes, and give an overview of coverage collection.
 
-\section{E2E Testing}
+\section{\acf*{e2e} Testing}
 
-When developing software applications, ensuring that the application behaves as expected is essential.
-Automated testing is used to ease the manual work of going through the system after changes and checking that everything still works.
-Failed tests can indicate regressions in the application, meaning that parts of the application do not behave as expected \autocite{lam_large-scale_2020, luo_empirical_2014,romano_empirical_2021}.
+When developing software applications, it is essential to ensure that the application behaves as expected.
+Automated testing is used to ease the manual work of verifying the application's behavior after changes are made to the code base.
+Failed tests can indicate regressions in the application, meaning that parts of the application do not behave as expected. \autocite{lam_large-scale_2020, luo_empirical_2014,romano_empirical_2021}.
 
 There are several types of tests used in software development.
-From \emph{unit tests}, which test small parts of the application in isolation, to \emph{integration tests}, which test the interaction between several application components.
+Automated testing ranges from \emph{unit tests}, which test small parts of the application in isolation, to \emph{integration tests}, which test the interaction between several application components \autocite{huizinga_automated_2007}.
 Both of these testing types are testing technical aspects of the application.
 \emph{\ac{e2e} tests} are used to test the application as a whole from the users point of view, simulating the interaction of a user with the application \autocite{jacob_schmitt_what_2022}.
-
-\Ac{e2e} tests also include the \ac{ui} of the application.
-They simulate a user's interaction with the application and check if the application behaves as expected.
-\ac{e2e} tests for web applications are usually written to run in a browser, simulating a user's interaction with the application.
 The interactions are realized using an \ac{ui} testing framework that simulates user interaction with the application.
 This thesis focuses on \ac{e2e} tests executed in a browser.
 
@@ -173,7 +172,7 @@ In this thesis, we will only mention flaky failures, but their existence also me
 
 Failures of this type are problematic because they are difficult to reproduce due to their non-deterministic nature.
 They can also cause developers to waste time identifying a bug in the \ac{sut} that does not exist \autocite{ziftci_-flake_2020}.
-Flaky failures are common in software testing, \citeauthor*{harman_start-ups_2018} even suggesting that all tests may have flaky failures \autocite{harman_start-ups_2018}.
+Flaky failures are common in software testing, \citeauthor*{harman_start-ups_2018} even suggested that all tests may have flaky failures \autocite{harman_start-ups_2018}.
 A survey of developers at Pivotal by \citeauthor*{hilton_trade-offs_2017} found that about 50\% of \ac{ci} builds fail due to flaky failures \autocite{hilton_trade-offs_2017}.
 
 Due to the asynchronous nature of \ac{ui} interactions, many events and tasks are executed in a non-deterministic order.
@@ -196,10 +195,10 @@ Therefore, flaky \ac{ui} test failures are more challenging to reproduce than fl
 
 Code coverage is a record of what code was executed by a test suite.
 A test suite is a collection of tests that are executed together to test the system.
-It is often used to identify parts of the code not executed by the test suite \autocite{marick_brian_and_smith_john_and_jones_mark_how_1999}.
+Code coverage is often used to identify parts of the code not executed by the test suite \autocite{marick_brian_and_smith_john_and_jones_mark_how_1999}.
 These identified parts of the code can be a good start for the development of new tests to ensure the test suite covers the entire system.
-It is also sometimes misused as a measure of the quality of a test suite \autocite{martin_fowler_bliki_2012}.
-However, \citeauthor*{martin_fowler_bliki_2012} also suggests that the quality of a test suite can be measured by the number of bugs that make it into production and willingness of developers changing code that could lead to bugs \autocite{martin_fowler_bliki_2012}.
+It is also sometimes misused as a measure of the quality of a test suite \autocite{fowler_bliki_2012}.
+However, \citeauthor*{fowler_bliki_2012} also suggests that the quality of a test suite can be measured by the number of bugs that make it into production and willingness of developers changing code that could lead to bugs \autocite{fowler_bliki_2012}.
 \Citeauthor*{kochhar_code_2017} even show that code coverage has no significant correlation with the fault detection rate of a test suite \autocite{kochhar_code_2017}.
 That is, a test suite with a high code coverage does not necessarily detect more bugs than a test suite with a low code coverage.
 
@@ -214,7 +213,7 @@ This limits the time needed to test the system while still ensuring that the cha
 
 \chapter{Related Work}\label[chapter]{related_work}
 This chapter provides an overview of existing work related to this thesis.
-First, we show some approaches to detecting flaky tests.
+First, we show existing approaches to detecting flaky tests.
 Then, we motivate why it is important to detect flaky failures, not just to determine whether a test is flaky.
 Then, we will present existing work on flaky failure detection and the effect of instrumentation on flakiness.
 Finally, we present the research gap that this thesis aims to fill.
@@ -228,34 +227,34 @@ Some suggest using up to five reruns \autocite{lam_understanding_2020} to confir
 \Citeauthor*{silva_shake_2020} propose a lightweight approach to provoke flaky behavior in tests called \textsc{SHAKER}.
 \textsc{SHAKER} adds noise in the execution environment (i.e., adding stressor tasks to compete for the CPU or memory).
 It builds on the observations that concurrency is an important source of flakiness and that adding noise in the environment can interfere with the ordering of events and, consequently, influence the test outputs.
-They report better and faster detection than rerunning and also found additional flaky tests \autocite{silva_shake_2020}.
+They report better and faster detection than rerunning and also found additional flaky tests that were not detected by rerunning \autocite{silva_shake_2020}.
 
-\Citeauthor*{lam_idflakies_2019} introduce a framework called \textsc{iDFlakies} that uses a dynamic analysis approach to detect flaky tests.
+\Citeauthor*{lam_idflakies_2019} introduce a framework called \textsc{iDFlakies} to detect flaky tests.
 The framework automates experimentation in Maven-based Java projects.
 It uses a combination of test reruns and reordering of tests to detect flakiness.
 Additionally, it classifies found flakes into \ac{od} and \ac{nod} flaky tests.
-They report that \textsc{iDFlakies} that both classes occur at about the same rate, but note that their approach is very time and resource-consuming \autocite{lam_idflakies_2019}.
+They report that both classes occur at about the same rate, but note that their approach is very time and resource-consuming \autocite{lam_idflakies_2019}.
 
-\Citeauthor*{alshammari_flakeflagger_2021} present a tool called \textsc{FlakeFlagger} predicts if tests are likely flaky without rerunning.
-They present an approach that collects a set of features describing the behavior of each test and then predicts tests that are likely to be flaky based on similar behavioral features.
-The authors found that \textsc{FlakeFlagger} correctly labeled as flaky on at least as many tests as a state-of-the-art flaky test classifier but that \textsc{FlakeFlagger} reported far fewer false positives.
-Evaluated on their dataset of 23 projects with flaky tests, \textsc{FlakeFlagger} outperformed the prior approach (by F1 score) on 16 projects and tied on four projects.
-Their results indicate that this approach can effectively identify likely flaky tests before running time-consuming flaky test detectors \autocite{alshammari_flakeflagger_2021}.
-While \textsc{FlakeFlagger} can analyze a test without reruns, it is not able to categorize a single failure of a test as flaky or not.
-This weakness is shared by the other mentioned approaches as well.
-But as we motivate in the following section, detecting flaky failures is an essential feature for an approach that adds value in a \ac{ci} environment.
+\Citeauthor*{alshammari_flakeflagger_2021} present a tool called \textsc{FlakeFlagger} that predicts whether tests are likely to be flaky without re-running them.
+They present an approach that collects a set of features describing the behavior of each test, and then predicts tests that are likely to be flaky based on similar behavioral features.
+The authors found that \textsc{FlakeFlagger} correctly labeled at least as many tests as a comparable flaky test classifier, but that \textsc{FlakeFlagger} produced far fewer false positives.
+When evaluated on their dataset of 23 projects with flaky tests, \textsc{FlakeFlagger} outperformed the previous approach (by F1 score) on 16 projects and tied on four projects.
+Their results indicate that this approach can effectively identify likely flaky tests before running the time-consuming flaky test detectors \autocite{alshammari_flakeflagger_2021}.
+While \textsc{FlakeFlagger} can analyze a test without rerunning it, it is not able to categorize a single failure of a test as flaky or not.
+This weakness is also shared by the other mentioned approaches.
+However, as we motivate in the following section, detecting flaky failures is an essential feature for an approach that adds value in a \ac{ci} environment.
 
 \section{Importance of Detecting Flaky Failures}
-\Citeauthor*{haben_importance_2023} have studied the difference between detecting flaky tests and flaky test failures, highlighting the importance of the latter for a more effective \ac{ci} process.
-In recent years, several methods have been proposed to identify flaky tests.
-However, these methods have not been evaluated within a \ac{ci} process, leaving their actual utility unclear \autocite{haben_importance_2023}.
+\Citeauthor*{haben_importance_2023} studied the difference between detecting flaky tests and flaky test failures, highlighting the importance of the latter for a more effective \ac{ci} process.
+In recent years, several methods were proposed to identify flaky tests.
+However, these methods were not evaluated within a \ac{ci} process, leaving their actual utility unclear \autocite{haben_importance_2023}.
 
-\Citeauthor*{haben_importance_2023} conducted a case study on the Chromium \ac{ci}, using state-of-the-art flakiness prediction methods to examine their performance.
+The authors conducted a case study on the Chromium \ac{ci}, using state-of-the-art flakiness prediction methods to examine their performance.
 They found that despite the high precision of the methods (\SI{99.2}{\percent}), their application resulted in many missed failures, which were about \SI{76.2}{\percent} of all regression failures (\SI{56.2}{\percent} of which were due to model misclassifications).
 To investigate this finding, the authors analyzed the fault-triggering failures. They discovered that flaky tests have a strong fault-revealing capability, revealing over one-third of all regression faults \autocite{haben_importance_2023}.
 
 This result highlights an inherent limitation of methods that focus on identifying flaky tests rather than flaky test failures.
-To address this issue, \Citeauthor*{haben_importance_2023} proposed failure-focused prediction methods and optimized them by considering new features.
+To address this issue, the researchers proposed failure-focused prediction methods and optimized them by considering new features.
 The new features included test execution characteristics such as duration and history.
 Interestingly, they found that these methods performed better than the test-focused ones, with the \ac{mcc} increasing from \num{0.20} to \num{0.42} \autocite{haben_importance_2023}.
 
@@ -269,15 +268,16 @@ They found that the most common techniques are either static analysis of the tes
 
 \Citeauthor*{bell_deflaker_2018} have addressed the problem of flaky test failures in Java unit tests and proposed a method to detect flaky tests without rerunning them \autocite{bell_deflaker_2018}.
 
-To address this problem, the authors propose a novel technique based on change coverage that detects flaky failures without rerunning them and with minimal runtime overhead.
-The technique works by monitoring the coverage of the latest code changes and identifying any new test failures that did not execute the changes as flaky.
+To address this problem, the authors propose a novel technique called \textsc{DeFlaker}.
+It is based on change coverage and detects flaky failures without rerunning them and with minimal runtime overhead.
+The technique works by monitoring the coverage of the latest code changes and identifying any new test failures as flaky where the changes were not executed by the test.
 This approach significantly reduces the time and resources required to detect flakiness, resulting in a more efficient development cycle \autocite{bell_deflaker_2018}.
 
 The effectiveness was evaluated on 26 Java projects hosted on TravisCI, where it identified 91 previously unknown flaky failures.
 In addition, the authors conducted experiments on project histories, where they detected 1,874 flaky failures out of a total of 4,846 failures.
 Moreover, they observed a low false alarm rate of only 1.5\%.
-The detector also demonstrated superior performance compared to Maven's default flaky test detector, with a 95.5\% recall rate compared to Maven's 23\%.
-They also demonstrated great runtime performance as the runtime of tests is only 4.5\% higher on average with their detection active \autocite{bell_deflaker_2018}.
+The detector also demonstrated superior performance compared to Maven's default detector, with a 95.5\% recall rate compared to Maven's 23\%.
+They also demonstrated excellent runtime performance, as the runtime of tests with detection enabled is only 4.5\% higher on average \autocite{bell_deflaker_2018}.
 
 \section{Effect of Instrumentation on Flakiness}
 The approach presented by \citeauthor*{bell_deflaker_2018} is based on the instrumentation of the code.
@@ -304,7 +304,7 @@ Based on the work by \citeauthor*{bell_deflaker_2018} we want to collect coverag
 We want to know which parts of the code of the \ac{sut} were executed by what test.
 If a test fails, we can check for the last version of the \ac{sut} for which the tests passed.
 By comparing the code that changed since the last time the tests passed and the code for which we know that the failing test executed it, we can judge if the failure is likely to be flaky.
-If there is no interception of the code that was covered by the failing test execution and the code that changed, the failure is assumed to be flaky.
+If there is no interception of the code that was covered by the failing test execution and the code that changed, the failure is assumed to be flaky \autocite{bell_deflaker_2018}.
 \Cref{detection_process} shows the process of detecting flaky failures.
 
 \begin{figure}[h]
@@ -375,7 +375,8 @@ We evaluated two approaches to full stack code coverage.
 \paragraph{Propagation.} The first option is to propagate data about the executed test cases through the code base.
 Since we are collecting coverage data on the entire code base, it is necessary to propagate the data from the test framework to both the client and server code.
 In addition, the coverage collection must be reset after each test case to avoid mixing coverage data from different test cases.
-This approach is similar to distributed tracing, were a trace ID has to be propagated through the code base to link all log entries to the same trace \autocite{noauthor_distributed_nodate}
+This means deleting the coverage data after each test case and starting a new coverage collection.
+This approach is similar to distributed tracing, where a trace ID must be propagated through the code base to link all log entries to the same trace. \autocite{noauthor_distributed_nodate}.
 
 \paragraph{Timing.} The second option is to match the coverage data to the test cases based on the timing of the test cases.
 This more straightforward approach is possible because the test cases are executed sequentially, and the coverage data is collected in the same order.
@@ -385,16 +386,17 @@ This is also suggested in cypress documentation \autocite{noauthor_code_nodate}.
 
 To keep our approach more general, we used the second option and matched the coverage data to the test cases based on timing.
 Mapping by timing is also more robust and does not require any changes to the code base.
-Even parallel execution of tests is possible if each worker has a separate instance of the \ac{sut}.
+The timing-based approach also works for parallel execution of tests if each worker has a separate instance of the \ac{sut}.
 
-A limitation of coverage collection is missing out on files that influence the behavior of the \ac{sut} but are not executed.
-This can be CSS files to modify the styles of a web application or configuration files that are read by the application but not executed.f
-This can lead to false positives, where a test failure is marked as flaky even though it is not.
+One limitation of the coverage collection is missing files that affect the behavior of the \ac{sut} but are not executed.
+This could be CSS files to change the style of a web application, or configuration files that are read by the application but not executed.
+This can lead to false positives, where a test failure is marked as flaky when it is not.
+To mitigate this problem, the coverage could be expanded, or the analysis could be changed to always assume that a test failure is not flaky if the modified files are not part of the coverage.
 \section{Change Collection}
 In addition to collecting coverage that tells us which code was executed by the tests, we also need to collect changes to the codebase to determine which parts of the code have changed since the last successful test run.
 With both sets we can analyze a test failure and determine if it is flaky.
-We use git to collect changes because both study subjects use git as their version control system.
-After identifying the last commit that passed the tests, we use the git \ac{cli} to collect the changes made between that commit and the commit that failed the tests.
+We use Git to collect changes because both study subjects use Git as their version control system.
+After identifying the last commit that passed the test suite, we use the Git \ac{cli} to collect the changes made between that commit and the commit that failed the tests.
 
 \section{Implementation}
 In this section, we describe the implementation of the coverage collection plugins for the two study subjects and the analysis program.
@@ -411,7 +413,7 @@ The Node.js server uses the V8 coverage \ac{api} to collect coverage data.
 Client coverage is collected using V8 coverage for both study subjects since both run their tests in chrome.
 The plugins remap all file paths to be relative to the repository root and merge the client and server coverage information.
 
-The cypress plugins are implemented as node modules that can be installed using npm.
+The cypress plugins are implemented as node modules that can be installed using the \ac{npm}.
 They use the cypress plugin \ac{api} \autocite{cypressio_writing_nodate} to hook into the test runner.
 Since cypress only provides a \texttt{before:spec} and \texttt{after:spec} hook, coverage can only be collected for each spec file, not for each test case.
 Additionally, the plugins use the cypress \texttt{before:browser:launch} hook to identify the port of the chrome debugging protocol.
@@ -438,7 +440,7 @@ Since we need to collect coverage data from the cypress test-runner after each t
 The author of NYC also maintains C8 \autocite{noauthor_bcoec8_nodate}, a similar tool that uses native V8 coverage instead of code instrumentation.
 Although C8 does not allow the dynamic collection of coverage data, it served as an inspiration for our implementation.
 
-To collect coverage data we use the V8 native coverage to collect coverage data.
+To collect coverage data we use the V8 native coverage (covered in the next section).
 Collecting coverage using the V8 native coverage is the same as for the client described in the following section.
 To enable the debugging protocol, we use the \texttt{--inspect} option of the node command.
 \subsubsection{Client} \label[subsection]{client_coverage_collection}
@@ -450,7 +452,7 @@ Instead of following the usual approach, we used the native V8 coverage \ac{api}
 
 Both study subjects run their tests in chrome.
 This allows us to use V8 native coverage to collect coverage data.
-The coverage data is available in the chrome developer tools \autocite{kayce_basques_coverage_2020}.
+The coverage data is available in the chrome developer tools \autocite{basques_coverage_2020}.
 It is also accessible through the Chrome debugging protocol \autocite{noauthor_chrome_nodate}.
 To connect to the chrome debugging protocol, we use the \emph{chrome-remote-interface} library \autocite{cardaci_chrome-remote-interface_2023}.
 To connect to the debugging protocol, we need to know the port of the debugging protocol.
@@ -460,16 +462,17 @@ After the spec run completes, we check to see if the spec run failed.
 If the spec run failed, we collect the coverage data and reset the coverage data.
 If the spec run did not fail, we reset the coverage collection without retrieving it.
 
-We transform the coverage data from the V8 format to the common istanbul format to work with the coverage data.
+To work with the coverage data, we transform the coverage data from the V8 format to the common istanbul format.
 For this we use the \emph{v8-to-istanbul} library \autocite{noauthor_v8--istanbul_2023}.
 Since the library needs the original files to transform the coverage, our plugin maps the paths of the files as reported by chrome to the correct paths in the file system.
 The library reads the code files executed in the browser and follows the source maps to map the coverage data to the original source files.
-This is necessary because the browser executes the transpiled code, not the original source files.
-The coverage data is then simplified to a custom format containing only covered lines and files and saved as JSON.
+This is necessary because both projects use TypeScript, which is transpiled into JavaScript before execution.
+Source maps allow us to map the coverage data to the original TypeScript files.
+The coverage data is then simplified to a custom format that contains only covered lines and files, and is saved as JSON.
 
 \subsection{Analysis Program}
 The analysis program is run when the tests have at least one failure.
-In this subsection, we explain the process of retrieving change data from the git repository and comparing it to the coverage data to identify potentially broken tests.
+In this subsection, we explain the process of retrieving change data from the Git repository and comparing it to the coverage data to identify potentially broken tests.
 Since our plugin saves the coverage data for each failed spec in a JSON file, the analysis program can be run after the test run.
 A good example is the test script in ArTEMiS \texttt{npm ci \&\& npm run cypress:run || npm run detect:flakies}. The script runs the tests; if they fail, it runs the analysis program.
 \cref{coverage_compose} contains the docker-compose file used to run the analysis program.
@@ -479,7 +482,7 @@ The analyzer then checks the bamboo \ac{api} for the latest build that has passe
 If the latest build that passed is not the previous build, the analyzer will fall back to a comparison with the \texttt{develop} branch.
 The program can also be invoked in \texttt{compare} mode, passing the commit to compare against as an argument.
 
-After identifying the commit to compare against, the program retrieves the change data from the git repository.
+After identifying the commit to compare against, the program retrieves the change data from the Git repository.
 It uses the \texttt{git diff} command to get the changes between the two commits.
 It then parses the diff using the \textsc{parse-diff} library \autocite{todyshev_parse-diff_2023}.
 The program then extracts the changed lines for each file.
@@ -502,7 +505,9 @@ To investigate this, we formulate two research questions.
 		To understand if our approach is effective at identifying flaky failures we check the recall and precision of our detector.
 	\item[\textbf{\acs{rq}\textsubscript{2}:}] How does the instrumentation change the behavior of the \ac{sut} and tests?
 
-		We expect that the instrumentation of the application will affect the behavior of the application and tests.
+		We hypothesize that the instrumentation of the application can affect the behavior of the application and the tests.
+		If the instrumentation changes increase the runtime or failure rate of the tests, this could affect the effectiveness of our approach.
+		Detecting flaky failures would not provide much value if the instrumentation changes the behavior of the tests too much.
 		Therefore, we further investigate this impact with two subquestions:
 		\begin{enumerate}
 			\item[\textbf{\acs{rq}\textsubscript{2.1}:}] To what extent does instrumentation affect the runtime overhead of the application during \acs{e2e} testing?
@@ -515,9 +520,9 @@ To investigate this, we formulate two research questions.
 \end{enumerate}
 
 \section{Study Subjects}
-To validate our approach, we chose two study subjects.
+To validate our approach, we chose two projects to study.
 Both study subjects are open-source projects that use \textsc{cypress} for \ac{e2e} testing.
-They both have a high number of \ac{e2e} tests and are actively maintained.
+They both have over 100 \ac{e2e} tests and are actively maintained.
 Also, both projects have experienced issues with flaky tests in the past.
 
 \textsc{ArTEMiS} is a learning management system used at several universities to manage courses and exercises \autocite{krusche_artemis_2018}.
@@ -532,7 +537,7 @@ The restriction to projects using cypress was set because our approach is only c
 We wanted to find another project that was in active development with plenty of tests.
 Another check of the commit history showed that the project had experienced problems with flaky tests.
 
-During the search for study subjects, we also considered \textsc{Gladys} \autocite{noauthor_gladys_2023} and \textsc{ToolJet} \autocite{noauthor_tooljettooljet_2023}. However, we decided against using them as study subjects because \textsc{Galdys} did not show any flakiness in the tests, and \textsc{ToolJet} uses a setup for testing that could not be replicated locally in a reasonable amount of time.
+During the search for study subjects, we also considered \textsc{Gladys} \autocite{noauthor_gladys_2023} and \textsc{ToolJet} \autocite{noauthor_tooljettooljet_2023}. However, we decided against using them as study subjects because \textsc{Gladys} did not show any flakiness in the tests, and \textsc{ToolJet} uses a setup for testing that could not be replicated locally in a reasonable amount of time.
 
 \section{Evaluation Setup}
 In this section, we discuss the evaluation setup used for our experiments.
@@ -543,12 +548,13 @@ We use the existing pipeline to ensure that the evaluation is reproducible and t
 In this section, we will introduce the metrics we use to evaluate our approach.
 
 \paragraph{(True/False) Positives} Any test failure identified as flaky by our approach is considered a positive.
-We define a \acfi{tp} as a case where our approach suspects a failure as being flaky, and we know that the tested version of the \ac{sut} has shown flakiness in the past for that test.
-A \acfi{fp} is a case where our approach suspects a failure as being flaky, but we know that the tested version of the \ac{sut} has not shown flakiness in the past for that test.
+We define a \acfi{tp} as a case where our approach suspects a failure as being flaky, and we know that the tested version of the \ac{sut} has been shown to pass the tests before.
+A \acfi{fp} is a case where our approach suspects a failure as being flaky, but we know that the tested version of the \ac{sut} has always shown a failure for the test in question.
 
 \paragraph{(True/False) Negatives} Any test failure not identified as flaky by our approach is considered a negative.
 We define a \acfi{tn} as a case where our approach does not suspect a failure as being flaky, and we know that the tested version of the \ac{sut} has not shown flakiness in the past for that test.
 A \acfi{fn} is a case where our approach does not suspect a failure as being flaky, but we know that the tested version of the \ac{sut} has shown flakiness in the past for that test.
+\TODO{Review the definitions of TP, FP, TN, FN}
 These classes are illustrated in \cref{confusion_matrix}.
 \begin{figure}[ht]
 	\centering
@@ -591,6 +597,7 @@ The \emph{recall} describes the ratio of correctly identified flaky failures to 
 
 \paragraph{F1 Score} The \emph{F1 score} is the harmonic mean of precision and recall (\ref{f1}).
 It is used to summarize the performance of a binary classification test and is a value between 0 and 1.
+A higher value indicates better performance.
 \begin{equation}
 	\text{F1 Score} = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
 	\label[equation]{f1}
@@ -626,7 +633,8 @@ Additionally, we filtered any failed build but reported no failed test cases.
 These builds were not correctly run and were unusable for our evaluation.
 Lastly, we filtered any build that took less than 20 minutes to run.
 We removed these builds because they were likely affected by the issues with the \ac{ci} pipeline.
-Even though we filtered out apparent cases of issues with the \ac{ci} pipeline, there were still some cases in which the \ac{ci} pipeline was affected.
+Even though we filtered out apparent cases of issues with the \ac{ci} pipeline, the \ac{ci} pipeline was still showing some unstable behavior.
+We kept the builds that were affected by these issues in our evaluation as they still showed realistic behavior of the \ac{ci} pipeline.
 
 \subsection{n8n (GitHub)} \label[section]{evaluation_n8n}
 
@@ -636,23 +644,24 @@ We created a fork of the \textsc{n8n} repository to run the evaluation.\footnote
 We created a new workflow in the forked repository that runs the \ac{e2e} tests with and without instrumentation from a specific commit.
 While our workflow still pulls from the original repository, we had to make some changes to the \ac{e2e} tests to make them work with our instrumentation.
 We had to run the tests in chrome instead of electron due to memory issues when running the tests.
+\TODO{Further explain the changes we made to the tests and why they were necessary.}
 In addition, we had to exclude some tests that did not pass after three runs, even after changing the test setup.
-To evaluate our approach and answer \textbf{\ac{rq}\textsubscript{1}}, we selected commits from the \textsc{n8n} repository and ran the \ac{e2e} tests against them to establish ground truth.
+To evaluate our approach and answer \textbf{\acs{rq}\textsubscript{1}} (how well our approach can detect flaky failures), we selected commits from the \textsc{n8n} repository and ran the \ac{e2e} tests against them to establish ground truth.
 The commits were selected by taking up to five from the last 50 \acp{pr} that were last updated before \DTMdate{2023-03-20}.
 We then ran the \acp{e2e} tests on each commit and collected the results.
 If a test failed in one of the runs, we triggered up to four additional runs to see if the test could pass.
-In addition, for each selected commit, we also checked to see if it had at least one successful parent.
-If a commit did not have a successful parent, we extended the checked commits to include the parent commit.
+In addition, for each selected commit, we also checked to see if it had at least one parent for which the tests passed.
+If a commit did not have a parent with passing tests, we extended the checked commits to include the parent commit.
 If we found that even after five runs, the installation step for a commit did not complete successfully, we excluded that commit from our evaluation.
-We repeated this process until we had a collection of commits with at least one successful parent.
+We repeated this process until we had a collection of commits with at least one parent commit for which the tests passed.
 
 To find candidates for our evaluation, we looked again at our original set, excluding commits that still needed to have a successful parent.
-We also excluded commits that never passed completed the install step.
-This selection yielded a set of 71 commits, 3 of which had test cases that failed on all runs.
-In addition, 17 commits had broken test cases.
+We also excluded commits that never passed completed the installation step.
+This selection yielded a set of 47 commits, 3 of which had test cases that failed on all runs.
+In addition, 12 commits showed flaky behavior.
 Each selected commit also includes a list of spec files that failed in every run so that the results of our approach can be verified.
 
-To answer \textbf{\ac{rq}\textsubscript{2}}, we also ran another experiment.
+To answer \textbf{\acs{rq}\textsubscript{2}} (the effect of instrumentation on the test behavior), we also ran another experiment.
 We collected the 25 most recent commits from the \textsc{n8n} repository and ran the \ac{e2e} tests on them with and without instrumentation.
 To increase our results' validity, we ran the original and instrumented tests on the same machine.
 We collected the information from these runs to assess the impact of the instrumentation on the \ac{e2e} tests.
@@ -663,7 +672,7 @@ We also elaborate on any statistical tests we performed on the data to determine
 For all tests, we use a significance level of $\alpha = 0.05$.
 We will discuss the results and their implications in \cref{discussion}.
 \subsection{Detection Quality}\label[subsection]{results_rq1}
-To answer \textbf{\ac{rq}\textsubscript{1}}, the data from both study subjects were gathered and analyzed.
+To answer \textbf{\acs{rq}\textsubscript{1}}, the data from both study subjects were gathered and analyzed.
 
 \begin{table}[h]
 	\centering
@@ -681,19 +690,19 @@ In addition, we defined \emph{true negatives} as versions of the \ac{sut} for wh
 These definitions lead to overestimating the \emph{false positives} and the \emph{false negatives}.
 Thus, the results in \cref{evaluation_results} are the \textbf{worst case} results.
 We also calculated the \textbf{best case} results for \textsc{ArTEMiS}, which showed moderate improvements with a precision of \num{0.81879} and a recall of \num{0.4357} which increases the f1 score to \num{0.568751927875}.
+\feedback{can we have the full table with this adjustment in the appendix?}
 
 The results for the \textsc{n8n} study subject are of better quality, as we could compare the results to ground truth.
 As described in \cref{evaluation_n8n}, we ran the \ac{e2e} tests multiple times to establish a ground truth for the selected commits.
 To test the performance of our approach, the selected commits were run six times each with instrumentation.
 The results of these runs are shown in \cref{evaluation_results}.
 We collected coverage on \textit{line level}, but also ran an analysis that worked on \textit{file level}.
-Due to a lack more precise information we could not do the same for the \textsc{ArTEMiS} study subject.
+Due to a lack of more precise information we could not do the same for the \textsc{ArTEMiS} study subject.
 In this experiment, there is no difference between the two levels.
-This could indicate that the coverage collection could be more coarse without worsening the labeling quality.
-Lastly, we calculated the \emph{precision}, \emph{recall}, and \emph{f1 score} for the approach in general by combining the results from both study subjects.
+Lastly, we calculated the \emph{precision}, \emph{recall}, and \emph{f1 score} for the approach in general by combining the results from both study subjects weighted by number of failures that were analyzed.
 
 \subsection{Behavior change Impact}
-To answer \textbf{\ac{rq}\textsubscript{2}}, we analyzed the data from both study subjects.
+To answer \textbf{\acs{rq}\textsubscript{2}}, we analyzed the data from both study subjects.
 As described in \cref{evaluation_n8n}, we ran the \ac{e2e} tests with and without instrumentation on the 25 latest commits.
 This data is used together with the data gathered from the \textsc{ArTEMiS} study subject.
 \subsubsection{\texorpdfstring{RQ\textsubscript{2.1}:}{RQ2.1:} To what extent does instrumentation affect the runtime overhead of the application during \acs{e2e} testing?}\label[subsubsection]{results_rq2_1}
@@ -716,20 +725,20 @@ Before running the t-test, some assumptions must be made.
 The data contains extreme outliers, shown in \cref{artemis_time_boxplot}.
 Since all measurements were taken on the same machine and the runs did not show any concerning behavior, the outliers don't need to be excluded as they represent valid data points.
 The Shapiro-Wilk test shows that the data are not normally distributed ($p < .001$) \autocite{shapiro_analysis_1965}.
-Since all groups contain more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality, in this case, \autocite{wilcox_introduction_2011}.
-The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(403,769) = -8.350, p = < .001$) and passed builds ($t(20,897) = -2.21, p = .038$).
-The mean difference is much bigger for failed builds (23.67 min) than for passed builds (11.92 min).
+Since all groups contain more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality in this case \autocite{wilcox_introduction_2011}.
+The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(403,769) = -8.35, p < .001$) and passed builds ($t(20,897) = -2.21, p = .038$).
+The mean difference is larger for failed builds (\SI{23.67}{\minute}) than for passed builds (\SI{11.92}{\minute}).
 
 \begin{figure}[h]
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{subfigure}{0.6\textwidth}
 			\begin{tikzpicture}
-				\begin{axis}[					boxplot/draw direction=y,					ylabel={Duration (min)},					yticklabel={\pgfmathparse{exp(\tick)}\pgfmathprintnumber[fixed]{\pgfmathresult}},
+				\begin{axis}[					boxplot/draw direction=y,					ylabel={Duration (min)},					yticklabel={\pgfmathprintnumber[fixed]{\tick}},
 						xtick={1, 2, 3, 4},
 						xticklabels={Failed, Failed (instrumented), Passed, Passed (instrumented)},
 						xticklabel style={align=center, font=\small, rotate=-20, anchor=north west},
-						ymode=log,
+						% ymode=log,
 						boxplot/box extend=0.4,
 						boxplot/whisker extend=0.2,
 					]
@@ -777,11 +786,13 @@ For the second study subject, \textsc{n8n}, the average runtimes are higher when
 The recorded times in \cref{n8n_time_boxplot} show much less variance than for \textsc{ArTEMiS}.
 \Cref{duration_results} shows the average duration of the \ac{e2e} tests.
 The prerequisites are also met, except for the normality of the data.
-The Shapiro-Wilk test shows that the data are not normally distributed in cases where the tests passed ($p < .001$) \autocite{shapiro_analysis_1965}.
-In the cases where the tests failed without instrumentation ($p .004$) and with instrumentation ($p < .001$), the data are also not normally distributed.
-Since both groups in which the tests passed have more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality, in this case \autocite{wilcox_introduction_2011}.
-In cases where the tests fail because the groups have fewer than 30 samples, we will still use a t-test because it has been shown to be robust to violations of the normality assumption.
-The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(7,721) = 11,654, p = < .001$) and passed builds ($t(174,985) = 113,555, p = < .001$).
+% The Shapiro-Wilk test shows that the data are not normally distributed in cases where the tests passed ($p < .001$) \autocite{shapiro_analysis_1965}.
+% In the cases where the tests failed without instrumentation ($p = .004$) and with instrumentation ($p < .001$), the data are also not normally distributed.
+% Since both groups in which the tests passed have more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality in this case \autocite{wilcox_introduction_2011}.
+% In cases where the tests fail, the groups have fewer than 30 samples, we will still use a t-test because it has been shown to be robust to violations of the normality assumption.
+Event with a group smaller than 30 we still use a t-test as it has been shown to be robust to violations of the normality assumption \autocite{blanca_non-normal_2017}.
+As with \textsc{ArTEMiS}, the t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(7,721) = 11.65, p < .001$) and passed builds ($t(174,985) = 113.56, p < .001$).
+% The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(7,721) = 11,654, p < .001$) and passed builds ($t(174,985) = 113,555, p < .001$).
 
 \begin{table}[h]
 	\centering
@@ -792,20 +803,24 @@ The t-test shows that the difference between the instrumentation and non-instrum
 
 \subsubsection{\texorpdfstring{RQ\textsubscript{2.2}:}{RQ2.2:} How does the instrumentation of coverage collection affect the failure rate of \acs{e2e} tests in the studied projects?}\label[subsubsection]{results_rq2_2}
 
-Our experiment shows that the instrumentation of coverage collection does not significantly impact the failure rate of \ac{e2e} tests.
-As \cref{failure_rate_results} shows, the failure rate of the \ac{e2e} tests is almost identical for both runs.
+Our experiment shows that the instrumentation of coverage collection does not significantly impact the failure rate of \ac{e2e} tests of the \textsc{n8n} project.
+As \cref{failure_rate_results} shows, the failure count of the \ac{e2e} tests is almost identical for both runs.
 We also collected the failure rate on a test case level and present the statistics in \cref{testcase_results}.
 Statistics for every test case that failed at least once during the evaluation are listed in \cref{testcase_details_n8n}.
+
+We analyze the failure rate of the tests in the \textsc{n8n} study subject with the results from \cref{failure_rate_results}.
+Again, we see a higher failure rate for the instrumented run.
+The chi-squared test shows that the more frequently reported failures do not show a significant difference between the instrumented and not instrumented runs ($\chi^2(1) = 2.41, p = .121$).
 
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/runResults.csv}
-	\caption{Statistics of the evaluation runs for \textsc{n8n}}
+	\caption{Failure counts of the evaluation runs for \textsc{n8n}}
 	\label[table]{failure_rate_results}
 \end{table}
 
-\Cref{failure_rate_results-rerun_artemis} shows that the failure rate of the \textsc{ArTEMiS} \ac{e2e} tests is higher when instrumentation is present.
-The chi-squared test shows that the more frequently reported failures show a significant difference between the experiment with and without instrumentation ($\chi^2(1) = 122.844, p = < .001$).
+\Cref{failure_rate_results-rerun_artemis} shows that the failure count of the \textsc{ArTEMiS} \ac{e2e} tests is higher when instrumentation is present.
+The chi-squared test shows that the more frequently reported failures show a significant difference between the experiment with and without instrumentation ($\chi^2(1) = 122.84, p < .001$).
 One of the reasons for this could be that the \ac{ci} system of \textsc{ArTEMiS} had problems and a high load during the evaluation.
 Another factor was that the \textsc{ArTEMiS} team focused on regular \ac{e2e} testing without instrumentation.
 This led to many more problems in the parallel \ac{ci} plan used for the evaluation.
@@ -816,38 +831,38 @@ The external validity is not limited by the dedicated \ac{ci} system since the \
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/artemis-runResults.csv}
-	\caption{Statistics of live CI runs for \textsc{ArTEMiS} when considering reruns as failures}
+	\caption{Failure counts of live CI runs for \textsc{ArTEMiS} when considering reruns as failures}
 	\label[table]{failure_rate_results-rerun_artemis}
 \end{table}
-
-We analyze the failure rate of the tests in the \textsc{n8n} study subject with the results from \cref{failure_rate_results}.
-Again, we see a higher failure rate for the instrumented run.
-The chi-squared test shows that the more frequently reported failures do not show a significant difference between the instrumented and not instrumented runs ($\chi^2(1) = 2.407, p = .121$).
 
 \section{Discussion} \label[section]{discussion}
 In this chapter, we discuss the results of our evaluation and answer our research questions.
 The discussion is structured according to the research questions.
-Quantitative was reported in \cref{results}.
 
 \subsection{Quality of Failure Categorization (\texorpdfstring{RQ\textsubscript{1}}{RQ1})}
 
-While the results in \cref{results_rq1} show that our approach identifies flaky errors with high precision, \num{0.72} for \textsc{ArTEMiS} and \num{1} for \textsc{n8n}, the recall is low, \num{0.53} for \textsc{ArTEMiS} and \num{0.39} for \textsc{n8n}. \todo{check numbers for \textsc{n8n}}.
-While we believe that false positives are a much bigger problem than false negatives, missing almost half of the flaky failures does not go far in solving the problems caused by flaky failures.
-\Citeauthor*{bell_deflaker_2018} achieved a much higher recall of \num{0.955} while maintaining a high precision of \num{0.985}. \cite{bell_deflaker_2018}.
+While the results in \cref{results_rq1} show that our approach identifies flaky errors with a good precision of \num{0.73} but a low recall of \num{0.42}.
+While we believe that false positives are a much bigger problem than false negatives, missing more half of the flaky failures does not go far in solving the problems caused by flaky failures.
+\Citeauthor*{bell_deflaker_2018} achieved a much higher recall for Java unit tests of \num{0.955} while maintaining a high precision of \num{0.985} \cite{bell_deflaker_2018}.
+This indicates coverage based approaches may not be well suited for \ac{e2e} tests.
 
-We suspect that the low recall is due to the fact that \ac{e2e} tests cover much more code than unit tests.
-This leads to a much higher chance that changes in the \ac{sut} causing the failure will be covered by a failing test, even if those changes did not cause the failure.
-Since we only consider failures to be flaky if they cover \textbf{none} of the changed lines, this leads to many false negatives.
+We suspect that the low recall is due to the fact that \ac{e2e} tests cover considerably more code than unit tests.
+This leads to a higher chance that changes in the \ac{sut} are covered by a failing test, even if those changes did not cause the failure.
+Since we only consider failures to be flaky if they executed \textbf{none} of the changed lines, this leads to many false negatives.
+
+We also compared the detection quality when using file coverage instead of line coverage with \textsc{n8n}.
+The results in \cref{evaluation_results} show that the difference in coverage collection does not lead to any difference in the detection quality.
+This could indicate that the coverage collection could be more coarse without worsening the labeling quality.
 
 Due to the low recall of our approach, we do not believe it can go far in solving the problems caused by flaky failures.
 Developers will still have to deal with flaky failures that are not detected by our approach.
-And while our approach finds about half of the flaky failures, it also comes at a significant cost in terms of runtime.
+And while our approach finds less than half of the flaky failures, it also comes at a significant cost in terms of runtime and implementation effort.
 The results in \cref{results_rq2_1} show that the runtime of \ac{e2e} tests increases significantly when coverage collection is enabled.
 
 \begin{mdframed}
-	\textbf{Answer to RQ\textsubscript{1}:} Our coverage-based approach performs well in finding flaky failures, as demonstrated by our statistical analysis.
-	Our approach's high precision indicates that most of the failures we identified as flaky are indeed flaky.
-	However, the low recall indicates that there are many failures that where flaky which we did not identify as flaky.
+	\textbf{Answer to RQ\textsubscript{1}:} The coverage based approach we propose can identify flaky failures with a moderate precision of \num{0.73} but a low recall of \num{0.42}.
+	Our approach's precision indicates that most of the failures we identified as flaky are indeed flaky.
+	However, the low recall indicates that there are many failures that were flaky which we did not identify as flaky.
 \end{mdframed}
 
 \subsection{Behavioral Change Caused by Instrumentation (\texorpdfstring{RQ\textsubscript{2}}{RQ2})}
@@ -863,7 +878,7 @@ This is a time-consuming process, especially for large projects.
 The difference in runtime overhead between passed and failed tests is only visible for \textsc{ArTEMiS}, where the instrumentation adds \SI{21.08}{\percent} to the runtime of passed tests and \SI{41.98}{\percent} to the runtime of failed tests.
 For \textsc{n8n}, the difference is very similar for passed and failed tests, \SI{14.95}{\percent} and \SI{12.33}{\percent}, respectively.
 
-This runtime overhead is much higher than the \SI{4.5}{\percent} overhead that \citeauthor*{bell2018determining} reported for their approach.
+This runtime overhead is much higher than the \SI{4.5}{\percent} overhead that \citeauthor*{bell_deflaker_2018} reported for their approach.
 This is to be expected, since we collect coverage data for the entire \ac{sut}, not just the modified parts of the code.
 The smaller runtime impact of \textsc{n8n} suggests that the V8 coverage collection has a smaller runtime impact than JaCoCo.
 
@@ -879,19 +894,22 @@ Since the results for \textsc{n8n} are similar to the results of \citeauthor*{ra
 
 The results for \textsc{ArTEMiS} may be related to the general problems with the \ac{ci} system during evaluation.
 During the evaluation period, the \ac{ci} system of \textsc{ArTEMiS} showed multiple issues that led to a high failure rate of \ac{e2e} tests.
+\TODO{Mention the worst case runtime increase}
 Since our parallel \ac{ci} plan was not of major concern for the development team, any issues impacted the instrumented version of the \ac{e2e} plan more than the regular \ac{e2e} plan.
 This could explain the higher failure rate of the instrumented version of the \ac{e2e} plan.
 
 \begin{mdframed}
 	\textbf{Answer to RQ\textsubscript{2.2}:} We found that applying our approach significantly changed the test result only for \textsc{ArTEMiS}.
 	For \textsc{n8n}, the difference was not statistically significant.
-	This indicates that the coverage collection instrumentation does not significantly impact the failure rate of \acs{e2e} tests.
+	While other studies indicate that instrumentation does not have a significant impact on the failure rate of \ac{e2e} tests \autocite{rasheed_effect_2023}, we can not come to a definitive conclusion.
 \end{mdframed}
 %------- chapter 6 -------
 
 \chapter{Threats to Validity}\label[chapter]{threats}
 The following chapters discuss the threats to the validity of our results.
 We follow the guidelines of \Citeauthor*{wohlin_experimentation_2012} \cite{wohlin_experimentation_2012} and use the categories \textit{internal validity} and \textit{external validity}.
+\textit{Internal validity} refers to the correctness of the conclusions drawn from the results.
+\textit{External validity} refers to the generalizability of the results \cite{wohlin_experimentation_2012}.
 
 \section{Threats to Internal Validity}\label[section]{threats_internal}
 Because of the reliance on test coverage, our approach is limited to the code executed by the tests.
@@ -915,7 +933,7 @@ The main threat to external validity is the limited number of study subjects.
 While the two study subjects are very different in nature, there are many more ways to build a web application and write \ac{e2e} tests.
 Therefore, our results cannot be generalized to all web applications and \ac{e2e} tests.
 A second indicator is that we used only one test framework (cypress) in both study subjects.
-While cypress is a popular test framework, there are others that are used in practice.
+While cypress is a popular test framework, there are also others that are used in practice.
 The limited applicability also showed in the fact that we had to exclude some test cases from the evaluation because they did not pass after adjusting the \ac{ci} pipeline of \textsc{n8n}.
 
 Another threat to external validity is the limited information about the \emph{true} flakiness of the test cases.
@@ -927,7 +945,7 @@ While the ground truth for \textsc{n8n} is more reliable than our estimations fo
 %------- chapter 7 -------
 
 \chapter{Conclusion}\label[chapter]{conclusion}
-In this thesis, we have presented and evaluated an approach for detecting flaky failures in \ac{e2e} tests using change coverage.
+In this thesis, we have conceptualized and evaluated an approach for detecting flaky failures in \ac{e2e} tests using change coverage.
 Flaky failures are a common problem in \ac{e2e} testing and can lead to a loss of confidence in the test suite.
 Flakiness is widespread in practice \autocite{hilton_trade-offs_2017,micco_state_2017}, with some authors even suggesting that all tests should be considered flaky \autocite{harman_start-ups_2018}.
 \Ac{e2e} \ac{ui} tests are particularly prone to flakiness due to their complex interactions, which lead to inherent non-determinism \autocite{romano_empirical_2021}.
@@ -947,21 +965,21 @@ For \textsc{ArTEMiS}, we collected data by running a parallel build on the \ac{c
 For \textsc{n8n}, we used a dedicated \ac{ci} system and ran the tests on selected commits for which we had established ground truth.
 % \feedback{Muss hier m.M.n. gar nicht so ausführlich sein}
 
-While our evaluation shows a significant impact of the instrumentation used on the runtime of the tests, we did not find it to have a significant impact on the flakiness of the tests.
+While our evaluation shows a significant impact of the instrumentation used on the runtime of the tests, we did not find it to have a significant impact on the flakiness of the tests for \textsc{n8n}.
 We only found a significant increase in flaky failures for \textsc{ArTEMiS}, which we attribute to the unreliable \ac{ci} pipeline.
 This is consistent with the results of other authors \autocite{rasheed_effect_2023}.
 The runtime impact we observed is with \SI{12.33}{\percent} in the best case much higher than the \SI{4.5}{\percent} of \textsc{DeFlaker} \autocite{bell_deflaker_2018}.
 In the worst case, we saw an increase of \SI{41.98}{\percent} which delays the feedback for developers.
-\textsc{ArTEMiS} has an average runtime of \SI{64}{\minute} for their \textsc{e2e} test suite.
-This means keeping our approach \textit{always on} would increase the runtime by up to \SI{26.867}{\minute} in the worst case.
+\textsc{ArTEMiS} has an average runtime of \SI{58.35}{\minute} for their \ac{e2e} test suite.
+This means keeping our approach \textit{always on} would increase the runtime by up to \SI{24.507}{\minute} in the worst case.
 
 We have also evaluated the detection performance of our approach.
 The collected data from both study subjects show that our approach can reliably detect flaky failures.
 We found that our approach has very low false positives, reducing the risk of missing faults mistakenly labeled as flaky failures.
 However, our approach has a low recall, which means that it is not able to detect all flaky failures.
-The results we saw are much worse than the results of \textsc{DeFlaker}.
-\Citeauthor*{bell_deflaker_2018} report a recall of \num{0.955} and a precision of \num{0.985} \cite{bell_deflaker_2018}.
-We observed an average recall of \num{0.42} and an average precision of \num{0.77} during our evaluation\todo{update numbers}.
+The results we observed are much worse than those of \textsc{DeFlaker}.
+\Citeauthor*{bell_deflaker_2018} reports a recall of \num{0.955} and a precision of \num{0.985}. \cite{bell_deflaker_2018}.
+We observed an average recall of \num{0.42} and an average precision of \num{0.73} during our evaluation.
 
 These results show that while \textsc{DeFlaker} is a promising approach for detecting flaky failures in unit tests, it is not directly applicable to \ac{e2e} tests.
 We believe that this is due to the differences between unit and \ac{e2e} tests.
@@ -975,9 +993,9 @@ In addition, the coverage collection tool could be extended to support other tes
 
 As mentioned in \cref{threats_internal}, our approach only considers code changes.
 However, other changes can cause failures, such as changes to the test cases, config files, or dependencies.
-Even though we saw few \aclp{fp} in our evaluation, we believe this could be improved by considering these changes.
+Even though we saw few \aclp{fp} in our evaluation, we believe the approach could be improved by considering these changes.
 
-As our evaluation was also limited by the availability of reliable labels for \ac{e2e} tests, we believe that having a larger dataset of flaky and non-flaky tests would be beneficial.
+As our evaluation was also limited by the absence of reliable labels for \ac{e2e} tests, we believe that a larger dataset of flaky and non-flaky tests would be beneficial.
 Further research into the flakiness of \ac{e2e} tests could help improve the quality of evaluations.
 
 We experienced a significant increase in test runtime when using our approach.
@@ -987,9 +1005,18 @@ This change led to some tests not passing, which we had to exclude from the eval
 Further research into the impact of instrumentation on test execution could mitigate this issue.
 The impact of instrumentation could be reduced by simply limiting the size of spec files.
 
+\TODO{General concluding remarks}
+
 \appendix
 
 \chapter[Behaviour change results]{Extensive results for the behavior change evaluation}\label[appendix]{behaviour_change_results}
+
+\begin{table}[h]
+	\centering
+	\csvautobooktabular{data/testcaseResults.csv}
+	\caption{Statistics of test case results during evaluation for \textsc{n8n}}
+	\label[table]{testcase_results}
+\end{table}
 
 \begin{table}[h]
 	\begin{adjustbox}{max width=\textwidth}
@@ -1006,13 +1033,6 @@ The impact of instrumentation could be reduced by simply limiting the size of sp
 	\end{adjustbox}
 	\caption{Detailed results of the behavior change evaluation for \textsc{n8n}}
 	\label[table]{testcase_details_n8n}
-\end{table}
-
-\begin{table}[h]
-	\centering
-	\csvautobooktabular{data/testcaseResults.csv}
-	\caption{Statistics of test case results during evaluation for \textsc{n8n}}
-	\label[table]{testcase_results}
 \end{table}
 
 \chapter{Referenced code} \label[appendix]{code}

@@ -1,13 +1,14 @@
-\chapter{Abstract}
+\chapter*{Abstract}
 
-Software testing plays a vital role in ensuring system quality, reliability, and performance. 
-\acf*{e2e} tests, in particular, can be susceptible to flaky behavior, causing significant challenges to the software development process. 
-While existing research has primarily focused on detecting flaky tests, this thesis addresses the detection of flaky failures in \ac*{e2e} tests. 
+Software testing plays a critical role in ensuring system quality, reliability, and performance. 
+\acf*{e2e} tests in particular can be susceptible to flaky behavior, posing significant challenges to the software development process. 
+While existing research has primarily focused on the detection of flaky unit tests, this thesis addresses the detection of flaky failures in \acf*{e2e} tests. 
 We adapt a technique from \citeauthor*{bell_deflaker_2018} for detecting flaky Java unit test failures and apply it to \ac*{e2e} tests, which involve multiple languages and a different context for test execution. Our approach requires the instrumentation of code to collect coverage data during test execution. 
-To evaluate our methodology, we selected two open-source projects, \textsc{ArTEMiS} and \textsc{n8n}, which use the Cypress framework for \ac*{e2e} testing.
+To evaluate our methodology, we selected two open source projects, \textsc{ArTEMiS} and \textsc{n8n}, which use the Cypress framework for \ac*{e2e} testing.
 
-Our contributions include a novel methodology for detecting flaky failures in \ac*{e2e} testing, an evaluation of our approach on two open-source projects, and guidelines for practitioners. 
-Our evaluation shows that instrumentation can significantly impact test execution and that our approach correctly identified flaky failures 42\% of the time \todo{Update number after eval finishes}. 
-We also observed three false positives in the evaluation. 
+Our contributions include a novel methodology for detecting flaky failures in \ac*{e2e} testing, an evaluation of our approach on two open source projects, and guidelines for practitioners. 
+Our evaluation shows that instrumentation can have a significant impact on test execution, and that our approach correctly identified flaky failures 42\% of the time. 
+We also observed an accuracy of 73\% in the evaluation. 
 The results indicate that while the adapted approach has potential, it is not directly applicable to \ac*{e2e} tests, and further research is needed to improve its performance. 
-Future work should explore the applicability of our approach to different tech stacks, extend the coverage collection tool to support other testing frameworks, and investigate the impact of instrumentation on test execution.
+This is due to the high implementation complexity of the approach, the impact of instrumentation on test execution, and the low recall of the approach.
+Future work should explore the applicability of our approach to different technology stacks, extend the coverage collection tool to support other testing frameworks, and investigate the impact of instrumentation on test execution.
