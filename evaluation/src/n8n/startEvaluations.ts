@@ -12,7 +12,7 @@ import { stringify } from "csv/sync";
 import { JSONFile } from "lowdb/node";
 import { Data, LowWithLodash } from "./db-model.js";
 import { LiveData } from "../analyzeLiveData.js";
-import lodash from "lodash";
+import lodash, { max } from "lodash";
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const streamPipeline = promisify(pipeline);
 
@@ -501,13 +501,20 @@ const maxFalseNegatives = unlabeledFlakyFails - likelyTrueNegatives;
 console.log(maxTrueNegatives, "maxTrueNegatives");
 console.log(maxFalseNegatives, "maxFalseNegatives");
 
+const maxTruePositives = labeledFlakyResults - likelyFalsePositives;
+
 const precision = knownTruePositive / (knownTruePositive + maxFlasePositives);
 const recall = knownTruePositive / (knownTruePositive + maxFalseNegatives);
 
 console.log(precision, "precision");
 console.log(recall, "recall");
 
+const bestPrecision = maxTruePositives / (maxTruePositives + likelyFalsePositives);
+const bestRecall = maxTruePositives / (maxTruePositives + knownFalseNegative);
+
 const f1 = (2 * (precision * recall)) / (precision + recall);
+
+const bestF1 = (2 * (bestPrecision * bestRecall)) / (bestPrecision + bestRecall);
 
 const totalTruePositives = lineResultsSum.truePositives + knownTruePositive;
 const totalFalsePositives = lineResultsSum.falsePositives + maxFlasePositives;
@@ -592,7 +599,84 @@ jetpack.write(
     .replace(/"(?=$|,)/gm, "}")
 );
 
-// throw new Error("done");
+const resultsWithBestCsv = [
+  [
+    "Experiment",
+    "True Positives",
+    "False Positives",
+    "True Negatives",
+    "False Negatives",
+    "Precision",
+    "Recall",
+    "F1",
+    // "MCC"
+  ],
+  [
+    "\\textsc{n8n} (line)",
+    lineResultsSum.truePositives,
+    lineResultsSum.falsePositives,
+    lineResultsSum.trueNegatives,
+    lineResultsSum.falseNegatives,
+    ...[
+      linePrecision,
+      lineRecall,
+      lineF1,
+      // mccScore
+    ].map((num) => toLatexNum(num)),
+  ],
+  [
+    "\\textsc{n8n} (file)",
+    fileResultsSum.truePositives,
+    fileResultsSum.falsePositives,
+    fileResultsSum.trueNegatives,
+    fileResultsSum.falseNegatives,
+    ...[
+      filePrecision,
+      fileRecall,
+      fileF1,
+      // mccScoreFile
+    ].map((num) => toLatexNum(num)),
+  ],
+  [
+    "\\textsc{ArtTEMis} (lower bound)",
+    knownTruePositive,
+    maxFlasePositives,
+    likelyTrueNegatives,
+    maxFalseNegatives,
+    toLatexNum(precision),
+    toLatexNum(recall),
+    toLatexNum(f1),
+  ],
+  [
+    "\\textsc{ArtTEMis} (upper bound)",
+    maxTruePositives,
+    likelyFalsePositives,
+    maxTrueNegatives,
+    knownFalseNegative,
+    toLatexNum(bestPrecision),
+    toLatexNum(bestRecall),
+    toLatexNum(bestF1),
+  ],
+  [
+    "Combined",
+    totalTruePositives,
+    totalFalsePositives,
+    totalTrueNegatives,
+    totalFalseNegatives,
+    toLatexNum(totalPrecision),
+    toLatexNum(totalRecall),
+    toLatexNum(totalF1),
+  ],
+];
+
+jetpack.write(
+  "../thesis/data/evaluationResultWithBest.csv",
+  stringify(resultsWithBestCsv, { quoted: true })
+    .replace(/(?<=^|,)"/gm, "{")
+    .replace(/"(?=$|,)/gm, "}")
+);
+
+throw new Error("done");
 
 const actionStarts = db.chain
   .get("candidates")
