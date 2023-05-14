@@ -63,6 +63,31 @@
 % Include the Thesis metadata like title, author, etc. 
 \input{metadata}
 
+\DeclareFieldFormat{urldate}{}
+
+\AtEveryBibitem{
+  \clearlist{address}
+  \clearfield{date}
+  \clearfield{eprint}
+  %  \clearfield{doi}
+  \clearfield{isbn}
+  \clearfield{issn}
+  \clearlist{location}
+  \clearfield{month}
+  \clearfield{labelmonth}
+  \clearfield{series}
+
+  \ifentrytype{book}{
+    \clearfield{url}
+  }
+  \ifentrytype{misc}{
+  }{
+    \clearfield{url}
+    \clearlist{publisher}
+    \clearname{editor}
+  }
+}
+
 \bibliography{thesis}
 
 \setkomafont{disposition}{\normalfont\bfseries} % use serif font for headings
@@ -91,15 +116,15 @@
 \definecolor{TUMAccentBlue}{HTML}{64A0C8}
 
 \addto\extrasamerican{
-	\def\lstnumberautorefname{Line}
-	\def\chapterautorefname{Chapter}
-	\def\sectionautorefname{Section}
-	\def\subsectionautorefname{Subsection}
-	\def\subsubsectionautorefname{Subsubsection}
+  \def\lstnumberautorefname{Line}
+  \def\chapterautorefname{Chapter}
+  \def\sectionautorefname{Section}
+  \def\subsectionautorefname{Subsection}
+  \def\subsubsectionautorefname{Subsubsection}
 }
 
 \addto\extrasngerman{
-	\def\lstnumberautorefname{Zeile}
+  \def\lstnumberautorefname{Zeile}
 }
 
 \mdfsetup{linewidth=1pt, linecolor=TUMDarkGray, nobreak}

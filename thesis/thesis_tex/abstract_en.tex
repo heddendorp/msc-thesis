@@ -1,6 +1,7 @@
 \addchap{Abstract}
 
 Software testing plays a critical role in ensuring system quality, reliability, and performance. 
+However, the effectiveness of testing is limited by the presence of flaky tests, which are tests that can pass or fail randomly with the same version of the \acf*{sut} and configuration.
 \acf*{e2e} tests in particular can be susceptible to flaky behavior, posing significant challenges to the software development process. 
 While existing research has primarily focused on the detection of flaky unit tests, this thesis addresses the detection of flaky failures in \acs*{e2e} tests. 
 We adapt a technique from \citeauthor*{bell_deflaker_2018} for detecting flaky Java unit test failures and apply it to \acs*{e2e} tests, which involve multiple programming languages and a different context for test execution. Our approach requires the instrumentation of code to collect coverage data during test execution. 
