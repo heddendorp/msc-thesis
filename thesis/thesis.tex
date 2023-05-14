@@ -58,8 +58,8 @@ In addition, flaky tests can cause delays in the development process as develope
 The prevalence of this problem is evident in industry reports, with Google stating that approximately 16\% of their tests exhibit some degree of flakiness \autocite{micco_state_2017}.
 In a survey conducted by \citeauthor*{eck_understanding_2019}, a striking 79\% of respondents characterized flaky tests as a \enquote{moderate to serious} concern \autocite{eck_understanding_2019}.
 
-Despite recognizing the importance of addressing flaky testing, detection remains challenging.
-The most common method of identifying flaky tests is to rerun them \autocite{lam_idflakies_2019, lam_understanding_2020}.
+Despite recognizing the importance of addressing flaky tests, detection remains challenging.
+The most common method of identifying flaky tests is to rerun tests multiple times on the same version of the \ac{sut} and check if their result changes \autocite{lam_idflakies_2019, lam_understanding_2020}.
 However, this approach has drawbacks, as it consumes significant computational resources and may still miss certain flaky tests \autocite{bell_deflaker_2018, luo_empirical_2014}.
 In addition, \citeauthor*{parry_what_2022} found that rerunning tests detected only 40\% of flaky tests \autocite{parry_what_2022}.
 These findings highlight the need for more effective strategies to identify and address flaky tests in order to improve the efficiency and reliability of the software development process.
@@ -95,8 +95,8 @@ The contributions of this thesis are
 	      During the evaluation, we found that instrumentation can significantly impact test execution, increasing the execution time.
 	      Our approach correctly identified flaky failures 42\% of the time.
 	      During the evaluation, we saw 27\% false positives where our approach identified a failure as flaky when it was not.
-	\item \textbf{Guidelines.} Based on our experiences, we derive guidelines for practitioners. These are
-	      (1) change coverage-based detection shows very few false positives in our experiments,
+	\item \textbf{Guidelines.} Based on our experiences, we derive insights for practitioners. These are
+	      (1) change coverage-based detection shows few false positives in our experiments,
 	      (2) large test files combined with instrumentation cause memory issues, and
 	      (3) instrumentation can significantly impact the runtime overhead of test execution.
 \end{itemize}
@@ -150,7 +150,7 @@ There are several types of tests used in software development.
 Automated testing ranges from \emph{unit tests}, which test small parts of the application in isolation, to \emph{integration tests}, which test the interaction between several application components \autocite{huizinga_automated_2007}.
 Both of these testing types are testing technical aspects of the application.
 \emph{\ac{e2e} tests} are used to test the application as a whole from the users' point of view, simulating the interaction of a user with the application \autocite{schmitt_what_2022}.
-The interactions are realized using an \ac{ui} testing framework that simulates user interaction with the application.
+The interactions are realized using an \ac{e2e} testing framework that simulates user interaction with the application.
 This thesis focuses on \ac{e2e} tests executed in a browser with the Cypress test framework.
 
 
@@ -176,8 +176,8 @@ Therefore, flaky \ac{ui} test failures are more challenging to reproduce than fl
 \Citeauthor*{romano_empirical_2021} found common causes for flaky failures in \ac{ui} tests based on the work of \citeauthor*{luo_empirical_2014} \autocite{luo_empirical_2014,romano_empirical_2021}:
 
 \begin{itemize}
-	\item \textbf{Timing Issues.} Timing problems are responsible for about 45\% of all flakiness \autocite{romano_empirical_2021}.
-	      The common root cause is timing issues, where tests do not schedule tasks properly.
+	\item \textbf{Timing Issues.} Timing problems are responsible for about 45\% of all flakiness analyzed \autocite{romano_empirical_2021}.
+	      The common root cause are timing issues, where tests do not schedule tasks properly.
 	      Timing issues can occur, for example, when the test tries to interact with the \ac{ui} before it is ready to receive input.
 	\item \textbf{Environment.} Environment problems can occur when the test is run in different environments \autocite{romano_empirical_2021}.
 	      They include issues with the \ac{ui} rendering differently on different screen sizes.
@@ -220,11 +220,11 @@ Finally, we present the research gap that this thesis aims to fill.
 The simplest and most common way to detect flaky failures is to rerun the test on a given version of \ac{sut} multiple times.
 The logic is that if the test is prone to flaky behavior, it will fail on some reruns but pass on others.
 The ideal number of reruns is unclear \autocite{parry_survey_2021}, and practitioners must decide how many reruns to perform.
-Some practitioners suggest using up to five reruns \autocite{lam_understanding_2020} to confirm a failure is not flaky or as many as 10,000 \autocite{alshammari_flakeflagger_2021} to make sure a test does not show flaky failures.
+Some practitioners suggest using up to five reruns to confirm a failure is not flaky or as many as 10,000 to make sure a test does not show flaky failures \autocite{lam_understanding_2020, alshammari_flakeflagger_2021}.
 
 \Citeauthor*{silva_shake_2020} propose a lightweight approach to provoke flaky behavior in tests called \textsc{SHAKER} \autocite{silva_shake_2020}.
 \textsc{SHAKER} adds noise in the execution environment (i.e., adding stressor tasks to compete for the CPU or memory).
-It builds on the observations that concurrency is an important source of flakiness and that adding noise in the environment can interfere with the ordering of events and, consequently, influence the test outputs.
+It builds on the observation that concurrency is an important source of flakiness and that adding noise in the environment can interfere with the ordering of events and, consequently, influence the test outputs.
 They report better and faster detection than rerunning and also found additional flaky tests that were not detected by rerunning.
 
 \Citeauthor*{lam_idflakies_2019} introduce a framework called \textsc{iDFlakies} to detect flaky tests \autocite{lam_idflakies_2019}.
@@ -238,6 +238,7 @@ They present an approach that collects a set of features describing the behavior
 The authors found that \textsc{FlakeFlagger} correctly labeled at least as many tests as a comparable flaky test classifier but that \textsc{FlakeFlagger} produced far fewer false positives.
 When evaluated on their dataset of 23 projects with flaky tests, \textsc{FlakeFlagger} outperformed the previous approach (by F1 score) in 16 projects and tied it in four projects.
 Their results indicate that this approach can effectively identify likely flaky tests before running the time-consuming flaky test detectors \autocite{alshammari_flakeflagger_2021}.
+
 While \textsc{FlakeFlagger} can analyze a test without rerunning it, it cannot categorize a single failure of a test as flaky or not.
 The other mentioned approaches also share this weakness.
 However, as we motivate in the following section, detecting flaky failures is essential for an approach that adds value in a \ac{ci} environment.
@@ -258,7 +259,7 @@ These new features were characteristics of the test execution, such as duration 
 Interestingly, the researchers found that these methods performed better than the ones that focused on the tests, with \ac{mcc} increasing from \num{0.20} to \num{0.42}.
 
 In conclusion, \citeauthor*{haben_importance_2023}'s study recommends that future research should pay more attention to predicting flaky test failures rather than flaky tests \autocite{haben_importance_2023}. 
-It also emphasizes the need for more comprehensive experimental methods when evaluating flakiness prediction methods. 
+It also emphasizes the need for more comprehensive experimental methods when evaluating flakiness detection methods. 
 This finding highlights the importance of distinguishing between flaky and non-flaky test failures to make \ac{ci} processes more effective and reduce the unnecessary use of valuable developer time spent investigating false alarms caused by flaky test failures.
 
 \Citeauthor*{rasheed_test_2022} reviewed the literature on flaky test detection and found that most tools can only detect flaky tests, not flaky test failures \autocite{rasheed_test_2022}.
@@ -267,7 +268,7 @@ They found that the most common techniques are either static analysis of the tes
 
 \Citeauthor*{bell_deflaker_2018} have addressed the problem of flaky test failures in Java unit tests and proposed a method to detect flaky tests without rerunning them \autocite{bell_deflaker_2018}.
 
-The authors propose a novel technique called \textsc{DeFlaker} \autocite{bell_deflaker_2018} to address this problem.
+The authors propose a novel technique called \textsc{DeFlaker} to address this problem \autocite{bell_deflaker_2018}.
 It is based on change coverage and detects flaky failures without rerunning them and with minimal runtime overhead.
 The technique works by monitoring the coverage of the latest code changes and identifying any new test failures as flaky where the test did not execute the changes.
 This approach significantly reduces the time and resources required to detect flakiness, resulting in a more efficient development cycle.
@@ -287,7 +288,7 @@ They did not find any significant effect of instrumentation on the flakiness sco
 
 \section{Research Gap}
 
-Given the importance of detecting flaky failures rather than flaky tests \autocite{haben_importance_2023}, the approach presented by \citeauthor*{bell_deflaker_2018} shows promising results for Java unit tests \autocite{bell_deflaker_2018}.
+Given the importance of detecting flaky failures rather than flaky tests, the approach presented by \citeauthor*{bell_deflaker_2018} shows promising results for Java unit tests \autocite{haben_importance_2023, bell_deflaker_2018}.
 Flaky failures are more common in \ac{e2e} tests than in unit tests due to the high complexity of the test interactions \autocite{romano_empirical_2021}.
 In addition, reruns are more expensive for \ac{e2e} tests because they typically take much longer to execute than unit tests.
 Developers could benefit from immediate and reliable feedback on any failures that occur.
@@ -362,7 +363,7 @@ Implementing differential coverage for each specific setup was not feasible with
 Instead, we collect coverage for all code executed by any test case, which saves the time of analyzing the changes to perform precise instrumentation and applies to more setups.
 
 The experiments of \citeauthor*{bell_deflaker_2018} were performed on Java projects, where they also checked the runtime overhead of the \textsc{JaCoCo} instrumentation agent \autocite{bell_deflaker_2018}.
-They found that the effect of the JaCoCo agent was much more extensive (\SI{32.9}{\percent} on average) than the effect of their differential coverage (\SI{4.5}{\percent} on average).
+They found that the effect of the JaCoCo agent was much more extensive (32.9\% on average) than the effect of their differential coverage (4.5\% on average).
 Differential coverage is a technique to reduce the runtime overhead of coverage collection by instrumenting only the parts of the code that were changed \autocite{bell_deflaker_2018}.
 Since we use JaCoCo for coverage collection in the \textsc{ArTEMiS} project, we expect the runtime overhead of our approach to be greater than the overhead of differential coverage.
 
@@ -444,7 +445,7 @@ Since we need to collect coverage data from the Cypress test-runner after each t
 The author of NYC also maintains C8, a similar tool that uses native V8 coverage instead of code instrumentation \autocite{noauthor_bcoec8_nodate}.
 Although C8 does not allow the dynamic collection of coverage data, it served as an inspiration for our implementation.
 
-To collect coverage data, we use V8 native coverage (covered in the next section).
+To collect coverage data, we use V8 native coverage.
 Collecting coverage using the V8 native coverage is the same as for the client described in the following section.
 To enable the debugging protocol, we use the \texttt{--inspect} option of the node command.
 \subsubsection{Client} \label[subsection]{client_coverage_collection}
@@ -485,6 +486,8 @@ Since \textsc{ArTEMiS} runs \ac{ci} on Bamboo, the analyzer is called with the c
 The analyzer then checks the Bamboo \ac{api} for the latest build that has passed.
 If the plan does not have a passed build, the analyzer will fall back to a comparison with the \texttt{develop} branch.
 The program can also be invoked in \texttt{compare} mode, passing the commit to compare against as an argument.
+For \textsc{n8n} we know the commit for which the tests last passed.
+Here the analyzer is called with the commit to compare against.
 
 After identifying the commit to compare against, the program retrieves the change data from the Git repository.
 It uses the \texttt{git diff} command to get the changes between the two commits.
@@ -525,7 +528,7 @@ A \acfi{fp} is a case where our approach suspects a failure as being flaky, but 
 We define a \acfi{tn} as a case where our approach does not suspect a failure as being flaky, and we know that the tested version of the \ac{sut} has not shown flakiness in the past for that test.
 A \acfi{fn} is a case where our approach does not suspect a failure as being flaky, but we know that the tested version of the \ac{sut} has shown flakiness in the past for that test.
 These classes are illustrated in \cref{confusion_matrix}.
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}[
 			basic/.style = {draw, text centered},
@@ -702,7 +705,7 @@ For the \textsc{n8n} project, this includes four runs per commit of the latest 2
 Here, every commit was run four times with and four times without instrumentation.
 The duration considered does not include any build or installation steps of the projects.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\begin{adjustbox}{max width=\textwidth}
 		\begin{subfigure}{0.6\textwidth}
@@ -748,6 +751,16 @@ The duration considered does not include any build or installation steps of the 
 	\label[figure]{time_boxplots}
 \end{figure}
 
+As can be seen in \cref{duration_results_artemis} and \cref{artemis_time_boxplot}, the mean and median runtimes of the \acs{e2e} tests for \textsc{ArTEMiS} are higher when using the instrumentation.
+A t-test can show whether the difference is statistically significant.
+Before running the t-test, some preconditions must be checked.
+The data contains extreme outliers, shown in \cref{artemis_time_boxplot}.
+Since all measurements were taken in the same \ac{ci} environment and the runs did not show any concerning behavior, the outliers do not need to be excluded as they represent valid data points.
+The Shapiro-Wilk test shows that the data is not normally distributed ($p < .001$) \autocite{shapiro_analysis_1965}.
+Since all groups contain more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality in this case \autocite{wilcox_introduction_2011}.
+The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(403, 769) = -8.35, p < .001$) and passed builds ($t(20, 897) = -2.21, p = .038$).
+The mean difference is larger for failed builds (\SI{23.67}{\minute}) than for passed builds (\SI{11.92}{\minute}).
+
 \begin{table}[h]
 	\centering
 	\csvautobooktabular{data/artemis-durationResults.csv}
@@ -755,17 +768,7 @@ The duration considered does not include any build or installation steps of the 
 	\label[table]{duration_results_artemis}
 \end{table}
 
-As can be seen in \cref{duration_results_artemis} and \cref{artemis_time_boxplot}, the mean and median runtimes of the \acs{e2e} tests for \textsc{ArTEMiS} are higher when using the instrumentation.
-A t-test can show whether the difference is statistically significant.
-Before running the t-test, some assumptions must be made.
-The data contains extreme outliers, shown in \cref{artemis_time_boxplot}.
-Since all measurements were taken on the same machine and the runs did not show any concerning behavior, the outliers do not need to be excluded as they represent valid data points.
-The Shapiro-Wilk test shows that the data are not normally distributed ($p < .001$) \autocite{shapiro_analysis_1965}.
-Since all groups contain more than 30 samples, we can use a t-test, as it has been shown to be robust to non-normality in this case \autocite{wilcox_introduction_2011}.
-The t-test shows that the difference between the instrumentation and non-instrumentation groups is significant for failed builds ($t(403, 769) = -8.35, p < .001$) and passed builds ($t(20, 897) = -2.21, p = .038$).
-The mean difference is larger for failed builds (\SI{23.67}{\minute}) than for passed builds (\SI{11.92}{\minute}).
-
-For the second study subject, \textsc{n8n}, the mean runtimes are higher when the instrumentation is used.
+For the second study subject, \textsc{n8n}, the mean and median runtimes are also higher when the instrumentation is used.
 The recorded times in \cref{n8n_time_boxplot} show much less variance than for \textsc{ArTEMiS}.
 \Cref{duration_results} shows the mean duration of the \ac{e2e} tests.
 The prerequisites are also met, except for the normality of the data.
@@ -819,7 +822,7 @@ The discussion is structured according to the research questions.
 
 \subsection{Quality of Failure Categorization (\texorpdfstring{RQ\textsubscript{1}}{RQ1})}
 
-While the results in \cref{results_rq1} show that our approach identifies flaky errors with a good precision of \num{0.73} but a low recall of \num{0.42}.
+The results in \cref{results_rq1} show that our approach identifies flaky errors with a good precision of \num{0.73} but a low recall of \num{0.42}.
 While we believe that false positives are a much bigger problem than false negatives, missing more than half of the flaky failures does not go far in solving the problems caused by flaky failures.
 \Citeauthor*{bell_deflaker_2018} achieved a much higher recall for Java unit tests of \num{0.955} while maintaining a high precision of \num{0.985} \cite{bell_deflaker_2018}.
 This indicates coverage-based approaches may not be well suited for \ac{e2e} tests.
@@ -1031,6 +1034,8 @@ Since our approach could only identify less than half of the flaky failures, we 
 \chapter{Referenced code} \label[appendix]{code}
 
 \lstinputlisting[language=yaml,caption={Docker compose override file for coverage collection.},label=coverage_compose]{code/cypress-E2E-tests-coverage-override.yml}
+
+% \lstinputlisting[language=yaml,caption={Workflow file for running \textsc{n8n} \ac{e2e} tests.},label=e2e_workflow]{code/e2e-historic.yml}
 
 \microtypesetup{protrusion=false}
 \include{common/acronyms}
